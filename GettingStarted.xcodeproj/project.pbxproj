@@ -280,13 +280,13 @@
 		46C363A319A18CBF00BB3F84 /* Brief */ = {
 			isa = PBXGroup;
 			children = (
+				462BDDBE19A2E765007BA4B3 /* AppPrefix.h */,
 				46C363A419A18CBF00BB3F84 /* NIConstant.h */,
 				46C363A519A18CBF00BB3F84 /* NIConstant.m */,
 				46C363A619A18CBF00BB3F84 /* AppConstant.h */,
 				46C363A719A18CBF00BB3F84 /* AppConstant.m */,
 				46C363A819A18CBF00BB3F84 /* AppMacro.h */,
 				46C363A919A18CBF00BB3F84 /* AssistanceMacro.h */,
-				462BDDBE19A2E765007BA4B3 /* AppPrefix.h */,
 			);
 			path = Brief;
 			sourceTree = "<group>";
