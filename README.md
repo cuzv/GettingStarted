@@ -1,3 +1,4 @@
+# GettingStarted
 
 This is a iPhone initial Project. Already prepared AFNetworking packing, Folder struct.
 
@@ -5,7 +6,7 @@ Created by Moch on 8/15/14.
 
 Copyright (c) 2014 Moch. All rights reserved.
 
-# Folder structs
+## Folder structs
 
 - Brief  			宏定义和字符串数字常量定义(优先考虑使用常量)
 	- AppPrefix.h   预处理，自己的.h写这里面. pch文件导出该文件
@@ -32,4 +33,3 @@ Copyright (c) 2014 Moch. All rights reserved.
 	- Base64
 	- NSString-Hashes
 	- MJRefresh
-	
