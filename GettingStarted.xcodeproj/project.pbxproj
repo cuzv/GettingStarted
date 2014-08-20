@@ -13,6 +13,7 @@
 		462BDDBD19A2E73F007BA4B3 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BDDBC19A2E73F007BA4B3 /* NSString+Hashes.m */; };
 		462BDDCD19A34754007BA4B3 /* PaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BDDCC19A34754007BA4B3 /* PaddingLabel.m */; };
 		462BDDD019A347D6007BA4B3 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BDDCF19A347D6007BA4B3 /* UIView+Toast.m */; };
+		464E17AE19A47CA3007343CA /* VerificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 464E17AD19A47CA3007343CA /* VerificationManager.m */; };
 		46574D44199E496C004DC73B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D43199E496C004DC73B /* Foundation.framework */; };
 		46574D46199E496C004DC73B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D45199E496C004DC73B /* CoreGraphics.framework */; };
 		46574D48199E496C004DC73B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D47199E496C004DC73B /* UIKit.framework */; };
@@ -70,6 +71,8 @@
 		462BDDCC19A34754007BA4B3 /* PaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingLabel.m; sourceTree = "<group>"; };
 		462BDDCE19A347D6007BA4B3 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		462BDDCF19A347D6007BA4B3 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		464E17AC19A47CA3007343CA /* VerificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationManager.h; sourceTree = "<group>"; };
+		464E17AD19A47CA3007343CA /* VerificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationManager.m; sourceTree = "<group>"; };
 		46574D40199E496C004DC73B /* GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46574D43199E496C004DC73B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		46574D45199E496C004DC73B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -312,6 +315,8 @@
 				462BDDB819A23B0C007BA4B3 /* README.MD */,
 				46C363B319A18D9800BB3F84 /* HttpManager.h */,
 				46C363B419A18D9800BB3F84 /* HttpManager.m */,
+				464E17AC19A47CA3007343CA /* VerificationManager.h */,
+				464E17AD19A47CA3007343CA /* VerificationManager.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -533,6 +538,7 @@
 				465C8ED419A21DE8003DFB48 /* MJRefreshFooterView.m in Sources */,
 				462ABC23199F9EC7006C56E1 /* Base64.m in Sources */,
 				46C363CC19A18DC500BB3F84 /* NSObject+Convert.m in Sources */,
+				464E17AE19A47CA3007343CA /* VerificationManager.m in Sources */,
 				46C363D019A18DC500BB3F84 /* UIImage+Fetch.m in Sources */,
 				465C8ED719A21DE8003DFB48 /* UIScrollView+MJRefresh.m in Sources */,
 				46C363D119A18DC500BB3F84 /* UIImage+Generate.m in Sources */,
