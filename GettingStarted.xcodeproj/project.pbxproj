@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46040D2919A5A64B007253F6 /* ComparableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 46040D2819A5A64B007253F6 /* ComparableObject.m */; };
 		462ABC23199F9EC7006C56E1 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 462ABC22199F9EC7006C56E1 /* Base64.m */; };
 		462ABC25199FA19B006C56E1 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */; };
 		462BDDB919A23B0C007BA4B3 /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = 462BDDB819A23B0C007BA4B3 /* README.MD */; };
@@ -60,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		46040D2719A5A64B007253F6 /* ComparableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparableObject.h; sourceTree = "<group>"; };
+		46040D2819A5A64B007253F6 /* ComparableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparableObject.m; sourceTree = "<group>"; };
 		462ABC21199F9EC7006C56E1 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		462ABC22199F9EC7006C56E1 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
@@ -379,6 +382,8 @@
 			children = (
 				46C363BF19A18DC500BB3F84 /* TextConfigure.h */,
 				46C363C019A18DC500BB3F84 /* TextConfigure.m */,
+				46040D2719A5A64B007253F6 /* ComparableObject.h */,
+				46040D2819A5A64B007253F6 /* ComparableObject.m */,
 			);
 			name = Classess;
 			sourceTree = "<group>";
@@ -532,6 +537,7 @@
 				46C363D419A18DC500BB3F84 /* UIView+FindUIViewController.m in Sources */,
 				465C8ED519A21DE8003DFB48 /* MJRefreshHeaderView.m in Sources */,
 				46C363CF19A18DC500BB3F84 /* TextConfigure.m in Sources */,
+				46040D2919A5A64B007253F6 /* ComparableObject.m in Sources */,
 				462BDDCD19A34754007BA4B3 /* PaddingLabel.m in Sources */,
 				46C363CB19A18DC500BB3F84 /* BadgeView.m in Sources */,
 				46C363D319A18DC500BB3F84 /* UIView+BorderLine.m in Sources */,

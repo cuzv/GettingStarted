@@ -7,7 +7,7 @@
 //
 
 #import "ComparableObject.h"
-#import "NSObject+ConvertingObject.h"
+#import "NSObject+Convert.h"
 
 @implementation ComparableObject
 
