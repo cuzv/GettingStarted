@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, CHToastAppearOrientation) {
+    CHToastAppearOrientationTop,
+    CHToastAppearOrientationBottom
+};
+
 @interface UIView (Toast)
 
 // 吐司框，自动消失
 + (void)toastWithMessage:(NSString *)message;
++ (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation;
 
 @end

@@ -12,6 +12,8 @@
 
 @interface CHViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *selectAddressButton;
+
 @end
 
 @implementation CHViewController
