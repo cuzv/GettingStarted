@@ -25,13 +25,13 @@
 
 - (instancetype)init
 {
-    return [self initWithLocationPickerType:CHLocationPickerTypeCites];
+    return [self initWithLocationPickerType:CHLocationPickerTypeProvinces];
 }
 
 - (instancetype)initWithLocationPickerType:(CHLocationPickerType)locationPickerType {
     self = [super init];
     if (self) {
-        self.locationPickerType = CHLocationPickerTypeProvinces;
+        self.locationPickerType = locationPickerType;
         self.backgroundColor = [UIColor clearColor];
         [self initialPickerView];
         [self provinces];
