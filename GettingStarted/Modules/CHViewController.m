@@ -33,26 +33,28 @@
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 #define kMessageList @"getMobileMessageList"
-    NSString *string = @"asdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajgl";
-    CGSize size = [string sizeWithFont:FontHeadLine width:300];
-    
-    NSLog(@"%@", NSStringFromCGSize(size));
-
-//    NSDictionary *dict = @{@"cid":@"1001",
-//                           @"oid":@"6611"};
-//    [HttpManager setHttpRequestSerializerType:HttpRequestSerializerTypeBase64];
-//    [HttpManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSLog(@"%@", responseObject);
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"%@", error);
-//    }];
+//    NSString *string = @"asdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajgl";
+//    CGSize size = [string sizeWithFont:FontHeadLine width:300];
+//    
+//    NSLog(@"%@", NSStringFromCGSize(size));
     // just for test Pod/ file is ignore success ?
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [UIView toastWithMessage:@"dddddddddddddddddddddddddddddddddddddddd" appearOrientation:CHToastAppearOrientationBottom needShake:YES];
+//    [UIView toastWithMessage:@"dddddddddddddddddddddddddddddddddddddddd" appearOrientation:CHToastAppearOrientationBottom needShake:YES];
+    
+    
+    NSDictionary *dict = @{@"cid":@"1001",
+                           @"oid":@"6611"};
+    [HttpManager setHttpRequestSerializerType:HttpRequestSerializerTypeBase64];
+    [HttpManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning

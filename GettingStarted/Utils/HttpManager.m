@@ -8,7 +8,7 @@
 
 #import "HttpManager.h"
 #import "AFNetworking.h"
-#import "SVProgressHUD.h"
+#import "UIView+Toast.h"
 #import "Base64.h"
 #import "NSString+Hashes.h"
 
@@ -127,7 +127,7 @@ static NSMutableArray *sessions;
 + (BOOL)shouldContinue {
     BOOL shouldContinue = YES;
     if (![CHHTTPSessionManager isNetworkReachable]) {
-        [SVProgressHUD showErrorWithStatus:CHNetworkNotReachable];
+        [UIView toastWithMessage:CHNetworkNotReachable];
         shouldContinue = NO;
     }
     return shouldContinue;
@@ -312,12 +312,16 @@ static NSMutableArray *sessions;
                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     [self removeSameRequestByMthodName:methodName];
     NSDictionary *encodeParameters = [self encodeParameters:parameters];
+
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [[CHHTTPSessionManager sharedInstance] POST:methodName
                                      parameters:encodeParameters
                                         success:^(NSURLSessionDataTask *task, id responseObject) {
+                                            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                             success(task, responseObject);
                                         }
                                         failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                             failure(task, error);
                                         }];
 
@@ -332,17 +336,19 @@ static NSMutableArray *sessions;
     if (![HttpManager shouldContinue]) { return; }
     
     [self removeSameRequestByMthodName:methodName];
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [[CHHTTPSessionManager sharedInstance] POST:methodName
                                      parameters:parameters
                       constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                           [formData appendPartWithFileData:data name:@"imageData" fileName:@"image" mimeType:@"image/png"];
                       }
                                         success:^(NSURLSessionDataTask *task, id responseObject) {
+                                            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                             success(task, responseObject);
                                         }
                                         failure:^(NSURLSessionDataTask *task, NSError *error) {
                                             failure(task, error);
+                                            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                         }];
 
 }
