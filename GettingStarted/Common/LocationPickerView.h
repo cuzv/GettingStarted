@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, CHLocationPickerType) {
 @property (nonatomic, assign) CHLocationPickerType locationPickerType;
 @property (nonatomic, copy) void (^didSelectItem)(NSString *item);
 
-- (instancetype)initWithLocationPickerType:(CHLocationPickerType)locationPickerType;
+- (instancetype)initWithLocationPickerType:(CHLocationPickerType)locationPickerType selectedItem:(void (^)(NSString *item))didSelectItem;
 - (void)present;
 
 @end

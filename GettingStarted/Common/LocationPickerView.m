@@ -25,13 +25,14 @@
 
 - (instancetype)init
 {
-    return [self initWithLocationPickerType:CHLocationPickerTypeProvinces];
+    return [self initWithLocationPickerType:CHLocationPickerTypeProvinces selectedItem:self.didSelectItem];
 }
 
-- (instancetype)initWithLocationPickerType:(CHLocationPickerType)locationPickerType {
+- (instancetype)initWithLocationPickerType:(CHLocationPickerType)locationPickerType selectedItem:(void (^)(NSString *item))didSelectItem {
     self = [super init];
     if (self) {
         self.locationPickerType = locationPickerType;
+        self.didSelectItem = didSelectItem;
         self.backgroundColor = [UIColor clearColor];
         [self initialPickerView];
         [self provinces];

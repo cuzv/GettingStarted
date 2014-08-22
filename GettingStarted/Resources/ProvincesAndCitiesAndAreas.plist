@@ -1959,6 +1959,8 @@
 			<dict>
 				<key>areas</key>
 				<array>
+					<string>高新区</string>
+					<string>高新西区</string>
 					<string>成华区</string>
 					<string>龙泉驿区</string>
 					<string>金牛区</string>
