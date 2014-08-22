@@ -15,7 +15,7 @@
 
 @implementation UIView (Toast)
 
-+ (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation {
++ (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation needShake:(BOOL)shake {
     // prepare toast display label
     UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     CGSize size = [message sizeWithFont:font width:CGRectGetWidth([[UIScreen mainScreen] bounds]) - 120];
@@ -50,8 +50,12 @@
             toastLabelCenterY = CGRectGetMaxY(toastLabel.superview.frame) - 120 - CGRectGetMidY(toastLabel.bounds);
         }
         toastLabel.center = CGPointMake(bounds.size.width / 2 , toastLabelCenterY);
+        
     };
     void (^completion)(BOOL finished) = ^(BOOL finished) {
+        if (shake) {
+            [self shakeAnimationForView:toastLabel];
+        }
         [UIView animateWithDuration:kAnimationDuration
                               delay:kDelayDuration
                             options:UIViewAnimationOptionCurveEaseInOut
@@ -67,9 +71,36 @@
     [UIView animateWithDuration:kAnimationDuration animations:animations completion:completion];
 }
 
-// 吐司框，自动消失
-+ (void)toastWithMessage:(NSString *)message {
-    [self toastWithMessage:message appearOrientation:CHToastAppearOrientationBottom];
++ (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation {
+    [self toastWithMessage:message appearOrientation:CHToastAppearOrientationBottom needShake:NO];
 }
+
++ (void)toastWithMessage:(NSString *)message needShake:(BOOL)shake {
+    [self toastWithMessage:message appearOrientation:CHToastAppearOrientationBottom needShake:shake];
+}
+
++ (void)toastWithMessage:(NSString *)message {
+    [self toastWithMessage:message appearOrientation:CHToastAppearOrientationBottom needShake:NO];
+}
+
++ (void)shakeAnimationForView:(UIView *)view {
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+    animation.keyPath = @"position.x";
+    animation.values = @[@0, @10, @-10, @10, @0];
+    animation.keyTimes = @[@0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1];
+    animation.duration = 0.4;
+    animation.additive = YES;
+    [view.layer addAnimation:animation forKey:@"shake"];
+}
+
+
+
+
+
+
+
+
+
+
 
 @end

@@ -17,6 +17,8 @@ typedef NS_ENUM(NSInteger, CHToastAppearOrientation) {
 
 // 吐司框，自动消失
 + (void)toastWithMessage:(NSString *)message;
++ (void)toastWithMessage:(NSString *)message needShake:(BOOL)shake;
 + (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation;
++ (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation needShake:(BOOL)shake;
 
 @end
