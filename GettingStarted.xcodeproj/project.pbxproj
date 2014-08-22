@@ -49,6 +49,7 @@
 		46C363D319A18DC500BB3F84 /* UIView+BorderLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363C819A18DC500BB3F84 /* UIView+BorderLine.m */; };
 		46C363D419A18DC500BB3F84 /* UIView+FindUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363CA19A18DC500BB3F84 /* UIView+FindUIViewController.m */; };
 		46C363D819A18E4500BB3F84 /* CHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363D719A18E4500BB3F84 /* CHViewController.m */; };
+		46C4C57319A7270D002BB390 /* NSString+TextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C4C57219A7270D002BB390 /* NSString+TextSize.m */; };
 		89EC71E5182D4705836F5824 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 824AB417A3D24AF8A91BBE61 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +140,8 @@
 		46C363CA19A18DC500BB3F84 /* UIView+FindUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindUIViewController.m"; sourceTree = "<group>"; };
 		46C363D619A18E4500BB3F84 /* CHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHViewController.h; sourceTree = "<group>"; };
 		46C363D719A18E4500BB3F84 /* CHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHViewController.m; sourceTree = "<group>"; };
+		46C4C57119A7270D002BB390 /* NSString+TextSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TextSize.h"; sourceTree = "<group>"; };
+		46C4C57219A7270D002BB390 /* NSString+TextSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextSize.m"; sourceTree = "<group>"; };
 		824AB417A3D24AF8A91BBE61 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF55FFC4CC0B41A3BCAA9FCB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -352,6 +355,8 @@
 		46C363D919A18E8900BB3F84 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				46C4C57119A7270D002BB390 /* NSString+TextSize.h */,
+				46C4C57219A7270D002BB390 /* NSString+TextSize.m */,
 				462BDDCE19A347D6007BA4B3 /* UIView+Toast.h */,
 				462BDDCF19A347D6007BA4B3 /* UIView+Toast.m */,
 				46C363B919A18DC500BB3F84 /* NSObject+Convert.h */,
@@ -547,6 +552,7 @@
 				46C363D419A18DC500BB3F84 /* UIView+FindUIViewController.m in Sources */,
 				465C8ED519A21DE8003DFB48 /* MJRefreshHeaderView.m in Sources */,
 				46C363CF19A18DC500BB3F84 /* TextConfigure.m in Sources */,
+				46C4C57319A7270D002BB390 /* NSString+TextSize.m in Sources */,
 				46040D2919A5A64B007253F6 /* ComparableObject.m in Sources */,
 				462BDDCD19A34754007BA4B3 /* PaddingLabel.m in Sources */,
 				46C363CB19A18DC500BB3F84 /* BadgeView.m in Sources */,

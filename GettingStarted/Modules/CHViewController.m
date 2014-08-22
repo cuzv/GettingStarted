@@ -10,6 +10,7 @@
 #import "SVProgressHUD.h"
 #import "UIView+Toast.h"
 #import "LocationPickerView.h"
+#import "NSString+TextSize.h"
 
 @interface CHViewController () <CHLocationPickerDelegate>
 
@@ -32,9 +33,13 @@
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor grayColor];
 #define kMessageList @"getMobileMessageList"
+    NSString *string = @"asdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajgl";
+    CGSize size = [string sizeWithFont:FontHeadLine width:300];
     
+    NSLog(@"%@", NSStringFromCGSize(size));
+
 //    NSDictionary *dict = @{@"cid":@"1001",
 //                           @"oid":@"6611"};
 //    [HttpManager setHttpRequestSerializerType:HttpRequestSerializerTypeBase64];
@@ -47,7 +52,7 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [UIView toastWithMessage:@"dddd" appearOrientation:CHToastAppearOrientationTop];
+    [UIView toastWithMessage:@"dddddddddddddddddddddddddddddddddddddddd" appearOrientation:CHToastAppearOrientationBottom];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,14 +74,10 @@
 
 
 - (IBAction)handleSelectAddress:(UIButton *)sender {
-    LocationPickerView *locationPickerView = [[LocationPickerView alloc] initWithLocationPickerType:CHLocationPickerTypeCites];
-    locationPickerView.locationPickerType = CHLocationPickerTypeAreas;
-    locationPickerView.delegate = self;
+    LocationPickerView *locationPickerView = [[LocationPickerView alloc] initWithLocationPickerType:CHLocationPickerTypeCites selectedItem:^(NSString *item) {
+        [self.selectAddressButton setTitle:item forState:UIControlStateNormal];
+    }];
     [locationPickerView present];
-    __weak typeof(self) weakSelf = self;
-    locationPickerView.didSelectItem = ^(NSString *item) {
-        [weakSelf.selectAddressButton setTitle:item forState:UIControlStateNormal];
-    };
 }
 
 //- (void)locationPickerView:(LocationPickerView *)locationPickerView didSelectItem:(NSString *)item {

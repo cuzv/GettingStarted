@@ -8,6 +8,8 @@
 
 #import "UIView+Toast.h"
 #import "PaddingLabel.h"
+#import "NSString+TextSize.h"
+
 #define kDelayDuration 1.5
 #define kAnimationDuration 0.3
 
@@ -16,12 +18,7 @@
 + (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation {
     // prepare toast display label
     UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-    CGSize boundingRectSize = CGSizeMake(CGRectGetWidth([[UIScreen mainScreen] bounds]) - 120,
-                                         CGRectGetHeight([[UIScreen mainScreen] bounds]));
-    CGSize size = [message boundingRectWithSize:boundingRectSize
-                                        options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
-                                     attributes:@{NSFontAttributeName:font}
-                                        context:nil].size;
+    CGSize size = [message sizeWithFont:font width:CGRectGetWidth([[UIScreen mainScreen] bounds]) - 120];
     PaddingLabel *toastLabel = [PaddingLabel new];
     toastLabel.bounds = CGRectMake(0, 0, size.width + 20, size.height + 20);
     toastLabel.backgroundColor = [UIColor whiteColor];
@@ -35,7 +32,7 @@
     
     // toast can display on top of keyboard
     [[[[UIApplication sharedApplication] windows] lastObject] addSubview:toastLabel];
-
+    
     // prepare animations
     CGRect bounds = [[UIScreen mainScreen] bounds];
     if (orientation == CHToastAppearOrientationTop) {
@@ -67,18 +64,12 @@
     };
     
     // run animatons
-    [UIView animateWithDuration:kAnimationDuration
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:animations
-                     completion:completion];
+    [UIView animateWithDuration:kAnimationDuration animations:animations completion:completion];
 }
 
 // 吐司框，自动消失
 + (void)toastWithMessage:(NSString *)message {
     [self toastWithMessage:message appearOrientation:CHToastAppearOrientationBottom];
 }
-
-
 
 @end
