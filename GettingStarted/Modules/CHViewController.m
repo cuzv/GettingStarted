@@ -9,8 +9,9 @@
 #import "CHViewController.h"
 #import "SVProgressHUD.h"
 #import "UIView+Toast.h"
+#import "LocationPickerView.h"
 
-@interface CHViewController ()
+@interface CHViewController () <CHLocationPickerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *selectAddressButton;
 
@@ -31,22 +32,22 @@
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 #define kMessageList @"getMobileMessageList"
     
-    NSDictionary *dict = @{@"cid":@"1001",
-                           @"oid":@"6611"};
-    [HttpManager setHttpRequestSerializerType:HttpRequestSerializerTypeBase64];
-    [HttpManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", error);
-    }];
+//    NSDictionary *dict = @{@"cid":@"1001",
+//                           @"oid":@"6611"};
+//    [HttpManager setHttpRequestSerializerType:HttpRequestSerializerTypeBase64];
+//    [HttpManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"%@", responseObject);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
     // just for test Pod/ file is ignore success ?
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [UIView toastWithMessage:@"dddd" appearOrientation:CHToastAppearOrientationTop];
+//    [UIView toastWithMessage:@"dddd" appearOrientation:CHToastAppearOrientationTop];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,6 +66,23 @@
         });
     });
 }
+
+
+- (IBAction)handleSelectAddress:(UIButton *)sender {
+    LocationPickerView *locationPickerView = [[LocationPickerView alloc] initWithLocationPickerType:CHLocationPickerTypeCites];
+    locationPickerView.locationPickerType = CHLocationPickerTypeAreas;
+    locationPickerView.delegate = self;
+    [locationPickerView present];
+    __weak typeof(self) weakSelf = self;
+    locationPickerView.didSelectItem = ^(NSString *item) {
+        [weakSelf.selectAddressButton setTitle:item forState:UIControlStateNormal];
+    };
+}
+
+//- (void)locationPickerView:(LocationPickerView *)locationPickerView didSelectItem:(NSString *)item {
+//    [self.selectAddressButton setTitle:item forState:UIControlStateNormal];
+//}
+
 
 /*
 #pragma mark - Navigation

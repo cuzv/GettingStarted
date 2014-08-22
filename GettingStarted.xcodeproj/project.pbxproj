@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		46040D2919A5A64B007253F6 /* ComparableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 46040D2819A5A64B007253F6 /* ComparableObject.m */; };
+		46040D3F19A5D46B007253F6 /* LocationPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46040D3E19A5D46B007253F6 /* LocationPickerView.m */; };
+		46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */; };
 		462ABC23199F9EC7006C56E1 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 462ABC22199F9EC7006C56E1 /* Base64.m */; };
 		462ABC25199FA19B006C56E1 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */; };
 		462BDDB919A23B0C007BA4B3 /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = 462BDDB819A23B0C007BA4B3 /* README.MD */; };
@@ -63,6 +65,9 @@
 /* Begin PBXFileReference section */
 		46040D2719A5A64B007253F6 /* ComparableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparableObject.h; sourceTree = "<group>"; };
 		46040D2819A5A64B007253F6 /* ComparableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparableObject.m; sourceTree = "<group>"; };
+		46040D3D19A5D46B007253F6 /* LocationPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationPickerView.h; sourceTree = "<group>"; };
+		46040D3E19A5D46B007253F6 /* LocationPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationPickerView.m; sourceTree = "<group>"; };
+		46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCitiesAndAreas.plist; sourceTree = "<group>"; };
 		462ABC21199F9EC7006C56E1 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		462ABC22199F9EC7006C56E1 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
@@ -245,6 +250,7 @@
 		46574D7C199E61C5004DC73B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */,
 				462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */,
 			);
 			path = Resources;
@@ -367,6 +373,8 @@
 		46C363DA19A18E9A00BB3F84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				46040D3D19A5D46B007253F6 /* LocationPickerView.h */,
+				46040D3E19A5D46B007253F6 /* LocationPickerView.m */,
 				462BDDCB19A34754007BA4B3 /* PaddingLabel.h */,
 				462BDDCC19A34754007BA4B3 /* PaddingLabel.m */,
 				46C363BB19A18DC500BB3F84 /* PaddingField.h */,
@@ -468,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				462BDDB919A23B0C007BA4B3 /* README.MD in Resources */,
+				46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */,
 				46574D5C199E496C004DC73B /* Images.xcassets in Resources */,
 				46574D4E199E496C004DC73B /* InfoPlist.strings in Resources */,
 				46574D57199E496C004DC73B /* Main.storyboard in Resources */,
@@ -528,6 +537,7 @@
 				46C363B519A18D9800BB3F84 /* HttpManager.m in Sources */,
 				465C8ED319A21DE8003DFB48 /* MJRefreshConst.m in Sources */,
 				46C363AB19A18CBF00BB3F84 /* AppConstant.m in Sources */,
+				46040D3F19A5D46B007253F6 /* LocationPickerView.m in Sources */,
 				465C8ED619A21DE8003DFB48 /* UIScrollView+Extension.m in Sources */,
 				465C8ED819A21DE8003DFB48 /* UIView+Extension.m in Sources */,
 				46C363CD19A18DC500BB3F84 /* PaddingField.m in Sources */,
