@@ -202,9 +202,6 @@
 }
 
 - (NSString *)callbackItemWithThirdComponetDidSelectedRow:(NSInteger)row {
-    NSLog(@"%@", _provinces[[_pickerView selectedRowInComponent:0]][@"state"]);
-    NSLog(@"%@", _cites[[_pickerView selectedRowInComponent:1]][@"city"]);
-    NSLog(@"%@", _areas.count ? _areas[row] : @"");
     return [NSString stringWithFormat:@"%@%@%@",
             _provinces[[_pickerView selectedRowInComponent:0]][@"state"],
             _cites[[_pickerView selectedRowInComponent:1]][@"city"],
@@ -231,7 +228,7 @@
             titleForComponent = _cites[row][@"city"];
             break;
         case 2:
-            // 如果有3个分组，返回第1个分组字典元素对应的某个value值
+            // 如果有3个分组，返回第2个分组字典元素对应的某个value值
             titleForComponent = _areas[row];
         default:
             break;
@@ -261,63 +258,64 @@
     [self callbackWithItem:callbackitem];
 }
 
-//- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-//    switch (component) {
-//        // 第一个分组拖动完成
-//        case 0: {
-//            if (CHLocationPickerTypeProvinces == self.locationPickerType) {
-//                // 只选择省份
-//                [self callbackWithItem:_provinces[row][@"state"]];
-//            } else if (CHLocationPickerTypeCites == self.locationPickerType) {
-//                // 选择省份、市区
-//                // 根据第一个分组省份数据更新第二个分组市区数据
-//                _cites = _provinces[row][@"cities"];
-//                [pickerView reloadComponent:1];
-//                [pickerView selectRow:0 inComponent:1 animated:YES];
-//
-//                // 未拖动第二个分组，返回第二个分组第一元素
-//                NSString *item = [NSString stringWithFormat:@"%@%@", _provinces[row][@"state"], _cites[component][@"city"]];
-//                [self callbackWithItem:item];
-//            } else if (CHLocationPickerTypeAreas == self.locationPickerType) {
-//                // 选择省份、市区、县区
-//                // 根据第一个分组省份数据更新第二个分组市区数据
-//                _cites = _provinces[row][@"cities"];
-//                [pickerView reloadComponent:1];
-//                [pickerView selectRow:0 inComponent:1 animated:YES];
-//
-//                // 根据第二个分组第一个市区数据更新第三个分组县区数据
-//                _areas = _cites[0][@"areas"];
-//                [pickerView reloadComponent:2];
-//                [pickerView selectRow:0 inComponent:2 animated:YES];
-//                NSString *item = [NSString stringWithFormat:@"%@%@%@", _provinces[row][@"state"], _cites[component][@"city"], _areas.count ? _areas[0] : @""];
-//                [self callbackWithItem:item];
-//            }
-//        }
-//            break;
-//        case 1: {
-//            // 第二分组拖动完成
-//            NSString *item = nil;
-//            if (CHLocationPickerTypeCites == self.locationPickerType) {
-//                item = [NSString stringWithFormat:@"%@%@", _provinces[[pickerView selectedRowInComponent:0]][@"state"], _cites[row][@"city"]];
-//            } else if (CHLocationPickerTypeAreas == self.locationPickerType) {
-//                // 根据第二个分组市区数据更新第三个分组县区数据
-//                _areas = _cites[row][@"areas"];
-//                [pickerView reloadComponent:2];
-//                [pickerView selectRow:0 inComponent:2 animated:YES];
-//                item = [NSString stringWithFormat:@"%@%@%@", _provinces[[pickerView selectedRowInComponent:0]][@"state"], _cites[row][@"city"], _areas.count ? _areas[0] : @""];
-//            }
-//            [self callbackWithItem:item];
-//        }
-//            break;
-//        case 2: {
-//            // 第三个分组拖动完成
-//            NSString *item = [NSString stringWithFormat:@"%@%@%@", _provinces[[pickerView selectedRowInComponent:0]][@"state"],_cites[[_pickerView selectedRowInComponent:1]][@"city"], _areas.count ? _areas[row] : @""];
-//            [self callbackWithItem:item];
-//        }
-//            break;
-//        default:
-//            break;
-//    }
-//}
+/*
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    switch (component) {
+        // 第一个分组拖动完成
+        case 0: {
+            if (CHLocationPickerTypeProvinces == self.locationPickerType) {
+                // 只选择省份
+                [self callbackWithItem:_provinces[row][@"state"]];
+            } else if (CHLocationPickerTypeCites == self.locationPickerType) {
+                // 选择省份、市区
+                // 根据第一个分组省份数据更新第二个分组市区数据
+                _cites = _provinces[row][@"cities"];
+                [pickerView reloadComponent:1];
+                [pickerView selectRow:0 inComponent:1 animated:YES];
 
+                // 未拖动第二个分组，返回第二个分组第一元素
+                NSString *item = [NSString stringWithFormat:@"%@%@", _provinces[row][@"state"], _cites[component][@"city"]];
+                [self callbackWithItem:item];
+            } else if (CHLocationPickerTypeAreas == self.locationPickerType) {
+                // 选择省份、市区、县区
+                // 根据第一个分组省份数据更新第二个分组市区数据
+                _cites = _provinces[row][@"cities"];
+                [pickerView reloadComponent:1];
+                [pickerView selectRow:0 inComponent:1 animated:YES];
+
+                // 根据第二个分组第一个市区数据更新第三个分组县区数据
+                _areas = _cites[0][@"areas"];
+                [pickerView reloadComponent:2];
+                [pickerView selectRow:0 inComponent:2 animated:YES];
+                NSString *item = [NSString stringWithFormat:@"%@%@%@", _provinces[row][@"state"], _cites[component][@"city"], _areas.count ? _areas[0] : @""];
+                [self callbackWithItem:item];
+            }
+        }
+            break;
+        case 1: {
+            // 第二分组拖动完成
+            NSString *item = nil;
+            if (CHLocationPickerTypeCites == self.locationPickerType) {
+                item = [NSString stringWithFormat:@"%@%@", _provinces[[pickerView selectedRowInComponent:0]][@"state"], _cites[row][@"city"]];
+            } else if (CHLocationPickerTypeAreas == self.locationPickerType) {
+                // 根据第二个分组市区数据更新第三个分组县区数据
+                _areas = _cites[row][@"areas"];
+                [pickerView reloadComponent:2];
+                [pickerView selectRow:0 inComponent:2 animated:YES];
+                item = [NSString stringWithFormat:@"%@%@%@", _provinces[[pickerView selectedRowInComponent:0]][@"state"], _cites[row][@"city"], _areas.count ? _areas[0] : @""];
+            }
+            [self callbackWithItem:item];
+        }
+            break;
+        case 2: {
+            // 第三个分组拖动完成
+            NSString *item = [NSString stringWithFormat:@"%@%@%@", _provinces[[pickerView selectedRowInComponent:0]][@"state"],_cites[[_pickerView selectedRowInComponent:1]][@"city"], _areas.count ? _areas[row] : @""];
+            [self callbackWithItem:item];
+        }
+            break;
+        default:
+            break;
+    }
+}
+*/
 @end
