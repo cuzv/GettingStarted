@@ -310,6 +310,7 @@ static NSMutableArray *sessions;
             break;
         }
     }
+    [self requestDidEnd];
 }
 
 + (void)removeLatelyRequest {
@@ -333,6 +334,7 @@ static NSMutableArray *sessions;
 + (void)requestDidEnd {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [SVProgressHUD dismiss];
+    CHHTTPRequestMethodName = @"";
 }
 
 // 后台接收哪种格式的参数，传递参数的时候就发什么格式的过去，「团队宝」后台需要的是 base64，所以不用 AFNetworking 的 AFJSONRequestSerializer 转换器
