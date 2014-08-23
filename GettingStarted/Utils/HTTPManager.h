@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, HTTPResponseSerializerType) {
 + (HTTPRequestSerializerType)requestSerializerType;
 // setting http response serializer type
 // If you wanna decode your response, please call this message in `AppDelegate`.
-// The default setting is `HttpResponseSerializerTypeJSON`
+// The default setting is `HTTPResponseSerializerTypeJSON`
 + (void)setHTTPResponseSerializerType:(HTTPResponseSerializerType)responseSerializerType;
 
 // POST
@@ -60,6 +60,8 @@ typedef NS_ENUM(NSInteger, HTTPResponseSerializerType) {
 + (void)removeRequestByMthodName:(NSString *)methodName;
 // remove all request
 + (void)removeAllRequest;
+
++ (void)requestWillBeginWithProgressAnimation;
 
 
 @end

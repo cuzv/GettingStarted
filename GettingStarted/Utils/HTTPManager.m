@@ -11,6 +11,7 @@
 #import "UIView+Toast.h"
 #import "Base64.h"
 #import "NSString+Hashes.h"
+#import "SVProgressHUD.h"
 
 NSString *CHHTTPRequestMethodName = @"";
 
@@ -30,7 +31,7 @@ NSString *CHHTTPRequestMethodName = @"";
 
 static CHHTTPSessionManager *sharedInstance;
 
-#pragma mark -  CHHTTPSessionManager single
+#pragma mark -  CHHTTPSessionManager singleton
 
 - (instancetype)init {
     return [CHHTTPSessionManager sharedInstance];
@@ -251,9 +252,6 @@ static NSMutableArray *sessions;
     return data;
 }
 
-
-#pragma mark - TODO others encode method
-
 + (NSDictionary *)encodeParameters:(NSDictionary *)parameters {
     NSString *encodeString = nil;
     /* flow methods is not encode `CHParametersKey` */
@@ -320,12 +318,17 @@ static NSMutableArray *sessions;
     }];
 }
 
++ (void)requestWillBeginWithProgressAnimation {
+    [SVProgressHUD show];
+}
+
 + (void)requestWillBegin {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 + (void)requestDidEnd {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [SVProgressHUD dismiss];
 }
 
 // 后台接收哪种格式的参数，传递参数的时候就发什么格式的过去，「团队宝」后台需要的是 base64，所以不用 AFNetworking 的 AFJSONRequestSerializer 转换器
