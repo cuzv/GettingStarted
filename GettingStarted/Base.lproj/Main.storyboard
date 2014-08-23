@@ -57,11 +57,50 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QaN-vp-YeR"/>
+                    <navigationItem key="navigationItem" id="QaN-vp-YeR">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="0YF-HA-UGg">
+                            <connections>
+                                <segue destination="8wT-0l-5GA" kind="push" id="UVk-RI-bad"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QI9-2P-oNk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1035" y="105"/>
+        </scene>
+        <!--Third View Controller-->
+        <scene sceneID="eIo-Zq-YNx">
+            <objects>
+                <viewController id="8wT-0l-5GA" customClass="CHThirdViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Edi-H8-1Ai"/>
+                        <viewControllerLayoutGuide type="bottom" id="HaM-BJ-2iU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BJd-Ur-wux">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xwK-9v-nbT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="8wT-0l-5GA" id="RC1-8F-GXd"/>
+                                    <outlet property="delegate" destination="8wT-0l-5GA" id="0pE-4a-Pvo"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rkS-BL-TYk"/>
+                    <connections>
+                        <outlet property="tableView" destination="xwK-9v-nbT" id="SuN-L7-M19"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cmi-Bx-CxQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1390" y="105"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KCk-LW-Mkd">

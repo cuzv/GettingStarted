@@ -11,9 +11,8 @@
 		46040D3F19A5D46B007253F6 /* LocationPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46040D3E19A5D46B007253F6 /* LocationPickerView.m */; };
 		46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */; };
 		46044BA319A841D100E1552D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46044BA219A841D100E1552D /* BaseViewController.m */; };
-		4625B47A19A85E25006B09BC /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4625B47719A85E25006B09BC /* SVProgressHUD.bundle */; };
-		4625B47B19A85E25006B09BC /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B47919A85E25006B09BC /* SVProgressHUD.m */; };
 		4625B47E19A86669006B09BC /* CHDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B47D19A86669006B09BC /* CHDetailViewController.m */; };
+		4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B48019A87EC0006B09BC /* CHThirdViewController.m */; };
 		462ABC23199F9EC7006C56E1 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 462ABC22199F9EC7006C56E1 /* Base64.m */; };
 		462ABC25199FA19B006C56E1 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */; };
 		462BDDB919A23B0C007BA4B3 /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = 462BDDB819A23B0C007BA4B3 /* README.MD */; };
@@ -75,11 +74,10 @@
 		46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCitiesAndAreas.plist; sourceTree = "<group>"; };
 		46044BA119A841D100E1552D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		46044BA219A841D100E1552D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		4625B47719A85E25006B09BC /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		4625B47819A85E25006B09BC /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		4625B47919A85E25006B09BC /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		4625B47C19A86669006B09BC /* CHDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDetailViewController.h; sourceTree = "<group>"; };
 		4625B47D19A86669006B09BC /* CHDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDetailViewController.m; sourceTree = "<group>"; };
+		4625B47F19A87EC0006B09BC /* CHThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHThirdViewController.h; sourceTree = "<group>"; };
+		4625B48019A87EC0006B09BC /* CHThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHThirdViewController.m; sourceTree = "<group>"; };
 		462ABC21199F9EC7006C56E1 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		462ABC22199F9EC7006C56E1 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
@@ -182,16 +180,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4625B47619A85E25006B09BC /* SVProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				4625B47719A85E25006B09BC /* SVProgressHUD.bundle */,
-				4625B47819A85E25006B09BC /* SVProgressHUD.h */,
-				4625B47919A85E25006B09BC /* SVProgressHUD.m */,
-			);
-			path = SVProgressHUD;
-			sourceTree = "<group>";
-		};
 		462ABC20199F9EC7006C56E1 /* Base64 */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,7 +271,6 @@
 		46574D7E199E61C5004DC73B /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				4625B47619A85E25006B09BC /* SVProgressHUD */,
 				462BDDBA19A2E73F007BA4B3 /* NSString-Hashes */,
 				465C8EC019A21DE8003DFB48 /* MJRefresh */,
 				462ABC20199F9EC7006C56E1 /* Base64 */,
@@ -372,6 +359,8 @@
 				46C363D719A18E4500BB3F84 /* CHViewController.m */,
 				4625B47C19A86669006B09BC /* CHDetailViewController.h */,
 				4625B47D19A86669006B09BC /* CHDetailViewController.m */,
+				4625B47F19A87EC0006B09BC /* CHThirdViewController.h */,
+				4625B48019A87EC0006B09BC /* CHThirdViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -509,7 +498,6 @@
 				462BDDB919A23B0C007BA4B3 /* README.MD in Resources */,
 				46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */,
 				46574D5C199E496C004DC73B /* Images.xcassets in Resources */,
-				4625B47A19A85E25006B09BC /* SVProgressHUD.bundle in Resources */,
 				46574D4E199E496C004DC73B /* InfoPlist.strings in Resources */,
 				46574D57199E496C004DC73B /* Main.storyboard in Resources */,
 				465C8ED119A21DE8003DFB48 /* MJRefresh.bundle in Resources */,
@@ -566,6 +554,7 @@
 			files = (
 				46C363D219A18DC500BB3F84 /* UIView+Accessor.m in Sources */,
 				46574D50199E496C004DC73B /* main.m in Sources */,
+				4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */,
 				46C363B519A18D9800BB3F84 /* HTTPManager.m in Sources */,
 				465C8ED319A21DE8003DFB48 /* MJRefreshConst.m in Sources */,
 				46C363AB19A18CBF00BB3F84 /* AppConstant.m in Sources */,
@@ -574,7 +563,6 @@
 				465C8ED819A21DE8003DFB48 /* UIView+Extension.m in Sources */,
 				4625B47E19A86669006B09BC /* CHDetailViewController.m in Sources */,
 				46C363CD19A18DC500BB3F84 /* PaddingField.m in Sources */,
-				4625B47B19A85E25006B09BC /* SVProgressHUD.m in Sources */,
 				462BDDD019A347D6007BA4B3 /* UIView+Toast.m in Sources */,
 				46C363D819A18E4500BB3F84 /* CHViewController.m in Sources */,
 				465C8ED219A21DE8003DFB48 /* MJRefreshBaseView.m in Sources */,
