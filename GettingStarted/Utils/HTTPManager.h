@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-// record current http request method name, when `BaseViewController` disappear will use this variable
-extern NSString *CHHTTPRequestMethodName;
-
 // Attention: HttpRequestSerializerTypeXML's serializer is `Unclear` now
 typedef NS_ENUM(NSInteger, HTTPRequestSerializerType) {
     HTTPRequestSerializerTypeNone         = 0,
@@ -56,12 +53,15 @@ typedef NS_ENUM(NSInteger, HTTPResponseSerializerType) {
                   passData:(NSData *)data
                    success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+// present progress animation
++ (void)requestWillBeginWithProgressAnimation;
 // remove request by method name
 + (void)removeRequestByMthodName:(NSString *)methodName;
+// remove lately request
++ (void)removeLatelyRequest;
 // remove all request
 + (void)removeAllRequest;
-
-+ (void)requestWillBeginWithProgressAnimation;
 
 
 @end

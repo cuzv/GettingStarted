@@ -312,6 +312,10 @@ static NSMutableArray *sessions;
     }
 }
 
++ (void)removeLatelyRequest {
+    [self removeRequestByMthodName:CHHTTPRequestMethodName];
+}
+
 + (void)removeAllRequest {
     [[CHHTTPSessionManager sharedInstance].tasks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [obj cancel];

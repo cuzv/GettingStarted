@@ -31,8 +31,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [HTTPManager removeRequestByMthodName:CHHTTPRequestMethodName];
-    CHHTTPRequestMethodName = @"";
+    [HTTPManager removeLatelyRequest];
 }
 
 - (void)customBackBarButtonItem {
