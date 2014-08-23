@@ -13,7 +13,14 @@
 #import "AppConstant.h"
 #import "NIConstant.h"
 #import "AssistanceMacro.h"
-#import "HttpManager.h"
+#import "HTTPManager.h"
 #import "AFNetworking.h"
+#import "UIView+Toast.h"
+#import "UIView+Accessor.h"
+#import "UIView+BorderLine.h"
+#import "NSString+TextSize.h"
+#import "NSObject+Convert.h"
+#import "UIImage+Generate.h"
+#import "UIImage+Fetch.h"
 
 #endif

@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor orangeColor];
 #define kMessageList @"getMobileMessageList"
 //    NSString *string = @"asdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajgl";
 //    CGSize size = [string sizeWithFont:FontHeadLine width:300];
@@ -43,17 +43,19 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [UIView toastWithMessage:@"dddddddddddddddddddddddddddddddddddddddd" appearOrientation:CHToastAppearOrientationBottom needShake:NO];
+//    [UIView toastWithMessage:@"dddddddddddddddddddddddddddddddddddddddd" appearOrientation:CHToastAppearOrientationBottom needShake:NO];
 
 //    NSDictionary *dict = @{@"cid":@"1001",
 //                           @"oid":@"6611"};
-//    [HttpManager setHttpRequestSerializerType:HttpRequestSerializerTypeBase64];
-//    [HttpManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
+//    [HTTPManager setHTTPRequestSerializerType:HTTPRequestSerializerTypeBase64];
+//    [HTTPManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
 //        NSLog(@"%@", responseObject);
 //    } failure:^(NSURLSessionDataTask *task, NSError *error) {
 //        NSLog(@"%@", error);
 //    }];
-
+//
+    
+    [SVProgressHUD show];
 }
 
 - (void)didReceiveMemoryWarning

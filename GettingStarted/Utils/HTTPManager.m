@@ -6,18 +6,19 @@
 //  Copyright (c) 2014 Moch. All rights reserved.
 //
 
-#import "HttpManager.h"
+#import "HTTPManager.h"
 #import "AFNetworking.h"
 #import "UIView+Toast.h"
 #import "Base64.h"
 #import "NSString+Hashes.h"
+#import "SVProgressHUD.h"
 
 @interface CHHTTPSessionManager : AFHTTPSessionManager <NSSecureCoding, NSCopying>
 
 // AFNetworking's requestSerializer is almost can not work, service's POST will get POST-VALUE by `CHParametersKey`.
 // so, we can not encode `CHParametersKey`.We just can encode value for key `CHParametersKey`. So we encode by ours
 // httpRequestSerializerType. Then POST data {`CHParametersKey`=ENCODE[value for `CHParametersKey`]}.
-@property (nonatomic, assign) HttpRequestSerializerType httpRequestSerializerType;
+@property (nonatomic, assign) HTTPRequestSerializerType requestSerializerType;
 
 + (instancetype)sharedInstance;
 + (BOOL)isNetworkReachable;
@@ -120,7 +121,7 @@ static CHHTTPSessionManager *sharedInstance;
 #pragma mark -
 #pragma mark - HttpManager
 
-@implementation HttpManager
+@implementation HTTPManager
 
 static NSMutableArray *sessions;
 
@@ -134,38 +135,38 @@ static NSMutableArray *sessions;
 }
 
 // setting http request serializer type
-+ (void)setHttpRequestSerializerType:(HttpRequestSerializerType)httpRequestSerializerType {
-    [CHHTTPSessionManager sharedInstance].httpRequestSerializerType = httpRequestSerializerType;
++ (void)setHTTPRequestSerializerType:(HTTPRequestSerializerType)requestSerializerType {
+    [CHHTTPSessionManager sharedInstance].requestSerializerType = requestSerializerType;
 }
 
 // getting http request serializer type
-+ (HttpRequestSerializerType)requestSerializerType {
-    return [CHHTTPSessionManager sharedInstance].httpRequestSerializerType;
++ (HTTPRequestSerializerType)requestSerializerType {
+    return [CHHTTPSessionManager sharedInstance].requestSerializerType;
 }
 
 // setting http response serializer type
-+ (void)setHttpResponseSerializerType:(HttpResponseSerializerType)httpResponseSerializerType {
++ (void)setHTTPResponseSerializerType:(HTTPResponseSerializerType)responseSerializerType {
     AFHTTPResponseSerializer <AFURLResponseSerialization> *responseSerializer = nil;
     
-    switch (httpResponseSerializerType) {
-        case HttpResponseSerializerTypeJSON:
+    switch (responseSerializerType) {
+        case HTTPResponseSerializerTypeJSON:
             responseSerializer = [AFJSONResponseSerializer serializer];
             responseSerializer.acceptableContentTypes = [responseSerializer.acceptableContentTypes setByAddingObject:CHHttpContentTypePlain];
             responseSerializer.acceptableContentTypes = [responseSerializer.acceptableContentTypes setByAddingObject:CHHttpContentTypeHtml];
             break;
-         case HttpResponseSerializerTypePropertyList:
+         case HTTPResponseSerializerTypePropertyList:
             responseSerializer = [AFPropertyListResponseSerializer serializer];
-        case HttpResponseSerializerTypeXMLParser:
+        case HTTPResponseSerializerTypeXMLParser:
             responseSerializer = [AFXMLParserResponseSerializer serializer];
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
         case HttpResponseSerializerTypeXMLDocument:
             responseSerializer = [AFXMLDocumentResponseSerializer serializer];
             break;
 #endif
-        case HttpResponseSerializerTypeImage:
+        case HTTPResponseSerializerTypeImage:
             responseSerializer = [AFImageResponseSerializer serializer];
             break;
-        case HttpResponseSerializerTypeCompound:
+        case HTTPResponseSerializerTypeCompound:
             responseSerializer = [AFCompoundResponseSerializer serializer];
         default:
             responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -252,36 +253,35 @@ static NSMutableArray *sessions;
 
 + (NSDictionary *)encodeParameters:(NSDictionary *)parameters {
     NSString *encodeString = nil;
-    
     /* flow methods is not encode `CHParametersKey` */
-    switch ([CHHTTPSessionManager sharedInstance].httpRequestSerializerType) {
-        case HttpRequestSerializerTypeNone:
+    switch ([CHHTTPSessionManager sharedInstance].requestSerializerType) {
+        case HTTPRequestSerializerTypeNone:
             encodeString = [self URLStringWithParameters:parameters];
             break;
-        case HttpRequestSerializerTypeJSON: {
+        case HTTPRequestSerializerTypeJSON: {
             // convert parameters to JSON string
             NSData *JSONData = [self dataWithJSONObject:parameters];
             encodeString = [self stringWithData:JSONData];
         }
             break;
-        case HttpRequestSerializerTypePropertyList:{
+        case HTTPRequestSerializerTypePropertyList:{
             NSData *propertyListData = [self dataWithPropertyList:parameters];
             encodeString = [self stringWithData:propertyListData];
         }
             break;
-        case HttpRequestSerializerTypeBase64: {
+        case HTTPRequestSerializerTypeBase64: {
             // base64
             NSString *URLString = [self URLStringWithParameters:parameters];
             encodeString = [URLString base64EncodedString];
         }
             break;
-        case HttpRequestSerializerTypeMd5:{
+        case HTTPRequestSerializerTypeMd5:{
             // md5
             NSString *URLString = [self URLStringWithParameters:parameters];
             encodeString = [URLString md5];
         }
             break;
-        case HttpRequestSerializerTypeSha1: {
+        case HTTPRequestSerializerTypeSha1: {
             // sha1
             NSString *URLString = [self URLStringWithParameters:parameters];
             encodeString = [URLString sha1];
@@ -295,13 +295,23 @@ static NSMutableArray *sessions;
 
 #pragma mark - HTTP requst messages
 
-+ (void)removeSameRequestByMthodName:methodName {
++ (void)removeRequestByMthodName:(NSString *)methodName {
+    if (!methodName.length) {
+        return;
+    }
     NSURL *wantRequestURL = [[CHHTTPSessionManager sharedInstance].baseURL URLByAppendingPathComponent:methodName];
     for (NSURLSessionTask *task in [CHHTTPSessionManager sharedInstance].tasks) {
         if ([wantRequestURL isEqual:task.currentRequest.URL]) {
             [task cancel];
+            break;
         }
     }
+}
+
++ (void)removeAllRequest {
+    [[CHHTTPSessionManager sharedInstance].tasks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [obj cancel];
+    }];
 }
 
 // 后台接收哪种格式的参数，传递参数的时候就发什么格式的过去，「团队宝」后台需要的是 base64，所以不用 AFNetworking 的 AFJSONRequestSerializer 转换器
@@ -310,10 +320,16 @@ static NSMutableArray *sessions;
                 parameters:(NSDictionary *)parameters
                    success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-    [self removeSameRequestByMthodName:methodName];
-    NSDictionary *encodeParameters = [self encodeParameters:parameters];
+    if (![HTTPManager shouldContinue]) {
+        return;
+    }
 
+    // remove same request
+    [self removeRequestByMthodName:methodName];
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [SVProgressHUD show];
+    NSDictionary *encodeParameters = [self encodeParameters:parameters];
     [[CHHTTPSessionManager sharedInstance] POST:methodName
                                      parameters:encodeParameters
                                         success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -324,7 +340,6 @@ static NSMutableArray *sessions;
                                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                             failure(task, error);
                                         }];
-
 }
 
 // POST with data
@@ -333,12 +348,18 @@ static NSMutableArray *sessions;
                   passData:(NSData *)data
                    success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-    if (![HttpManager shouldContinue]) { return; }
+    if (![HTTPManager shouldContinue]) {
+        return;
+    }
     
-    [self removeSameRequestByMthodName:methodName];
+    // remove same request
+    [self removeRequestByMthodName:methodName];
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    NSDictionary *encodeParameters = [self encodeParameters:parameters];
+    
     [[CHHTTPSessionManager sharedInstance] POST:methodName
-                                     parameters:parameters
+                                     parameters:encodeParameters
                       constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                           [formData appendPartWithFileData:data name:@"imageData" fileName:@"image" mimeType:@"image/png"];
                       }

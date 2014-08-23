@@ -10,6 +10,7 @@
 		46040D2919A5A64B007253F6 /* ComparableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 46040D2819A5A64B007253F6 /* ComparableObject.m */; };
 		46040D3F19A5D46B007253F6 /* LocationPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46040D3E19A5D46B007253F6 /* LocationPickerView.m */; };
 		46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */; };
+		46044BA319A841D100E1552D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46044BA219A841D100E1552D /* BaseViewController.m */; };
 		462ABC23199F9EC7006C56E1 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 462ABC22199F9EC7006C56E1 /* Base64.m */; };
 		462ABC25199FA19B006C56E1 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */; };
 		462BDDB919A23B0C007BA4B3 /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = 462BDDB819A23B0C007BA4B3 /* README.MD */; };
@@ -38,7 +39,7 @@
 		465C8ED819A21DE8003DFB48 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 465C8ED019A21DE8003DFB48 /* UIView+Extension.m */; };
 		46C363AA19A18CBF00BB3F84 /* NIConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363A519A18CBF00BB3F84 /* NIConstant.m */; };
 		46C363AB19A18CBF00BB3F84 /* AppConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363A719A18CBF00BB3F84 /* AppConstant.m */; };
-		46C363B519A18D9800BB3F84 /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363B419A18D9800BB3F84 /* HttpManager.m */; };
+		46C363B519A18D9800BB3F84 /* HTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363B419A18D9800BB3F84 /* HTTPManager.m */; };
 		46C363CB19A18DC500BB3F84 /* BadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363B819A18DC500BB3F84 /* BadgeView.m */; };
 		46C363CC19A18DC500BB3F84 /* NSObject+Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363BA19A18DC500BB3F84 /* NSObject+Convert.m */; };
 		46C363CD19A18DC500BB3F84 /* PaddingField.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363BC19A18DC500BB3F84 /* PaddingField.m */; };
@@ -69,6 +70,8 @@
 		46040D3D19A5D46B007253F6 /* LocationPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationPickerView.h; sourceTree = "<group>"; };
 		46040D3E19A5D46B007253F6 /* LocationPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationPickerView.m; sourceTree = "<group>"; };
 		46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCitiesAndAreas.plist; sourceTree = "<group>"; };
+		46044BA119A841D100E1552D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		46044BA219A841D100E1552D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		462ABC21199F9EC7006C56E1 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		462ABC22199F9EC7006C56E1 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
@@ -118,8 +121,8 @@
 		46C363A719A18CBF00BB3F84 /* AppConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConstant.m; sourceTree = "<group>"; };
 		46C363A819A18CBF00BB3F84 /* AppMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMacro.h; sourceTree = "<group>"; };
 		46C363A919A18CBF00BB3F84 /* AssistanceMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssistanceMacro.h; sourceTree = "<group>"; };
-		46C363B319A18D9800BB3F84 /* HttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
-		46C363B419A18D9800BB3F84 /* HttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpManager.m; sourceTree = "<group>"; };
+		46C363B319A18D9800BB3F84 /* HTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPManager.h; sourceTree = "<group>"; };
+		46C363B419A18D9800BB3F84 /* HTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPManager.m; sourceTree = "<group>"; };
 		46C363B719A18DC500BB3F84 /* BadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeView.h; sourceTree = "<group>"; };
 		46C363B819A18DC500BB3F84 /* BadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeView.m; sourceTree = "<group>"; };
 		46C363B919A18DC500BB3F84 /* NSObject+Convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Convert.h"; sourceTree = "<group>"; };
@@ -296,11 +299,11 @@
 			isa = PBXGroup;
 			children = (
 				462BDDBE19A2E765007BA4B3 /* AppPrefix.h */,
-				46C363A419A18CBF00BB3F84 /* NIConstant.h */,
-				46C363A519A18CBF00BB3F84 /* NIConstant.m */,
+				46C363A819A18CBF00BB3F84 /* AppMacro.h */,
 				46C363A619A18CBF00BB3F84 /* AppConstant.h */,
 				46C363A719A18CBF00BB3F84 /* AppConstant.m */,
-				46C363A819A18CBF00BB3F84 /* AppMacro.h */,
+				46C363A419A18CBF00BB3F84 /* NIConstant.h */,
+				46C363A519A18CBF00BB3F84 /* NIConstant.m */,
 				46C363A919A18CBF00BB3F84 /* AssistanceMacro.h */,
 			);
 			path = Brief;
@@ -325,8 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				462BDDB819A23B0C007BA4B3 /* README.MD */,
-				46C363B319A18D9800BB3F84 /* HttpManager.h */,
-				46C363B419A18D9800BB3F84 /* HttpManager.m */,
+				46C363B319A18D9800BB3F84 /* HTTPManager.h */,
+				46C363B419A18D9800BB3F84 /* HTTPManager.m */,
 				464E17AC19A47CA3007343CA /* VerificationManager.h */,
 				464E17AD19A47CA3007343CA /* VerificationManager.m */,
 			);
@@ -397,6 +400,8 @@
 				46C363C019A18DC500BB3F84 /* TextConfigure.m */,
 				46040D2719A5A64B007253F6 /* ComparableObject.h */,
 				46040D2819A5A64B007253F6 /* ComparableObject.m */,
+				46044BA119A841D100E1552D /* BaseViewController.h */,
+				46044BA219A841D100E1552D /* BaseViewController.m */,
 			);
 			name = Classess;
 			sourceTree = "<group>";
@@ -539,7 +544,7 @@
 			files = (
 				46C363D219A18DC500BB3F84 /* UIView+Accessor.m in Sources */,
 				46574D50199E496C004DC73B /* main.m in Sources */,
-				46C363B519A18D9800BB3F84 /* HttpManager.m in Sources */,
+				46C363B519A18D9800BB3F84 /* HTTPManager.m in Sources */,
 				465C8ED319A21DE8003DFB48 /* MJRefreshConst.m in Sources */,
 				46C363AB19A18CBF00BB3F84 /* AppConstant.m in Sources */,
 				46040D3F19A5D46B007253F6 /* LocationPickerView.m in Sources */,
@@ -554,6 +559,7 @@
 				46C363CF19A18DC500BB3F84 /* TextConfigure.m in Sources */,
 				46C4C57319A7270D002BB390 /* NSString+TextSize.m in Sources */,
 				46040D2919A5A64B007253F6 /* ComparableObject.m in Sources */,
+				46044BA319A841D100E1552D /* BaseViewController.m in Sources */,
 				462BDDCD19A34754007BA4B3 /* PaddingLabel.m in Sources */,
 				46C363CB19A18DC500BB3F84 /* BadgeView.m in Sources */,
 				46C363D319A18DC500BB3F84 /* UIView+BorderLine.m in Sources */,
