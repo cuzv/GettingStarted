@@ -32,37 +32,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     self.view.backgroundColor = [UIColor orangeColor];
-#define kMessageList @"getMobileMessageList"
-//    NSString *string = @"asdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajglasdgldsagladslgjadsljglasdjlgsajgl";
-//    CGSize size = [string sizeWithFont:FontHeadLine width:300];
-//    
-//    NSLog(@"%@", NSStringFromCGSize(size));
-    // just for test Pod/ file is ignore success ?
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 //    [UIView toastWithMessage:@"dddddddddddddddddddddddddddddddddddddddd" appearOrientation:CHToastAppearOrientationBottom needShake:NO];
-
-//    NSDictionary *dict = @{@"cid":@"1001",
-//                           @"oid":@"6611"};
-//    [HTTPManager setHTTPRequestSerializerType:HTTPRequestSerializerTypeBase64];
-//    [HTTPManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSLog(@"%@", responseObject);
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"%@", error);
-//    }];
-//
-    
-    [SVProgressHUD show];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (void)showMessage:(NSString *)message
 {
     [SVProgressHUD showWithStatus:message];
@@ -85,17 +61,5 @@
 //- (void)locationPickerView:(LocationPickerView *)locationPickerView didSelectItem:(NSString *)item {
 //    [self.selectAddressButton setTitle:item forState:UIControlStateNormal];
 //}
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

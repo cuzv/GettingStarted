@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+// record current http request method name, when `BaseViewController` disappear will use this variable
+extern NSString *CHHTTPRequestMethodName;
+
 // Attention: HttpRequestSerializerTypeXML's serializer is `Unclear` now
 typedef NS_ENUM(NSInteger, HTTPRequestSerializerType) {
     HTTPRequestSerializerTypeNone         = 0,

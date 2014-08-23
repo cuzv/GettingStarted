@@ -8,8 +8,6 @@
 
 #import "BaseViewController.h"
 
-NSString *CHHttpRequestMethodName = @"";
-
 @interface BaseViewController ()
 
 @end
@@ -32,7 +30,8 @@ NSString *CHHttpRequestMethodName = @"";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [HTTPManager removeRequestByMthodName:CHHttpRequestMethodName];
+    [HTTPManager removeRequestByMthodName:CHHTTPRequestMethodName];
+    CHHTTPRequestMethodName = @"";
 }
 
 @end

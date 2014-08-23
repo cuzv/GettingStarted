@@ -11,7 +11,8 @@
 #import "UIView+Toast.h"
 #import "Base64.h"
 #import "NSString+Hashes.h"
-#import "SVProgressHUD.h"
+
+NSString *CHHTTPRequestMethodName = @"";
 
 @interface CHHTTPSessionManager : AFHTTPSessionManager <NSSecureCoding, NSCopying>
 
@@ -180,6 +181,8 @@ static NSMutableArray *sessions;
 
 // convert dictionary to url string
 + (NSString *)URLStringWithParameters:(NSDictionary *)paramDictionary {
+    NSAssert([paramDictionary isKindOfClass:[paramDictionary class]], @"The input parameters is not dictionary type!");
+    
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] initWithDictionary:paramDictionary];
     NSMutableString *URLParamMutableString = [NSMutableString new];
     [paramDic keysOfEntriesWithOptions:NSEnumerationConcurrent passingTest:^BOOL(id key, id obj, BOOL *stop) {
@@ -296,6 +299,9 @@ static NSMutableArray *sessions;
 #pragma mark - HTTP requst messages
 
 + (void)removeRequestByMthodName:(NSString *)methodName {
+    // record current http request method name, when `BaseViewController` disappear will use this variable
+    CHHTTPRequestMethodName = methodName;
+    
     if (!methodName.length) {
         return;
     }
@@ -314,6 +320,14 @@ static NSMutableArray *sessions;
     }];
 }
 
++ (void)requestWillBegin {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
++ (void)requestDidEnd {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
 // 后台接收哪种格式的参数，传递参数的时候就发什么格式的过去，「团队宝」后台需要的是 base64，所以不用 AFNetworking 的 AFJSONRequestSerializer 转换器
 // POST
 + (void)POSTWithMethodName:(NSString *)methodName
@@ -326,18 +340,16 @@ static NSMutableArray *sessions;
 
     // remove same request
     [self removeRequestByMthodName:methodName];
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [SVProgressHUD show];
+    [self requestWillBegin];
     NSDictionary *encodeParameters = [self encodeParameters:parameters];
     [[CHHTTPSessionManager sharedInstance] POST:methodName
                                      parameters:encodeParameters
                                         success:^(NSURLSessionDataTask *task, id responseObject) {
-                                            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                            [self requestDidEnd];
                                             success(task, responseObject);
                                         }
                                         failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                            [self requestDidEnd];
                                             failure(task, error);
                                         }];
 }
@@ -355,7 +367,7 @@ static NSMutableArray *sessions;
     // remove same request
     [self removeRequestByMthodName:methodName];
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [self requestWillBegin];
     NSDictionary *encodeParameters = [self encodeParameters:parameters];
     
     [[CHHTTPSessionManager sharedInstance] POST:methodName
@@ -364,12 +376,12 @@ static NSMutableArray *sessions;
                           [formData appendPartWithFileData:data name:@"imageData" fileName:@"image" mimeType:@"image/png"];
                       }
                                         success:^(NSURLSessionDataTask *task, id responseObject) {
-                                            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                            [self requestDidEnd];
                                             success(task, responseObject);
                                         }
                                         failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                            [self requestDidEnd];
                                             failure(task, error);
-                                            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                         }];
 
 }
