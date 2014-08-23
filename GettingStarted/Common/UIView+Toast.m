@@ -9,13 +9,16 @@
 #import "UIView+Toast.h"
 #import "PaddingLabel.h"
 #import "NSString+TextSize.h"
+#import "UIView+BorderLine.m"
 
 #define kDelayDuration 1.5
 #define kAnimationDuration 0.3
 
 @implementation UIView (Toast)
 
-+ (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation needShake:(BOOL)shake {
++ (void)toastWithMessage:(NSString *)message
+       appearOrientation:(CHToastAppearOrientation)orientation
+               needShake:(BOOL)shake {
     // prepare toast display label
     UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     CGSize size = [message sizeWithFont:font width:CGRectGetWidth([[UIScreen mainScreen] bounds]) - 120];
@@ -29,7 +32,8 @@
     toastLabel.layer.masksToBounds = YES;
     toastLabel.font = font;
     toastLabel.text = message;
-    
+    // resolve label right edge hava a gray line problem
+    [toastLabel setBorderLineColor:toastLabel.backgroundColor];
     // toast can display on top of keyboard
     [[[[UIApplication sharedApplication] windows] lastObject] addSubview:toastLabel];
     
@@ -92,15 +96,5 @@
     animation.additive = YES;
     [view.layer addAnimation:animation forKey:@"shake"];
 }
-
-
-
-
-
-
-
-
-
-
 
 @end

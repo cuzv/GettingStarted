@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, CHToastAppearOrientation) {
 
 @interface UIView (Toast)
 
-// 吐司框，自动消失
+// Toast, disappear automatic, only support portrait orientation
 + (void)toastWithMessage:(NSString *)message;
 + (void)toastWithMessage:(NSString *)message needShake:(BOOL)shake;
 + (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation;

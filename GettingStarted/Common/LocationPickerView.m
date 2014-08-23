@@ -64,13 +64,23 @@
 }
 
 - (void)present {
-    self.frame = CGRectOffset(ScreenBounds, 0, CGRectGetHeight(ScreenBounds));
     [[[[UIApplication sharedApplication] windows] lastObject] addSubview:self];
+    [self appear];
+}
+
+- (void)showInView:(UIView *)view {
+    [view endEditing:YES];
+    [view addSubview:self];
+    [self appear];
+}
+
+- (void)appear {
+    self.frame = CGRectOffset(ScreenBounds, 0, CGRectGetHeight(ScreenBounds));
     if ([_delegate respondsToSelector:@selector(locationPickerViewWillAppear:)]) {
         [_delegate locationPickerViewWillAppear:self];
     }
     [UIView animateWithDuration:0.3 animations:^{
-         self.transform = CGAffineTransformTranslate(self.transform, 0, -CGRectGetHeight(ScreenBounds));
+        self.transform = CGAffineTransformTranslate(self.transform, 0, -CGRectGetHeight(ScreenBounds));
     } completion:^(BOOL finished) {
         if ([_delegate respondsToSelector:@selector(locationPickerViewDidAppear:)]) {
             [_delegate locationPickerViewDidAppear:self];
@@ -80,10 +90,10 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
-    [self dismiss];
+    [self disAppear];
 }
 
-- (void)dismiss {
+- (void)disAppear {
     if ([_delegate respondsToSelector:@selector(locationPickerViewWillDisAppear:)]) {
         [_delegate locationPickerViewWillDisAppear:self];
     }    

@@ -43,17 +43,16 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [UIView toastWithMessage:@"dddddddddddddddddddddddddddddddddddddddd" appearOrientation:CHToastAppearOrientationBottom needShake:YES];
-    
-    
-    NSDictionary *dict = @{@"cid":@"1001",
-                           @"oid":@"6611"};
-    [HttpManager setHttpRequestSerializerType:HttpRequestSerializerTypeBase64];
-    [HttpManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", error);
-    }];
+    [UIView toastWithMessage:@"dddddddddddddddddddddddddddddddddddddddd" appearOrientation:CHToastAppearOrientationBottom needShake:NO];
+
+//    NSDictionary *dict = @{@"cid":@"1001",
+//                           @"oid":@"6611"};
+//    [HttpManager setHttpRequestSerializerType:HttpRequestSerializerTypeBase64];
+//    [HttpManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"%@", responseObject);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
 
 }
 
@@ -74,12 +73,11 @@
     });
 }
 
-
 - (IBAction)handleSelectAddress:(UIButton *)sender {
     LocationPickerView *locationPickerView = [[LocationPickerView alloc] initWithLocationPickerType:CHLocationPickerTypeCites selectedItem:^(NSString *item) {
         [self.selectAddressButton setTitle:item forState:UIControlStateNormal];
     }];
-    [locationPickerView present];
+    [locationPickerView showInView:self.view];
 }
 
 //- (void)locationPickerView:(LocationPickerView *)locationPickerView didSelectItem:(NSString *)item {

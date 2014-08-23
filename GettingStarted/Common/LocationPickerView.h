@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-// There is a little pity, cant not support orientation autolayout
 // This class will needed `~/Resource/ProvincesAndCitiesAndAreas.h`
 @class LocationPickerView;
 
@@ -37,6 +36,10 @@ typedef NS_ENUM(NSInteger, CHLocationPickerType) {
 @property (nonatomic, copy) void (^didSelectItem)(NSString *item);
 
 - (instancetype)initWithLocationPickerType:(CHLocationPickerType)locationPickerType selectedItem:(void (^)(NSString *item))didSelectItem;
+
+// Call this method, cant not support orientation autolayout. use `showInView:`
 - (void)present;
+
+- (void)showInView:(UIView *)view;
 
 @end
