@@ -11,7 +11,6 @@
 #import "UIView+Toast.h"
 #import "Base64.h"
 #import "NSString+Hashes.h"
-#import "SVProgressHUD.h"
 
 NSString *CHHTTPRequestMethodName = @"";
 
@@ -324,7 +323,7 @@ static NSMutableArray *sessions;
 }
 
 + (void)requestWillBeginWithProgressAnimation {
-    [SVProgressHUD show];
+    [[[[UIApplication sharedApplication] windows] lastObject] addActivityIndicatorAnimation];
 }
 
 + (void)requestWillBegin {
@@ -333,7 +332,7 @@ static NSMutableArray *sessions;
 
 + (void)requestDidEnd {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD dismiss];
+    [[[[UIApplication sharedApplication] windows] lastObject] removeActivityIndicatorAnimation];
     CHHTTPRequestMethodName = @"";
 }
 
@@ -346,7 +345,6 @@ static NSMutableArray *sessions;
     if (![HTTPManager shouldContinue]) {
         return;
     }
-
     // remove same request
     [self removeRequestByMthodName:methodName];
     [self requestWillBegin];

@@ -34,18 +34,19 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    NSDictionary *dict = @{@"cid":@"1001",
-//                           @"oid":@"6611"};
-//    [HTTPManager setHTTPRequestSerializerType:HTTPRequestSerializerTypeBase64];
-//    [HTTPManager requestWillBeginWithProgressAnimation];
-//    [HTTPManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSLog(@"%@", responseObject);
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"%@", error);
-//    }];
+    NSDictionary *dict = @{@"cid":@"1001",
+                           @"oid":@"6611"};
+    [HTTPManager setHTTPRequestSerializerType:HTTPRequestSerializerTypeBase64];
+    [HTTPManager requestWillBeginWithProgressAnimation];
+    [HTTPManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", error);
+    }];
     
+
     
-    [self.colorView addActivityIndicatorAnimation];
+//    [self.colorView addActivityIndicatorAnimation];
 }
 
 - (void)didReceiveMemoryWarning
