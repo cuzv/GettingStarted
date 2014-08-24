@@ -11,6 +11,7 @@
 #import "UIView+Toast.h"
 #import "LocationPickerView.h"
 #import "NSString+TextSize.h"
+#import "UIView+Animation.h"
 
 @interface CHViewController () <CHLocationPickerDelegate>
 
@@ -33,10 +34,14 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor orangeColor];
+    self.selectAddressButton.backgroundColor = [UIColor colorWithRGBA:@[@245, @232, @8, @1]];
+//    CHRGBColor(245, 232, 8, 1);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [UIView toastWithMessage:@"用户名错误" appearOrientation:CHToastAppearOrientationBottom];
+//    [UIView toastWithMessage:@"用户名错误" appearOrientation:CHToastAppearOrientationBottom];
+    [self loadingAnimation];
+
 }
 
 - (void)showMessage:(NSString *)message
@@ -52,14 +57,15 @@
 }
 
 - (IBAction)handleSelectAddress:(UIButton *)sender {
-    LocationPickerView *locationPickerView = [[LocationPickerView alloc] initWithLocationPickerType:CHLocationPickerTypeCites selectedItem:^(NSString *item) {
-        [self.selectAddressButton setTitle:item forState:UIControlStateNormal];
-    }];
-    [locationPickerView showInView:self.view];
+//    LocationPickerView *locationPickerView = [[LocationPickerView alloc] initWithLocationPickerType:CHLocationPickerTypeCites selectedItem:^(NSString *item) {
+//        [self.selectAddressButton setTitle:item forState:UIControlStateNormal];
+//    }];
+//    [locationPickerView showInView:self.view];
+    [self.view removeLoadingAnimation];
 }
 
-//- (void)locationPickerView:(LocationPickerView *)locationPickerView didSelectItem:(NSString *)item {
-//    [self.selectAddressButton setTitle:item forState:UIControlStateNormal];
-//}
+- (void)loadingAnimation {
+    [self.view addLoadingAnimation];
+}
 
 @end

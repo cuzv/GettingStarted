@@ -12,6 +12,7 @@
 		46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */; };
 		46044BA319A841D100E1552D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46044BA219A841D100E1552D /* BaseViewController.m */; };
 		461C080A19AA0111006C0016 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 461C080919AA0111006C0016 /* UIView+Animation.m */; };
+		461C080D19AA4735006C0016 /* UIColor+RandomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 461C080C19AA4735006C0016 /* UIColor+RandomColor.m */; };
 		4625B47E19A86669006B09BC /* CHDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B47D19A86669006B09BC /* CHDetailViewController.m */; };
 		4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B48019A87EC0006B09BC /* CHThirdViewController.m */; };
 		462ABC23199F9EC7006C56E1 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 462ABC22199F9EC7006C56E1 /* Base64.m */; };
@@ -77,6 +78,8 @@
 		46044BA219A841D100E1552D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		461C080819AA0111006C0016 /* UIView+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animation.h"; sourceTree = "<group>"; };
 		461C080919AA0111006C0016 /* UIView+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
+		461C080B19AA4735006C0016 /* UIColor+RandomColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RandomColor.h"; sourceTree = "<group>"; };
+		461C080C19AA4735006C0016 /* UIColor+RandomColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RandomColor.m"; sourceTree = "<group>"; };
 		4625B47C19A86669006B09BC /* CHDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDetailViewController.h; sourceTree = "<group>"; };
 		4625B47D19A86669006B09BC /* CHDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDetailViewController.m; sourceTree = "<group>"; };
 		4625B47F19A87EC0006B09BC /* CHThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHThirdViewController.h; sourceTree = "<group>"; };
@@ -389,6 +392,8 @@
 				46C363CA19A18DC500BB3F84 /* UIView+FindUIViewController.m */,
 				462BDDCE19A347D6007BA4B3 /* UIView+Toast.h */,
 				462BDDCF19A347D6007BA4B3 /* UIView+Toast.m */,
+				461C080B19AA4735006C0016 /* UIColor+RandomColor.h */,
+				461C080C19AA4735006C0016 /* UIColor+RandomColor.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -568,6 +573,7 @@
 				465C8ED819A21DE8003DFB48 /* UIView+Extension.m in Sources */,
 				461C080A19AA0111006C0016 /* UIView+Animation.m in Sources */,
 				4625B47E19A86669006B09BC /* CHDetailViewController.m in Sources */,
+				461C080D19AA4735006C0016 /* UIColor+RandomColor.m in Sources */,
 				46C363CD19A18DC500BB3F84 /* PaddingField.m in Sources */,
 				462BDDD019A347D6007BA4B3 /* UIView+Toast.m in Sources */,
 				46C363D819A18E4500BB3F84 /* CHViewController.m in Sources */,

@@ -20,4 +20,8 @@ typedef NS_ENUM(NSInteger, CHAnimationOrientation) {
 - (void)shakeWithOrientation:(CHAnimationOrientation)orientation;
 - (void)shakeForToastAppearOrientation:(CHToastAppearOrientation)orientation;
 
+- (void)addLoadingAnimation;
+- (void)removeLoadingAnimation;
+
+
 @end

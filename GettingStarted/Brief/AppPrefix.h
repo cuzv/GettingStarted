@@ -23,5 +23,6 @@
 #import "NSObject+Convert.h"
 #import "UIImage+Generate.h"
 #import "UIImage+Fetch.h"
+#import "UIColor+RandomColor.h"
 
 #endif
