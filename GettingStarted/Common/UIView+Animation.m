@@ -44,7 +44,7 @@
     [self.layer addAnimation:animation forKey:@"shake"];
 }
 
-- (void)addLoadingAnimation {
+- (void)addLoadingAnimationWitchColor:(UIColor *)color {
     if (self.frame.size.width < 80) {
         NSLog(@"can not add this animation for view which width < 80");
         return;
@@ -54,7 +54,7 @@
     for (NSInteger i = 0; i < 3; i++) {
         UIView *circle = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.bounds),
                                                                   CGRectGetMidY(self.bounds), 20, 20)];
-        circle.backgroundColor = [UIColor whiteColor];
+        circle.backgroundColor = color;
         circle.layer.cornerRadius = 10;
         circle.layer.masksToBounds = YES;
         circle.tag = kCircleTag + i;
@@ -65,20 +65,24 @@
     CAKeyframeAnimation *positionYAnimation = [UIView loadingPositionYAnimation];
     CAKeyframeAnimation *scaleAnimation = [UIView loadingScaleAnimation];
     CAAnimationGroup *loadingAnimationGroup = [UIView loadingAnimationGroup:@[positionXAnimation, scaleAnimation, positionYAnimation]];
-
+    
     [self addSubview:circles[0]];
     [[circles[0] layer] addAnimation:loadingAnimationGroup forKey:@"loadingAnimationGroup"];
-
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CACurrentMediaTime() + loadingAnimationGroup.duration * 1 / 3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self addSubview:circles[1]];
         [[circles[1] layer] addAnimation:loadingAnimationGroup forKey:@"loadingAnimationGroup"];
-
+        
     });
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CACurrentMediaTime() + loadingAnimationGroup.duration * 2 / 3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self addSubview:circles[2]];
         [[circles[2] layer] addAnimation:loadingAnimationGroup forKey:@"loadingAnimationGroup"];
     });
+}
+
+- (void)addLoadingAnimation {
+    [self addLoadingAnimationWitchColor:[UIColor whiteColor]];
 }
 
 - (void)removeLoadingAnimation {

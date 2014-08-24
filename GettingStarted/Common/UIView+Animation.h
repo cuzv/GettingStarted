@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, CHAnimationOrientation) {
 - (void)shakeForToastAppearOrientation:(CHToastAppearOrientation)orientation;
 
 - (void)addLoadingAnimation;
+- (void)addLoadingAnimationWitchColor:(UIColor *)color;
 - (void)removeLoadingAnimation;
 
 
