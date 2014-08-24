@@ -7,9 +7,12 @@
 //
 
 #import "CHDetailViewController.h"
+#import "UIView+UIActivityIndicatorView.h"
+
 #define kMessageList @"getMobileMessageList"
 
 @interface CHDetailViewController ()
+@property (weak, nonatomic) IBOutlet UIView *colorView;
 
 @end
 
@@ -27,24 +30,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSDictionary *dict = @{@"cid":@"1001",
-                           @"oid":@"6611"};
-    [HTTPManager setHTTPRequestSerializerType:HTTPRequestSerializerTypeBase64];
-    [HTTPManager requestWillBeginWithProgressAnimation];
-    [HTTPManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", error);
-    }];
+//    NSDictionary *dict = @{@"cid":@"1001",
+//                           @"oid":@"6611"};
+//    [HTTPManager setHTTPRequestSerializerType:HTTPRequestSerializerTypeBase64];
+//    [HTTPManager requestWillBeginWithProgressAnimation];
+//    [HTTPManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"%@", responseObject);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
+    
+    
+    [self.colorView addActivityIndicatorAnimation];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+- (IBAction)clearAction:(UIButton *)sender {
+    [self.colorView removeActivityIndicatorAnimation];
 }
 
 /*

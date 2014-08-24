@@ -86,14 +86,16 @@
 }
 
 - (void)removeLoadingAnimation {
-    for (UIView *subView in self.subviews) {
+    [self.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIView *subView = obj;
         if (subView.tag == kCircleTag ||
             subView.tag == kCircleTag + 1 ||
             subView.tag == kCircleTag + 2) {
             [subView.layer removeAllAnimations];
             [subView removeFromSuperview];
-        }        
-    }
+            subView = nil;
+        }
+    }];
 }
 
 #pragma mark - private messages
