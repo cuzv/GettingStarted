@@ -2,16 +2,15 @@
 //  UIView+FindUIViewController.m
 //  LighterReader
 //
-//  Created by 萧川 on 14-3-27.
-//  Copyright (c) 2014年 CUAN. All rights reserved.
+//  Created by Moch on 14-3-27.
+//  Copyright (c) 2014年 Moch. All rights reserved.
 //
 
 #import "UIView+FindUIViewController.h"
 
 @implementation UIView (FindUIViewController)
 
-- (UIViewController *)viewController
-{
+- (UIViewController *)viewController {
     /// Finds the view's view controller.
     
     // Traverse responder chain. Return first found view controller, which will be the view's view controller.

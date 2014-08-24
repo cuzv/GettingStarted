@@ -1,6 +1,6 @@
 //
 //  TextDelegate.m
-//  TextViewLimitInput
+//  GettingStarted
 //
 //  Created by Moch on 8/5/14.
 //  Copyright (c) 2014 Moch. All rights reserved.
@@ -10,8 +10,7 @@
 
 @implementation TextConfigure
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.maxCount = 100;

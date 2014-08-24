@@ -17,6 +17,7 @@
 #import "AFNetworking.h"
 #import "UIView+Toast.h"
 #import "UIView+Accessor.h"
+#import "UIView+Animation.h"
 #import "UIView+BorderLine.h"
 #import "NSString+TextSize.h"
 #import "NSObject+Convert.h"

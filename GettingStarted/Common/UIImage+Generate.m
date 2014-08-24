@@ -1,6 +1,6 @@
 //
 //  UIImage+Generate.m
-//  TeamBuilding
+//  GettingStarted
 //
 //  Created by 肖川 on 14-5-20.
 //  Copyright (c) 2014年 anzeinfo. All rights reserved.
@@ -11,12 +11,10 @@
 @implementation UIImage (Generate)
 
 + (UIImage *)imageWithColor:(UIColor *)aColor {
-    
     return [self imageWithColor:aColor size:CGSizeMake(1, 1)];
 }
 
 + (UIImage *)imageWithColor:(UIColor *)aColor size:(CGSize)aSize {
-
     UIGraphicsBeginImageContext(aSize);
     CGContextRef context = UIGraphicsGetCurrentContext();
     

@@ -36,7 +36,7 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [UIView toastWithMessage:@"dddddddddddddddddddddddddddddddddddddddd" appearOrientation:CHToastAppearOrientationBottom needShake:NO];
+    [UIView toastWithMessage:@"用户名错误" appearOrientation:CHToastAppearOrientationBottom];
 }
 
 - (void)showMessage:(NSString *)message

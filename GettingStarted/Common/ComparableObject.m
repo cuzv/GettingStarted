@@ -1,9 +1,9 @@
 //
 //  ComparableObject.m
-//  WFarm
+//  GettingStarted
 //
 //  Created by Moch on 8/21/14.
-//  Copyright (c) 2014 BSG. All rights reserved.
+//  Copyright (c) 2014 Moch. All rights reserved.
 //
 
 #import "ComparableObject.h"

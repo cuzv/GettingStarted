@@ -1,8 +1,8 @@
 //
 //  NSObject+Convert.h
-//  Category
+//  GettingStarted
 //
-//  Created by 肖川 on 14-5-26.
+//  Created by Moch on 14-5-26.
 //  Copyright (c) 2014年 Moch. All rights reserved.
 //
 

@@ -1,9 +1,9 @@
 //
 //  PaddingLabel.m
-//  TeamBuilding
+//  GettingStarted
 //
 //  Created by Moch on 7/31/14.
-//  Copyright (c) 2014 anzeinfo. All rights reserved.
+//  Copyright (c) 2014 Moch. All rights reserved.
 //
 
 #import "PaddingLabel.h"
@@ -20,7 +20,6 @@
 }
 
 - (void)drawTextInRect:(CGRect)rect {
-    
     [super drawTextInRect:UIEdgeInsetsInsetRect(rect, self.edgeInsets)];
 }
 

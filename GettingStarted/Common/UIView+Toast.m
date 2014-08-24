@@ -10,25 +10,30 @@
 #import "PaddingLabel.h"
 #import "NSString+TextSize.h"
 #import "UIView+BorderLine.m"
+#import "UIView+Animation.h"
 
 #define kDelayDuration 1.5
-#define kAnimationDuration 0.3
+#define kAnimationDuration 0.0
+#define kVerticalDistanceForEdges 80
+#define kHorizontalDistanceForEdges 60
+
 
 @implementation UIView (Toast)
 
 + (void)toastWithMessage:(NSString *)message
-       appearOrientation:(CHToastAppearOrientation)orientation
-               needShake:(BOOL)shake {
+       appearOrientation:(CHToastAppearOrientation)orientation {
     // prepare toast display label
     UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-    CGSize size = [message sizeWithFont:font width:CGRectGetWidth([[UIScreen mainScreen] bounds]) - 120];
+    CGSize size = [message sizeWithFont:font width:CGRectGetWidth([[UIScreen mainScreen] bounds]) - kHorizontalDistanceForEdges * 2];
     PaddingLabel *toastLabel = [PaddingLabel new];
-    toastLabel.bounds = CGRectMake(0, 0, size.width + 20, size.height + 20);
-    toastLabel.backgroundColor = [UIColor whiteColor];
-    toastLabel.textColor = [UIColor darkTextColor];
+    CGFloat paddingEdgeInsetsSideLength = toastLabel.edgeInsets.left + toastLabel.edgeInsets.right;
+    toastLabel.bounds = CGRectMake(0, 0, size.width + paddingEdgeInsetsSideLength, size.height + paddingEdgeInsetsSideLength);
+    toastLabel.backgroundColor = [UIColor blackColor];
+    toastLabel.textColor = [UIColor whiteColor];
     toastLabel.textAlignment = NSTextAlignmentLeft;
+    toastLabel.contentMode = UIViewContentModeCenter;
     toastLabel.numberOfLines = 0;
-    toastLabel.layer.cornerRadius = 4;
+    toastLabel.layer.cornerRadius = 5;
     toastLabel.layer.masksToBounds = YES;
     toastLabel.font = font;
     toastLabel.text = message;
@@ -40,61 +45,24 @@
     // prepare animations
     CGRect bounds = [[UIScreen mainScreen] bounds];
     if (orientation == CHToastAppearOrientationTop) {
-        toastLabel.center = CGPointMake(bounds.size.width / 2 , -toastLabel.bounds.size.height);
+        toastLabel.center = CGPointMake(bounds.size.width / 2 , toastLabel.bounds.size.height + kVerticalDistanceForEdges);
     } else if (orientation == CHToastAppearOrientationBottom) {
-        toastLabel.center = CGPointMake(bounds.size.width / 2 , bounds.size.height + toastLabel.bounds.size.height);
+        toastLabel.center = CGPointMake(bounds.size.width / 2 , bounds.size.height - toastLabel.bounds.size.height - kVerticalDistanceForEdges);
     }
     
-    // define animatins blocks
-    void (^animations)() = ^{
-        CGFloat toastLabelCenterY = 0;
-        if (orientation == CHToastAppearOrientationTop) {
-            toastLabelCenterY = CGRectGetMinY(toastLabel.superview.frame) + 40 + CGRectGetMidY(toastLabel.bounds);
-        } else if (orientation == CHToastAppearOrientationBottom) {
-            toastLabelCenterY = CGRectGetMaxY(toastLabel.superview.frame) - 120 - CGRectGetMidY(toastLabel.bounds);
-        }
-        toastLabel.center = CGPointMake(bounds.size.width / 2 , toastLabelCenterY);
-        
-    };
-    void (^completion)(BOOL finished) = ^(BOOL finished) {
-        if (shake) {
-            [self shakeAnimationForView:toastLabel];
-        }
-        [UIView animateWithDuration:kAnimationDuration
-                              delay:kDelayDuration
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
-                             toastLabel.alpha = 0;
-                         }
-                         completion:^(BOOL finished) {
-                             [toastLabel removeFromSuperview];
-                         }];
-    };
-    
-    // run animatons
-    [UIView animateWithDuration:kAnimationDuration animations:animations completion:completion];
-}
-
-+ (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation {
-    [self toastWithMessage:message appearOrientation:CHToastAppearOrientationBottom needShake:NO];
-}
-
-+ (void)toastWithMessage:(NSString *)message needShake:(BOOL)shake {
-    [self toastWithMessage:message appearOrientation:CHToastAppearOrientationBottom needShake:shake];
+    // run animation
+    [toastLabel shakeForToastAppearOrientation:orientation];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.3 animations:^{
+            toastLabel.alpha = 0;
+        } completion:^(BOOL finished) {
+            [toastLabel removeFromSuperview];
+        }];
+    });
 }
 
 + (void)toastWithMessage:(NSString *)message {
-    [self toastWithMessage:message appearOrientation:CHToastAppearOrientationBottom needShake:NO];
-}
-
-+ (void)shakeAnimationForView:(UIView *)view {
-    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-    animation.keyPath = @"position.x";
-    animation.values = @[@0, @10, @-10, @10, @0];
-    animation.keyTimes = @[@0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1];
-    animation.duration = 0.4;
-    animation.additive = YES;
-    [view.layer addAnimation:animation forKey:@"shake"];
+    [self toastWithMessage:message appearOrientation:CHToastAppearOrientationBottom];
 }
 
 @end

@@ -17,8 +17,6 @@ typedef NS_ENUM(NSInteger, CHToastAppearOrientation) {
 
 // Toast, disappear automatic, only support portrait orientation
 + (void)toastWithMessage:(NSString *)message;
-+ (void)toastWithMessage:(NSString *)message needShake:(BOOL)shake;
 + (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation;
-+ (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation needShake:(BOOL)shake;
 
 @end

@@ -1,8 +1,8 @@
 //
 //  NSObject+Convert.m
-//  Category
+//  GettingStarted
 //
-//  Created by 肖川 on 14-5-26.
+//  Created by Moch on 14-5-26.
 //  Copyright (c) 2014年 Moch. All rights reserved.
 //
 
@@ -13,7 +13,6 @@
 @implementation NSObject (Convert)
 
 - (instancetype)initWithProperties:(NSDictionary *)properties {
-    
     if (self = [self init]) {
         [properties enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             if ([obj isKindOfClass:[NSNull class]]) {
@@ -32,7 +31,6 @@
 #pragma mark - runtime
 
 - (NSMutableArray *)properties {
-    
     NSMutableArray *propertyArray = [[NSMutableArray alloc] init];
     u_int count;
     objc_property_t *propertyList = class_copyPropertyList([self class], &count);
@@ -49,7 +47,6 @@
 }
 
 + (NSMutableArray *)properties {
-    
     NSMutableArray *propertyArray = [[NSMutableArray alloc] init];
     u_int count;
     objc_property_t *propertyList = class_copyPropertyList([self class], &count);
@@ -66,7 +63,6 @@
 }
 
 - (NSDictionary *)convertToDictionary {
-    
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     // 获取本类属性列表字符串数组
     NSMutableArray *propertyArray = [self properties];
@@ -79,7 +75,6 @@
 }
 
 - (NSString *)toString {
-    
     NSMutableString *desc = [[NSMutableString alloc] init];
     
     NSMutableArray *propertyArray = [self properties];

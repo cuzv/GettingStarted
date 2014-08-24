@@ -1,6 +1,6 @@
 //
 //  BadgeView.m
-//  Extension
+//  GettingStarted
 //
 //  Created by Moch on 7/31/14.
 //  Copyright (c) 2014 Moch. All rights reserved.

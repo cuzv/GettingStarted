@@ -1,9 +1,9 @@
 //
 //  UIImage+Fetch.h
-//  面试职通车
+//  GettingStarted
 //
-//  Created by 萧川 on 14-4-18.
-//  Copyright (c) 2014年 CUAN. All rights reserved.
+//  Created by Moch on 14-4-18.
+//  Copyright (c) 2014年 Moch. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

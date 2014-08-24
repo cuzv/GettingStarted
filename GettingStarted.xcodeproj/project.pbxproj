@@ -11,6 +11,7 @@
 		46040D3F19A5D46B007253F6 /* LocationPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46040D3E19A5D46B007253F6 /* LocationPickerView.m */; };
 		46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */; };
 		46044BA319A841D100E1552D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46044BA219A841D100E1552D /* BaseViewController.m */; };
+		461C080A19AA0111006C0016 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 461C080919AA0111006C0016 /* UIView+Animation.m */; };
 		4625B47E19A86669006B09BC /* CHDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B47D19A86669006B09BC /* CHDetailViewController.m */; };
 		4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B48019A87EC0006B09BC /* CHThirdViewController.m */; };
 		462ABC23199F9EC7006C56E1 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 462ABC22199F9EC7006C56E1 /* Base64.m */; };
@@ -74,6 +75,8 @@
 		46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCitiesAndAreas.plist; sourceTree = "<group>"; };
 		46044BA119A841D100E1552D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		46044BA219A841D100E1552D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		461C080819AA0111006C0016 /* UIView+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animation.h"; sourceTree = "<group>"; };
+		461C080919AA0111006C0016 /* UIView+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
 		4625B47C19A86669006B09BC /* CHDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDetailViewController.h; sourceTree = "<group>"; };
 		4625B47D19A86669006B09BC /* CHDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDetailViewController.m; sourceTree = "<group>"; };
 		4625B47F19A87EC0006B09BC /* CHThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHThirdViewController.h; sourceTree = "<group>"; };
@@ -370,8 +373,6 @@
 			children = (
 				46C4C57119A7270D002BB390 /* NSString+TextSize.h */,
 				46C4C57219A7270D002BB390 /* NSString+TextSize.m */,
-				462BDDCE19A347D6007BA4B3 /* UIView+Toast.h */,
-				462BDDCF19A347D6007BA4B3 /* UIView+Toast.m */,
 				46C363B919A18DC500BB3F84 /* NSObject+Convert.h */,
 				46C363BA19A18DC500BB3F84 /* NSObject+Convert.m */,
 				46C363C119A18DC500BB3F84 /* UIImage+Fetch.h */,
@@ -380,10 +381,14 @@
 				46C363C419A18DC500BB3F84 /* UIImage+Generate.m */,
 				46C363C519A18DC500BB3F84 /* UIView+Accessor.h */,
 				46C363C619A18DC500BB3F84 /* UIView+Accessor.m */,
+				461C080819AA0111006C0016 /* UIView+Animation.h */,
+				461C080919AA0111006C0016 /* UIView+Animation.m */,
 				46C363C719A18DC500BB3F84 /* UIView+BorderLine.h */,
 				46C363C819A18DC500BB3F84 /* UIView+BorderLine.m */,
 				46C363C919A18DC500BB3F84 /* UIView+FindUIViewController.h */,
 				46C363CA19A18DC500BB3F84 /* UIView+FindUIViewController.m */,
+				462BDDCE19A347D6007BA4B3 /* UIView+Toast.h */,
+				462BDDCF19A347D6007BA4B3 /* UIView+Toast.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -561,6 +566,7 @@
 				46040D3F19A5D46B007253F6 /* LocationPickerView.m in Sources */,
 				465C8ED619A21DE8003DFB48 /* UIScrollView+Extension.m in Sources */,
 				465C8ED819A21DE8003DFB48 /* UIView+Extension.m in Sources */,
+				461C080A19AA0111006C0016 /* UIView+Animation.m in Sources */,
 				4625B47E19A86669006B09BC /* CHDetailViewController.m in Sources */,
 				46C363CD19A18DC500BB3F84 /* PaddingField.m in Sources */,
 				462BDDD019A347D6007BA4B3 /* UIView+Toast.m in Sources */,

@@ -1,9 +1,9 @@
 //
 //  UIView+BorderLine.h
-//  SubLayer
+//  GettingStarted
 //
-//  Created by 肖川 on 14-5-16.
-//  Copyright (c) 2014年 肖川. All rights reserved.
+//  Created by Moch on 14-5-16.
+//  Copyright (c) 2014年 Moch. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
