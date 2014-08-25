@@ -30,7 +30,7 @@
 
 #pragma mark - runtime
 
-- (NSMutableArray *)properties {
+- (NSArray *)properties {
     NSMutableArray *propertyArray = [[NSMutableArray alloc] init];
     u_int count;
     objc_property_t *propertyList = class_copyPropertyList([self class], &count);
@@ -43,10 +43,10 @@
     
     free(propertyList);
     
-    return propertyArray;
+    return [[NSArray alloc] initWithArray:propertyArray];
 }
 
-+ (NSMutableArray *)properties {
++ (NSArray *)properties {
     NSMutableArray *propertyArray = [[NSMutableArray alloc] init];
     u_int count;
     objc_property_t *propertyList = class_copyPropertyList([self class], &count);
@@ -59,7 +59,7 @@
     
     free(propertyList);
     
-    return propertyArray;
+    return [[NSArray alloc] initWithArray:propertyArray];
 }
 
 - (NSDictionary *)convertToDictionary {
