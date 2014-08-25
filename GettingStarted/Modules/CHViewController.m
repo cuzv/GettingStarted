@@ -40,8 +40,8 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [UIView toastWithMessage:@"用户名错误" appearOrientation:CHToastAppearOrientationBottom];
-    [self loadingAnimation];
+    [UIView toastWithMessage:@"用户名错误"];
+//    [self loadingAnimation];
 
 }
 

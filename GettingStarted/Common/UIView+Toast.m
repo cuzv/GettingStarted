@@ -62,7 +62,7 @@
 }
 
 + (void)toastWithMessage:(NSString *)message {
-    [self toastWithMessage:message appearOrientation:CHToastAppearOrientationBottom];
+    [self toastWithMessage:message appearOrientation:CHToastAppearOrientationTop];
 }
 
 @end
