@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define kBottomVerticalDistanceForEdges 80
+#define kTopVerticalDistanceForEdges 65
+
 typedef NS_ENUM(NSInteger, CHToastAppearOrientation) {
     CHToastAppearOrientationTop,
     CHToastAppearOrientationBottom

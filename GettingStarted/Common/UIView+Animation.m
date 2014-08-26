@@ -7,7 +7,6 @@
 //
 
 #import "UIView+Animation.h"
-#define kVerticalDistanceForEdges 80
 #define kCircleTag 300
 #define kLoadingAnimationDuration 3
 
@@ -30,7 +29,7 @@
 }
 
 - (void)shakeForToastAppearOrientation:(CHToastAppearOrientation)orientation {
-    CGFloat verticalMovingValue = self.height + kVerticalDistanceForEdges;
+    CGFloat verticalMovingValue = self.height + orientation == CHToastAppearOrientationBottom ? kBottomVerticalDistanceForEdges : kTopVerticalDistanceForEdges;
     verticalMovingValue = orientation == CHToastAppearOrientationBottom ? verticalMovingValue: -verticalMovingValue;
     CGFloat verticalMovingFixedValue = -20;
     verticalMovingFixedValue = orientation == CHToastAppearOrientationBottom ? verticalMovingFixedValue : -verticalMovingFixedValue;

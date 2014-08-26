@@ -14,9 +14,7 @@
 
 #define kDelayDuration 1.5
 #define kAnimationDuration 0.0
-#define kVerticalDistanceForEdges 80
 #define kHorizontalDistanceForEdges 60
-
 
 @implementation UIView (Toast)
 
@@ -49,9 +47,9 @@
     // prepare animations
     CGRect bounds = [[UIScreen mainScreen] bounds];
     if (orientation == CHToastAppearOrientationTop) {
-        toastLabel.center = CGPointMake(bounds.size.width / 2 , toastLabel.bounds.size.height + kVerticalDistanceForEdges);
+        toastLabel.center = CGPointMake(bounds.size.width / 2 , CGRectGetMidY(toastLabel.bounds) + kTopVerticalDistanceForEdges);
     } else if (orientation == CHToastAppearOrientationBottom) {
-        toastLabel.center = CGPointMake(bounds.size.width / 2 , bounds.size.height - toastLabel.bounds.size.height - kVerticalDistanceForEdges);
+        toastLabel.center = CGPointMake(bounds.size.width / 2 , bounds.size.height - toastLabel.bounds.size.height - kBottomVerticalDistanceForEdges);
     }
     
     // run animation

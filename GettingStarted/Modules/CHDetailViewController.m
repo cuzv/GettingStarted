@@ -45,7 +45,7 @@
 //    }];
 //    
 
-    [UIView toastWithMessage:@"用户名错误"];
+    [UIView toastWithMessage:@"密码错误"];
     
 //    [self.colorView addActivityIndicatorAnimation];
 }
