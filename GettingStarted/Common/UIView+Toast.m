@@ -22,6 +22,10 @@
 
 + (void)toastWithMessage:(NSString *)message
        appearOrientation:(CHToastAppearOrientation)orientation {
+    if (!message.length) {
+        return;
+    }
+
     // prepare toast display label
     UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     CGSize size = [message sizeWithFont:font width:CGRectGetWidth([[UIScreen mainScreen] bounds]) - kHorizontalDistanceForEdges * 2];
