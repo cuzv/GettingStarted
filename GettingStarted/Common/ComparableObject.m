@@ -16,10 +16,17 @@
         return NO;
     }
     
-    NSMutableArray *propertyArray = [self properties];
+    NSMutableArray *propertyArray = [self properties].mutableCopy;
     __block BOOL euqal = YES;
     [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        euqal = [[self valueForKey:obj] isEqual:[object valueForKey:obj]];
+        id selfObject = [self valueForKey:obj];
+        id compareObject = [object valueForKey:obj];
+        
+        if (!selfObject && !compareObject) {
+            euqal = YES;
+        } else {
+            euqal = [[self valueForKey:obj] isEqual:[object valueForKey:obj]];
+        }
         if (!euqal) {
             *stop = YES;
         }
