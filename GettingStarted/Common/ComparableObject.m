@@ -21,14 +21,12 @@
     [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         id selfObject = [self valueForKey:obj];
         id compareObject = [object valueForKey:obj];
+        euqal = [selfObject isEqual:compareObject];
         
-        if (!selfObject && !compareObject) {
-            euqal = YES;
-        } else {
-            euqal = [[self valueForKey:obj] isEqual:[object valueForKey:obj]];
-        }
-        if (!euqal) {
+        if (!euqal && selfObject && compareObject) {
             *stop = YES;
+        } else {
+            euqal = YES;
         }
     }];
     
