@@ -17,14 +17,14 @@
         NSArray *selfPropertyKeys = [self properties];
         [selfPropertyKeys enumerateObjectsWithOptions:NSSortConcurrent
                                            usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                                               if ([obj isEqualToString:@"id"]) {
-                                                   obj = @"ID";
-                                               }
-                                               id value = [properties valueForKey:obj];
-                                               if ([value isKindOfClass:[NSNull class]]) {
-                                                   value = @"";
-                                               }
-                                               [self setValue:value forKey:obj];
+            if ([obj isEqualToString:@"id"]) {
+                obj = @"ID";
+            }
+            id value = [properties valueForKey:obj];
+            if ([value isKindOfClass:[NSNull class]]) {
+                value = @"";
+            }
+            [self setValue:value forKey:obj];
         }];
     }
     
