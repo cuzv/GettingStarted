@@ -7,7 +7,6 @@
 //
 
 #import "CHThirdViewController.h"
-#import "SVPullToRefresh.h"
 
 @interface CHThirdViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -30,8 +29,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initialDatas];
-    [self initialTableView];
+//    [self initialDatas];
+//    [self initialTableView];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,49 +51,6 @@
         }
     }
 }
-
-
-- (void)initialTableView {
-    __weak typeof(self) weakSelf = self;
-    [self.tableView addPullToRefreshWithActionHandler:^{
-        [weakSelf insertRowAtTop];
-    }];
-    [self.tableView addInfiniteScrollingWithActionHandler:^{
-        [weakSelf insertRowAtBottom];
-    }];
-    
-    [self.tableView reloadData];
-}
-
-- (void)insertRowAtTop {
-    static int count = 0;
-    for (int i = 0; i < 4; i++) {
-        [_dataArray insertObject:[NSString stringWithFormat:@"insert row at top: %d", count++] atIndex:0];
-    }
-    [self.tableView reloadData];
-    [self.tableView.pullToRefreshView stopAnimating];
-}
-
-- (void)insertRowAtBottom {
-    __weak typeof(self) weakSelf = self;
-    static int count = 0;
-    NSMutableArray *indexPaths = [NSMutableArray new];
-    for (int i = 0; i < 4; i ++) {
-        [_dataArray addObject:[NSString stringWithFormat:@"insert row at top: %d", count++]];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_dataArray.count - 1 inSection:0];
-        [indexPaths addObject:indexPath];
-    }
-    
-    int64_t delayInSeconds = 2.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [weakSelf.tableView beginUpdates];
-        [weakSelf.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
-        [weakSelf.tableView endUpdates];
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
-    });
-}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _dataArray.count;

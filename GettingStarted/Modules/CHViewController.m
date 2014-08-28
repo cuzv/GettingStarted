@@ -7,7 +7,6 @@
 //
 
 #import "CHViewController.h"
-#import "SVProgressHUD.h"
 #import "UIView+Toast.h"
 #import "LocationPickerView.h"
 #import "NSString+TextSize.h"
@@ -43,18 +42,6 @@
     [UIView toastWithMessage:@"用户名错误"];
 //    [self loadingAnimation];
 
-}
-
-- (void)showMessage:(NSString *)message
-{
-    [SVProgressHUD showWithStatus:message];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // time-consuming task
-        sleep(1.5);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD dismiss];
-        });
-    });
 }
 
 - (IBAction)handleSelectAddress:(UIButton *)sender {
