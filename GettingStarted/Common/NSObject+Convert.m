@@ -14,14 +14,17 @@
 
 - (instancetype)initWithProperties:(NSDictionary *)properties {
     if (self = [self init]) {
-        [properties enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            if ([obj isKindOfClass:[NSNull class]]) {
-                obj = @"";
-            }
-            if ([key isEqualToString:@"id"]) {
-                key = @"ID";
-            }
-            [self setValue:obj forKey:key];
+        NSArray *selfPropertyKeys = [self properties];
+        [selfPropertyKeys enumerateObjectsWithOptions:NSSortConcurrent
+                                           usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                                               if ([obj isEqualToString:@"id"]) {
+                                                   obj = @"ID";
+                                               }
+                                               id value = [properties valueForKey:obj];
+                                               if ([value isKindOfClass:[NSNull class]]) {
+                                                   value = @"";
+                                               }
+                                               [self setValue:value forKey:obj];
         }];
     }
     
@@ -65,7 +68,7 @@
 - (NSDictionary *)convertToDictionary {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     // 获取本类属性列表字符串数组
-    NSMutableArray *propertyArray = [self properties];
+    NSMutableArray *propertyArray = [[self properties] mutableCopy];
     
     [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [dict setObject:[self valueForKey:obj] forKey:obj];
@@ -77,7 +80,7 @@
 - (NSString *)toString {
     NSMutableString *desc = [[NSMutableString alloc] init];
     
-    NSMutableArray *propertyArray = [self properties];
+    NSMutableArray *propertyArray = [[self properties] mutableCopy];
     [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *string = [NSString stringWithFormat:@"%@ = %@, ", obj, [self valueForKey:obj]];
         [desc appendString:string];

@@ -34,7 +34,7 @@
 }
 
 - (NSUInteger)hash {
-    NSMutableArray *propertyArray = [self properties];
+    NSMutableArray *propertyArray = [[self properties] mutableCopy];
     __block NSUInteger hashCode = [self hash];
     [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         hashCode ^= [[self valueForKey:obj] hash];

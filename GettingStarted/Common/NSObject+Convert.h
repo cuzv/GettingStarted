@@ -14,13 +14,13 @@
 - (instancetype)initWithProperties:(NSDictionary *)properties;
 
 // 获取属性列表
-- (NSMutableArray *)properties;
-+ (NSMutableArray *)properties;
+- (NSArray *)properties;
++ (NSArray *)properties;
 
 // 自身对象转为字典
 - (NSDictionary *)convertToDictionary;
 
 // 打印对象
-- (NSMutableString *)toString;
+- (NSString *)toString;
 
 @end
