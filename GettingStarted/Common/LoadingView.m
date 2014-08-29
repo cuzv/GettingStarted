@@ -37,8 +37,18 @@
     return [self initWithFrame:CGRectZero];
 }
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)setBounds:(CGRect)bounds {
+    CGFloat width = CGRectGetWidth(bounds);
+    CGFloat height = CGRectGetHeight(bounds);
+    CGFloat lengthOfSide = MIN(width, height);
+    CGRect newBounds = CGRectMake(0, 0, lengthOfSide, lengthOfSide);
+    self.layer.cornerRadius = lengthOfSide / 2;
+    self.layer.masksToBounds = YES;
+    
+    [super setBounds:newBounds];
+}
+
+- (void)drawRect:(CGRect)rect {
     if (self.radian <= 0) {
         _radian = 0;
     }
@@ -71,7 +81,6 @@
     _radian = radian;
     [self setNeedsDisplay];
 }
-
 
 - (void)startAnimation {
     if (self.isAnimating) {
