@@ -34,6 +34,8 @@
 		46574D63199E496D004DC73B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D62199E496D004DC73B /* XCTest.framework */; };
 		46574D64199E496D004DC73B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D43199E496C004DC73B /* Foundation.framework */; };
 		46574D65199E496D004DC73B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D47199E496C004DC73B /* UIKit.framework */; };
+		4658633B19B00749009E378B /* UIScrollView+Accessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4658633A19B00749009E378B /* UIScrollView+Accessor.m */; };
+		4658633E19B06B06009E378B /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4658633D19B06B06009E378B /* LoadingView.m */; };
 		465C8ED119A21DE8003DFB48 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 465C8EC119A21DE8003DFB48 /* MJRefresh.bundle */; };
 		465C8ED219A21DE8003DFB48 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 465C8EC419A21DE8003DFB48 /* MJRefreshBaseView.m */; };
 		465C8ED319A21DE8003DFB48 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 465C8EC619A21DE8003DFB48 /* MJRefreshConst.m */; };
@@ -114,6 +116,10 @@
 		46574D5B199E496C004DC73B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		46574D61199E496D004DC73B /* GettingStartedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GettingStartedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46574D62199E496D004DC73B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4658633919B00749009E378B /* UIScrollView+Accessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Accessor.h"; sourceTree = "<group>"; };
+		4658633A19B00749009E378B /* UIScrollView+Accessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Accessor.m"; sourceTree = "<group>"; };
+		4658633C19B06B06009E378B /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		4658633D19B06B06009E378B /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		465C8EC119A21DE8003DFB48 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		465C8EC219A21DE8003DFB48 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		465C8EC319A21DE8003DFB48 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -399,6 +405,8 @@
 				461C080C19AA4735006C0016 /* UIColor+RandomColor.m */,
 				461C080E19AA562B006C0016 /* UIView+UIActivityIndicatorView.h */,
 				461C080F19AA562B006C0016 /* UIView+UIActivityIndicatorView.m */,
+				4658633919B00749009E378B /* UIScrollView+Accessor.h */,
+				4658633A19B00749009E378B /* UIScrollView+Accessor.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -414,6 +422,8 @@
 				46C363BC19A18DC500BB3F84 /* PaddingField.m */,
 				46C363B719A18DC500BB3F84 /* BadgeView.h */,
 				46C363B819A18DC500BB3F84 /* BadgeView.m */,
+				4658633C19B06B06009E378B /* LoadingView.h */,
+				4658633D19B06B06009E378B /* LoadingView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -569,10 +579,12 @@
 			files = (
 				46C363D219A18DC500BB3F84 /* UIView+Accessor.m in Sources */,
 				46574D50199E496C004DC73B /* main.m in Sources */,
+				4658633B19B00749009E378B /* UIScrollView+Accessor.m in Sources */,
 				4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */,
 				46C363B519A18D9800BB3F84 /* HTTPManager.m in Sources */,
 				465C8ED319A21DE8003DFB48 /* MJRefreshConst.m in Sources */,
 				46C363AB19A18CBF00BB3F84 /* AppConstant.m in Sources */,
+				4658633E19B06B06009E378B /* LoadingView.m in Sources */,
 				46040D3F19A5D46B007253F6 /* LocationPickerView.m in Sources */,
 				465C8ED619A21DE8003DFB48 /* UIScrollView+Extension.m in Sources */,
 				465C8ED819A21DE8003DFB48 /* UIView+Extension.m in Sources */,

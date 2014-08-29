@@ -24,5 +24,5 @@ typedef NS_ENUM(NSInteger, CHAnimationOrientation) {
 - (void)addLoadingAnimationWitchColor:(UIColor *)color;
 - (void)removeLoadingAnimation;
 
-
++ (CABasicAnimation *)rotationFromValue:(NSValue *)fromValue toValue:(NSValue *)toValue;
 @end

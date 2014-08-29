@@ -155,7 +155,7 @@
 + (CABasicAnimation *)rotationFromValue:(NSValue *)fromValue toValue:(NSValue *)toValue {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     animation.duration = 0.5f;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     animation.fromValue = fromValue;
     animation.toValue = toValue;
     return animation;
