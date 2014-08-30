@@ -11,6 +11,8 @@
 		46040D3F19A5D46B007253F6 /* LocationPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46040D3E19A5D46B007253F6 /* LocationPickerView.m */; };
 		46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */; };
 		46044BA319A841D100E1552D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46044BA219A841D100E1552D /* BaseViewController.m */; };
+		4617D69319B21C9400DC498C /* RefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4617D69219B21C9400DC498C /* RefreshControl.m */; };
+		4617D69619B21CB300DC498C /* UIScrollView+RefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4617D69519B21CB300DC498C /* UIScrollView+RefreshControl.m */; };
 		461C080A19AA0111006C0016 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 461C080919AA0111006C0016 /* UIView+Animation.m */; };
 		461C080D19AA4735006C0016 /* UIColor+RandomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 461C080C19AA4735006C0016 /* UIColor+RandomColor.m */; };
 		461C081019AA562B006C0016 /* UIView+UIActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 461C080F19AA562B006C0016 /* UIView+UIActivityIndicatorView.m */; };
@@ -79,6 +81,10 @@
 		46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCitiesAndAreas.plist; sourceTree = "<group>"; };
 		46044BA119A841D100E1552D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		46044BA219A841D100E1552D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		4617D69119B21C9400DC498C /* RefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshControl.h; sourceTree = "<group>"; };
+		4617D69219B21C9400DC498C /* RefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshControl.m; sourceTree = "<group>"; };
+		4617D69419B21CB300DC498C /* UIScrollView+RefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+RefreshControl.h"; sourceTree = "<group>"; };
+		4617D69519B21CB300DC498C /* UIScrollView+RefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+RefreshControl.m"; sourceTree = "<group>"; };
 		461C080819AA0111006C0016 /* UIView+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animation.h"; sourceTree = "<group>"; };
 		461C080919AA0111006C0016 /* UIView+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
 		461C080B19AA4735006C0016 /* UIColor+RandomColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RandomColor.h"; sourceTree = "<group>"; };
@@ -407,6 +413,8 @@
 				461C080F19AA562B006C0016 /* UIView+UIActivityIndicatorView.m */,
 				4658633919B00749009E378B /* UIScrollView+Accessor.h */,
 				4658633A19B00749009E378B /* UIScrollView+Accessor.m */,
+				4617D69419B21CB300DC498C /* UIScrollView+RefreshControl.h */,
+				4617D69519B21CB300DC498C /* UIScrollView+RefreshControl.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -424,6 +432,8 @@
 				46C363B819A18DC500BB3F84 /* BadgeView.m */,
 				4658633C19B06B06009E378B /* LoadingView.h */,
 				4658633D19B06B06009E378B /* LoadingView.m */,
+				4617D69119B21C9400DC498C /* RefreshControl.h */,
+				4617D69219B21C9400DC498C /* RefreshControl.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -582,6 +592,7 @@
 				4658633B19B00749009E378B /* UIScrollView+Accessor.m in Sources */,
 				4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */,
 				46C363B519A18D9800BB3F84 /* HTTPManager.m in Sources */,
+				4617D69319B21C9400DC498C /* RefreshControl.m in Sources */,
 				465C8ED319A21DE8003DFB48 /* MJRefreshConst.m in Sources */,
 				46C363AB19A18CBF00BB3F84 /* AppConstant.m in Sources */,
 				4658633E19B06B06009E378B /* LoadingView.m in Sources */,
@@ -603,6 +614,7 @@
 				46044BA319A841D100E1552D /* BaseViewController.m in Sources */,
 				462BDDCD19A34754007BA4B3 /* PaddingLabel.m in Sources */,
 				46C363CB19A18DC500BB3F84 /* BadgeView.m in Sources */,
+				4617D69619B21CB300DC498C /* UIScrollView+RefreshControl.m in Sources */,
 				461C081019AA562B006C0016 /* UIView+UIActivityIndicatorView.m in Sources */,
 				46C363D319A18DC500BB3F84 /* UIView+BorderLine.m in Sources */,
 				465C8ED419A21DE8003DFB48 /* MJRefreshFooterView.m in Sources */,
