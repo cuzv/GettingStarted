@@ -25,19 +25,9 @@
 @implementation RefreshControl
 @synthesize statusLabel = _statusLabel;
 @synthesize loadingView = _loadingView;
-//@synthesize superScrollView = _superScrollView;
 
 #pragma mark -
-#pragma mark - override super messages
-
-- (void)dealloc {
-    NSLog(@"%s", __FUNCTION__);
-}
-
-- (BOOL)respondsToSelector:(SEL)aSelector {
-    printf("SELECTOR: %s\n", [NSStringFromSelector(aSelector) UTF8String]);
-    return [super respondsToSelector:aSelector];
-}
+#pragma mark - RefreshControl
 
 - (id)init {
     self = [super init];
@@ -76,9 +66,8 @@
 // add refresh control to super scroll view, when init and dealloc call
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     [super willMoveToSuperview:newSuperview];
-    if(self.superScrollView) {
-        [self.superScrollView removeObserver:self forKeyPath:@"contentOffset"];
-    }
+    
+    [self.superview removeObserver:self forKeyPath:@"contentOffset"];
     
     // add Observer for top refresh control
     if (!newSuperview) {
@@ -115,18 +104,9 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    if (!self.initInset) {
-        _scrollViewInsetRecord = [self superScrollView].contentInset;
+    if (!self.hasInitInset) {
+        _scrollViewInsetRecord = self.superScrollView.contentInset;
         _initInset = YES;
-
-        [self observeValueForKeyPath:@"contentSize"
-                            ofObject:nil
-                              change:nil
-                             context:nil];
-#pragma mark - TODO del ?
-        if (self.refreshControlState == RefreshControlStateRefreshing) {
-            self.refreshControlState = RefreshControlStateRefreshing;
-        }
     }
 }
 
@@ -169,13 +149,13 @@
     CGFloat properContentOffsetVerticalValue = properVerticalPullValue + kPullControlHeight;
 
     if (contentOffSetVerticalValue <= properContentOffsetVerticalValue) {
-        // 正在拖动，但是还没有到临界点
+        // Being dragged, but not to the critical point
         self.refreshControlState = RefreshControlStatePulling;
     } else if (contentOffSetVerticalValue > properContentOffsetVerticalValue) {
-        // 超过临界点(箭头反向、改变提示文字)，松手会执行Action(显示菊花，改变提示文字)
+        // Above the critical point (arrow reverse, change prompt text), let go will execute Action (display chrysanthemums, change prompt text)
         self.refreshControlState = RefreshControlStateOveredThreshold;
     } else {
-        // 反方向拖动、根本进不来
+        // Drag the opposite direction, did not come
         self.refreshControlState = RefreshControlStateHidden;
     }
 }
@@ -194,29 +174,27 @@
 }
 
 - (void)startRefreshing {
-    // 控件滚动到合适位置停留
+    // Controls to scroll to the appropriate location to stay
     if (self.refreshControlType == RefreshControlTypeTop) {
-        // 下拉控件
         [UIView animateWithDuration:0.2 animations:^{
-            UIEdgeInsets inset = [self superScrollView].contentInset;
+            UIEdgeInsets inset = self.superScrollView.contentInset;
             inset.top = self.scrollViewInsetRecord.top + kPullControlHeight;
-            [self superScrollView].contentInset = inset;
-            // 设置滚动停留的位置
-            [self superScrollView].contentOffset =
+            self.superScrollView.contentInset = inset;
+            // Set the scroll position to stay
+            self.superScrollView.contentOffset =
             CGPointMake(0, -self.scrollViewInsetRecord.top - kPullControlHeight);
         }];
     } else {
-        // 上拉控件
         [UIView animateWithDuration:0.2 animations:^{
-            UIEdgeInsets inset = [self superScrollView].contentInset;
+            UIEdgeInsets inset = self.superScrollView.contentInset;
             CGFloat bottom = self.scrollViewInsetRecord.bottom + kPullControlHeight;
             CGFloat overHeight = [self scrollViewOverViewHeight];
             if (overHeight < 0) {
                 bottom -= overHeight;
             }
             inset.bottom = bottom;
-            // 设置滚动停留的位置
-            [self superScrollView].contentInset = inset;
+            // Set the scroll position to stay
+            self.superScrollView.contentInset = inset;
         }];
     }
     
@@ -226,34 +204,33 @@
 }
 
 - (void)stopRefreshing {
-    // 事务执行完成
     if (self.refreshControlType == RefreshControlTypeTop) {
-        // 下拉控件，滚到父视图头部以上刚好看不见位置(还原inset)
-        UIEdgeInsets inset = [self superScrollView].contentInset;
+        // Drop-down control, rolled over just can not see the parent view of the head position (reduction inset)
+        UIEdgeInsets inset = self.superScrollView.contentInset;
         inset.top = self.scrollViewInsetRecord.top;
         [UIView animateWithDuration:0.2 animations:^{
-            [self superScrollView].contentInset = inset;
+            self.superScrollView.contentInset = inset;
         }];
     } else {
-        // 加载完成，内容没有占满整屏，contentOffset伴随动画回到zero
+        // Loading is complete, the content does not fill the entire screen, contentOffset accompanying animation back to zero
         CGPoint tempOffset = CGPointZero;
         CGFloat animtionDuration = 0.2;
         CGFloat screenHeight = CGRectGetHeight([[UIScreen mainScreen] bounds]);
-        if ([self superScrollView].contentSize.height + kPullControlHeight > screenHeight) {
-            tempOffset = [self superScrollView].contentOffset;
+        if (self.superScrollView.contentSize.height + kPullControlHeight > screenHeight) {
+            tempOffset = self.superScrollView.contentOffset;
             animtionDuration = 0;
         }
         
-        // 内容未超过屏幕底端时animtionDuration != 0
+        // AnimtionDuration bottom of the screen when the content does not exceed! = 0
         [UIView animateWithDuration:animtionDuration animations:^{
-            UIEdgeInsets inset = [self superScrollView].contentInset;
+            UIEdgeInsets inset = self.superScrollView.contentInset;
             inset.bottom = self.scrollViewInsetRecord.bottom;
-            [self superScrollView].contentInset = inset;
+            self.superScrollView.contentInset = inset;
         }];
         
-        // 内容超过屏幕底端，不出现回滚动画，直接加载数据，控件`消失`
+        // Content exceeds the bottom of the screen, there are no rollback animation, direct load data, control `disappear`
         if (animtionDuration == 0) {
-            [self superScrollView].contentOffset = tempOffset;
+            self.superScrollView.contentOffset = tempOffset;
         }
     }
     self.refreshControlState = RefreshControlStateHidden;
@@ -300,15 +277,6 @@
 
 @implementation TopRefreshControl
 
-- (void)dealloc {
-    NSLog(@"%s", __FUNCTION__);
-}
-
-- (BOOL)respondsToSelector:(SEL)aSelector {
-    printf("SELECTOR: %s\n", [NSStringFromSelector(aSelector) UTF8String]);
-    return [super respondsToSelector:aSelector];
-}
-
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -320,9 +288,9 @@
     return self;
 }
 
-// 合适的垂直方向拖动的值
+// Dragging the vertical direction of the right value
 - (CGFloat)properVerticalPullValue {
-    return self.refreshControlPullType == RefreshControlPullTypeOldFashion ? self.superScrollView.contentInset.top : 0.0f;
+    return self.refreshControlPullType == RefreshControlPullTypeInsensitive ? self.superScrollView.contentInset.top : 0.0f;
 }
 
 - (void)settingFrames {
@@ -338,19 +306,10 @@
 
 @end
 
+#pragma mark -
 #pragma mark - BottomRefreshControl
 
 @implementation BottomRefreshControl
-
-- (void)dealloc {
-    NSLog(@"%s", __FUNCTION__);
-    [self.superScrollView removeObserver:self forKeyPath:@"contentSize"];
-}
-
-- (BOOL)respondsToSelector:(SEL)aSelector {
-    printf("SELECTOR: %s\n", [NSStringFromSelector(aSelector) UTF8String]);
-    return [super respondsToSelector:aSelector];
-}
 
 - (instancetype)init {
     self = [super init];
@@ -364,11 +323,12 @@
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
+    [super willMoveToSuperview:newSuperview];
+    
+    [self.superview removeObserver:self forKeyPath:@"contentSize"];
+    
     if (!newSuperview) {
         return;
-    }
-    if(self.superScrollView) {
-        [self.superScrollView removeObserver:self forKeyPath:@"contentSize"];
     }
     if([newSuperview isKindOfClass:[UIScrollView class]]) {
         [newSuperview addObserver:self
@@ -376,9 +336,6 @@
                           options:NSKeyValueObservingOptionNew
                           context:NULL];
     }
-    
-    [super willMoveToSuperview:newSuperview];
-    NSLog(@"self.superScrollView: %@", self.superScrollView);
 }
 
 - (void)settingFrames {
@@ -404,7 +361,7 @@
     CGFloat overHeight = [self scrollViewOverViewHeight];
     CGFloat result = self.scrollViewInsetRecord.top;
     if (overHeight > 0) {
-        CGFloat adjustHeight = self.refreshControlPullType == RefreshControlPullTypeOldFashion ? 0 : kPullControlHeight;
+        CGFloat adjustHeight = self.refreshControlPullType == RefreshControlPullTypeInsensitive ? 0 : kPullControlHeight;
         return overHeight - result - adjustHeight;
     } else {
         return -result;

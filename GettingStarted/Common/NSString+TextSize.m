@@ -1,6 +1,6 @@
 //
 //  NSString+TextSize.m
-//  WFarm
+//  GettingStarted
 //
 //  Created by Moch on 8/22/14.
 //  Copyright (c) 2014 Moch. All rights reserved.
