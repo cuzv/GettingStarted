@@ -55,7 +55,10 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 //    [UIView toastWithMessage:@"用户名错误"];
 //    [self loadingAnimation];
-    [_loadingView stopAnimation];
+//    [_loadingView stopAnimation];
+    
+    [UIAlertView alertWithMessage:@"密码错误"];
+
 }
 
 - (IBAction)handleSelectAddress:(UIButton *)sender {

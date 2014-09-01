@@ -25,5 +25,6 @@
 #import "UIImage+Fetch.h"
 #import "UIColor+RandomColor.h"
 #import "UIView+UIActivityIndicatorView.h"
+#import "UIAlertView+Generate.h"
 
 #endif

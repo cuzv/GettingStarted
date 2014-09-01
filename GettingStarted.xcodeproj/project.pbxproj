@@ -16,6 +16,7 @@
 		461C080A19AA0111006C0016 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 461C080919AA0111006C0016 /* UIView+Animation.m */; };
 		461C080D19AA4735006C0016 /* UIColor+RandomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 461C080C19AA4735006C0016 /* UIColor+RandomColor.m */; };
 		461C081019AA562B006C0016 /* UIView+UIActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 461C080F19AA562B006C0016 /* UIView+UIActivityIndicatorView.m */; };
+		461CBCE419B4AD23001CA4A0 /* UIAlertView+Generate.m in Sources */ = {isa = PBXBuildFile; fileRef = 461CBCE319B4AD23001CA4A0 /* UIAlertView+Generate.m */; };
 		4625B47E19A86669006B09BC /* CHDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B47D19A86669006B09BC /* CHDetailViewController.m */; };
 		4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B48019A87EC0006B09BC /* CHThirdViewController.m */; };
 		462ABC23199F9EC7006C56E1 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 462ABC22199F9EC7006C56E1 /* Base64.m */; };
@@ -91,6 +92,8 @@
 		461C080C19AA4735006C0016 /* UIColor+RandomColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RandomColor.m"; sourceTree = "<group>"; };
 		461C080E19AA562B006C0016 /* UIView+UIActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+UIActivityIndicatorView.h"; sourceTree = "<group>"; };
 		461C080F19AA562B006C0016 /* UIView+UIActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+UIActivityIndicatorView.m"; sourceTree = "<group>"; };
+		461CBCE219B4AD23001CA4A0 /* UIAlertView+Generate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Generate.h"; sourceTree = "<group>"; };
+		461CBCE319B4AD23001CA4A0 /* UIAlertView+Generate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Generate.m"; sourceTree = "<group>"; };
 		4625B47C19A86669006B09BC /* CHDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDetailViewController.h; sourceTree = "<group>"; };
 		4625B47D19A86669006B09BC /* CHDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDetailViewController.m; sourceTree = "<group>"; };
 		4625B47F19A87EC0006B09BC /* CHThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHThirdViewController.h; sourceTree = "<group>"; };
@@ -393,6 +396,8 @@
 				46C4C57219A7270D002BB390 /* NSString+TextSize.m */,
 				46C363B919A18DC500BB3F84 /* NSObject+Convert.h */,
 				46C363BA19A18DC500BB3F84 /* NSObject+Convert.m */,
+				461CBCE219B4AD23001CA4A0 /* UIAlertView+Generate.h */,
+				461CBCE319B4AD23001CA4A0 /* UIAlertView+Generate.m */,
 				46C363C119A18DC500BB3F84 /* UIImage+Fetch.h */,
 				46C363C219A18DC500BB3F84 /* UIImage+Fetch.m */,
 				46C363C319A18DC500BB3F84 /* UIImage+Generate.h */,
@@ -622,6 +627,7 @@
 				46C363CC19A18DC500BB3F84 /* NSObject+Convert.m in Sources */,
 				464E17AE19A47CA3007343CA /* VerificationManager.m in Sources */,
 				46C363D019A18DC500BB3F84 /* UIImage+Fetch.m in Sources */,
+				461CBCE419B4AD23001CA4A0 /* UIAlertView+Generate.m in Sources */,
 				465C8ED719A21DE8003DFB48 /* UIScrollView+MJRefresh.m in Sources */,
 				46C363D119A18DC500BB3F84 /* UIImage+Generate.m in Sources */,
 				46574D54199E496C004DC73B /* CHAppDelegate.m in Sources */,
