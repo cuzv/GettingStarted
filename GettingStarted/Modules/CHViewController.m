@@ -57,7 +57,8 @@
 //    [self loadingAnimation];
 //    [_loadingView stopAnimation];
     
-    [UIAlertView alertWithMessage:@"密码错误"];
+//    [UIAlertView alertWithMessage:@"密码错误"];
+    [UIAlertView alertWithAutomaticDisappearMessage:@"密码错误"];
 
 }
 
