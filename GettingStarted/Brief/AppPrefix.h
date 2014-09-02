@@ -27,5 +27,7 @@
 #import "UIView+UIActivityIndicatorView.h"
 #import "UIAlertView+Generate.h"
 #import "UIView+Blur.h"
+#import "UIAlertView+Blocks.h"
+#import "UIAlertView+Blocks.h"
 
 #endif
