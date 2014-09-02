@@ -10,11 +10,19 @@
 
 @implementation UIView (Blur)
 
+//- (void)blur {
+//    self.backgroundColor = [UIColor clearColor];
+//    UIToolbar *backgroundToolbar = [[UIToolbar alloc] initWithFrame:self.frame];
+//    backgroundToolbar.barStyle = UIBarStyleDefault;
+//    backgroundToolbar.autoresizingMask = self.autoresizingMask;
+//    backgroundToolbar.clipsToBounds = YES;
+//    [self.superview insertSubview:backgroundToolbar atIndex:0];
+//}
+
 - (void)blur {
     self.backgroundColor = [UIColor clearColor];
     UIToolbar *backgroundToolbar = [[UIToolbar alloc] initWithFrame:self.bounds];
     backgroundToolbar.barStyle = UIBarStyleDefault;
-    backgroundToolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     backgroundToolbar.clipsToBounds = YES;
     [self insertSubview:backgroundToolbar atIndex:0];
 }

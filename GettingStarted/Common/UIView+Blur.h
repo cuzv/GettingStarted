@@ -10,6 +10,7 @@
 
 @interface UIView (Blur)
 
+// You should call this message at last when call messages for view
 - (void)blur;
 
 @end

@@ -7,10 +7,12 @@
 //
 
 #import "CHViewController.h"
+#import "PaddingLabel.h"
+#import "UIView+Toast.h"
 
 @interface CHViewController ()
 
-@property (strong, nonatomic) IBOutlet UIView *blurView;
+@property (weak, nonatomic) IBOutlet PaddingLabel *blurLabel;
 
 
 @end
@@ -30,12 +32,23 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor yellowColor];
-    [self.blurView blur];
+//    [self.blurLabel blur];
+//    self.blurLabel.text = @"dddd";
+ 
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+
+}
+- (IBAction)makeToast:(id)sender {
+
+    
 }
 
+- (IBAction)makeAlert:(id)sender {
+    
+    [UIAlertView alertWithMessage:@"请检查网络设置请检查网络设置请检"];
+}
 
 
 @end
