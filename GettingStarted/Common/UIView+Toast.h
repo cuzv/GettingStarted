@@ -22,4 +22,6 @@ typedef NS_ENUM(NSInteger, CHToastAppearOrientation) {
 + (void)toastWithMessage:(NSString *)message;
 + (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation;
 
+- (void)makeToast:(NSString *)message;
+
 @end

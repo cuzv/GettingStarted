@@ -40,8 +40,12 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 
 }
-- (IBAction)makeToast:(id)sender {
 
+
+- (IBAction)makeToast:(id)sender {
+    [self.view makeToast:@"密码错误"];
+//    [self.view makeToast:@"请检查网络设置请检查网络设置请检查网络请检查网络设置请检查网络设置请检查网络设置请检查网络设置"];
+    
     
 }
 
