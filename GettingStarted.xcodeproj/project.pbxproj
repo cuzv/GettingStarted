@@ -11,7 +11,6 @@
 		46040D3F19A5D46B007253F6 /* LocationPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46040D3E19A5D46B007253F6 /* LocationPickerView.m */; };
 		46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */; };
 		46044BA319A841D100E1552D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46044BA219A841D100E1552D /* BaseViewController.m */; };
-		4613F52B19B5F39A0038ECE3 /* got-s3-arya-wallpaper-1600-1920.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4613F52A19B5F39A0038ECE3 /* got-s3-arya-wallpaper-1600-1920.jpg */; };
 		4617D69319B21C9400DC498C /* RefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4617D69219B21C9400DC498C /* RefreshControl.m */; };
 		4617D69619B21CB300DC498C /* UIScrollView+RefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4617D69519B21CB300DC498C /* UIScrollView+RefreshControl.m */; };
 		461C080A19AA0111006C0016 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 461C080919AA0111006C0016 /* UIView+Animation.m */; };
@@ -85,7 +84,6 @@
 		46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCitiesAndAreas.plist; sourceTree = "<group>"; };
 		46044BA119A841D100E1552D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		46044BA219A841D100E1552D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		4613F52A19B5F39A0038ECE3 /* got-s3-arya-wallpaper-1600-1920.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "got-s3-arya-wallpaper-1600-1920.jpg"; sourceTree = "<group>"; };
 		4617D69119B21C9400DC498C /* RefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshControl.h; sourceTree = "<group>"; };
 		4617D69219B21C9400DC498C /* RefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshControl.m; sourceTree = "<group>"; };
 		4617D69419B21CB300DC498C /* UIScrollView+RefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+RefreshControl.h"; sourceTree = "<group>"; };
@@ -294,7 +292,6 @@
 		46574D7C199E61C5004DC73B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4613F52A19B5F39A0038ECE3 /* got-s3-arya-wallpaper-1600-1920.jpg */,
 				46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */,
 				462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */,
 			);
@@ -551,7 +548,6 @@
 				462BDDB919A23B0C007BA4B3 /* README.MD in Resources */,
 				46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */,
 				46574D5C199E496C004DC73B /* Images.xcassets in Resources */,
-				4613F52B19B5F39A0038ECE3 /* got-s3-arya-wallpaper-1600-1920.jpg in Resources */,
 				46574D4E199E496C004DC73B /* InfoPlist.strings in Resources */,
 				46574D57199E496C004DC73B /* Main.storyboard in Resources */,
 				465C8ED119A21DE8003DFB48 /* MJRefresh.bundle in Resources */,

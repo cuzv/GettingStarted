@@ -38,10 +38,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="got-s3-arya-wallpaper-1600-1920.jpg" id="5EG-Yn-nDA">
-                                <rect key="frame" x="30" y="147" width="270" height="309"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -139,9 +135,6 @@
             <point key="canvasLocation" x="287" y="127"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="got-s3-arya-wallpaper-1600-1920.jpg" width="1024" height="1024"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
