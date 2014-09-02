@@ -7,18 +7,10 @@
 //
 
 #import "CHViewController.h"
-#import "UIView+Toast.h"
-#import "LocationPickerView.h"
-#import "NSString+TextSize.h"
-#import "UIView+Animation.h"
-#import "LoadingView.h"
 
-@interface CHViewController () <CHLocationPickerDelegate>
+@interface CHViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *selectAddressButton;
-@property (weak, nonatomic) IBOutlet UIButton *circleButton;
-
-@property (nonatomic, strong) LoadingView *loadingView;
+@property (strong, nonatomic) IBOutlet UIView *blurView;
 
 
 @end
@@ -37,41 +29,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-//    self.selectAddressButton.backgroundColor = [UIColor colorWithRGBA:@[@245, @232, @8, @1]];
-//    CHRGBColor(245, 232, 8, 1);
-    
-    self.circleButton.layer.cornerRadius = 44;
-    self.circleButton.layer.masksToBounds = YES;
-    
-    _loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(100, 200, 40, 70)];
-    _loadingView.backgroundColor = [UIColor yellowColor];
-    [self.view addSubview:_loadingView];
-    [_loadingView startAnimation];
-
-    
+    self.view.backgroundColor = [UIColor yellowColor];
+    [self.blurView blur];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [UIView toastWithMessage:@"用户名错误"];
-//    [self loadingAnimation];
-//    [_loadingView stopAnimation];
-    
-//    [UIAlertView alertWithMessage:@"密码错误"];
-    [UIAlertView alertWithAutomaticDisappearMessage:@"密码错误"];
-
 }
 
-- (IBAction)handleSelectAddress:(UIButton *)sender {
-//    LocationPickerView *locationPickerView = [[LocationPickerView alloc] initWithLocationPickerType:CHLocationPickerTypeCites selectedItem:^(NSString *item) {
-//        [self.selectAddressButton setTitle:item forState:UIControlStateNormal];
-//    }];
-//    [locationPickerView showInView:self.view];
-//    [self.view removeLoadingAnimation];
-}
 
-- (void)loadingAnimation {
-    [self.view addLoadingAnimation];
-}
 
 @end

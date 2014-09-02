@@ -8,6 +8,7 @@
 
 #import "CHDetailViewController.h"
 #import "UIView+UIActivityIndicatorView.h"
+#import "UIView+Blur.h"
 
 #define kMessageList @"getMobileMessageList"
 
@@ -31,6 +32,10 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(85, 113, 150, 300)];
+    [view blur];
+    [self.view addSubview:view];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

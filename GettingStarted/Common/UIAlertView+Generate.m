@@ -7,16 +7,17 @@
 //
 
 #import "UIAlertView+Generate.h"
+#import "UIView+Accessor.h"
 
 @implementation UIAlertView (Generate)
 
 + (void)alertWithMessage:(NSString *)message {
-    UIAlertView *alert = [[self alloc] initWithTitle:nil
-                                             message:message
-                                            delegate:nil
-                                   cancelButtonTitle:nil
-                                   otherButtonTitles:@"确定", nil];
-    [alert show];
+    UIAlertView *alertView = [[self alloc] initWithTitle:nil
+                                                 message:message
+                                                delegate:nil
+                                       cancelButtonTitle:nil
+                                       otherButtonTitles:@"确定", nil];
+    [alertView show];
 }
 
 + (void)alertWithAutomaticDisappearMessage:(NSString *)message {
@@ -26,7 +27,6 @@
                               delegate:nil
                               cancelButtonTitle:nil
                               otherButtonTitles:nil];
-    
     [alertView show];
     
     NSMethodSignature *signature = [UIAlertView instanceMethodSignatureForSelector:
@@ -39,7 +39,7 @@
     BOOL animated = YES;
     [invocation setArgument:&animated atIndex:3];
     [invocation retainArguments];
-    [invocation performSelector:@selector(invoke) withObject:nil afterDelay:1];
+    [invocation performSelector:@selector(invoke) withObject:nil afterDelay:2];
 }
 
 @end

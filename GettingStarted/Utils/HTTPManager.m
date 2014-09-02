@@ -157,8 +157,10 @@ static NSMutableArray *sessions;
             break;
          case HTTPResponseSerializerTypePropertyList:
             responseSerializer = [AFPropertyListResponseSerializer serializer];
+            break;
         case HTTPResponseSerializerTypeXMLParser:
             responseSerializer = [AFXMLParserResponseSerializer serializer];
+            break;
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
         case HttpResponseSerializerTypeXMLDocument:
             responseSerializer = [AFXMLDocumentResponseSerializer serializer];
@@ -169,6 +171,7 @@ static NSMutableArray *sessions;
             break;
         case HTTPResponseSerializerTypeCompound:
             responseSerializer = [AFCompoundResponseSerializer serializer];
+            break;
         default:
             responseSerializer = [AFHTTPResponseSerializer serializer];
             break;

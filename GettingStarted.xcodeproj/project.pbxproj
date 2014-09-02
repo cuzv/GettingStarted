@@ -21,6 +21,8 @@
 		4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B48019A87EC0006B09BC /* CHThirdViewController.m */; };
 		462ABC23199F9EC7006C56E1 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 462ABC22199F9EC7006C56E1 /* Base64.m */; };
 		462ABC25199FA19B006C56E1 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */; };
+		462BA6DD19B56D30009C6940 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BA6DC19B56D30009C6940 /* UIImage+ImageEffects.m */; };
+		462BA6E019B56F18009C6940 /* UIView+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BA6DF19B56F18009C6940 /* UIView+Blur.m */; };
 		462BDDB919A23B0C007BA4B3 /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = 462BDDB819A23B0C007BA4B3 /* README.MD */; };
 		462BDDBD19A2E73F007BA4B3 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BDDBC19A2E73F007BA4B3 /* NSString+Hashes.m */; };
 		462BDDCD19A34754007BA4B3 /* PaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BDDCC19A34754007BA4B3 /* PaddingLabel.m */; };
@@ -101,6 +103,10 @@
 		462ABC21199F9EC7006C56E1 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		462ABC22199F9EC7006C56E1 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
+		462BA6DB19B56D30009C6940 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		462BA6DC19B56D30009C6940 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		462BA6DE19B56F18009C6940 /* UIView+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Blur.h"; sourceTree = "<group>"; };
+		462BA6DF19B56F18009C6940 /* UIView+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Blur.m"; sourceTree = "<group>"; };
 		462BDDB819A23B0C007BA4B3 /* README.MD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.MD; sourceTree = "<group>"; };
 		462BDDBB19A2E73F007BA4B3 /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
 		462BDDBC19A2E73F007BA4B3 /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
@@ -398,6 +404,8 @@
 				46C363BA19A18DC500BB3F84 /* NSObject+Convert.m */,
 				461CBCE219B4AD23001CA4A0 /* UIAlertView+Generate.h */,
 				461CBCE319B4AD23001CA4A0 /* UIAlertView+Generate.m */,
+				462BA6DB19B56D30009C6940 /* UIImage+ImageEffects.h */,
+				462BA6DC19B56D30009C6940 /* UIImage+ImageEffects.m */,
 				46C363C119A18DC500BB3F84 /* UIImage+Fetch.h */,
 				46C363C219A18DC500BB3F84 /* UIImage+Fetch.m */,
 				46C363C319A18DC500BB3F84 /* UIImage+Generate.h */,
@@ -406,6 +414,8 @@
 				46C363C619A18DC500BB3F84 /* UIView+Accessor.m */,
 				461C080819AA0111006C0016 /* UIView+Animation.h */,
 				461C080919AA0111006C0016 /* UIView+Animation.m */,
+				462BA6DE19B56F18009C6940 /* UIView+Blur.h */,
+				462BA6DF19B56F18009C6940 /* UIView+Blur.m */,
 				46C363C719A18DC500BB3F84 /* UIView+BorderLine.h */,
 				46C363C819A18DC500BB3F84 /* UIView+BorderLine.m */,
 				46C363C919A18DC500BB3F84 /* UIView+FindUIViewController.h */,
@@ -594,6 +604,7 @@
 			files = (
 				46C363D219A18DC500BB3F84 /* UIView+Accessor.m in Sources */,
 				46574D50199E496C004DC73B /* main.m in Sources */,
+				462BA6DD19B56D30009C6940 /* UIImage+ImageEffects.m in Sources */,
 				4658633B19B00749009E378B /* UIScrollView+Accessor.m in Sources */,
 				4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */,
 				46C363B519A18D9800BB3F84 /* HTTPManager.m in Sources */,
@@ -605,6 +616,7 @@
 				465C8ED619A21DE8003DFB48 /* UIScrollView+Extension.m in Sources */,
 				465C8ED819A21DE8003DFB48 /* UIView+Extension.m in Sources */,
 				461C080A19AA0111006C0016 /* UIView+Animation.m in Sources */,
+				462BA6E019B56F18009C6940 /* UIView+Blur.m in Sources */,
 				4625B47E19A86669006B09BC /* CHDetailViewController.m in Sources */,
 				461C080D19AA4735006C0016 /* UIColor+RandomColor.m in Sources */,
 				46C363CD19A18DC500BB3F84 /* PaddingField.m in Sources */,

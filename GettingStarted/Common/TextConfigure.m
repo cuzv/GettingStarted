@@ -46,7 +46,7 @@
 }
 
 - (void)textDidChange:(NSNotification *)notification {
-    NSUInteger length;
+    NSUInteger length = 0;
     if ([notification.object isKindOfClass:[UITextView class]]) {
         UITextView *textView = (UITextView *)notification.object;
         length = textView.text.length;

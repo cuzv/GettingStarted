@@ -12,6 +12,4 @@
 
 + (void)alertWithMessage:(NSString *)message;
 
-+ (void)alertWithAutomaticDisappearMessage:(NSString *)message;
-
 @end
