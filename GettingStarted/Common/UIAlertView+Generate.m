@@ -26,7 +26,7 @@
                               message:message
                               delegate:nil
                               cancelButtonTitle:nil
-                              otherButtonTitles:nil];
+                              otherButtonTitles:@"确定", nil];
     [alertView show];
     
     NSMethodSignature *signature = [UIAlertView instanceMethodSignatureForSelector:
@@ -39,7 +39,7 @@
     BOOL animated = YES;
     [invocation setArgument:&animated atIndex:3];
     [invocation retainArguments];
-    [invocation performSelector:@selector(invoke) withObject:nil afterDelay:2];
+    [invocation performSelector:@selector(invoke) withObject:nil afterDelay:4];
 }
 
 @end

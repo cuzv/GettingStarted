@@ -11,6 +11,7 @@
 #import "UIView+Toast.h"
 
 @interface CHViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -29,10 +30,14 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIImage *image = [UIImage imageWithColor:[UIColor redColor] size:CGSizeMake(240, 128)];
+    self.imageView.image = image;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
+    [UIAlertView alertWithAutomaticDisappearMessage:@"密码错误"];
 }
 
 
@@ -56,13 +61,16 @@
 //    [self.view showSuccessHUDWithMessage:@"成功"];
 //    [self.view showFailureHUDWithMessage:nil];
     
-    [self.view showCancelableHUDWithMessage:@"信息加载中..." cancelConfirmMessage:@"确定"];
+//    [self.view showCancelableHUDWithMessage:@"信息加载中..." cancelConfirmMessage:@"确定"];
+    
+    [self.view addActivityIndicatorAnimation];
     
 }
 
 
 - (IBAction)dismiss:(id)sender {
-    [self.view dismissHUD];
+//    [self.view dismissHUD];
+    [self.view removeActivityIndicatorAnimation];
 }
 
 

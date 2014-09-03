@@ -7,40 +7,47 @@
 //
 
 #import "UIView+UIActivityIndicatorView.h"
-#define kActivityIndicatorViewTag 400
+#import <objc/runtime.h>
+
+static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
+
+@interface UIView ()
+@property(nonatomic, weak) UIActivityIndicatorView *activityIndicatorView;
+@end
 
 @implementation UIView (UIActivityIndicatorView)
+
+- (void)setActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView {
+    [self willChangeValueForKey:@"ActivityIndicatorViewKey"];
+    objc_setAssociatedObject(self, ActivityIndicatorViewKey, activityIndicatorView, OBJC_ASSOCIATION_ASSIGN);
+    [self didChangeValueForKey:@"ActivityIndicatorViewKey"];
+}
+
+- (UIActivityIndicatorView *)activityIndicatorView {
+    return objc_getAssociatedObject(self, &ActivityIndicatorViewKey);
+}
 
 - (void)addActivityIndicatorAnimation {
     [self addActivityIndicatorAnimationWithStyle:UIActivityIndicatorViewStyleWhiteLarge];
 }
 
 - (void)addActivityIndicatorAnimationWithStyle:(UIActivityIndicatorViewStyle)style {
-    for (UIView *subView in self.subviews) {
-        if (subView.tag == kActivityIndicatorViewTag) {
-            return;
-        }
+    if (self.activityIndicatorView) {
+        return;
     }
 
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
     activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     activityIndicatorView.color = [UIColor lightGrayColor];
-    activityIndicatorView.tag = kActivityIndicatorViewTag;
+    self.activityIndicatorView = activityIndicatorView;
     [self addSubview:activityIndicatorView];
     [activityIndicatorView startAnimating];
 }
 
 - (void)removeActivityIndicatorAnimation {
-    [self.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        UIView *subView = obj;
-        BOOL isActivityIndicatorView = [subView isMemberOfClass:[UIActivityIndicatorView class]] && subView.tag == kActivityIndicatorViewTag;
-        if (isActivityIndicatorView) {
-            UIActivityIndicatorView *activityIndicatorView = (UIActivityIndicatorView *)subView;
-            [activityIndicatorView stopAnimating];
-            [activityIndicatorView removeFromSuperview];
-            activityIndicatorView = nil;
-        }
-    }];
+    [self.activityIndicatorView stopAnimating];
+    [self.activityIndicatorView removeFromSuperview];
+    self.activityIndicatorView = nil;
 }
 
 @end
