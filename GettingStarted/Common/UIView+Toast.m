@@ -67,7 +67,6 @@
     [self toastWithMessage:message appearOrientation:CHToastAppearOrientationTop];
 }
 
-
 - (void)makeToast:(NSString *)message {
     __block UIView *backgroundView = [UIView new];
     backgroundView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |

@@ -29,5 +29,6 @@
 #import "UIView+Blur.h"
 #import "UIAlertView+Blocks.h"
 #import "UIAlertView+Blocks.h"
+#import "UIView+HUD.h"
 
 #endif
