@@ -7,6 +7,7 @@
 //
 
 #import "PersistenceManager.h"
+#import "NSString+Hashes.h"
 
 @implementation PersistenceManager
 
@@ -23,11 +24,16 @@
     [archiver encodeObject:value forKey:key];
     // This step is very import
     [archiver finishEncoding];
-    return [archiverMutableData writeToFile:[self persistencePath] atomically:YES];
+
+    // convert to base64
+    NSString *base64String = [archiverMutableData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+
+    NSError *error = nil;
+    return [base64String writeToFile:[self persistencePath] atomically:YES encoding:NSUTF8StringEncoding error:&error];
 }
 
 + (NSString *)persistencePath {
-    return [[self applicationDocumentDirectory] stringByAppendingPathComponent:@"PersistenceManager.plist"];
+    return [[self applicationDocumentDirectory] stringByAppendingPathComponent:@"PersistenceDatas"];
 }
 
 + (NSString *)applicationDocumentDirectory {
@@ -35,11 +41,25 @@
 }
 
 + (id)persistenceValueForKey:(NSString *)key {
-    // Connect unarchiver and data
-    NSData *unarchiverData = [[NSData alloc] initWithContentsOfFile:[self persistencePath]];
+    NSError *error = nil;
+    NSString *unarchiverString = [[NSString alloc] initWithContentsOfFile:[self persistencePath] encoding:NSUTF8StringEncoding error:&error];
+    NSData *unarchiverData = [[NSData alloc] initWithBase64EncodedString:unarchiverString options:NSDataBase64DecodingIgnoreUnknownCharacters];
+
     // Connect unarchiver data and unarchiver
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:unarchiverData];
+
     return [unarchiver decodeObjectForKey:key];
+}
+
++ (BOOL)cleanup {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager isDeletableFileAtPath:[self persistencePath]]) {
+        NSError *error = nil;
+        BOOL success = [fileManager removeItemAtPath:[self persistencePath] error:&error];
+        return success;
+    };
+    
+    return NO;
 }
 
 

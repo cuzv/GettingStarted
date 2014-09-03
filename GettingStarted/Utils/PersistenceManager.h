@@ -12,5 +12,6 @@
 
 + (BOOL)persistenceValue:(id)value forKey:(NSString *)key;
 + (id)persistenceValueForKey:(NSString *)key;
++ (BOOL)cleanup;
 
 @end
