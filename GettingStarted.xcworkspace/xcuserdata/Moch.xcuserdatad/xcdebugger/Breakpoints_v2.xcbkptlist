@@ -25,7 +25,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "170"
             endingLineNumber = "170"
-            landmarkName = "-showCancellableHUDWithMessage:cancelConfirmMessage:"
+            landmarkName = "-showCancelableHUDWithMessage:cancelConfirmMessage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,7 +41,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "203"
             endingLineNumber = "203"
-            landmarkName = "-showCancellableHUDWithMessage:cancelConfirmMessage:"
+            landmarkName = "-showCancelableHUDWithMessage:cancelConfirmMessage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

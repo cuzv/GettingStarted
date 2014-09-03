@@ -19,7 +19,7 @@
 - (void)showDownloadingHUD;
 - (void)updateHUDProgress:(NSUInteger)progress;
 
-// those messages is just for test, you should not use this directly
+// Flow two messages are just for test, you should not call these messages directly
 - (void)testUploadingHUD;
 - (void)testDownloadingHUD;
 
