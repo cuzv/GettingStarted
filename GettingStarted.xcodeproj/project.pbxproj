@@ -27,6 +27,9 @@
 		462BDDCD19A34754007BA4B3 /* PaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BDDCC19A34754007BA4B3 /* PaddingLabel.m */; };
 		462BDDD019A347D6007BA4B3 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BDDCF19A347D6007BA4B3 /* UIView+Toast.m */; };
 		464E17AE19A47CA3007343CA /* VerificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 464E17AD19A47CA3007343CA /* VerificationManager.m */; };
+		4653403019B7152C0000C734 /* CodingableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4653402F19B7152C0000C734 /* CodingableObject.m */; };
+		4653403319B716EB0000C734 /* CodingableAndComparableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4653403219B716EB0000C734 /* CodingableAndComparableObject.m */; };
+		4653403619B7179F0000C734 /* PersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4653403519B7179F0000C734 /* PersistenceManager.m */; };
 		46574D44199E496C004DC73B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D43199E496C004DC73B /* Foundation.framework */; };
 		46574D46199E496C004DC73B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D45199E496C004DC73B /* CoreGraphics.framework */; };
 		46574D48199E496C004DC73B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D47199E496C004DC73B /* UIKit.framework */; };
@@ -113,6 +116,12 @@
 		462BDDCF19A347D6007BA4B3 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		464E17AC19A47CA3007343CA /* VerificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationManager.h; sourceTree = "<group>"; };
 		464E17AD19A47CA3007343CA /* VerificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationManager.m; sourceTree = "<group>"; };
+		4653402E19B7152C0000C734 /* CodingableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodingableObject.h; sourceTree = "<group>"; };
+		4653402F19B7152C0000C734 /* CodingableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodingableObject.m; sourceTree = "<group>"; };
+		4653403119B716EB0000C734 /* CodingableAndComparableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodingableAndComparableObject.h; sourceTree = "<group>"; };
+		4653403219B716EB0000C734 /* CodingableAndComparableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodingableAndComparableObject.m; sourceTree = "<group>"; };
+		4653403419B7179F0000C734 /* PersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistenceManager.h; sourceTree = "<group>"; };
+		4653403519B7179F0000C734 /* PersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistenceManager.m; sourceTree = "<group>"; };
 		46574D40199E496C004DC73B /* GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46574D43199E496C004DC73B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		46574D45199E496C004DC73B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -362,6 +371,8 @@
 				46C363B419A18D9800BB3F84 /* HTTPManager.m */,
 				464E17AC19A47CA3007343CA /* VerificationManager.h */,
 				464E17AD19A47CA3007343CA /* VerificationManager.m */,
+				4653403419B7179F0000C734 /* PersistenceManager.h */,
+				4653403519B7179F0000C734 /* PersistenceManager.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -446,12 +457,16 @@
 		46C363DB19A18E9E00BB3F84 /* Classess */ = {
 			isa = PBXGroup;
 			children = (
-				46C363BF19A18DC500BB3F84 /* TextConfigure.h */,
-				46C363C019A18DC500BB3F84 /* TextConfigure.m */,
-				46040D2719A5A64B007253F6 /* ComparableObject.h */,
-				46040D2819A5A64B007253F6 /* ComparableObject.m */,
 				46044BA119A841D100E1552D /* BaseViewController.h */,
 				46044BA219A841D100E1552D /* BaseViewController.m */,
+				4653402E19B7152C0000C734 /* CodingableObject.h */,
+				4653402F19B7152C0000C734 /* CodingableObject.m */,
+				4653403119B716EB0000C734 /* CodingableAndComparableObject.h */,
+				4653403219B716EB0000C734 /* CodingableAndComparableObject.m */,
+				46040D2719A5A64B007253F6 /* ComparableObject.h */,
+				46040D2819A5A64B007253F6 /* ComparableObject.m */,
+				46C363BF19A18DC500BB3F84 /* TextConfigure.h */,
+				46C363C019A18DC500BB3F84 /* TextConfigure.m */,
 			);
 			name = Classess;
 			sourceTree = "<group>";
@@ -603,12 +618,15 @@
 				4613F57819B6B7C30038ECE3 /* UIView+HUD.m in Sources */,
 				46040D3F19A5D46B007253F6 /* LocationPickerView.m in Sources */,
 				465C8ED619A21DE8003DFB48 /* UIScrollView+Extension.m in Sources */,
+				4653403019B7152C0000C734 /* CodingableObject.m in Sources */,
 				465C8ED819A21DE8003DFB48 /* UIView+Extension.m in Sources */,
 				461C080A19AA0111006C0016 /* UIView+Animation.m in Sources */,
 				462BA6E019B56F18009C6940 /* UIView+Blur.m in Sources */,
+				4653403319B716EB0000C734 /* CodingableAndComparableObject.m in Sources */,
 				4625B47E19A86669006B09BC /* CHDetailViewController.m in Sources */,
 				461C080D19AA4735006C0016 /* UIColor+RandomColor.m in Sources */,
 				46C363CD19A18DC500BB3F84 /* PaddingField.m in Sources */,
+				4653403619B7179F0000C734 /* PersistenceManager.m in Sources */,
 				462BDDD019A347D6007BA4B3 /* UIView+Toast.m in Sources */,
 				46C363D819A18E4500BB3F84 /* CHViewController.m in Sources */,
 				465C8ED219A21DE8003DFB48 /* MJRefreshBaseView.m in Sources */,

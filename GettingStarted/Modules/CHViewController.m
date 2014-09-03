@@ -10,6 +10,7 @@
 #import "PaddingLabel.h"
 #import "UIView+Toast.h"
 
+
 @interface CHViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
@@ -72,6 +73,15 @@
 //    [self.view dismissHUD];
     [self.view removeActivityIndicatorAnimation];
 }
+
+
+- (IBAction)archive:(id)sender {
+}
+
+- (IBAction)unarchive:(id)sender {
+}
+
+
 
 
 

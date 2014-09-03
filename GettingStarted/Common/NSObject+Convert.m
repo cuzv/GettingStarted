@@ -75,9 +75,12 @@
 }
 
 - (NSString *)toString {
+    if (![self.properties count]) {
+        return nil;
+    }
     NSMutableString *desc = [[NSMutableString alloc] init];
-    
     NSMutableArray *propertyArray = [[self properties] mutableCopy];
+    
     [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *string = [NSString stringWithFormat:@"%@ = %@, ", obj, [self valueForKey:obj]];
         [desc appendString:string];
