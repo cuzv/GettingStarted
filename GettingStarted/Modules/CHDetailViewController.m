@@ -33,10 +33,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(85, 113, 150, 300)];
-    [view blur];
-    [self.view addSubview:view];
+
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -53,8 +50,9 @@
 
 //    [UIView toastWithMessage:@"密码错误"];
     
-//    [self.colorView addActivityIndicatorAnimation];
+    [self.colorView addActivityIndicatorAnimation];
 
+//    [self.view addActivityIndicatorAnimationOnCenter:CGPointMake(10, 10)];
 
 }
 

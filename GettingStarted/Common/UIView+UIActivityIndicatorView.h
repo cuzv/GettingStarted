@@ -11,7 +11,7 @@
 @interface UIView (UIActivityIndicatorView)
 
 - (void)addActivityIndicatorAnimation;
-- (void)addActivityIndicatorAnimationWithStyle:(UIActivityIndicatorViewStyle)style;
+- (void)addActivityIndicatorAnimationOnCenter:(CGPoint)center;
 - (void)removeActivityIndicatorAnimation;
 
 @end

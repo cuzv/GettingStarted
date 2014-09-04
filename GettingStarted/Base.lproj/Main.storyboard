@@ -120,6 +120,11 @@
                                     <action selector="clearAction:" destination="qaf-Vm-N3V" eventType="touchUpInside" id="iDA-KS-paW"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" id="x0P-FV-jC1">
+                                <rect key="frame" x="68" y="157" width="160" height="284"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -130,6 +135,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="colorView" destination="x0P-FV-jC1" id="La7-St-zMX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QI9-2P-oNk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

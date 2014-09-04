@@ -28,10 +28,15 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 }
 
 - (void)addActivityIndicatorAnimation {
-    [self addActivityIndicatorAnimationWithStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [self addActivityIndicatorAnimationWithStyle:UIActivityIndicatorViewStyleWhite
+                                          center:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
 }
 
-- (void)addActivityIndicatorAnimationWithStyle:(UIActivityIndicatorViewStyle)style {
+- (void)addActivityIndicatorAnimationOnCenter:(CGPoint)center {
+    [self addActivityIndicatorAnimationWithStyle:UIActivityIndicatorViewStyleWhite center:center];
+}
+
+- (void)addActivityIndicatorAnimationWithStyle:(UIActivityIndicatorViewStyle)style center:(CGPoint)center{
     if (self.activityIndicatorView) {
         return;
     }
@@ -39,6 +44,7 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
     activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     activityIndicatorView.color = [UIColor lightGrayColor];
+    activityIndicatorView.center = center;
     self.activityIndicatorView = activityIndicatorView;
     [self addSubview:activityIndicatorView];
     [activityIndicatorView startAnimating];
