@@ -37,22 +37,18 @@
 }
 
 + (NSString *)persistencePathWithKey:(NSString *)key {
-    NSString *persistencePath = [self persistencePath];
-    if (!persistencePath) {
-        return nil;
-    }
-    
-    return [persistencePath stringByAppendingPathComponent:key];
+    return [[self persistencePath] stringByAppendingPathComponent:key];
 }
 
 + (NSString *)persistencePath {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *userFolder = [[AccountManager sharedInstance] uniqueIdentifier];
     if (!userFolder) {
-        NSLog(@"Can not persistence data for anonymous user");
-        return nil;
+        NSLog(@"Datas will persistence to common area!");
+        userFolder = @"CommonDatas";
     }
+    
     NSString *path = [[self applicationDocumentDirectory] stringByAppendingPathComponent:userFolder];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:path]) {
         [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
     };
@@ -66,12 +62,12 @@
 
 + (id)persistenceValueForKey:(NSString *)key {
     NSError *error = nil;
-    NSString *filePath = [self persistencePathWithKey:key];
-    if (!filePath) {
+    NSString *unarchiverString = [[NSString alloc] initWithContentsOfFile:[self persistencePathWithKey:key] encoding:NSUTF8StringEncoding error:&error];
+    if (!unarchiverString) {
         NSLog(@"Persistence datas Not Found!");
         return nil;
     }
-    NSString *unarchiverString = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    
     NSData *unarchiverData = [[NSData alloc] initWithBase64EncodedString:unarchiverString options:NSDataBase64DecodingIgnoreUnknownCharacters];
     
     // Connect unarchiver data and unarchiver
