@@ -21,14 +21,14 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - JGProgressHUD (1.2.1)
-  - RefreshControl (1.0.0)
+  - RefreshControl (HEAD based on 1.0.0)
   - UIActionSheet+Blocks (0.8.1)
   - UIAlertView+Blocks (0.8.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.3.1)
   - JGProgressHUD
-  - RefreshControl
+  - RefreshControl (HEAD)
   - UIActionSheet+Blocks
   - UIAlertView+Blocks
 
