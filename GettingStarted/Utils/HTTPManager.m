@@ -32,10 +32,6 @@ static CHHTTPSessionManager *sharedInstance;
 
 #pragma mark -  CHHTTPSessionManager singleton
 
-- (instancetype)init {
-    return [CHHTTPSessionManager sharedInstance];
-}
-
 + (id)copyWithZone:(struct _NSZone *)zone {
     return self;
 }

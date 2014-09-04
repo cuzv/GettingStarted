@@ -9,6 +9,7 @@
 #import "CHDetailViewController.h"
 #import "UIView+UIActivityIndicatorView.h"
 #import "UIView+Blur.h"
+#import "AccountManager.h"
 
 #define kMessageList @"getMobileMessageList"
 
@@ -48,11 +49,13 @@
 //    } failure:^(NSURLSessionDataTask *task, NSError *error) {
 //        NSLog(@"%@", error);
 //    }];
-//    
+//
 
 //    [UIView toastWithMessage:@"密码错误"];
     
 //    [self.colorView addActivityIndicatorAnimation];
+
+
 }
 
 - (void)didReceiveMemoryWarning
