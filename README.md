@@ -33,4 +33,5 @@ Copyright (c) 2014 Moch. All rights reserved.
 	- Base64
 	- NSString-Hashes
 	- MJRefresh
-	- SVProgressHUD
+	- WDActivityIndicator
+	

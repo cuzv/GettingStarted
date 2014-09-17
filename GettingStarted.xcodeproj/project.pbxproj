@@ -11,6 +11,8 @@
 		46040D3F19A5D46B007253F6 /* LocationPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46040D3E19A5D46B007253F6 /* LocationPickerView.m */; };
 		46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */; };
 		46044BA319A841D100E1552D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46044BA219A841D100E1552D /* BaseViewController.m */; };
+		4609153019C999410024B749 /* WDActivityIndicator.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4609152D19C999410024B749 /* WDActivityIndicator.bundle */; };
+		4609153119C999410024B749 /* WDActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4609152F19C999410024B749 /* WDActivityIndicator.m */; };
 		4613F57819B6B7C30038ECE3 /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4613F57719B6B7C30038ECE3 /* UIView+HUD.m */; };
 		461C080A19AA0111006C0016 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 461C080919AA0111006C0016 /* UIView+Animation.m */; };
 		461C080D19AA4735006C0016 /* UIColor+RandomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 461C080C19AA4735006C0016 /* UIColor+RandomColor.m */; };
@@ -86,6 +88,9 @@
 		46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCitiesAndAreas.plist; sourceTree = "<group>"; };
 		46044BA119A841D100E1552D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		46044BA219A841D100E1552D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		4609152D19C999410024B749 /* WDActivityIndicator.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WDActivityIndicator.bundle; sourceTree = "<group>"; };
+		4609152E19C999410024B749 /* WDActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDActivityIndicator.h; sourceTree = "<group>"; };
+		4609152F19C999410024B749 /* WDActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDActivityIndicator.m; sourceTree = "<group>"; };
 		4613F57619B6B7C30038ECE3 /* UIView+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HUD.h"; sourceTree = "<group>"; };
 		4613F57719B6B7C30038ECE3 /* UIView+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HUD.m"; sourceTree = "<group>"; };
 		461C080819AA0111006C0016 /* UIView+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animation.h"; sourceTree = "<group>"; };
@@ -216,6 +221,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4609152C19C999410024B749 /* WDActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				4609152D19C999410024B749 /* WDActivityIndicator.bundle */,
+				4609152E19C999410024B749 /* WDActivityIndicator.h */,
+				4609152F19C999410024B749 /* WDActivityIndicator.m */,
+			);
+			path = WDActivityIndicator;
+			sourceTree = "<group>";
+		};
 		462ABC20199F9EC7006C56E1 /* Base64 */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +322,7 @@
 		46574D7E199E61C5004DC73B /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				4609152C19C999410024B749 /* WDActivityIndicator */,
 				462BDDBA19A2E73F007BA4B3 /* NSString-Hashes */,
 				465C8EC019A21DE8003DFB48 /* MJRefresh */,
 				462ABC20199F9EC7006C56E1 /* Base64 */,
@@ -562,6 +578,7 @@
 				46574D57199E496C004DC73B /* Main.storyboard in Resources */,
 				465C8ED119A21DE8003DFB48 /* MJRefresh.bundle in Resources */,
 				462ABC25199FA19B006C56E1 /* ProvincesAndCities.plist in Resources */,
+				4609153019C999410024B749 /* WDActivityIndicator.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +642,7 @@
 				465C8ED619A21DE8003DFB48 /* UIScrollView+Extension.m in Sources */,
 				4653403019B7152C0000C734 /* CodingableObject.m in Sources */,
 				465C8ED819A21DE8003DFB48 /* UIView+Extension.m in Sources */,
+				4609153119C999410024B749 /* WDActivityIndicator.m in Sources */,
 				461C080A19AA0111006C0016 /* UIView+Animation.m in Sources */,
 				462BA6E019B56F18009C6940 /* UIView+Blur.m in Sources */,
 				4653403319B716EB0000C734 /* CodingableAndComparableObject.m in Sources */,

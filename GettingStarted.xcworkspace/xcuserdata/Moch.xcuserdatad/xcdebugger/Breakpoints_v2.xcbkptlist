@@ -73,7 +73,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
             endingLineNumber = "39"
-            landmarkName = "+copyWithZone:"
+            landmarkName = "+allocWithZone:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
