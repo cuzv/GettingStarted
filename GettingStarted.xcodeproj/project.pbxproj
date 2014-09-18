@@ -67,6 +67,8 @@
 		46C363D419A18DC500BB3F84 /* UIView+FindUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363CA19A18DC500BB3F84 /* UIView+FindUIViewController.m */; };
 		46C363D819A18E4500BB3F84 /* CHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363D719A18E4500BB3F84 /* CHViewController.m */; };
 		46C4C57319A7270D002BB390 /* NSString+TextSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C4C57219A7270D002BB390 /* NSString+TextSize.m */; };
+		46CA054A19CAD888007F2A82 /* AwesomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CA054719CAD888007F2A82 /* AwesomeMenu.m */; };
+		46CA054B19CAD888007F2A82 /* AwesomeMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CA054919CAD888007F2A82 /* AwesomeMenuItem.m */; };
 		89EC71E5182D4705836F5824 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 824AB417A3D24AF8A91BBE61 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -192,6 +194,10 @@
 		46C363D719A18E4500BB3F84 /* CHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHViewController.m; sourceTree = "<group>"; };
 		46C4C57119A7270D002BB390 /* NSString+TextSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TextSize.h"; sourceTree = "<group>"; };
 		46C4C57219A7270D002BB390 /* NSString+TextSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextSize.m"; sourceTree = "<group>"; };
+		46CA054619CAD888007F2A82 /* AwesomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenu.h; sourceTree = "<group>"; };
+		46CA054719CAD888007F2A82 /* AwesomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeMenu.m; sourceTree = "<group>"; };
+		46CA054819CAD888007F2A82 /* AwesomeMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenuItem.h; sourceTree = "<group>"; };
+		46CA054919CAD888007F2A82 /* AwesomeMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeMenuItem.m; sourceTree = "<group>"; };
 		824AB417A3D24AF8A91BBE61 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF55FFC4CC0B41A3BCAA9FCB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -322,6 +328,7 @@
 		46574D7E199E61C5004DC73B /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				46CA054519CAD888007F2A82 /* AwesomeMenu */,
 				4609152C19C999410024B749 /* WDActivityIndicator */,
 				462BDDBA19A2E73F007BA4B3 /* NSString-Hashes */,
 				465C8EC019A21DE8003DFB48 /* MJRefresh */,
@@ -492,6 +499,17 @@
 			name = Classess;
 			sourceTree = "<group>";
 		};
+		46CA054519CAD888007F2A82 /* AwesomeMenu */ = {
+			isa = PBXGroup;
+			children = (
+				46CA054619CAD888007F2A82 /* AwesomeMenu.h */,
+				46CA054719CAD888007F2A82 /* AwesomeMenu.m */,
+				46CA054819CAD888007F2A82 /* AwesomeMenuItem.h */,
+				46CA054919CAD888007F2A82 /* AwesomeMenuItem.m */,
+			);
+			path = AwesomeMenu;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -630,11 +648,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				46C363D219A18DC500BB3F84 /* UIView+Accessor.m in Sources */,
+				46CA054B19CAD888007F2A82 /* AwesomeMenuItem.m in Sources */,
 				46574D50199E496C004DC73B /* main.m in Sources */,
 				462BA6DD19B56D30009C6940 /* UIImage+ImageEffects.m in Sources */,
 				4658633B19B00749009E378B /* UIScrollView+Accessor.m in Sources */,
 				4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */,
 				46C363B519A18D9800BB3F84 /* HTTPManager.m in Sources */,
+				46CA054A19CAD888007F2A82 /* AwesomeMenu.m in Sources */,
 				465C8ED319A21DE8003DFB48 /* MJRefreshConst.m in Sources */,
 				46C363AB19A18CBF00BB3F84 /* AppConstant.m in Sources */,
 				4613F57819B6B7C30038ECE3 /* UIView+HUD.m in Sources */,
