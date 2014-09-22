@@ -50,7 +50,7 @@
             [weakSelf.tableView reloadData];
             [weakSelf.tableView topRefreshControlStopRefreshing];
         });
-    }  refreshControlPullType:RefreshControlPullTypeInsensitive];
+    } refreshControlPullType:RefreshControlPullTypeInsensitive refreshControlStatusType:RefreshControlStatusTypeTextAndArrow];
     
     [self.tableView addBottomRefreshControlUsingBlock:^{
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -64,7 +64,7 @@
             [weakSelf.tableView bottomRefreshControlStopRefreshing];
             
         });
-    } refreshControlPullType:RefreshControlPullTypeInsensitive];
+    } refreshControlPullType:RefreshControlPullTypeInsensitive refreshControlStatusType:RefreshControlStatusTypeTextAndArrow];
     
     //    self.tableView.topRefreshControlPullToRefreshingText = @"下拉刷新";
     //    self.tableView.statusTextColor = [UIColor redColor];

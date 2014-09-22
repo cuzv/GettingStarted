@@ -50,9 +50,15 @@
     if ([notification.object isKindOfClass:[UITextView class]]) {
         UITextView *textView = (UITextView *)notification.object;
         length = textView.text.length;
+        if (length > self.maxCount) {
+            [textView resignFirstResponder];
+        }
     } else if ([notification.object isKindOfClass:[UITextField class]]) {
         UITextField *textField = (UITextField *)notification.object;
         length = textField.text.length;
+        if (length > self.maxCount) {
+            [textField resignFirstResponder];
+        }
     }
     _countLabel.text = [NSString stringWithFormat:@"%d", self.maxCount - length];
 }
@@ -96,6 +102,10 @@
 - (void)textViewDidEndEditing:(UITextView *)textView {
     if(textView.text.length < 1) {
         [self.placeHolderLabel setHidden:NO];
+    } else {
+        if (textView.text.length > self.maxCount) {
+            textView.text = [textView.text substringToIndex:self.maxCount];
+        }
     }
 }
 
