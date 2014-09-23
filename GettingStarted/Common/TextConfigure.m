@@ -7,6 +7,7 @@
 //
 
 #import "TextConfigure.h"
+#import <objc/runtime.h>
 
 @interface TextConfigure ()
 
@@ -90,34 +91,6 @@
     }
 }
 
-#pragma mark - text view delegate
-
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    [self initialNotificationForObject:textView];
-    return YES;
-}
-
-- (void)textViewDidChange:(UITextView *)textView {
-    if (textView.text.length) {
-        [self.placeHolderLabel setHidden:YES];
-    } else {
-        [self.placeHolderLabel setHidden:NO];
-    }
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-    if(textView.text.length < 1) {
-        [self.placeHolderLabel setHidden:NO];
-    }
-}
-
-#pragma mark - text field delegate
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    [self initialNotificationForObject:textField];
-    return YES;
-}
-
 #pragma mark - text did change notification
 
 - (void)textDidChange:(NSNotification *)notification {
@@ -136,10 +109,56 @@
         if (textView.text.length > self.maxLength && !textView.markedTextRange) {
             textView.text = [text substringToIndex:self.maxLength];
         }
-        length = textView.text.length;        
+        length = textView.text.length;
+        if (length) {
+            [self.placeHolderLabel setHidden:YES];
+        } else {
+            [self.placeHolderLabel setHidden:NO];
+        }
     }
     
     _countLabel.text = [NSString stringWithFormat:@"%d", self.maxLength - length];
 }
+
+@end
+
+#pragma mark - text field
+
+static const void *UITextFieldKey = &UITextFieldKey;
+
+@implementation UITextField (TextConfigure)
+
+- (void)setTextConfigure:(TextConfigure *)textConfigure {
+    [self willChangeValueForKey:@"UITextFieldKey"];
+    objc_setAssociatedObject(self, UITextFieldKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
+    [self didChangeValueForKey:@"UITextFieldKey"];
+    
+    [textConfigure initialNotificationForObject:self];
+}
+
+- (TextConfigure *)textConfigure {
+    return objc_getAssociatedObject(self, &UITextFieldKey);
+}
+
+@end
+
+#pragma mark - text view
+
+static const void *UITextViewKey = &UITextViewKey;
+
+@implementation UITextView (TextConfigure)
+
+- (void)setTextConfigure:(TextConfigure *)textConfigure {
+    [self willChangeValueForKey:@"UITextViewKey"];
+    objc_setAssociatedObject(self, UITextViewKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
+    [self didChangeValueForKey:@"UITextViewKey"];
+    
+    [textConfigure initialNotificationForObject:self];
+}
+
+- (TextConfigure *)textConfigure {
+    return objc_getAssociatedObject(self, &UITextViewKey);
+}
+
 
 @end

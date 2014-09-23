@@ -9,12 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-// TextConfigure must declare as global variable or properyt
-@interface TextConfigure : NSObject <UITextViewDelegate, UITextFieldDelegate>
+@interface TextConfigure : NSObject
 
 @property (nonatomic, strong) UILabel *countLabel;
 @property (nonatomic, assign) NSUInteger maxLength;
 // only text view use
 @property (nonatomic, strong) UILabel *placeHolderLabel;
 
+@end
+
+@interface UITextView (TextConfigure)
+@property (nonatomic, strong) TextConfigure *textConfigure;
+@end
+
+@interface UITextField (TextConfigure)
+@property (nonatomic, strong) TextConfigure *textConfigure;
 @end
