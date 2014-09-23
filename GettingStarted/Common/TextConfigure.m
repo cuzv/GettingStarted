@@ -67,27 +67,22 @@
 }
 
 - (void)initialNotificationForObject:(id)object {
-    static dispatch_once_t onceToken;
     if ([object isKindOfClass:[UITextView class]]) {
         UITextView *textView = (UITextView *)object;
-        dispatch_once(&onceToken, ^{
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(textDidChange:)
-                                                         name:UITextViewTextDidChangeNotification
-                                                       object:textView];
-            self.UITextViewTextDidChangeNotificationRegistered = YES;
-            self.observedTextView = textView;
-        });
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textDidChange:)
+                                                     name:UITextViewTextDidChangeNotification
+                                                   object:textView];
+        self.UITextViewTextDidChangeNotificationRegistered = YES;
+        self.observedTextView = textView;
     } else if ([object isKindOfClass:[UITextField class]]) {
         UITextField *textField = (UITextField *)object;
-        dispatch_once(&onceToken, ^{
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(textDidChange:)
-                                                         name:UITextFieldTextDidChangeNotification
-                                                       object:textField];
-            self.UITextFieldTextDidChangeNotificationRegistered = YES;
-            self.observedTextField = textField;
-        });
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textDidChange:)
+                                                     name:UITextFieldTextDidChangeNotification
+                                                   object:textField];
+        self.UITextFieldTextDidChangeNotificationRegistered = YES;
+        self.observedTextField = textField;
     }
 }
 
