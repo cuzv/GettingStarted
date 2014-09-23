@@ -11,10 +11,10 @@
 
 @interface TextConfigure : NSObject
 
-@property (nonatomic, strong) UILabel *countLabel;
+@property (nonatomic, weak) UILabel *countLabel;
 @property (nonatomic, assign) NSUInteger maxLength;
 // only text view use
-@property (nonatomic, strong) UILabel *placeHolderLabel;
+@property (nonatomic, weak) UILabel *placeHolderLabel;
 
 @end
 
