@@ -126,14 +126,14 @@
     if ([object isMemberOfClass:[UITextField class]]) {
         UITextField *textField = object;
         NSString *text = textField.text;
-        if (text.length > self.maxLength) {
+        if (text.length > self.maxLength && !textField.markedTextRange) {
             textField.text = [text substringToIndex:self.maxLength];
         }
         length = textField.text.length;
     } else if ([object isMemberOfClass:[UITextView class]]){
         UITextView *textView = object;
         NSString *text = textView.text;
-        if (textView.text.length > self.maxLength) {
+        if (textView.text.length > self.maxLength && !textView.markedTextRange) {
             textView.text = [text substringToIndex:self.maxLength];
         }
         length = textView.text.length;        
