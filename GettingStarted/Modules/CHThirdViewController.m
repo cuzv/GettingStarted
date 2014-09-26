@@ -8,11 +8,14 @@
 
 #import "CHThirdViewController.h"
 #import "UIScrollView+RefreshControl.h"
+#import "ArrayDataSource.h"
 
-@interface CHThirdViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface CHThirdViewController () <UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
+
+@property (nonatomic, strong) ArrayDataSource *arraryDataSource;
 
 @end
 
@@ -33,6 +36,16 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _dataSource = [[NSMutableArray alloc] init];
+    
+    _arraryDataSource = [[ArrayDataSource alloc] initWithCellIdentifier:@"cell"
+                                                                  items:_dataSource
+                                                     cellConfigureBlock:^(UITableViewCell *cell, id item) {
+        cell.textLabel.text = item;
+    }];
+    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+
+    self.tableView.dataSource = _arraryDataSource;
+    
     for (int i = 0; i < 19; i++) {
         NSString *data = [NSString stringWithFormat:@"initial data number: %d", i];
         [_dataSource addObject:data];
@@ -69,21 +82,6 @@
     //    self.tableView.topRefreshControlPullToRefreshingText = @"下拉刷新";
     //    self.tableView.statusTextColor = [UIColor redColor];
     //    self.tableView.loadingCircleColor = [UIColor orangeColor];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _dataSource.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"CellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    cell.textLabel.text = _dataSource[indexPath.row];
-    
-    return cell;
 }
 
 @end

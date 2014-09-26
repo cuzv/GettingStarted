@@ -28,6 +28,7 @@
 		462BDDBD19A2E73F007BA4B3 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BDDBC19A2E73F007BA4B3 /* NSString+Hashes.m */; };
 		462BDDCD19A34754007BA4B3 /* PaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BDDCC19A34754007BA4B3 /* PaddingLabel.m */; };
 		462BDDD019A347D6007BA4B3 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BDDCF19A347D6007BA4B3 /* UIView+Toast.m */; };
+		4638FAD319D5BD7400A28891 /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4638FAD219D5BD7400A28891 /* ArrayDataSource.m */; };
 		464E17AE19A47CA3007343CA /* VerificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 464E17AD19A47CA3007343CA /* VerificationManager.m */; };
 		4653403019B7152C0000C734 /* CodingableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4653402F19B7152C0000C734 /* CodingableObject.m */; };
 		4653403319B716EB0000C734 /* CodingableAndComparableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4653403219B716EB0000C734 /* CodingableAndComparableObject.m */; };
@@ -122,6 +123,8 @@
 		462BDDCC19A34754007BA4B3 /* PaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingLabel.m; sourceTree = "<group>"; };
 		462BDDCE19A347D6007BA4B3 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		462BDDCF19A347D6007BA4B3 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		4638FAD119D5BD7400A28891 /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
+		4638FAD219D5BD7400A28891 /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
 		464E17AC19A47CA3007343CA /* VerificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationManager.h; sourceTree = "<group>"; };
 		464E17AD19A47CA3007343CA /* VerificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationManager.m; sourceTree = "<group>"; };
 		4653402E19B7152C0000C734 /* CodingableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodingableObject.h; sourceTree = "<group>"; };
@@ -495,6 +498,8 @@
 				46040D2819A5A64B007253F6 /* ComparableObject.m */,
 				46C363BF19A18DC500BB3F84 /* TextConfigure.h */,
 				46C363C019A18DC500BB3F84 /* TextConfigure.m */,
+				4638FAD119D5BD7400A28891 /* ArrayDataSource.h */,
+				4638FAD219D5BD7400A28891 /* ArrayDataSource.m */,
 			);
 			name = Classess;
 			sourceTree = "<group>";
@@ -677,6 +682,7 @@
 				465C8ED519A21DE8003DFB48 /* MJRefreshHeaderView.m in Sources */,
 				46C363CF19A18DC500BB3F84 /* TextConfigure.m in Sources */,
 				465343AC19B809BD0000C734 /* AccountManager.m in Sources */,
+				4638FAD319D5BD7400A28891 /* ArrayDataSource.m in Sources */,
 				46C4C57319A7270D002BB390 /* NSString+TextSize.m in Sources */,
 				46040D2919A5A64B007253F6 /* ComparableObject.m in Sources */,
 				46044BA319A841D100E1552D /* BaseViewController.m in Sources */,
