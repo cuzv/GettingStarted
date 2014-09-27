@@ -11,15 +11,15 @@
 
 // A better version of NSLog
 #if DEBUG
-#define NSLog(format, ...) do {                                             \
-fprintf(stderr, "<%s : %d> %s\n",                                           \
-[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
-__LINE__, __func__);                                                        \
-(NSLog)((format), ##__VA_ARGS__);                                           \
-fprintf(stderr, "-------\n");                                               \
-} while (0)
+    #define NSLog(format, ...)                                                      \
+    do {                                                                            \
+        fprintf(stderr, "<%s : %d> %s\n",                                           \
+        [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
+        __LINE__, __func__);                                                        \
+        (NSLog)((format), ##__VA_ARGS__);                                           \
+    } while (0)
 #else
-#define NSLog(format, ...) NSLog(@"")
+    #define NSLog(format, ...) NSLog(@"")
 #endif
 
 // get image
@@ -42,5 +42,19 @@ fprintf(stderr, "-------\n");                                               \
 #define CHFormatTime(date) [NSString stringWithFormat:@"%.0lf",([date timeIntervalSince1970]*1000)]
 // format time
 #define CHDateFromTimeInterval [NSDate dateWithTimeIntervalSince1970:timeInterval/1000]
+
+// make singletion
+#define MakeSingleton(__ClassType__)            \
++ (__ClassType__ *)sharedInstance {             \
+    static dispatch_once_t pred;                \
+    static __ClassType__ *sharedInstance = nil; \
+    dispatch_once(&pred, ^{                     \
+        sharedInstance = [LimitInput new];      \
+    });                                         \
+    return sharedInstance;                      \
+}
+
+// make property for class
+
 
 #endif
