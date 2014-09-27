@@ -12,6 +12,6 @@
 
 @property (nonatomic) CGFloat maximumHeight;
 @property (nonatomic) CGFloat minimumHeight;
-@property (nonatomic, copy) void (^updateTextViewHeight)(ResizableTextView *textView);
+@property (nonatomic, copy) void (^didUpdateTextViewHeight)(ResizableTextView *textView);
 
 @end

@@ -80,8 +80,8 @@
     }
     
     self.contentOffset = CGPointMake(0, self.contentSize.height - currentHeight);
-    if (_updateTextViewHeight) {
-        _updateTextViewHeight(self);
+    if (_didUpdateTextViewHeight) {
+        _didUpdateTextViewHeight(self);
     }
 }
 

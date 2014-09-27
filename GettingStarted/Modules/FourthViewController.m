@@ -15,7 +15,7 @@
 - (void)viewDidLoad {
     self.textView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.textView.layer.borderWidth = 1;
-    self.textView.updateTextViewHeight = ^(ResizableTextView *textView) {
+    self.textView.didUpdateTextViewHeight = ^(ResizableTextView *textView) {
         NSLog(@"current height = %f", textView.frame.size.height);
     };
 
