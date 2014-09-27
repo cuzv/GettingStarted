@@ -93,9 +93,9 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
     [self incrementHUD:self.HUD progress:progress];
 }
 
-- (void)incrementHUD:(JGProgressHUD *)HUD progress:(int)progress {
+- (void)incrementHUD:(JGProgressHUD *)HUD progress:(NSUInteger)progress {
     [HUD setProgress:progress/100.0f animated:NO];
-    HUD.detailTextLabel.text = [NSString stringWithFormat:@"%i%% Complete", progress];
+    HUD.detailTextLabel.text = [NSString stringWithFormat:@"%@%% Complete", @(progress)];
     
     if (progress == 100) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

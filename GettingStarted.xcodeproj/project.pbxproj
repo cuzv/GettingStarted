@@ -29,6 +29,8 @@
 		462BDDCD19A34754007BA4B3 /* PaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BDDCC19A34754007BA4B3 /* PaddingLabel.m */; };
 		462BDDD019A347D6007BA4B3 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 462BDDCF19A347D6007BA4B3 /* UIView+Toast.m */; };
 		4638FAD319D5BD7400A28891 /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4638FAD219D5BD7400A28891 /* ArrayDataSource.m */; };
+		4638FB5919D6C8BF00A28891 /* ResizableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4638FB5819D6C8BF00A28891 /* ResizableTextView.m */; };
+		4638FB5F19D6D9F200A28891 /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4638FB5E19D6D9F200A28891 /* FourthViewController.m */; };
 		464E17AE19A47CA3007343CA /* VerificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 464E17AD19A47CA3007343CA /* VerificationManager.m */; };
 		4653403019B7152C0000C734 /* CodingableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4653402F19B7152C0000C734 /* CodingableObject.m */; };
 		4653403319B716EB0000C734 /* CodingableAndComparableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4653403219B716EB0000C734 /* CodingableAndComparableObject.m */; };
@@ -125,6 +127,10 @@
 		462BDDCF19A347D6007BA4B3 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		4638FAD119D5BD7400A28891 /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
 		4638FAD219D5BD7400A28891 /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
+		4638FB5719D6C8BF00A28891 /* ResizableTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizableTextView.h; sourceTree = "<group>"; };
+		4638FB5819D6C8BF00A28891 /* ResizableTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizableTextView.m; sourceTree = "<group>"; };
+		4638FB5D19D6D9F200A28891 /* FourthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
+		4638FB5E19D6D9F200A28891 /* FourthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
 		464E17AC19A47CA3007343CA /* VerificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationManager.h; sourceTree = "<group>"; };
 		464E17AD19A47CA3007343CA /* VerificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationManager.m; sourceTree = "<group>"; };
 		4653402E19B7152C0000C734 /* CodingableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodingableObject.h; sourceTree = "<group>"; };
@@ -427,6 +433,8 @@
 				4625B47D19A86669006B09BC /* CHDetailViewController.m */,
 				4625B47F19A87EC0006B09BC /* CHThirdViewController.h */,
 				4625B48019A87EC0006B09BC /* CHThirdViewController.m */,
+				4638FB5D19D6D9F200A28891 /* FourthViewController.h */,
+				4638FB5E19D6D9F200A28891 /* FourthViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -500,6 +508,8 @@
 				46C363C019A18DC500BB3F84 /* TextConfigure.m */,
 				4638FAD119D5BD7400A28891 /* ArrayDataSource.h */,
 				4638FAD219D5BD7400A28891 /* ArrayDataSource.m */,
+				4638FB5719D6C8BF00A28891 /* ResizableTextView.h */,
+				4638FB5819D6C8BF00A28891 /* ResizableTextView.m */,
 			);
 			name = Classess;
 			sourceTree = "<group>";
@@ -673,12 +683,14 @@
 				4653403319B716EB0000C734 /* CodingableAndComparableObject.m in Sources */,
 				4625B47E19A86669006B09BC /* CHDetailViewController.m in Sources */,
 				461C080D19AA4735006C0016 /* UIColor+RandomColor.m in Sources */,
+				4638FB5F19D6D9F200A28891 /* FourthViewController.m in Sources */,
 				46C363CD19A18DC500BB3F84 /* PaddingField.m in Sources */,
 				4653403619B7179F0000C734 /* PersistenceManager.m in Sources */,
 				462BDDD019A347D6007BA4B3 /* UIView+Toast.m in Sources */,
 				46C363D819A18E4500BB3F84 /* CHViewController.m in Sources */,
 				465C8ED219A21DE8003DFB48 /* MJRefreshBaseView.m in Sources */,
 				46C363D419A18DC500BB3F84 /* UIView+FindUIViewController.m in Sources */,
+				4638FB5919D6C8BF00A28891 /* ResizableTextView.m in Sources */,
 				465C8ED519A21DE8003DFB48 /* MJRefreshHeaderView.m in Sources */,
 				46C363CF19A18DC500BB3F84 /* TextConfigure.m in Sources */,
 				465343AC19B809BD0000C734 /* AccountManager.m in Sources */,

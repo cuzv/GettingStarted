@@ -45,7 +45,7 @@
 
 - (void)setUnreadNumber:(NSUInteger)unreadNumber {
     _unreadNumber = unreadNumber;
-    NSString *unreadStr = _unreadNumber > 99 ? [NSString stringWithFormat:@"99+"] : [NSString stringWithFormat:@"%d", _unreadNumber];
+    NSString *unreadStr = _unreadNumber > 99 ? @"99+" : [@(_unreadNumber) stringValue];
     self.width = [unreadStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 20)
                                            options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
                                         attributes:@{NSFontAttributeName:CHFont}
@@ -61,7 +61,7 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    NSString *unreadStr = _unreadNumber > 99 ? [NSString stringWithFormat:@"99+"] : [NSString stringWithFormat:@"%d", _unreadNumber];
+    NSString *unreadStr = _unreadNumber > 99 ? @"99+" : [@(_unreadNumber) stringValue];
     _badgeLabel.text = unreadStr;
     self.layer.cornerRadius = self.width > self.height + 5 ? self.width / 3 : self.width / 2;
     [_badgeLabel drawTextInRect:self.bounds];

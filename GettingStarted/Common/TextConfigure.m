@@ -34,26 +34,26 @@
 {
     self = [super init];
     if (self) {
-        self.maxLength = 100;
-        _countLabel.bounds = CGRectMake(0, 0, 30, 22);
+        self.maximumLength = 100;
+        _countingLabel.bounds = CGRectMake(0, 0, 30, 22);
     }
     return self;
 }
 
-- (void)setCountLabel:(UILabel *)countLabel {
-    if (![_countLabel isEqual:countLabel]) {
-        _countLabel = countLabel;
-        _countLabel.textAlignment = NSTextAlignmentRight;
-        _countLabel.bounds = CGRectMake(0, 0, 30, 22);
-        _countLabel.textColor = [UIColor lightGrayColor];
-        self.countLabel.text = [@(self.maxLength) stringValue];
+- (void)setCountingLabel:(UILabel *)countLabel {
+    if (![_countingLabel isEqual:countLabel]) {
+        _countingLabel = countLabel;
+        _countingLabel.textAlignment = NSTextAlignmentRight;
+        _countingLabel.bounds = CGRectMake(0, 0, 30, 22);
+        _countingLabel.textColor = [UIColor lightGrayColor];
+        self.countingLabel.text = [@(self.maximumLength) stringValue];
     }
 }
 
-- (void)setMaxLength:(NSUInteger)maxLength {
-    if (_maxLength != maxLength) {
-        _maxLength = maxLength;
-        self.countLabel.text = [@(self.maxLength) stringValue];
+- (void)setMaximumLength:(NSUInteger)maxLength {
+    if (_maximumLength != maxLength) {
+        _maximumLength = maxLength;
+        self.countingLabel.text = [@(self.maximumLength) stringValue];
     }
 }
 
@@ -62,7 +62,7 @@
         _placeHolderLabel = placeHolderLabel;
         _placeHolderLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
         _placeHolderLabel.textColor = [UIColor lightGrayColor];
-        _placeHolderLabel.text = _placeHolderLabel.text ? : [NSString stringWithFormat:@"请输入不多于%d字的内容", self.maxLength];
+        _placeHolderLabel.text = _placeHolderLabel.text ? : [NSString stringWithFormat:@"请输入不多于%@字的内容", @(self.maximumLength)];
     }
 }
 
@@ -91,18 +91,18 @@
 - (void)textDidChange:(NSNotification *)notification {
     NSUInteger length = 0;
     id object = notification.object;
-    if ([object isMemberOfClass:[UITextField class]]) {
+    if ([object isKindOfClass:[UITextField class]]) {
         UITextField *textField = object;
         NSString *text = textField.text;
-        if (text.length > self.maxLength && !textField.markedTextRange) {
-            textField.text = [text substringToIndex:self.maxLength];
+        if (text.length > self.maximumLength && !textField.markedTextRange) {
+            textField.text = [text substringToIndex:self.maximumLength];
         }
         length = textField.text.length;
-    } else if ([object isMemberOfClass:[UITextView class]]){
+    } else if ([object isKindOfClass:[UITextView class]]){
         UITextView *textView = object;
         NSString *text = textView.text;
-        if (textView.text.length > self.maxLength && !textView.markedTextRange) {
-            textView.text = [text substringToIndex:self.maxLength];
+        if (textView.text.length > self.maximumLength && !textView.markedTextRange) {
+            textView.text = [text substringToIndex:self.maximumLength];
         }
         length = textView.text.length;
         if (length) {
@@ -112,7 +112,13 @@
         }
     }
     
-    _countLabel.text = [NSString stringWithFormat:@"%d", self.maxLength - length];
+    NSInteger remainCharactersCount = self.maximumLength - length;
+    _countingLabel.text = [@(remainCharactersCount) stringValue];
+    if (remainCharactersCount < 0) {
+        _countingLabel.textColor = [UIColor redColor];
+    } else {
+        _countingLabel.textColor = [UIColor lightGrayColor];
+    }
 }
 
 @end

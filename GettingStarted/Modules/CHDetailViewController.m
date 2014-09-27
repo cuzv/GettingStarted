@@ -65,7 +65,7 @@
 
 
 - (IBAction)clearAction:(UIButton *)sender {
-    [self.colorView removeActivityIndicatorAnimation];
+//    [self.colorView removeActivityIndicatorAnimation];
 }
 
 /*

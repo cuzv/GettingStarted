@@ -30,5 +30,6 @@
 #import "UIAlertView+Blocks.h"
 #import "UIAlertView+Blocks.h"
 #import "UIView+HUD.h"
+#import "BlocksKit.h"
 
 #endif
