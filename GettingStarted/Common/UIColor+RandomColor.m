@@ -15,7 +15,7 @@
     if (!seeded) {
         seeded = YES;
         // srandom()这个函数是初始化随机数产生器
-        srandom(time(NULL));
+        srandom((unsigned)time(NULL));
     }
     // random()函数产生随即值
     CGFloat red   = (CGFloat)random() / (CGFloat)RAND_MAX;

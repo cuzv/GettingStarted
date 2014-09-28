@@ -11,10 +11,11 @@
 #import "UIView+Toast.h"
 #import "Base64.h"
 #import "NSString+Hashes.h"
+#import "NSObject+Convert.h"
 
 NSString *CHHTTPRequestMethodName = @"";
 
-@interface CHHTTPSessionManager : AFHTTPSessionManager <NSSecureCoding, NSCopying>
+@interface CHHTTPSessionManager : AFHTTPSessionManager <NSSecureCoding, NSCopying, NSMutableCopying>
 
 // AFNetworking's requestSerializer is almost can not work, service's POST will get POST-VALUE by `CHParametersKey`.
 // so, we can not encode `CHParametersKey`.We just can encode value for key `CHParametersKey`. So we encode by ours
@@ -34,6 +35,15 @@ static CHHTTPSessionManager *sharedInstance;
 
 + (id)copyWithZone:(struct _NSZone *)zone {
     return self;
+}
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+    HTTPManager *mutableCopy = [[[self class] allocWithZone:zone] init];
+    [[self properties] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [mutableCopy setValue:[self valueForKey:obj] forKey:obj];
+    }];
+    
+    return mutableCopy;
 }
 
 + (id)allocWithZone:(struct _NSZone *)zone {
