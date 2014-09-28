@@ -10,7 +10,7 @@
 #import "AFNetworking.h"
 #import "UIView+Toast.h"
 #import "Base64.h"
-#import "NSString+Hashes.h"
+#import "Hashes.h"
 #import "NSObject+Convert.h"
 
 NSString *CHHTTPRequestMethodName = @"";
@@ -38,7 +38,7 @@ static CHHTTPSessionManager *sharedInstance;
 }
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
-    HTTPManager *mutableCopy = [[[self class] allocWithZone:zone] init];
+    CHHTTPSessionManager *mutableCopy = [[[self class] allocWithZone:zone] init];
     [[self properties] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [mutableCopy setValue:[self valueForKey:obj] forKey:obj];
     }];
@@ -127,6 +127,31 @@ static CHHTTPSessionManager *sharedInstance;
 
 #pragma mark -
 #pragma mark - HttpManager
+
+const NSString *HTTPFormFieldMapping[] = {
+    // TODO: Flow string values should be given from API coder
+    [HTTPFormFieldPNG]  = @"png",
+    [HTTPFormFieldBMP]  = @"bmp",
+    [HTTPFormFieldMp3]  = @"mp3",
+    [HTTPFormFieldAVI]  = @"avi",
+    [HTTPFormFieldTXT]  = @"txt",
+    [HTTPFormFieldHTML] = @"html",
+    [HTTPFormFieldXML]  = @"xml",
+    [HTTPFormFieldCER]  = @"cer",
+    [HTTPFormFieldP12]  = @"p12"
+};
+
+const NSString *HTTPMineTypeMapping[] = {
+    [HTTPMineTypePNG]  = @"image/png",
+    [HTTPMineTypeBMP]  = @"application/x-bmp",
+    [HTTPMineTypeAVI]  = @"video/avi",
+    [HTTPMineTypeMP3]  = @"audio/mp3",
+    [HTTPMineTypeTXT]  = @"text/plain",
+    [HTTPMineTypeHTML] = @"text/html",
+    [HTTPMineTypeXML]  = @"text/xml",
+    [HTTPMineTypeCER]  = @"application/x-x509-ca-cert",
+    [HTTPMineTypeP12]  = @"application/x-pkcs12"
+};
 
 @implementation HTTPManager
 
@@ -373,7 +398,9 @@ static NSMutableArray *sessions;
 // POST with data
 + (void)POSTWithMethodName:(NSString *)methodName
                 parameters:(NSDictionary *)parameters
-                  passData:(NSData *)data
+                 formDatas:(NSArray *)datas
+                 formField:(HTTPFormField)fieldName
+                  mineType:(HTTPMineType)mineType
                    success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     if (![HTTPManager shouldContinue]) {
@@ -389,8 +416,13 @@ static NSMutableArray *sessions;
     [[CHHTTPSessionManager sharedInstance] POST:methodName
                                      parameters:encodeParameters
                       constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                          [formData appendPartWithFileData:data name:@"imageData" fileName:@"image" mimeType:@"image/png"];
-                      }
+                          for (NSData *data in datas) {
+                              NSString *suffixName = (NSString *)HTTPFormFieldMapping[fieldName];
+                              NSString *fileNameWithSuffix = [[[[NSUUID UUID] UUIDString] stringByAppendingString:@"."] stringByAppendingString:suffixName];
+                              NSString *contentType = (NSString *)HTTPMineTypeMapping[mineType];
+                              [formData appendPartWithFileData:data name:suffixName fileName:fileNameWithSuffix mimeType:contentType];
+                          }
+                    }
                                         success:^(NSURLSessionDataTask *task, id responseObject) {
                                             [self requestDidEnd];
                                             success(task, responseObject);
@@ -399,7 +431,21 @@ static NSMutableArray *sessions;
                                             [self requestDidEnd];
                                             failure(task, error);
                                         }];
+    
+}
 
++ (void)POSTPNGWithMethodName:(NSString *)methodName
+                   parameters:(NSDictionary *)parameters
+                    formDatas:(NSArray *)datas
+                      success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    [self POSTWithMethodName:methodName
+                  parameters:parameters
+                   formDatas:datas
+                   formField:HTTPFormFieldPNG
+                    mineType:HTTPMineTypePNG
+                     success:success
+                     failure:failure];
 }
 
 

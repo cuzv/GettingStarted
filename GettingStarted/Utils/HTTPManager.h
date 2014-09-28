@@ -29,6 +29,32 @@ typedef NS_ENUM(NSInteger, HTTPResponseSerializerType) {
     HTTPResponseSerializerTypeNone         = 6
 };
 
+// TODO: HTTPFormField should be given from API coder
+typedef NS_ENUM(NSInteger, HTTPFormField) {
+    HTTPFormFieldPNG,
+    HTTPFormFieldBMP,
+    HTTPFormFieldAVI,
+    HTTPFormFieldMp3,
+    HTTPFormFieldTXT,
+    HTTPFormFieldHTML,
+    HTTPFormFieldXML,
+    HTTPFormFieldCER,
+    HTTPFormFieldP12
+};
+
+// common mine types
+typedef NS_ENUM (NSInteger, HTTPMineType) {
+    HTTPMineTypePNG,
+    HTTPMineTypeBMP,
+    HTTPMineTypeAVI,
+    HTTPMineTypeMP3,
+    HTTPMineTypeTXT,
+    HTTPMineTypeHTML,
+    HTTPMineTypeXML,
+    HTTPMineTypeCER,
+    HTTPMineTypeP12
+};
+
 @interface HTTPManager : NSObject
 
 // messages
@@ -47,12 +73,23 @@ typedef NS_ENUM(NSInteger, HTTPResponseSerializerType) {
                 parameters:(NSDictionary *)parameters
                    success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 // POST with data
 + (void)POSTWithMethodName:(NSString *)methodName
                 parameters:(NSDictionary *)parameters
-                  passData:(NSData *)data
+                 formDatas:(NSArray *)datas
+                 formField:(HTTPFormField)fieldName
+                  mineType:(HTTPMineType)mineType
                    success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+
+// POST png
++ (void)POSTPNGWithMethodName:(NSString *)methodName
+                   parameters:(NSDictionary *)parameters
+                    formDatas:(NSArray *)datas
+                      success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 // present progress animation
 + (void)requestWillBeginWithProgressAnimation;

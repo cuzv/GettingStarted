@@ -176,6 +176,7 @@
 		46AD339D19D8366000B97B98 /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		46AD339F19D8367900B97B98 /* NSData+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hashes.h"; sourceTree = "<group>"; };
 		46AD33A019D8367900B97B98 /* NSData+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hashes.m"; sourceTree = "<group>"; };
+		46AD33A219D838BA00B97B98 /* Hashes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hashes.h; sourceTree = "<group>"; };
 		46C363A419A18CBF00BB3F84 /* NIConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIConstant.h; sourceTree = "<group>"; };
 		46C363A519A18CBF00BB3F84 /* NIConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIConstant.m; sourceTree = "<group>"; };
 		46C363A619A18CBF00BB3F84 /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
@@ -366,6 +367,7 @@
 		46AD339B19D8366000B97B98 /* NSHashes */ = {
 			isa = PBXGroup;
 			children = (
+				46AD33A219D838BA00B97B98 /* Hashes.h */,
 				46AD339F19D8367900B97B98 /* NSData+Hashes.h */,
 				46AD33A019D8367900B97B98 /* NSData+Hashes.m */,
 				46AD339C19D8366000B97B98 /* NSString+Hashes.h */,
