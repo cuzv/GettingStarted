@@ -153,6 +153,18 @@ const NSString *HTTPMineTypeMapping[] = {
     [HTTPMineTypeP12]  = @"application/x-pkcs12"
 };
 
+const NSString *FileSuffixNameMapping[] = {
+    [FileSuffixNamePNG]  = @"png",
+    [FileSuffixNameBMP]  = @"bmp",
+    [FileSuffixNameAVI]  = @"avi",
+    [FileSuffixNameMP3]  = @"mp3",
+    [FileSuffixNameTXT]  = @"txt",
+    [FileSuffixNameHTML] = @"html",
+    [FileSuffixNameXML]  = @"xml",
+    [FileSuffixNameCER]  = @"xml",
+    [FileSuffixNameP12]  = @"p12"
+};
+
 @implementation HTTPManager
 
 static NSMutableArray *sessions;
@@ -417,10 +429,11 @@ static NSMutableArray *sessions;
                                      parameters:encodeParameters
                       constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                           for (NSData *data in datas) {
-                              NSString *suffixName = (NSString *)HTTPFormFieldMapping[fieldName];
+                              NSString *formFieldName = (NSString *)HTTPFormFieldMapping[fieldName];
+                              NSString *suffixName = (NSString *)FileSuffixNameMapping[mineType];
                               NSString *fileNameWithSuffix = [[[[NSUUID UUID] UUIDString] stringByAppendingString:@"."] stringByAppendingString:suffixName];
                               NSString *contentType = (NSString *)HTTPMineTypeMapping[mineType];
-                              [formData appendPartWithFileData:data name:suffixName fileName:fileNameWithSuffix mimeType:contentType];
+                              [formData appendPartWithFileData:data name:formFieldName fileName:fileNameWithSuffix mimeType:contentType];
                           }
                     }
                                         success:^(NSURLSessionDataTask *task, id responseObject) {

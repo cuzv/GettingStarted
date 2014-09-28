@@ -55,6 +55,18 @@ typedef NS_ENUM (NSInteger, HTTPMineType) {
     HTTPMineTypeP12
 };
 
+typedef NS_ENUM (NSInteger, FileSuffixName) {
+    FileSuffixNamePNG,
+    FileSuffixNameBMP,
+    FileSuffixNameAVI,
+    FileSuffixNameMP3,
+    FileSuffixNameTXT,
+    FileSuffixNameHTML,
+    FileSuffixNameXML,
+    FileSuffixNameCER,
+    FileSuffixNameP12
+};
+
 @interface HTTPManager : NSObject
 
 // messages
