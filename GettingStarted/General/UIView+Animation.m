@@ -7,6 +7,8 @@
 //
 
 #import "UIView+Animation.h"
+#import "UIView+Accessor.h"
+
 #define kCircleTag 300
 #define kLoadingAnimationDuration 3
 

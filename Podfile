@@ -4,6 +4,4 @@ pod 'JSONModel'
 pod 'BlocksKit'
 pod 'RefreshControl', :head
 pod 'JGProgressHUD'
-pod 'MessageBanner'
-pod 'SSKeychain'
-pod 'MPParallaxCollection'
+pod 'TTTAttributedLabel'
