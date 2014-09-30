@@ -12,6 +12,9 @@
 #import "Base64.h"
 #import "Hashes.h"
 #import "NSObject+Convert.h"
+#import "NIConstant.h"
+#import "AppMacro.h"
+#import "UIView+UIActivityIndicatorView.h"
 
 NSString *CHHTTPRequestMethodName = @"";
 
