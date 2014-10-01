@@ -12,7 +12,7 @@
 @implementation UIAlertView (Generate)
 
 + (void)alertWithMessage:(NSString *)message {
-    UIAlertView *alertView = [[self alloc] initWithTitle:nil
+    UIAlertView *alertView = [[self alloc] initWithTitle:@""
                                                  message:message
                                                 delegate:nil
                                        cancelButtonTitle:nil
@@ -22,7 +22,7 @@
 
 + (void)alertWithAutomaticDisappearMessage:(NSString *)message {
     UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:nil
+                              initWithTitle:@""
                               message:message
                               delegate:nil
                               cancelButtonTitle:nil

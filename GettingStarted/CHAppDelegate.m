@@ -7,6 +7,12 @@
 //
 
 #import "CHAppDelegate.h"
+#import "ReachabilityManager.h"
+#import "Reachability.h"
+
+@interface CHAppDelegate ()
+@property (nonatomic, strong) ReachabilityManager *reachabilityManager;
+@end
 
 @implementation CHAppDelegate
 
@@ -26,16 +32,32 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [_reachabilityManager stopMonitoring];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    _reachabilityManager = [ReachabilityManager new];
+    [_reachabilityManager startMonitoringUsingBlock:^(BOOL reachability) {
+        if (!reachability) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[UIAlertView bk_showAlertViewWithTitle:@""
+                                               message:@"网络连接失败，请稍后再试!"
+                                     cancelButtonTitle:@"确定"
+                                     otherButtonTitles:nil
+                                               handler:nil] show];
+            });
+        }
+    }];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

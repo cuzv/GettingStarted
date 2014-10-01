@@ -29,6 +29,7 @@
 #import "UIView+Blur.h"
 #import "UIView+HUD.h"
 #import "BlocksKit.h"
+#import "BlocksKit+UIKit.h"
 #import "UIImageView+WebCache.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
