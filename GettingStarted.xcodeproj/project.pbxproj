@@ -49,6 +49,7 @@
 		462ABC23199F9EC7006C56E1 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 462ABC22199F9EC7006C56E1 /* Base64.m */; };
 		462ABC25199FA19B006C56E1 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */; };
 		4638FB5F19D6D9F200A28891 /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4638FB5E19D6D9F200A28891 /* FourthViewController.m */; };
+		46399B4019DBA8E200CF0F2C /* UIView+PercentageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46399B3F19DBA8E200CF0F2C /* UIView+PercentageIndicatorView.m */; };
 		46574D44199E496C004DC73B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D43199E496C004DC73B /* Foundation.framework */; };
 		46574D46199E496C004DC73B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D45199E496C004DC73B /* CoreGraphics.framework */; };
 		46574D48199E496C004DC73B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D47199E496C004DC73B /* UIKit.framework */; };
@@ -163,6 +164,8 @@
 		462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
 		4638FB5D19D6D9F200A28891 /* FourthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
 		4638FB5E19D6D9F200A28891 /* FourthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
+		46399B3E19DBA8E200CF0F2C /* UIView+PercentageIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PercentageIndicatorView.h"; sourceTree = "<group>"; };
+		46399B3F19DBA8E200CF0F2C /* UIView+PercentageIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PercentageIndicatorView.m"; sourceTree = "<group>"; };
 		46574D40199E496C004DC73B /* GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46574D43199E496C004DC73B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		46574D45199E496C004DC73B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -327,6 +330,8 @@
 				460D108019D99F4100336848 /* UIView+Toast.m */,
 				460D108119D99F4100336848 /* UIView+UIActivityIndicatorView.h */,
 				460D108219D99F4100336848 /* UIView+UIActivityIndicatorView.m */,
+				46399B3E19DBA8E200CF0F2C /* UIView+PercentageIndicatorView.h */,
+				46399B3F19DBA8E200CF0F2C /* UIView+PercentageIndicatorView.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -678,6 +683,7 @@
 				46AD33A119D8367900B97B98 /* NSData+Hashes.m in Sources */,
 				460D104919D99EDB00336848 /* PersistenceManager.m in Sources */,
 				460D109019D99F4100336848 /* UIAlertView+Generate.m in Sources */,
+				46399B4019DBA8E200CF0F2C /* UIView+PercentageIndicatorView.m in Sources */,
 				460D108C19D99F4100336848 /* PaddingField.m in Sources */,
 				46AD339E19D8366000B97B98 /* NSString+Hashes.m in Sources */,
 				460D109619D99F4100336848 /* UIView+Accessor.m in Sources */,

@@ -13,5 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet ResizableTextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *countingLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

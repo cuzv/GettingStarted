@@ -1,7 +1,10 @@
 platform :ios,'7.0'
-pod 'AFNetworking', '~> 2.3.1'
+pod 'AFNetworking'
 pod 'JSONModel'
 pod 'BlocksKit'
-pod 'RefreshControl', :head
+pod 'RefreshControl'
 pod 'JGProgressHUD'
 pod 'TTTAttributedLabel'
+pod 'SDWebImage'
+pod 'UIActivityIndicator-for-SDWebImage'
+pod 'MDRadialProgress'

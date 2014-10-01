@@ -206,6 +206,9 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TUT-2a-UdB">
+                                <rect key="frame" x="39" y="305" width="240" height="128"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -214,9 +217,16 @@
                             <constraint firstItem="Wcu-Hd-ktX" firstAttribute="leading" secondItem="53v-UX-g8E" secondAttribute="leading" constant="10" id="t1A-Jr-QoT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="6zY-ra-T6j"/>
+                    <navigationItem key="navigationItem" id="6zY-ra-T6j">
+                        <barButtonItem key="rightBarButtonItem" title="Remove" id="Kvs-Yp-Dca">
+                            <connections>
+                                <action selector="remove:" destination="kTv-yp-Elk" id="GX5-tA-r1f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="countingLabel" destination="GWW-6D-ULQ" id="xJd-nO-Set"/>
+                        <outlet property="imageView" destination="TUT-2a-UdB" id="rro-5F-8Lf"/>
                         <outlet property="textView" destination="Wcu-Hd-ktX" id="VUA-wM-J6w"/>
                     </connections>
                 </viewController>
