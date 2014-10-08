@@ -44,6 +44,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
 - (void)updatePercentage:(CGFloat)percentage {
     self.percentageIndicatorView.progressCounter = percentage * 10;
     self.percentageIndicatorView.progressTotal = 10;
+    [self.percentageIndicatorView setNeedsDisplay];
 }
 
 - (void)removePercentageIndicatorView {

@@ -13,7 +13,7 @@
 
 - (void)addPercentageIndicatorView;
 - (void)addPercentageIndicatorViewOnCenter:(CGPoint)center withThem:(MDRadialProgressTheme *)anThemt;
-- (void)updatePercentage:(CGFloat)percentage;
+- (void)updatePercentage:(CGFloat)percentage; // [0, 100]
 - (void)removePercentageIndicatorView;
 
 @end

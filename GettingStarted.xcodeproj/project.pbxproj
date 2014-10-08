@@ -2483,14 +2483,22 @@ fi
 				<string>AppIcon</string>
 				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
 				<string>LaunchImage</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
 				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
 				<string>YES</string>
 				<key>GCC_PREFIX_HEADER</key>
 				<string>GettingStarted/GettingStarted-Prefix.pch</string>
 				<key>INFOPLIST_FILE</key>
 				<string>GettingStarted/GettingStarted-Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
 				<key>PRODUCT_NAME</key>
 				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_OBJC_BRIDGING_HEADER</key>
+				<string>GettingStarted/Modules/GettingStarted-Bridging-Header.h</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
 				<key>WRAPPER_EXTENSION</key>
 				<string>app</string>
 			</dict>
@@ -2509,14 +2517,20 @@ fi
 				<string>AppIcon</string>
 				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
 				<string>LaunchImage</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
 				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
 				<string>YES</string>
 				<key>GCC_PREFIX_HEADER</key>
 				<string>GettingStarted/GettingStarted-Prefix.pch</string>
 				<key>INFOPLIST_FILE</key>
 				<string>GettingStarted/GettingStarted-Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
 				<key>PRODUCT_NAME</key>
 				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_OBJC_BRIDGING_HEADER</key>
+				<string>GettingStarted/Modules/GettingStarted-Bridging-Header.h</string>
 				<key>WRAPPER_EXTENSION</key>
 				<string>app</string>
 			</dict>
