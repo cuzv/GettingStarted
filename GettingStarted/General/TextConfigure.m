@@ -46,7 +46,9 @@
         _countingLabel.textAlignment = NSTextAlignmentRight;
         _countingLabel.bounds = CGRectMake(0, 0, 30, 22);
         _countingLabel.textColor = [UIColor lightGrayColor];
-        self.countingLabel.text = [@(self.maximumLength) stringValue];
+        if (!self.countLabel.text) {
+            self.countLabel.text = [@(self.maxLength) stringValue];
+        }
     }
 }
 
