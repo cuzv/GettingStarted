@@ -30,7 +30,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
 
 - (void)addPercentageIndicatorView {
     CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-    [self addPercentageIndicatorViewOnCenter:center withThem:[MDRadialProgressTheme detailTheme]];
+    [self addPercentageIndicatorViewOnCenter:center withThem:[MDRadialProgressTheme sectorTheme]];
 }
 
 - (void)addPercentageIndicatorViewOnCenter:(CGPoint)center withThem:(MDRadialProgressTheme *)theme {
@@ -42,9 +42,8 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
 }
 
 - (void)updatePercentage:(CGFloat)percentage {
-    self.percentageIndicatorView.progressCounter = percentage * 10;
-    self.percentageIndicatorView.progressTotal = 10;
-    [self.percentageIndicatorView setNeedsDisplay];
+    self.percentageIndicatorView.progressCounter = percentage;
+    self.percentageIndicatorView.progressTotal = 100;
 }
 
 - (void)removePercentageIndicatorView {
