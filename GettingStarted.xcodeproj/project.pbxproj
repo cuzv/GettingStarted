@@ -49,6 +49,9 @@
 		4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B48019A87EC0006B09BC /* CHThirdViewController.m */; };
 		462ABC23199F9EC7006C56E1 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 462ABC22199F9EC7006C56E1 /* Base64.m */; };
 		462ABC25199FA19B006C56E1 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */; };
+		462C373A19E90AC200A1862B /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 462C373619E90AC200A1862B /* .gitattributes */; };
+		462C373B19E90AC200A1862B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 462C373719E90AC200A1862B /* .gitignore */; };
+		462C373C19E90AC200A1862B /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 462C373919E90AC200A1862B /* UIImage+Resize.m */; };
 		4638FB5F19D6D9F200A28891 /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4638FB5E19D6D9F200A28891 /* FourthViewController.m */; };
 		46574D44199E496C004DC73B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D43199E496C004DC73B /* Foundation.framework */; };
 		46574D46199E496C004DC73B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D45199E496C004DC73B /* CoreGraphics.framework */; };
@@ -165,6 +168,10 @@
 		462ABC21199F9EC7006C56E1 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		462ABC22199F9EC7006C56E1 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		462ABC24199FA19B006C56E1 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
+		462C373619E90AC200A1862B /* .gitattributes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
+		462C373719E90AC200A1862B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		462C373819E90AC200A1862B /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		462C373919E90AC200A1862B /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		4638FB5D19D6D9F200A28891 /* FourthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
 		4638FB5E19D6D9F200A28891 /* FourthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
 		46574D40199E496C004DC73B /* GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -386,6 +393,17 @@
 			path = Base64;
 			sourceTree = "<group>";
 		};
+		462C373519E90AC200A1862B /* UIImage-Resize */ = {
+			isa = PBXGroup;
+			children = (
+				462C373619E90AC200A1862B /* .gitattributes */,
+				462C373719E90AC200A1862B /* .gitignore */,
+				462C373819E90AC200A1862B /* UIImage+Resize.h */,
+				462C373919E90AC200A1862B /* UIImage+Resize.m */,
+			);
+			path = "UIImage-Resize";
+			sourceTree = "<group>";
+		};
 		46574D37199E496C004DC73B = {
 			isa = PBXGroup;
 			children = (
@@ -459,6 +477,7 @@
 		46574D7E199E61C5004DC73B /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				462C373519E90AC200A1862B /* UIImage-Resize */,
 				460D0FDC19D99A4D00336848 /* MLEmojiLabel */,
 				46AD339B19D8366000B97B98 /* NSHashes */,
 				46CA054519CAD888007F2A82 /* AwesomeMenu */,
@@ -593,10 +612,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				462C373B19E90AC200A1862B /* .gitignore in Resources */,
 				46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */,
 				46574D5C199E496C004DC73B /* Images.xcassets in Resources */,
 				46574D4E199E496C004DC73B /* InfoPlist.strings in Resources */,
 				46574D57199E496C004DC73B /* Main.storyboard in Resources */,
+				462C373A19E90AC200A1862B /* .gitattributes in Resources */,
 				462ABC25199FA19B006C56E1 /* ProvincesAndCities.plist in Resources */,
 				4609153019C999410024B749 /* WDActivityIndicator.bundle in Resources */,
 			);
@@ -690,6 +711,7 @@
 				46AD33A119D8367900B97B98 /* NSData+Hashes.m in Sources */,
 				460D104919D99EDB00336848 /* PersistenceManager.m in Sources */,
 				460D109019D99F4100336848 /* UIAlertView+Generate.m in Sources */,
+				462C373C19E90AC200A1862B /* UIImage+Resize.m in Sources */,
 				460D108C19D99F4100336848 /* PaddingField.m in Sources */,
 				46AD339E19D8366000B97B98 /* NSString+Hashes.m in Sources */,
 				460D109619D99F4100336848 /* UIView+Accessor.m in Sources */,
