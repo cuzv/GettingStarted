@@ -11,6 +11,7 @@
 #import "UIView+Blur.h"
 #import "AccountManager.h"
 #import "UIView+GradientCircularProgress.h"
+#import "GradientCircularProgress.h"
 
 #define kMessageList @"getMobileMessageList"
 
@@ -20,6 +21,18 @@
 @end
 
 @implementation CHDetailViewController
+
+- (void)dealloc {
+    NSLog(@"%s", __FUNCTION__);
+    NSLog(@"%@", self.colorView);
+    
+//    NSLog(@"%@", [self.colorView performSelector:@selector(recursiveDescription)]);
+    for (UIView *subView in self.colorView.subviews) {
+        if ([subView isKindOfClass:[GradientCircularProgress class]]) {
+            NSLog(@"gotcha");
+        }
+    }
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +50,7 @@
 
 //    [self.navigationController.view addGradientCircularProgressAnimation];
     [self.colorView addGradientCircularProgressAnimation];
+//    NSLog(@"%@", [self.colorView performSelector:@selector(recursiveDescription)]);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -53,22 +67,22 @@
 
 //    [UIView toastWithMessage:@"密码错误"];
     
-    [self.colorView addActivityIndicatorAnimation];
+//    [self.colorView addActivityIndicatorAnimation];
 
 //    [self.view addActivityIndicatorAnimationOnCenter:CGPointMake(10, 10)];
 
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.colorView removeGradientCircularProgressAnimation];
 }
-
 
 
 - (IBAction)clearAction:(UIButton *)sender {
 //    [self.colorView removeActivityIndicatorAnimation];
+    [self.colorView removeGradientCircularProgressAnimation];
 }
 
 /*

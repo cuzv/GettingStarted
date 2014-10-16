@@ -191,12 +191,20 @@
     basicAnimation.fromValue = 0;
     basicAnimation.toValue = @(2 * M_PI);
     basicAnimation.removedOnCompletion = YES;
-    
+    basicAnimation.delegate = self;
     [self.layer addAnimation:basicAnimation forKey:@"rotationZ"];
 }
 
 - (void)stopRotation {
     [self.layer removeAllAnimations];
+}
+
+#pragma mark - animation delegate
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    if (!flag) {
+        [self startRotation];
+    }
 }
 
 @end
