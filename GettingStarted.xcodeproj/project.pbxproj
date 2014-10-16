@@ -53,6 +53,8 @@
 		462C373B19E90AC200A1862B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 462C373719E90AC200A1862B /* .gitignore */; };
 		462C373C19E90AC200A1862B /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 462C373919E90AC200A1862B /* UIImage+Resize.m */; };
 		4638FB5F19D6D9F200A28891 /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4638FB5E19D6D9F200A28891 /* FourthViewController.m */; };
+		4655B7B619EFFEBE0095E27B /* GradientCircularProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4655B7B519EFFEBE0095E27B /* GradientCircularProgress.m */; };
+		4655B7B919EFFEF70095E27B /* UIView+GradientCircularProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4655B7B819EFFEF70095E27B /* UIView+GradientCircularProgress.m */; };
 		46574D44199E496C004DC73B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D43199E496C004DC73B /* Foundation.framework */; };
 		46574D46199E496C004DC73B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D45199E496C004DC73B /* CoreGraphics.framework */; };
 		46574D48199E496C004DC73B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D47199E496C004DC73B /* UIKit.framework */; };
@@ -174,6 +176,10 @@
 		462C373919E90AC200A1862B /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		4638FB5D19D6D9F200A28891 /* FourthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
 		4638FB5E19D6D9F200A28891 /* FourthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
+		4655B7B419EFFEBE0095E27B /* GradientCircularProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientCircularProgress.h; sourceTree = "<group>"; };
+		4655B7B519EFFEBE0095E27B /* GradientCircularProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientCircularProgress.m; sourceTree = "<group>"; };
+		4655B7B719EFFEF70095E27B /* UIView+GradientCircularProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GradientCircularProgress.h"; sourceTree = "<group>"; };
+		4655B7B819EFFEF70095E27B /* UIView+GradientCircularProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GradientCircularProgress.m"; sourceTree = "<group>"; };
 		46574D40199E496C004DC73B /* GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46574D43199E496C004DC73B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		46574D45199E496C004DC73B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -340,6 +346,8 @@
 				460D107E19D99F4100336848 /* UIView+HUD.m */,
 				460D107F19D99F4100336848 /* UIView+Toast.h */,
 				460D108019D99F4100336848 /* UIView+Toast.m */,
+				4655B7B719EFFEF70095E27B /* UIView+GradientCircularProgress.h */,
+				4655B7B819EFFEF70095E27B /* UIView+GradientCircularProgress.m */,
 				460D108119D99F4100336848 /* UIView+UIActivityIndicatorView.h */,
 				460D108219D99F4100336848 /* UIView+UIActivityIndicatorView.m */,
 				462265B919E621B6002C8808 /* UIView+PercentageIndicatorView.h */,
@@ -353,6 +361,8 @@
 			children = (
 				460D104F19D99F4100336848 /* BadgeView.h */,
 				460D105019D99F4100336848 /* BadgeView.m */,
+				4655B7B419EFFEBE0095E27B /* GradientCircularProgress.h */,
+				4655B7B519EFFEBE0095E27B /* GradientCircularProgress.m */,
 				460D105919D99F4100336848 /* LocationPickerView.h */,
 				460D105A19D99F4100336848 /* LocationPickerView.m */,
 				460D105F19D99F4100336848 /* PaddingField.h */,
@@ -703,8 +713,10 @@
 				46C363D819A18E4500BB3F84 /* CHViewController.m in Sources */,
 				460D108B19D99F4100336848 /* NSString+TextSize.m in Sources */,
 				460D108A19D99F4100336848 /* NSObject+Convert.m in Sources */,
+				4655B7B919EFFEF70095E27B /* UIView+GradientCircularProgress.m in Sources */,
 				460D109519D99F4100336848 /* UIScrollView+Accessor.m in Sources */,
 				460D0FEA19D99EBB00336848 /* NIConstant.m in Sources */,
+				4655B7B619EFFEBE0095E27B /* GradientCircularProgress.m in Sources */,
 				460D109719D99F4100336848 /* UIView+Animation.m in Sources */,
 				460D0FE919D99EBB00336848 /* AppConstant.m in Sources */,
 				462ABC23199F9EC7006C56E1 /* Base64.m in Sources */,

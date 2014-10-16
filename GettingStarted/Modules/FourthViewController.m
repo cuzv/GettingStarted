@@ -48,7 +48,7 @@
                                   dispatch_async(dispatch_get_main_queue(), ^{
                                       [indicatorView updatePercentage:((float)receivedSize / (float)expectedSize) * 100];
                                   });
-                                  NSLog(@"%d / %d", receivedSize, expectedSize);
+                                  NSLog(@"%@ / %@", @(receivedSize), @(expectedSize));
                               } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                   NSLog(@"ok");
                               }];

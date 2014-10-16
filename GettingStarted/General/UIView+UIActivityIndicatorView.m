@@ -36,13 +36,12 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
     [self addActivityIndicatorAnimationWithStyle:UIActivityIndicatorViewStyleWhite center:center];
 }
 
-- (void)addActivityIndicatorAnimationWithStyle:(UIActivityIndicatorViewStyle)style center:(CGPoint)center{
+- (void)addActivityIndicatorAnimationWithStyle:(UIActivityIndicatorViewStyle)style center:(CGPoint)center {
     if (self.activityIndicatorView) {
         return;
     }
 
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
-    activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     activityIndicatorView.color = [UIColor lightGrayColor];
     activityIndicatorView.center = center;
     self.activityIndicatorView = activityIndicatorView;

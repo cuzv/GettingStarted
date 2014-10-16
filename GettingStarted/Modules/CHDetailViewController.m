@@ -10,6 +10,7 @@
 #import "UIView+UIActivityIndicatorView.h"
 #import "UIView+Blur.h"
 #import "AccountManager.h"
+#import "UIView+GradientCircularProgress.h"
 
 #define kMessageList @"getMobileMessageList"
 
@@ -34,6 +35,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
 
+//    [self.navigationController.view addGradientCircularProgressAnimation];
+    [self.colorView addGradientCircularProgressAnimation];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
