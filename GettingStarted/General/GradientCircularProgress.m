@@ -162,7 +162,7 @@
 }
 
 - (NSArray *)leftGradientColorRefs:(UIColor *)aColor {
-    CGColorRef transparentColor = [[aColor colorWithAlphaComponent:0.1] CGColor];
+    CGColorRef transparentColor = [[aColor colorWithAlphaComponent:0] CGColor];
     CGColorRef shadowColor = [[aColor colorWithAlphaComponent:0.5] CGColor];
     return @[(__bridge id)transparentColor, (__bridge id)shadowColor];
 }
