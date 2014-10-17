@@ -9,8 +9,8 @@
 #import "GradientCircularProgress.h"
 
 // 把角度转换成弧度的方式
-#define CHRadian(x) (M_PI * (x) / 180.0)
-#define kAnimationDuration 0.5f
+#define CHRadian(x) (M_PI * (x) / 180.0f)
+#define kAnimationDuration 1.0f
 #define kDefaultCircluarWidth 2.0f
 
 @interface GradientCircularProgress ()
@@ -177,7 +177,7 @@
     [CATransaction begin];
     [CATransaction setDisableActions:!animated];
     [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
-    [CATransaction setAnimationDuration:kAnimationDuration];
+    [CATransaction setAnimationDuration:kAnimationDuration / 3];
     _progressLayer.strokeEnd = percent / 100.0f;
     [CATransaction commit];
     
@@ -186,7 +186,7 @@
 
 - (void)startRotation {
     CABasicAnimation *basicAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    basicAnimation.duration = 1;
+    basicAnimation.duration = kAnimationDuration;
     basicAnimation.repeatCount = HUGE_VAL;
     basicAnimation.fromValue = 0;
     basicAnimation.toValue = @(2 * M_PI);
