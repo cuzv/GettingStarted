@@ -12,6 +12,9 @@ typedef void (^CellConfigureBlock)(id cell, id item);
 
 @interface ArrayDataSource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
 
+/**
+ * Note: Must use as property, that will hold instance untill call dealloc
+ */
 - (instancetype)initWithCellIdentifier:(NSString *)cellIdentifier items:(NSArray *)items cellConfigureBlock:(CellConfigureBlock)configureBlock;
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
 
