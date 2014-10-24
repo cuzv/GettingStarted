@@ -7,9 +7,9 @@
 //
 
 #import "CHViewController.h"
-#import "PaddingLabel.h"
-#import "UIView+Toast.h"
-
+#import "MakeUIAlertViewBetter.h"
+#import "MakeUIImageBetter.h"
+#import "MakeUIViewBetter.h"
 
 @interface CHViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -31,14 +31,12 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    UIImage *image = [UIImage imageWithColor:[UIColor redColor] size:CGSizeMake(240, 128)];
-    self.imageView.image = image;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
-    [UIAlertView alertWithAutomaticDisappearMessage:@"密码错误"];
+//    [UIAlertView alertWithAutomaticDisappearMessage:@"密码错误"];
+    [UIAlertView alertWithAutomaticDisappearMessage:@"密码错误" delayTimeInterval:3];
 }
 
 

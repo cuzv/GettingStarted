@@ -14,10 +14,10 @@ Copyright (c) 2014 Moch. All rights reserved.
 	- AppMacro.h    App 相关宏定义
     - AppConstant.m App 相关常量定义	
     - NIConstant.m 网络请求接口定义
-- General 	通用代码
-	- Categories
-	- Views
-	- Classess
+- General 	项目中通用代码
+- MakeBetter 类别，子类
+	- Original 
+	- Dependence
 - Modules 项目功能模块
 	- Home
 	- PersonalCenter

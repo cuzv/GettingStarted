@@ -7,8 +7,8 @@
 //
 
 #import "FourthViewController.h"
-#import "ResizableTextView.h"
-#import "TextConfigure.h"
+#import "MakeTextEditBetter.h"
+#import "MakeUITextViewBetter.h"
 #import "AFURLSessionManager.h"
 #import "UIActivityIndicatorView+AFNetworking.h"
 #import "MDRadialProgressView.h"
@@ -18,17 +18,6 @@
 @implementation FourthViewController
 
 - (void)viewDidLoad {
-//    self.textView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//    self.textView.layer.borderWidth = 1;
-//    self.textView.didUpdateTextViewHeight = ^(ResizableTextView *textView) {
-//        NSLog(@"current height = %f", textView.frame.size.height);
-//    };
-//
-//    TextConfigure *textConfigure = [TextConfigure new];
-//    textConfigure.countingLabel = self.countingLabel;
-//    textConfigure.maximumLength = 100;
-//    self.textView.textConfigure = textConfigure;
-//    
     MDRadialProgressTheme *newTheme = [[MDRadialProgressTheme alloc] init];
     newTheme.completedColor = [UIColor colorWithRed:90/255.0 green:212/255.0 blue:39/255.0 alpha:1.0];
     newTheme.incompletedColor = [UIColor colorWithRed:164/255.0 green:231/255.0 blue:134/255.0 alpha:1.0];

@@ -7,7 +7,7 @@
 //
 
 #import "VerificationManager.h"
-#import "UIView+Toast.h"
+#import "MakeUIAlertViewBetter.h"
 
 NSString *const CHPhoneNumberCanNotBeNull = @"手机号不能为空";
 NSString *const CHPhoneNumberInvalid = @"手机号格式错误";
@@ -25,11 +25,11 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 
 + (BOOL)verifyingPhone:(NSString *)phoneNumber {
     if (!phoneNumber.length) {
-        [UIView toastWithMessage:CHPhoneNumberCanNotBeNull];
+        [UIAlertView alertWithMessage:CHPhoneNumberCanNotBeNull];
         return NO;
     }
     if (![self isValidPhoneNumber:phoneNumber]) {
-        [UIView toastWithMessage:CHPhoneNumberInvalid];
+        [UIAlertView alertWithMessage:CHPhoneNumberInvalid];
         return NO;
     }
     return YES;
@@ -37,11 +37,11 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 
 + (BOOL)verifyingPassword:(NSString *)password {
     if (!password.length) {
-        [UIView toastWithMessage:CHPasswordCanNotBeNull];
+        [UIAlertView alertWithMessage:CHPasswordCanNotBeNull];
         return NO;
     }
     if (![self isValidPassword:password]) {
-        [UIView toastWithMessage:CHPasswordInvalid];
+        [UIAlertView alertWithMessage:CHPasswordInvalid];
         return NO;
     }
     return YES;
@@ -52,7 +52,7 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
         return NO;
     }
     if (![password isEqualToString:repeat]) {
-        [UIView toastWithMessage:CHPasswordRepeatInvalid];
+        [UIAlertView alertWithMessage:CHPasswordRepeatInvalid];
         return NO;
     }
     return YES;
@@ -60,11 +60,11 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 
 + (BOOL)verifyingAuthCode:(NSString *)authCode {
     if (!authCode.length) {
-        [UIView toastWithMessage:CHAuthCodeCanNotBeNull];
+        [UIAlertView alertWithMessage:CHAuthCodeCanNotBeNull];
         return NO;
     }
     if (![self isvalidAuthCode:authCode]) {
-        [UIView toastWithMessage:CHAuthCodeInvalid];
+        [UIAlertView alertWithMessage:CHAuthCodeInvalid];
         return NO;
     }
     return YES;

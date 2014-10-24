@@ -7,11 +7,8 @@
 //
 
 #import "CHDetailViewController.h"
-#import "UIView+UIActivityIndicatorView.h"
-#import "UIView+Blur.h"
+#import "MakeUIViewBetter.h"
 #import "AccountManager.h"
-#import "UIView+GradientCircularProgress.h"
-#import "GradientCircularProgress.h"
 
 #define kMessageList @"getMobileMessageList"
 

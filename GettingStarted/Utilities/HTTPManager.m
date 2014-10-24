@@ -8,13 +8,12 @@
 
 #import "HTTPManager.h"
 #import "AFNetworking.h"
-#import "UIView+Toast.h"
 #import "Base64.h"
 #import "Hashes.h"
-#import "NSObject+Convert.h"
+#import "MakeNSObjectBetter.h"
 #import "NIConstant.h"
 #import "AppMacro.h"
-#import "UIView+UIActivityIndicatorView.h"
+#import "MakeUIViewBetter.h"
 
 NSString *CHHTTPRequestMethodName = @"";
 
@@ -230,7 +229,8 @@ static NSMutableArray *sessions;
 
 // convert dictionary to url string
 + (NSString *)URLStringWithParameters:(NSDictionary *)paramDictionary {
-    NSAssert([paramDictionary isKindOfClass:[paramDictionary class]], @"The input parameters is not dictionary type!");
+    NSAssert([paramDictionary isKindOfClass:[paramDictionary class]],
+             @"The input parameters is not dictionary type!");
     
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] initWithDictionary:paramDictionary];
     NSMutableString *URLParamMutableString = [NSMutableString new];
@@ -245,7 +245,8 @@ static NSMutableArray *sessions;
 
 // create UTF8 string by ISO string
 + (NSString *)UTF8StringWithISOString:(NSString *)string {
-    NSAssert([string isKindOfClass:[NSString class]], @"The input parameters is not string type!");
+    NSAssert([string isKindOfClass:[NSString class]],
+             @"The input parameters is not string type!");
     
     NSStringEncoding UTF8Encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
     NSStringEncoding ISOEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
@@ -264,7 +265,8 @@ static NSMutableArray *sessions;
                                                 options:NSJSONReadingMutableLeaves
                                                   error:&error];
     if (error) {
-        NSLog(@"Deserialized JSON string failed with error message '%@'.", [error localizedDescription]);
+        NSLog(@"Deserialized JSON string failed with error message '%@'.",
+              [error localizedDescription]);
     }
     
     return object;
@@ -280,7 +282,8 @@ static NSMutableArray *sessions;
                                                    options:NSJSONWritingPrettyPrinted
                                                      error:&error];
     if (error) {
-        NSLog(@"Serialized JSON string failed with error message '%@'.", [error localizedDescription]);
+        NSLog(@"Serialized JSON string failed with error message '%@'.",
+              [error localizedDescription]);
     }
     return data;
 }
@@ -293,9 +296,12 @@ static NSMutableArray *sessions;
 // Create an NSData from a property list.
 + (NSData *)dataWithPropertyList:(id)plist {
     NSError *error = nil;
-    NSData *data = [NSPropertyListSerialization dataWithPropertyList:plist format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
+    NSData *data = [NSPropertyListSerialization dataWithPropertyList:plist
+                                                              format:NSPropertyListXMLFormat_v1_0 options:0
+                                                               error:&error];
     if (error) {
-        NSLog(@"Serialized PropertyList string failed with error message '%@'.", [error localizedDescription]);
+        NSLog(@"Serialized PropertyList string failed with error message '%@'.",
+              [error localizedDescription]);
     }
     return data;
 }
@@ -372,7 +378,7 @@ static NSMutableArray *sessions;
 }
 
 + (void)requestWillBeginWithProgressAnimation {
-    [[[[UIApplication sharedApplication] windows] lastObject] addActivityIndicatorAnimation];
+    [[[[UIApplication sharedApplication] windows] lastObject] addGradientCircularProgressAnimation];
 }
 
 + (void)requestWillBegin {
@@ -381,7 +387,7 @@ static NSMutableArray *sessions;
 
 + (void)requestDidEnd {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [[[[UIApplication sharedApplication] windows] lastObject] removeActivityIndicatorAnimation];
+    [[[[UIApplication sharedApplication] windows] lastObject] removeGradientCircularProgressAnimation];
     CHHTTPRequestMethodName = @"";
 }
 
