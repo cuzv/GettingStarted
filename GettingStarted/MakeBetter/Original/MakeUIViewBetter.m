@@ -1201,7 +1201,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
     int soundMeters[kSoundMeterCount];
 }
 
-@property (nonatomic, weak) UIColor *stokeColor;
+@property (nonatomic, strong) UIColor *stokeColor;
 @property(nonatomic, assign) CGFloat recordTime;
 @property (nonatomic, strong) NSTimer *timer;
 
@@ -1211,6 +1211,12 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 - (void)dealloc {
     NSLog(@"%s", __FUNCTION__);
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview {
+    if (!newSuperview) {
+        [self stopAnimation];
+    }
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
