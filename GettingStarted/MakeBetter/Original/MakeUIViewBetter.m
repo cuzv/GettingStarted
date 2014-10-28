@@ -615,6 +615,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 @property (nonatomic, strong) CAShapeLayer *progressLayer;
 @property (nonatomic, assign) NSUInteger percent;
 @property (nonatomic, assign) BOOL sevenColorRing;
+@property (nonatomic, assign) BOOL resetAnimation;
 
 @end
 
@@ -622,6 +623,13 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 - (void)dealloc {
     NSLog(@"%s", __FUNCTION__);
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview {
+    if (!newSuperview) {
+        self.resetAnimation = NO;
+        [self stopRotation];
+    }
 }
 
 - (instancetype)initWithSevenColorRingFrame:(CGRect )frame {
@@ -666,6 +674,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 - (void)drewViewWithTrackColor:(UIColor *)trackColor
                  progressColor:(UIColor *)progressColor
                  circluarWidth:(CGFloat)circluarWidth {
+    self.resetAnimation = NO;
     // 裁剪为圆形
     self.backgroundColor = [UIColor clearColor];
     self.layer.cornerRadius = MIN(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)) / 2;
@@ -798,7 +807,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 // animation delegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-    if (!flag) {
+    if (!flag && self.resetAnimation) {
         [self startRotation];
     }
 }
