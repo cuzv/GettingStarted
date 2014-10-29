@@ -8,14 +8,14 @@
 
 #import "CHThirdViewController.h"
 #import "UIScrollView+RefreshControl.h"
-#import "MakeDataSourceBetter.h"
+#import "ArrayDataSource.h"
 
 @interface CHThirdViewController () <UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
-@property (nonatomic, strong) MakeDataSourceBetter *arraryDataSource;
+@property (nonatomic, strong) ArrayDataSource *arraryDataSource;
 
 @end
 
@@ -37,7 +37,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _dataSource = [[NSMutableArray alloc] init];
     
-    _arraryDataSource = [[MakeDataSourceBetter alloc] initWithCellIdentifier:@"cell"
+    _arraryDataSource = [[ArrayDataSource alloc] initWithCellIdentifier:@"cell"
                                                                   items:_dataSource
                                                      cellConfigureBlock:^(UITableViewCell *cell, id item) {
         cell.textLabel.text = item;

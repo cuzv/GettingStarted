@@ -7,7 +7,7 @@
 //
 
 #import "VerificationManager.h"
-#import "MakeUIAlertViewBetter.h"
+#import "UIAlertViewCategories.h"
 
 NSString *const CHPhoneNumberCanNotBeNull = @"手机号不能为空";
 NSString *const CHPhoneNumberInvalid = @"手机号格式错误";

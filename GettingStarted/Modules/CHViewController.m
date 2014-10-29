@@ -7,9 +7,10 @@
 //
 
 #import "CHViewController.h"
-#import "MakeUIAlertViewBetter.h"
-#import "MakeUIImageBetter.h"
-#import "MakeUIViewBetter.h"
+#import "UIViewCategories.h"
+#import "UIImageCategories.h"
+#import "UIViewCategories.h"
+#import "UIAlertViewCategories.h"
 
 @interface CHViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;

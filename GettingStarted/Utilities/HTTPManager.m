@@ -10,10 +10,10 @@
 #import "AFNetworking.h"
 #import "Base64.h"
 #import "Hashes.h"
-#import "MakeNSObjectBetter.h"
+#import "NSObjectCategories.h"
 #import "NIConstant.h"
 #import "AppMacro.h"
-#import "MakeUIViewBetter.h"
+#import "UIViewCategories.h"
 
 NSString *CHHTTPRequestMethodName = @"";
 

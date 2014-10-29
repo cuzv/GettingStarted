@@ -7,13 +7,15 @@
 //
 
 #import "CHDetailViewController.h"
-#import "MakeUIViewBetter.h"
+#import "UIViewCategories.h"
 #import "AccountManager.h"
+#import "GradientCircularProgress.h"
 
 #define kMessageList @"getMobileMessageList"
 
 @interface CHDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIView *colorView;
+@property (strong, nonatomic) IBOutlet UIView *circleView;
 
 @end
 
@@ -46,20 +48,27 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
 //    [self.navigationController.view addGradientCircularProgressAnimation];
-    [self.colorView addGradientCircularProgressAnimation];
+//    [self.colorView addGradientCircularProgressAnimation];
 //    NSLog(@"%@", [self.colorView performSelector:@selector(recursiveDescription)]);
+    
+    self.circleView.layer.masksToBounds = YES;
+    self.circleView.layer.cornerRadius = CGRectGetMidY(self.circleView.bounds);
+
+    [self.circleView addArcRotationAnimaionWithDuration:20 lineColor:[UIColor orangeColor]];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSDictionary *dict = @{@"cid":@"1001",
-                           @"oid":@"6611"};
-    [HTTPManager setHTTPRequestSerializerType:HTTPRequestSerializerTypeBase64];
-    [HTTPManager requestWillBeginWithProgressAnimation];
-    [HTTPManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", error);
-    }];
+    [self.circleView removeArcRotationAnimation];
+    
+//    NSDictionary *dict = @{@"cid":@"1001",
+//                           @"oid":@"6611"};
+//    [HTTPManager setHTTPRequestSerializerType:HTTPRequestSerializerTypeBase64];
+//    [HTTPManager requestWillBeginWithProgressAnimation];
+//    [HTTPManager POSTWithMethodName:[NSString stringWithFormat:@"v4_%@.do", kMessageList] parameters:dict success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"%@", responseObject);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
 
 
 //    [UIView toastWithMessage:@"密码错误"];

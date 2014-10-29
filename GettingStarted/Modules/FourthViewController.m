@@ -7,8 +7,8 @@
 //
 
 #import "FourthViewController.h"
-#import "MakeTextEditBetter.h"
-#import "MakeUITextViewBetter.h"
+#import "TextEditConfigure.h"
+#import "TextEditConfigure.h"
 #import "AFURLSessionManager.h"
 #import "UIActivityIndicatorView+AFNetworking.h"
 #import "MDRadialProgressView.h"
