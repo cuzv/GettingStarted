@@ -391,3 +391,27 @@ typedef NS_ENUM(NSInteger, CHEdgeOrientation) {
 - (UIViewController *)viewController;
 
 @end
+
+
+#pragma mark - Layer 裁剪等操作
+
+@interface UIView (Layer)
+
+/**
+ *  边角裁剪
+ *
+ *  @param radius 弧度
+ */
+- (void)setCornerRadius:(CGFloat)radius;
+
+/**
+ *  设置边线
+ *
+ *  @param width       宽度
+ *  @param borderColor 颜色
+ */
+- (void)setBorderWidth:(CGFloat)width color:(UIColor *)borderColor;
+
+@end
+
+

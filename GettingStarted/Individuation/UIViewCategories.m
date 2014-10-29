@@ -676,3 +676,27 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 @end
 
+
+#pragma mark - Layer 裁剪等操作
+
+@implementation UIView (Layer)
+
+- (void)setCornerRadius:(CGFloat)radius {
+    self.layer.masksToBounds = YES;
+    self.layer.cornerRadius = radius;
+}
+
+- (void)setBorderWidth:(CGFloat)width color:(UIColor *)borderColor {
+    self.layer.borderWidth = width;
+    self.layer.borderColor = [borderColor CGColor];
+}
+
+
+
+@end
+
+
+
+
+
+

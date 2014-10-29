@@ -39,6 +39,10 @@
 		461911891A01195700D3DE80 /* UIViewCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 461911881A01195700D3DE80 /* UIViewCategories.m */; };
 		4619118F1A011A0000D3DE80 /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4619118C1A011A0000D3DE80 /* UIView+HUD.m */; };
 		461911901A011A0000D3DE80 /* UIView+PercentageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4619118E1A011A0000D3DE80 /* UIView+PercentageIndicatorView.m */; };
+		461912A91A01280400D3DE80 /* UIButtonCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 461912A81A01280400D3DE80 /* UIButtonCategories.m */; };
+		461912AC1A01324600D3DE80 /* UILabelCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 461912AB1A01324600D3DE80 /* UILabelCategories.m */; };
+		461912AF1A01375100D3DE80 /* UITableViewCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 461912AE1A01375100D3DE80 /* UITableViewCategories.m */; };
+		461912B21A01398200D3DE80 /* UITextFieldCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 461912B11A01398200D3DE80 /* UITextFieldCategories.m */; };
 		4625B47E19A86669006B09BC /* CHDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B47D19A86669006B09BC /* CHDetailViewController.m */; };
 		4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4625B48019A87EC0006B09BC /* CHThirdViewController.m */; };
 		462ABC23199F9EC7006C56E1 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 462ABC22199F9EC7006C56E1 /* Base64.m */; };
@@ -58,6 +62,7 @@
 		46574D63199E496D004DC73B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D62199E496D004DC73B /* XCTest.framework */; };
 		46574D64199E496D004DC73B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D43199E496C004DC73B /* Foundation.framework */; };
 		46574D65199E496D004DC73B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D47199E496C004DC73B /* UIKit.framework */; };
+		465DCC251A013F93009C0DF1 /* UITextViewCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DCC241A013F93009C0DF1 /* UITextViewCategories.m */; };
 		469154DA19DC02CB00A16D84 /* ReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 469154D919DC02CB00A16D84 /* ReachabilityManager.m */; };
 		46AD339E19D8366000B97B98 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AD339D19D8366000B97B98 /* NSString+Hashes.m */; };
 		46AD33A119D8367900B97B98 /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AD33A019D8367900B97B98 /* NSData+Hashes.m */; };
@@ -144,6 +149,14 @@
 		4619118C1A011A0000D3DE80 /* UIView+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HUD.m"; sourceTree = "<group>"; };
 		4619118D1A011A0000D3DE80 /* UIView+PercentageIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PercentageIndicatorView.h"; sourceTree = "<group>"; };
 		4619118E1A011A0000D3DE80 /* UIView+PercentageIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PercentageIndicatorView.m"; sourceTree = "<group>"; };
+		461912A71A01280400D3DE80 /* UIButtonCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonCategories.h; sourceTree = "<group>"; };
+		461912A81A01280400D3DE80 /* UIButtonCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonCategories.m; sourceTree = "<group>"; };
+		461912AA1A01324600D3DE80 /* UILabelCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILabelCategories.h; sourceTree = "<group>"; };
+		461912AB1A01324600D3DE80 /* UILabelCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILabelCategories.m; sourceTree = "<group>"; };
+		461912AD1A01375100D3DE80 /* UITableViewCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCategories.h; sourceTree = "<group>"; };
+		461912AE1A01375100D3DE80 /* UITableViewCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCategories.m; sourceTree = "<group>"; };
+		461912B01A01398200D3DE80 /* UITextFieldCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextFieldCategories.h; sourceTree = "<group>"; };
+		461912B11A01398200D3DE80 /* UITextFieldCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextFieldCategories.m; sourceTree = "<group>"; };
 		4625B47C19A86669006B09BC /* CHDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDetailViewController.h; sourceTree = "<group>"; };
 		4625B47D19A86669006B09BC /* CHDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDetailViewController.m; sourceTree = "<group>"; };
 		4625B47F19A87EC0006B09BC /* CHThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHThirdViewController.h; sourceTree = "<group>"; };
@@ -171,6 +184,9 @@
 		46574D5B199E496C004DC73B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		46574D61199E496D004DC73B /* GettingStartedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GettingStartedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46574D62199E496D004DC73B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		465DCC231A013F93009C0DF1 /* UITextViewCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextViewCategories.h; sourceTree = "<group>"; };
+		465DCC241A013F93009C0DF1 /* UITextViewCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextViewCategories.m; sourceTree = "<group>"; };
+		465DCC261A0141A6009C0DF1 /* Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		469154D819DC02CB00A16D84 /* ReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityManager.h; sourceTree = "<group>"; };
 		469154D919DC02CB00A16D84 /* ReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityManager.m; sourceTree = "<group>"; };
 		46AD339C19D8366000B97B98 /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
@@ -319,6 +335,17 @@
 				4619116C1A0115CC00D3DE80 /* UIScrollViewCategories.m */,
 				461911871A01195700D3DE80 /* UIViewCategories.h */,
 				461911881A01195700D3DE80 /* UIViewCategories.m */,
+				461912A71A01280400D3DE80 /* UIButtonCategories.h */,
+				461912A81A01280400D3DE80 /* UIButtonCategories.m */,
+				461912AD1A01375100D3DE80 /* UITableViewCategories.h */,
+				461912AE1A01375100D3DE80 /* UITableViewCategories.m */,
+				461912AA1A01324600D3DE80 /* UILabelCategories.h */,
+				461912AB1A01324600D3DE80 /* UILabelCategories.m */,
+				461912B01A01398200D3DE80 /* UITextFieldCategories.h */,
+				461912B11A01398200D3DE80 /* UITextFieldCategories.m */,
+				465DCC231A013F93009C0DF1 /* UITextViewCategories.h */,
+				465DCC241A013F93009C0DF1 /* UITextViewCategories.m */,
+				465DCC261A0141A6009C0DF1 /* Categories.h */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -683,6 +710,7 @@
 				461911561A0112AF00D3DE80 /* CodingableAndComparableObject.m in Sources */,
 				461911601A0114DA00D3DE80 /* UIColorCategories.m in Sources */,
 				460D104819D99EDB00336848 /* HTTPManager.m in Sources */,
+				461912AC1A01324600D3DE80 /* UILabelCategories.m in Sources */,
 				46574D50199E496C004DC73B /* main.m in Sources */,
 				469154DA19DC02CB00A16D84 /* ReachabilityManager.m in Sources */,
 				4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */,
@@ -707,12 +735,16 @@
 				46AD33A119D8367900B97B98 /* NSData+Hashes.m in Sources */,
 				460D104919D99EDB00336848 /* PersistenceManager.m in Sources */,
 				462C373C19E90AC200A1862B /* UIImage+Resize.m in Sources */,
+				461912A91A01280400D3DE80 /* UIButtonCategories.m in Sources */,
 				46AD339E19D8366000B97B98 /* NSString+Hashes.m in Sources */,
 				46574D54199E496C004DC73B /* CHAppDelegate.m in Sources */,
+				461912AF1A01375100D3DE80 /* UITableViewCategories.m in Sources */,
 				460D0FDF19D99A4D00336848 /* MLEmojiLabel.m in Sources */,
 				461911701A01164000D3DE80 /* ArrayDataSource.m in Sources */,
 				461911791A01172700D3DE80 /* TrackArcView.m in Sources */,
+				465DCC251A013F93009C0DF1 /* UITextViewCategories.m in Sources */,
 				4619114D1A0111A600D3DE80 /* NSObjectCategories.m in Sources */,
+				461912B21A01398200D3DE80 /* UITextFieldCategories.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,9 @@
 #import "UIImageCategories.h"
 #import "UIViewCategories.h"
 #import "UIAlertViewCategories.h"
+#import "UIButtonCategories.h"
+#import "UITextFieldCategories.h"
+
 
 @interface CHViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -32,6 +35,18 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIButton *button = [UIButton buttonWithFrame:CGRectMake(0, 80, 80, 30)
+                                           title:@"测试按钮"
+                                      titleColor:nil
+                                 backgroundColor:[UIColor greenColor]
+                      highlightedBackgroundColor:nil
+                                          target:self
+                                          action:nil];
+    [self.view addSubview:button];
+    
+    UITextField *textField = [UITextField textFieldWithFrame:CGRectMake(2, 180, 200, 30) textAlignment:0 font:nil displayBorderLayer:YES];
+    [self.view addSubview:textField];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
