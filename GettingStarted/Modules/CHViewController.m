@@ -52,7 +52,8 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 //    [UIAlertView alertWithAutomaticDisappearMessage:@"密码错误"];
-    [UIAlertView alertWithAutomaticDisappearMessage:@"密码错误" delayTimeInterval:3];
+//    [UIAlertView alertWithAutomaticDisappearMessage:@"密码错误" delayTimeInterval:3];
+    [self.navigationController.navigationBar addActivityIndicatorAnimation];
 }
 
 

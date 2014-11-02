@@ -481,7 +481,7 @@ static const void *ArcLayerKey = &ArcLayerKey;
 static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 
 @interface UIView ()
-@property(nonatomic, weak) UIActivityIndicatorView *activityIndicatorView;
+@property(nonatomic, weak, readwrite) UIActivityIndicatorView *activityIndicatorView;
 @end
 
 @implementation UIView (UIActivityIndicatorView)

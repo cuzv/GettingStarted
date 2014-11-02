@@ -64,6 +64,7 @@
 		46574D65199E496D004DC73B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D47199E496C004DC73B /* UIKit.framework */; };
 		465DCC251A013F93009C0DF1 /* UITextViewCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DCC241A013F93009C0DF1 /* UITextViewCategories.m */; };
 		469154DA19DC02CB00A16D84 /* ReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 469154D919DC02CB00A16D84 /* ReachabilityManager.m */; };
+		46A1FC591A05EE0300D1DFA1 /* UIViewControllerCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A1FC581A05EE0300D1DFA1 /* UIViewControllerCategories.m */; };
 		46AD339E19D8366000B97B98 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AD339D19D8366000B97B98 /* NSString+Hashes.m */; };
 		46AD33A119D8367900B97B98 /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AD33A019D8367900B97B98 /* NSData+Hashes.m */; };
 		46C363D819A18E4500BB3F84 /* CHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C363D719A18E4500BB3F84 /* CHViewController.m */; };
@@ -189,6 +190,8 @@
 		465DCC261A0141A6009C0DF1 /* Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		469154D819DC02CB00A16D84 /* ReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityManager.h; sourceTree = "<group>"; };
 		469154D919DC02CB00A16D84 /* ReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityManager.m; sourceTree = "<group>"; };
+		46A1FC571A05EE0300D1DFA1 /* UIViewControllerCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerCategories.h; sourceTree = "<group>"; };
+		46A1FC581A05EE0300D1DFA1 /* UIViewControllerCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerCategories.m; sourceTree = "<group>"; };
 		46AD339C19D8366000B97B98 /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
 		46AD339D19D8366000B97B98 /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		46AD339F19D8367900B97B98 /* NSData+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hashes.h"; sourceTree = "<group>"; };
@@ -346,6 +349,8 @@
 				465DCC231A013F93009C0DF1 /* UITextViewCategories.h */,
 				465DCC241A013F93009C0DF1 /* UITextViewCategories.m */,
 				465DCC261A0141A6009C0DF1 /* Categories.h */,
+				46A1FC571A05EE0300D1DFA1 /* UIViewControllerCategories.h */,
+				46A1FC581A05EE0300D1DFA1 /* UIViewControllerCategories.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -736,6 +741,7 @@
 				460D104919D99EDB00336848 /* PersistenceManager.m in Sources */,
 				462C373C19E90AC200A1862B /* UIImage+Resize.m in Sources */,
 				461912A91A01280400D3DE80 /* UIButtonCategories.m in Sources */,
+				46A1FC591A05EE0300D1DFA1 /* UIViewControllerCategories.m in Sources */,
 				46AD339E19D8366000B97B98 /* NSString+Hashes.m in Sources */,
 				46574D54199E496C004DC73B /* CHAppDelegate.m in Sources */,
 				461912AF1A01375100D3DE80 /* UITableViewCategories.m in Sources */,

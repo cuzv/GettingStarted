@@ -112,22 +112,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0Z-va-wgo">
-                                <rect key="frame" x="143" y="95" width="34" height="30"/>
-                                <state key="normal" title="clear">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="clearAction:" destination="qaf-Vm-N3V" eventType="touchUpInside" id="iDA-KS-paW"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x0P-FV-jC1">
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J5z-5B-T9g">
-                                <rect key="frame" x="244" y="85" width="40" height="40"/>
-                                <color key="backgroundColor" red="0.33333333329999998" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Uv-a5-TKW">
+                                <rect key="frame" x="137" y="72" width="33" height="30"/>
+                                <state key="normal" title="Stop">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stop:" destination="qaf-Vm-N3V" eventType="touchUpInside" id="VIb-9V-gZh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -139,7 +135,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="circleView" destination="J5z-5B-T9g" id="nkw-6p-4Bq"/>
                         <outlet property="colorView" destination="x0P-FV-jC1" id="La7-St-zMX"/>
                     </connections>
                 </viewController>

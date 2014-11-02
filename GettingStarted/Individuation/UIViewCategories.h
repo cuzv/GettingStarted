@@ -288,6 +288,13 @@ typedef NS_ENUM(NSInteger, CHToastAppearOrientation) {
 @interface UIView (UIActivityIndicatorView)
 
 /**
+ *  获取进度指示器
+ *
+ *  @return 进度指示器
+ */
+- (UIActivityIndicatorView *)activityIndicatorView;
+
+/**
  *  为视图添加进度指示器动画
  */
 - (void)addActivityIndicatorAnimation;
