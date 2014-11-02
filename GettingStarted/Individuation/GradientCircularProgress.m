@@ -10,7 +10,7 @@
 
 // 把角度转换成弧度的方式
 #define CHRadian(x) (M_PI * (x) / 180.0f)
-#define kGradientCircularProgressAnimationDuration 1.0f
+#define kAnimationDuration 1.0f
 #define kDefaultCircluarWidth 2.0f
 
 @interface GradientCircularProgress ()
@@ -19,7 +19,6 @@
 @property (nonatomic, assign) NSUInteger percent;
 @property (nonatomic, assign) BOOL sevenColorRing;
 @property (nonatomic, assign) BOOL resetAnimation;
-@property (nonatomic, readwrite, getter = isAnimating) BOOL animating;
 
 @end
 
@@ -30,20 +29,7 @@
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
-    [super willMoveToSuperview:newSuperview];
-    
     if (!newSuperview) {
-        self.resetAnimation = NO;
-        [self stopRotateAnimation];
-    }
-}
-
-- (void)willMoveToWindow:(UIWindow *)newWindow {
-    [super willMoveToWindow:newWindow];
-    
-    if (newWindow) {
-        [self startAnimation];
-    } else {
         self.resetAnimation = NO;
         [self stopAnimation];
     }
@@ -92,6 +78,7 @@
                  progressColor:(UIColor *)progressColor
                  circluarWidth:(CGFloat)circluarWidth {
     self.resetAnimation = YES;
+    
     // 裁剪为圆形
     self.backgroundColor = [UIColor clearColor];
     self.layer.cornerRadius = MIN(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)) / 2;
@@ -200,7 +187,7 @@
     [CATransaction begin];
     [CATransaction setDisableActions:!animated];
     [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
-    [CATransaction setAnimationDuration:kGradientCircularProgressAnimationDuration / 3];
+    [CATransaction setAnimationDuration:kAnimationDuration / 3];
     _progressLayer.strokeEnd = percent / 100.0f;
     [CATransaction commit];
     
@@ -208,18 +195,8 @@
 }
 
 - (void)startAnimation {
-    if (self.isAnimating) {
-        return;
-    }
-    
-    [self startRotateAnimation];
-    
-    self.animating = YES;
-}
-
-- (void)startRotateAnimation {
     CABasicAnimation *basicAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    basicAnimation.duration = kGradientCircularProgressAnimationDuration;
+    basicAnimation.duration = kAnimationDuration;
     basicAnimation.repeatCount = HUGE_VAL;
     basicAnimation.fromValue = 0;
     basicAnimation.toValue = @(2 * M_PI);
@@ -229,25 +206,11 @@
 }
 
 - (void)stopAnimation {
-    if (!self.animating) {
-        return;
-    }
-    
-    [self stopRotateAnimation];
-    
-    self.animating = NO;
+    [self.layer removeAllAnimations];
 }
 
-- (void)stopRotateAnimation {
-    [UIView animateWithDuration:0.3f animations:^{
-        self.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self.layer removeAllAnimations];
-        self.alpha = 1;
-    }];
-}
+#pragma mark - animation delegate
 
-// animation delegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     if (!flag && self.resetAnimation) {
         [self startAnimation];
