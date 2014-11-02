@@ -21,5 +21,6 @@
 #import "UILabelCategories.h"
 #import "UITextFieldCategories.h"
 #import "UITextViewCategories.h"
+#import "UIViewControllerCategories.h"
 
 #endif

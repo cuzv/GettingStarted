@@ -19,6 +19,7 @@
 @property (nonatomic, assign) NSUInteger percent;
 @property (nonatomic, assign) BOOL sevenColorRing;
 @property (nonatomic, assign) BOOL resetAnimation;
+@property (nonatomic, readwrite, getter = isAnimating) BOOL animating;
 
 @end
 
@@ -29,9 +30,22 @@
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
+    [super willMoveToSuperview:newSuperview];
+    
     if (!newSuperview) {
         self.resetAnimation = NO;
-        [self stopRotation];
+        [self stopRotateAnimation];
+    }
+}
+
+- (void)willMoveToWindow:(UIWindow *)newWindow {
+    [super willMoveToWindow:newWindow];
+    
+    if (newWindow) {
+        [self startAnimation];
+    } else {
+        self.resetAnimation = NO;
+        [self stopAnimation];
     }
 }
 
@@ -77,7 +91,7 @@
 - (void)drewViewWithTrackColor:(UIColor *)trackColor
                  progressColor:(UIColor *)progressColor
                  circluarWidth:(CGFloat)circluarWidth {
-    self.resetAnimation = NO;
+    self.resetAnimation = YES;
     // 裁剪为圆形
     self.backgroundColor = [UIColor clearColor];
     self.layer.cornerRadius = MIN(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)) / 2;
@@ -193,7 +207,17 @@
     _percent = percent;
 }
 
-- (void)startRotation {
+- (void)startAnimation {
+    if (self.isAnimating) {
+        return;
+    }
+    
+    [self startRotateAnimation];
+    
+    self.animating = YES;
+}
+
+- (void)startRotateAnimation {
     CABasicAnimation *basicAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     basicAnimation.duration = kGradientCircularProgressAnimationDuration;
     basicAnimation.repeatCount = HUGE_VAL;
@@ -204,14 +228,29 @@
     [self.layer addAnimation:basicAnimation forKey:@"rotationZ"];
 }
 
-- (void)stopRotation {
-    [self.layer removeAllAnimations];
+- (void)stopAnimation {
+    if (!self.animating) {
+        return;
+    }
+    
+    [self stopRotateAnimation];
+    
+    self.animating = NO;
+}
+
+- (void)stopRotateAnimation {
+    [UIView animateWithDuration:0.3f animations:^{
+        self.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.layer removeAllAnimations];
+        self.alpha = 1;
+    }];
 }
 
 // animation delegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     if (!flag && self.resetAnimation) {
-        [self startRotation];
+        [self startAnimation];
     }
 }
 

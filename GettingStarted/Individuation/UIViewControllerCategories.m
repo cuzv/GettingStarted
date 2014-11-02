@@ -88,6 +88,10 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 }
 
 - (void)removeNavigationBarActivityIndicatorAnimation {
+    if (!self.titleInAnimation) {
+        return;
+    }
+    
     // remove animation
     [self.navigationItem.titleView removeActivityIndicatorAnimation];
     [self.navigationItem.titleView removeFromSuperview];
@@ -138,6 +142,10 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 }
 
 - (void)removeNavigationBarRightItemActivityIndicatorAnimation {
+    if (!self.rightBarInAnimation) {
+        return;
+    }
+
     // reomve animation
     [self.navigationItem.rightBarButtonItem.customView removeActivityIndicatorAnimation];
     [self.navigationItem.rightBarButtonItem.customView removeFromSuperview];

@@ -41,12 +41,12 @@
 /**
  *  开始旋转动画
  */
-- (void)startRotation;
+- (void)startAnimation;
 
 /**
  *  停止旋转动画
  */
-- (void)stopRotation;
+- (void)stopAnimation;
 
 @end
 

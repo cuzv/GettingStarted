@@ -563,12 +563,12 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
     gradientCircularProgress.center = center;
     self.gradientCircularProgress = gradientCircularProgress;
     [self addSubview:gradientCircularProgress];
-    [gradientCircularProgress startRotation];
+    [gradientCircularProgress startAnimation];
 }
 
 
 - (void)removeGradientCircularProgressAnimation {
-    [self.gradientCircularProgress stopRotation];
+    [self.gradientCircularProgress stopAnimation];
     [self.gradientCircularProgress removeFromSuperview];
     self.gradientCircularProgress = nil;
 }

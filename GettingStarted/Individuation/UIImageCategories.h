@@ -70,4 +70,13 @@
  */
 + (UIImage *)imageWithColor:(UIColor *)aColor size:(CGSize)aSize;
 
+/**
+ *  把视图转为图片
+ *
+ *  @param view 需要被转换的视图
+ *
+ *  @return 图片
+ */
++ (UIImage *)imageWithView:(UIView *)view;
+
 @end

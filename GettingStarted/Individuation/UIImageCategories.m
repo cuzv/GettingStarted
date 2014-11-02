@@ -7,6 +7,7 @@
 //
 
 #import "UIImageCategories.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation UIImageCategories
 @end
@@ -46,6 +47,15 @@
     CGRect rect = CGRectMake(0, 0, aSize.width, aSize.height);
     CGContextFillRect(context, rect);
     
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
++ (UIImage *)imageWithView:(UIView *)view {
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     

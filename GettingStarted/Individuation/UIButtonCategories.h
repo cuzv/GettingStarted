@@ -98,3 +98,20 @@
                         action:(SEL)selector;
 
 @end
+
+
+#pragma mark - 点击等待
+
+@interface UIButton (IndicatorAnimation)
+
+/**
+ *  添加等待动画
+ */
+- (void)addWaitingAnimation;
+
+/**
+ *  移除等待动画
+ */
+- (void)removeWaitingAnimation;
+
+@end

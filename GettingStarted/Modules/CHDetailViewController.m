@@ -11,12 +11,16 @@
 #import "AccountManager.h"
 #import "GradientCircularProgress.h"
 #import "UIViewControllerCategories.h"
+#import "UIImageCategories.h"
+#import "UIButtonCategories.h"
 
 #define kMessageList @"getMobileMessageList"
 
 @interface CHDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIView *colorView;
 @property (strong, nonatomic) IBOutlet UIView *circleView;
+
+@property (nonatomic, strong) UIButton *button;
 
 @end
 
@@ -52,18 +56,53 @@
         view;
     });
     
+    _button = [[UIButton alloc] initWithFrame:CGRectMake(20, 180, 80, 30)];
+    [_button addTarget:self action:@selector(handleSendAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_button setTitle:@"点我呀" forState:UIControlStateNormal];
+    [_button setTitle:@"哦哦" forState:UIControlStateHighlighted];
+    
+    _button.backgroundColor = [UIColor purpleColor];
+    
+//    UIImage *image = [UIImage imageWithColor:[UIColor redColor] size:_button.size];
+//    [_button setBackgroundImage:image forState:UIControlStateNormal];
+
+    _button.layer.masksToBounds = YES;
+    _button.layer.cornerRadius = 5;
+    _button.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    _button.layer.borderWidth = 1;
+
+    
+    [self.view addSubview:_button];
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self addNavigationBarActivityIndicatorAnimation];
-    [self addNavigationBarRightItemActivityIndicatorAnimation];
+//    [self addNavigationBarRightItemActivityIndicatorAnimation];
+    [self.view addGradientCircularProgressAnimation];
 }
 
-- (IBAction)stop:(id)sender {
+- (IBAction)stop:(UIButton *)sender {
     [self removeNavigationBarActivityIndicatorAnimation];
     [self removeNavigationBarRightItemActivityIndicatorAnimation];
+    [_button removeWaitingAnimation];
+    
+    NSLog(@"%@", sender.currentTitleColor);
+    
 }
 
+- (void)handleSendAction:(UIButton *)sender {
+    [sender addWaitingAnimation];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+//    [self removeNavigationBarActivityIndicatorAnimation];
+//    [self removeNavigationBarRightItemActivityIndicatorAnimation];
+}
 
 
 @end
