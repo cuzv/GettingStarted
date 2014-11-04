@@ -73,6 +73,7 @@
 		46CA054A19CAD888007F2A82 /* AwesomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CA054719CAD888007F2A82 /* AwesomeMenu.m */; };
 		46CA054B19CAD888007F2A82 /* AwesomeMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CA054919CAD888007F2A82 /* AwesomeMenuItem.m */; };
 		46DAE7BD19FA91880023B145 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DAE7BC19FA91880023B145 /* UIImage+ImageEffects.m */; };
+		46FDE1181A08813600FC28F0 /* UINavigationBarCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 46FDE1171A08813600FC28F0 /* UINavigationBarCategories.m */; };
 		89EC71E5182D4705836F5824 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 824AB417A3D24AF8A91BBE61 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -210,6 +211,8 @@
 		46CA054919CAD888007F2A82 /* AwesomeMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeMenuItem.m; sourceTree = "<group>"; };
 		46DAE7BB19FA91880023B145 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		46DAE7BC19FA91880023B145 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		46FDE1161A08813600FC28F0 /* UINavigationBarCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINavigationBarCategories.h; sourceTree = "<group>"; };
+		46FDE1171A08813600FC28F0 /* UINavigationBarCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINavigationBarCategories.m; sourceTree = "<group>"; };
 		539F666E53D21B583661DD11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		824AB417A3D24AF8A91BBE61 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3F0FF722418256AC972AF0F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -357,6 +360,8 @@
 				46A1FC571A05EE0300D1DFA1 /* UIViewControllerCategories.h */,
 				46A1FC581A05EE0300D1DFA1 /* UIViewControllerCategories.m */,
 				465DCC261A0141A6009C0DF1 /* Categories.h */,
+				46FDE1161A08813600FC28F0 /* UINavigationBarCategories.h */,
+				46FDE1171A08813600FC28F0 /* UINavigationBarCategories.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -713,6 +718,7 @@
 				4619117F1A0117FF00D3DE80 /* BadgeView.m in Sources */,
 				46CA054B19CAD888007F2A82 /* AwesomeMenuItem.m in Sources */,
 				46DAE7BD19FA91880023B145 /* UIImage+ImageEffects.m in Sources */,
+				46FDE1181A08813600FC28F0 /* UINavigationBarCategories.m in Sources */,
 				460D108519D99F4100336848 /* BaseViewController.m in Sources */,
 				461911731A0116AE00D3DE80 /* TextEditConfigure.m in Sources */,
 				4619118F1A011A0000D3DE80 /* UIView+HUD.m in Sources */,

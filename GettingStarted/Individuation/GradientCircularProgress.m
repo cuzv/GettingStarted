@@ -20,6 +20,8 @@
 @property (nonatomic, assign) BOOL sevenColorRing;
 @property (nonatomic, assign) BOOL resetAnimation;
 @property (nonatomic, readwrite, getter = isAnimating) BOOL animating;
+@property (nonatomic, assign, getter = isInitializeTime) BOOL initializeTime;
+
 
 @end
 
@@ -41,6 +43,11 @@
 - (void)willMoveToWindow:(UIWindow *)newWindow {
     [super willMoveToWindow:newWindow];
     
+    if (self.isInitializeTime) {
+        self.initializeTime = NO;
+        return;
+    }
+
     if (newWindow) {
         [self startAnimation];
     } else {
@@ -249,6 +256,10 @@
 
 // animation delegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    if (!self.animating) {
+        return;
+    }
+
     if (!flag && self.resetAnimation) {
         [self startAnimation];
     }

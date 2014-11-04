@@ -14,6 +14,7 @@
 
 @property (nonatomic, assign) BOOL resetAnimation;
 @property (nonatomic, readwrite, getter = isAnimating) BOOL animating;
+@property (nonatomic, assign, getter = isInitializeTime) BOOL initializeTime;
 
 @end
 
@@ -30,6 +31,11 @@
 
 - (void)willMoveToWindow:(UIWindow *)newWindow {
     [super willMoveToWindow:newWindow];
+    
+    if (self.isInitializeTime) {
+        self.initializeTime = NO;
+        return;
+    }
     
     if (newWindow) {
         [self startAnimation];
@@ -50,11 +56,12 @@
     CGRect newFrame = CGRectMake(frame.origin.x, frame.origin.y, lengthOfSide, lengthOfSide);
     self = [super initWithFrame:newFrame];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
         self.layer.cornerRadius = lengthOfSide / 2;
+        self.backgroundColor = [UIColor clearColor];
         self.layer.masksToBounds = YES;
         
         self.resetAnimation = YES;
+        self.initializeTime = YES;
     }
     return self;
 }
@@ -137,6 +144,10 @@
 
 // animation delegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    if (!self.animating) {
+        return;
+    }
+    
     if (!flag && self.resetAnimation) {
         [self startRotateAnimation];
     }

@@ -13,6 +13,7 @@
 #import "UIViewControllerCategories.h"
 #import "UIImageCategories.h"
 #import "UIButtonCategories.h"
+#import "GapRing.h"
 
 #define kMessageList @"getMobileMessageList"
 
@@ -21,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UIView *circleView;
 
 @property (nonatomic, strong) UIButton *button;
+@property (strong, nonatomic) GapRing *gapRing;
 
 @end
 
@@ -75,21 +77,30 @@
     
     [self.view addSubview:_button];
     
+    
+    self.gapRing = [[GapRing alloc] initWithFrame:CGRectMake(20, 260, 40, 40)];
+    [self.view addSubview:_gapRing];
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self addNavigationBarActivityIndicatorAnimation];
+//    [self addNavigationBarActivityIndicatorAnimation];
 //    [self addNavigationBarRightItemActivityIndicatorAnimation];
     [self.view addGradientCircularProgressAnimation];
 }
 
 - (IBAction)stop:(UIButton *)sender {
-    [self removeNavigationBarActivityIndicatorAnimation];
-    [self removeNavigationBarRightItemActivityIndicatorAnimation];
-    [_button removeWaitingAnimation];
+//    [self removeNavigationBarActivityIndicatorAnimation];
+//    [self removeNavigationBarRightItemActivityIndicatorAnimation];
+//    [_button removeWaitingAnimation];
     
-    NSLog(@"%@", sender.currentTitleColor);
+//    [self.view removeGradientCircularProgressAnimation];
     
+    if (self.gapRing.isAnimating) {
+        [self.gapRing stopAnimation];
+    } else {
+        [self.gapRing startAnimation];
+    }
 }
 
 - (void)handleSendAction:(UIButton *)sender {
