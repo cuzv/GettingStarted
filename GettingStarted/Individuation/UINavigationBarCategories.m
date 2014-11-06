@@ -14,24 +14,26 @@
 @end
 
 
-static const void *HeightKey = &HeightKey;
+static const void *CustomHeightKey = &CustomHeightKey;
 
 @implementation UINavigationBar (CustomHeight)
 
-- (void)setHeight:(CGFloat)height {
-    [self willChangeValueForKey:@"HeightKey"];
-    objc_setAssociatedObject(self, HeightKey, @(height), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self didChangeValueForKey:@"HeightKey"];
+
+
+- (void)setCustomHeight:(CGFloat)customHeight {
+    [self willChangeValueForKey:@"CustomHeightKey"];
+    objc_setAssociatedObject(self, CustomHeightKey, @(customHeight), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self didChangeValueForKey:@"CustomHeightKey"];
 }
 
-- (CGFloat)height {
-    return [objc_getAssociatedObject(self, &HeightKey) doubleValue];
+- (CGFloat)customHeight {
+    return [objc_getAssociatedObject(self, &CustomHeightKey) doubleValue];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
     CGSize newSize;
-    if (self.height) {
-        newSize = CGSizeMake(self.superview.bounds.size.width, self.height);
+    if (self.customHeight) {
+        newSize = CGSizeMake(self.superview.bounds.size.width, self.customHeight);
     } else {
         newSize = [super sizeThatFits:size];
     }

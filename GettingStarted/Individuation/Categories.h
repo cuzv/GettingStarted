@@ -22,5 +22,6 @@
 #import "UITextFieldCategories.h"
 #import "UITextViewCategories.h"
 #import "UIViewControllerCategories.h"
+#import "UINavigationBarCategories.h"
 
 #endif

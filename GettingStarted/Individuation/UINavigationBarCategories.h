@@ -17,6 +17,6 @@
 
 @interface UINavigationBar (CustomHeight)
 
-@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) CGFloat customHeight;
 
 @end
