@@ -75,6 +75,7 @@ typedef NS_ENUM (NSInteger, FileSuffixName) {
 // The default setting is `HTTPRequestSerializerTypeNone`
 + (void)setHTTPRequestSerializerType:(HTTPRequestSerializerType)requestSerializerType;
 + (HTTPRequestSerializerType)requestSerializerType;
+
 // setting http response serializer type
 // If you wanna decode your response, please call this message in `AppDelegate`.
 // The default setting is `HTTPResponseSerializerTypeJSON`
@@ -105,10 +106,13 @@ typedef NS_ENUM (NSInteger, FileSuffixName) {
 
 // present progress animation
 + (void)requestWillBeginWithProgressAnimation;
+
 // remove request by method name
 + (void)removeRequestByMthodName:(NSString *)methodName;
+
 // remove lately request
 + (void)removeLatelyRequest;
+
 // remove all request
 + (void)removeAllRequest;
 

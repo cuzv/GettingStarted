@@ -63,7 +63,7 @@
 }
 
 - (IBAction)makeAlert:(id)sender {
-    [UIAlertView alertWithMessage:@"请检查网络设置请检查网络设置请检"];
+    [UIAlertView showAlertWithMessage:@"请检查网络设置请检查网络设置请检"];
 }
 
 - (IBAction)handleHUD:(id)sender {

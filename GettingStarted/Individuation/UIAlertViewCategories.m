@@ -17,7 +17,7 @@
 
 @implementation UIAlertView (Generate)
 
-+ (void)alertWithMessage:(NSString *)message {
++ (void)showAlertWithMessage:(NSString *)message {
     UIAlertView *alertView = [[self alloc] initWithTitle:@""
                                                  message:message
                                                 delegate:nil
@@ -27,7 +27,7 @@
 }
 
 #define kAlertDelayTimeInterval 5
-+ (void)alertWithAutomaticDisappearMessage:(NSString *)message {
++ (void)showAlertWithAutomaticDisappearMessage:(NSString *)message {
     UIAlertView *alertView = [[UIAlertView alloc]
                               initWithTitle:@""
                               message:message
@@ -49,7 +49,7 @@
     [invocation performSelector:@selector(invoke) withObject:nil afterDelay:kAlertDelayTimeInterval];
 }
 
-+ (void)alertWithAutomaticDisappearMessage:(NSString *)message delayTimeInterval:(NSTimeInterval)delay {
++ (void)showAlertWithAutomaticDisappearMessage:(NSString *)message delayTimeInterval:(NSTimeInterval)delay {
     UIAlertView *alertView = [[UIAlertView alloc]
                               initWithTitle:@""
                               message:message

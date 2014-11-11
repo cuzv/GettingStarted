@@ -25,11 +25,11 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 
 + (BOOL)verifyingPhone:(NSString *)phoneNumber {
     if (!phoneNumber.length) {
-        [UIAlertView alertWithMessage:CHPhoneNumberCanNotBeNull];
+        [UIAlertView showAlertWithMessage:CHPhoneNumberCanNotBeNull];
         return NO;
     }
     if (![self isValidPhoneNumber:phoneNumber]) {
-        [UIAlertView alertWithMessage:CHPhoneNumberInvalid];
+        [UIAlertView showAlertWithMessage:CHPhoneNumberInvalid];
         return NO;
     }
     return YES;
@@ -37,11 +37,11 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 
 + (BOOL)verifyingPassword:(NSString *)password {
     if (!password.length) {
-        [UIAlertView alertWithMessage:CHPasswordCanNotBeNull];
+        [UIAlertView showAlertWithMessage:CHPasswordCanNotBeNull];
         return NO;
     }
     if (![self isValidPassword:password]) {
-        [UIAlertView alertWithMessage:CHPasswordInvalid];
+        [UIAlertView showAlertWithMessage:CHPasswordInvalid];
         return NO;
     }
     return YES;
@@ -52,7 +52,7 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
         return NO;
     }
     if (![password isEqualToString:repeat]) {
-        [UIAlertView alertWithMessage:CHPasswordRepeatInvalid];
+        [UIAlertView showAlertWithMessage:CHPasswordRepeatInvalid];
         return NO;
     }
     return YES;
@@ -60,11 +60,11 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 
 + (BOOL)verifyingAuthCode:(NSString *)authCode {
     if (!authCode.length) {
-        [UIAlertView alertWithMessage:CHAuthCodeCanNotBeNull];
+        [UIAlertView showAlertWithMessage:CHAuthCodeCanNotBeNull];
         return NO;
     }
     if (![self isvalidAuthCode:authCode]) {
-        [UIAlertView alertWithMessage:CHAuthCodeInvalid];
+        [UIAlertView showAlertWithMessage:CHAuthCodeInvalid];
         return NO;
     }
     return YES;

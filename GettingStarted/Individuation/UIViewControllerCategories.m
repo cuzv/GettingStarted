@@ -59,7 +59,9 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 }
 
 - (void)addNavigationBarActivityIndicatorAnimation {
-    NSAssert(self.navigationController, @"This view controller did not has been pushed onto a navigation controller.");
+    if (!self.navigationController) {
+        return;
+    }
     
     // if add already, return
     if (self.titleInAnimation) {
@@ -115,7 +117,9 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 
 
 - (void)addNavigationBarRightItemActivityIndicatorAnimation {
-    NSAssert(self.navigationController, @"This view controller did not has been pushed onto a navigation controller.");
+    if (!self.navigationController) {
+        return;
+    }
     
     // if add already, return
     if (self.rightBarInAnimation) {
