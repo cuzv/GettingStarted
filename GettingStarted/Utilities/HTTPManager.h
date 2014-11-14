@@ -87,6 +87,12 @@ typedef NS_ENUM (NSInteger, FileSuffixName) {
                    success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+// POST png
++ (void)POSTPNGWithMethodName:(NSString *)methodName
+				   parameters:(NSDictionary *)parameters
+					formDatas:(NSArray *)datas
+					  success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+					  failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 // POST with data
 + (void)POSTWithMethodName:(NSString *)methodName
                 parameters:(NSDictionary *)parameters
@@ -97,12 +103,7 @@ typedef NS_ENUM (NSInteger, FileSuffixName) {
                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 
-// POST png
-+ (void)POSTPNGWithMethodName:(NSString *)methodName
-                   parameters:(NSDictionary *)parameters
-                    formDatas:(NSArray *)datas
-                      success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 
 // present progress animation
 + (void)requestWillBeginWithProgressAnimation;

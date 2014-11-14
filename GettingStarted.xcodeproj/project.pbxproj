@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4603C3A01A15057E00CAD43D /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 4603C39F1A15057E00CAD43D /* UserDefaults.m */; };
 		46040D4319A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */; };
 		4609153019C999410024B749 /* WDActivityIndicator.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4609152D19C999410024B749 /* WDActivityIndicator.bundle */; };
 		4609153119C999410024B749 /* WDActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4609152F19C999410024B749 /* WDActivityIndicator.m */; };
@@ -88,6 +89,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4603C39E1A15057E00CAD43D /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDefaults.h; path = ../Utilities/UserDefaults.h; sourceTree = "<group>"; };
+		4603C39F1A15057E00CAD43D /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserDefaults.m; path = ../Utilities/UserDefaults.m; sourceTree = "<group>"; };
 		46040D4219A5FC4B007253F6 /* ProvincesAndCitiesAndAreas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCitiesAndAreas.plist; sourceTree = "<group>"; };
 		4609152D19C999410024B749 /* WDActivityIndicator.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WDActivityIndicator.bundle; sourceTree = "<group>"; };
 		4609152E19C999410024B749 /* WDActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDActivityIndicator.h; sourceTree = "<group>"; };
@@ -105,8 +108,8 @@
 		460D103F19D99EDB00336848 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		460D104019D99EDB00336848 /* HTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPManager.h; sourceTree = "<group>"; };
 		460D104119D99EDB00336848 /* HTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPManager.m; sourceTree = "<group>"; };
-		460D104219D99EDB00336848 /* PersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistenceManager.h; sourceTree = "<group>"; };
-		460D104319D99EDB00336848 /* PersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistenceManager.m; sourceTree = "<group>"; };
+		460D104219D99EDB00336848 /* PersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistenceManager.h; path = ../Utilities/PersistenceManager.h; sourceTree = "<group>"; };
+		460D104319D99EDB00336848 /* PersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistenceManager.m; path = ../Utilities/PersistenceManager.m; sourceTree = "<group>"; };
 		460D104519D99EDB00336848 /* VerificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationManager.h; sourceTree = "<group>"; };
 		460D104619D99EDB00336848 /* VerificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationManager.m; sourceTree = "<group>"; };
 		460D105119D99F4100336848 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -194,8 +197,8 @@
 		46859E381A06313500D2D373 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		46859E3A1A063CFF00D2D373 /* GapRing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GapRing.h; sourceTree = "<group>"; };
 		46859E3B1A063CFF00D2D373 /* GapRing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GapRing.m; sourceTree = "<group>"; };
-		469154D819DC02CB00A16D84 /* ReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityManager.h; sourceTree = "<group>"; };
-		469154D919DC02CB00A16D84 /* ReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityManager.m; sourceTree = "<group>"; };
+		469154D819DC02CB00A16D84 /* ReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReachabilityManager.h; path = ../Utilities/ReachabilityManager.h; sourceTree = "<group>"; };
+		469154D919DC02CB00A16D84 /* ReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReachabilityManager.m; path = ../Utilities/ReachabilityManager.m; sourceTree = "<group>"; };
 		46A1FC571A05EE0300D1DFA1 /* UIViewControllerCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerCategories.h; sourceTree = "<group>"; };
 		46A1FC581A05EE0300D1DFA1 /* UIViewControllerCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerCategories.m; sourceTree = "<group>"; };
 		46AD339C19D8366000B97B98 /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
@@ -279,7 +282,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		460D0FE119D99EBB00336848 /* References */ = {
+		460D0FE119D99EBB00336848 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				460D0FE219D99EBB00336848 /* AppConstant.h */,
@@ -290,36 +293,35 @@
 				460D0FE719D99EBB00336848 /* NIConstant.h */,
 				460D0FE819D99EBB00336848 /* NIConstant.m */,
 			);
+			name = Application;
 			path = References;
 			sourceTree = "<group>";
 		};
-		460D103D19D99EDB00336848 /* Utilities */ = {
+		460D103D19D99EDB00336848 /* Helps */ = {
 			isa = PBXGroup;
 			children = (
 				460D103E19D99EDB00336848 /* AccountManager.h */,
 				460D103F19D99EDB00336848 /* AccountManager.m */,
 				460D104019D99EDB00336848 /* HTTPManager.h */,
 				460D104119D99EDB00336848 /* HTTPManager.m */,
-				460D104219D99EDB00336848 /* PersistenceManager.h */,
-				460D104319D99EDB00336848 /* PersistenceManager.m */,
 				460D104519D99EDB00336848 /* VerificationManager.h */,
 				460D104619D99EDB00336848 /* VerificationManager.m */,
-				469154D819DC02CB00A16D84 /* ReachabilityManager.h */,
-				469154D919DC02CB00A16D84 /* ReachabilityManager.m */,
 			);
+			name = Helps;
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		460D104C19D99F4100336848 /* General */ = {
+		460D104C19D99F4100336848 /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				460D105119D99F4100336848 /* BaseViewController.h */,
 				460D105219D99F4100336848 /* BaseViewController.m */,
 			);
+			name = Base;
 			path = General;
 			sourceTree = "<group>";
 		};
-		4619114A1A01118A00D3DE80 /* Individuation */ = {
+		4619114A1A01118A00D3DE80 /* Generator */ = {
 			isa = PBXGroup;
 			children = (
 				4619118A1A01198600D3DE80 /* Dependencies */,
@@ -327,6 +329,7 @@
 				461911581A01131000D3DE80 /* Classess */,
 				461911571A0112FC00D3DE80 /* Categories */,
 			);
+			name = Generator;
 			path = Individuation;
 			sourceTree = "<group>";
 		};
@@ -369,6 +372,12 @@
 		461911581A01131000D3DE80 /* Classess */ = {
 			isa = PBXGroup;
 			children = (
+				460D104219D99EDB00336848 /* PersistenceManager.h */,
+				460D104319D99EDB00336848 /* PersistenceManager.m */,
+				469154D819DC02CB00A16D84 /* ReachabilityManager.h */,
+				469154D919DC02CB00A16D84 /* ReachabilityManager.m */,
+				4603C39E1A15057E00CAD43D /* UserDefaults.h */,
+				4603C39F1A15057E00CAD43D /* UserDefaults.m */,
 				461911711A0116AE00D3DE80 /* TextEditConfigure.h */,
 				461911721A0116AE00D3DE80 /* TextEditConfigure.m */,
 				4619116E1A01164000D3DE80 /* ArrayDataSource.h */,
@@ -472,11 +481,11 @@
 		46574D49199E496C004DC73B /* GettingStarted */ = {
 			isa = PBXGroup;
 			children = (
-				460D0FE119D99EBB00336848 /* References */,
+				460D0FE119D99EBB00336848 /* Application */,
 				460D0FE019D99B2A00336848 /* Models */,
-				460D104C19D99F4100336848 /* General */,
-				460D103D19D99EDB00336848 /* Utilities */,
-				4619114A1A01118A00D3DE80 /* Individuation */,
+				460D104C19D99F4100336848 /* Base */,
+				460D103D19D99EDB00336848 /* Helps */,
+				4619114A1A01118A00D3DE80 /* Generator */,
 				46574D7E199E61C5004DC73B /* Vendors */,
 				46574D7C199E61C5004DC73B /* Resources */,
 				46C363AD19A18D4900BB3F84 /* Modules */,
@@ -732,6 +741,7 @@
 				460D104819D99EDB00336848 /* HTTPManager.m in Sources */,
 				461912AC1A01324600D3DE80 /* UILabelCategories.m in Sources */,
 				46574D50199E496C004DC73B /* main.m in Sources */,
+				4603C3A01A15057E00CAD43D /* UserDefaults.m in Sources */,
 				469154DA19DC02CB00A16D84 /* ReachabilityManager.m in Sources */,
 				4625B48119A87EC0006B09BC /* CHThirdViewController.m in Sources */,
 				46CA054A19CAD888007F2A82 /* AwesomeMenu.m in Sources */,

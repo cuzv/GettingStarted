@@ -416,6 +416,20 @@ static NSMutableArray *sessions;
                                         }];
 }
 
++ (void)POSTPNGWithMethodName:(NSString *)methodName
+				   parameters:(NSDictionary *)parameters
+					formDatas:(NSArray *)datas
+					  success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+					  failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+	[self POSTWithMethodName:methodName
+				  parameters:parameters
+				   formDatas:datas
+				   formField:HTTPFormFieldPNG
+					mineType:HTTPMineTypePNG
+					 success:success
+					 failure:failure];
+}
+
 // POST with data
 + (void)POSTWithMethodName:(NSString *)methodName
                 parameters:(NSDictionary *)parameters
@@ -456,19 +470,6 @@ static NSMutableArray *sessions;
     
 }
 
-+ (void)POSTPNGWithMethodName:(NSString *)methodName
-                   parameters:(NSDictionary *)parameters
-                    formDatas:(NSArray *)datas
-                      success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-    [self POSTWithMethodName:methodName
-                  parameters:parameters
-                   formDatas:datas
-                   formField:HTTPFormFieldPNG
-                    mineType:HTTPMineTypePNG
-                     success:success
-                     failure:failure];
-}
 
 
 @end

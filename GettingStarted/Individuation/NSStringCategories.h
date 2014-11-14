@@ -142,3 +142,12 @@
 + (NSString *)picturesDirectory;
 
 @end
+
+
+#pragma mark - 生成唯一字符串
+
+@interface NSString (UniqueIdentifier)
+
++ (NSString *)uniqueIdentifier;
+
+@end

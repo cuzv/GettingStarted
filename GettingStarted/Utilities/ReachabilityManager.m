@@ -20,7 +20,7 @@
 }
 
 - (BOOL)startMonitoringUsingBlock:(NetowrkingStatus)callback {
-    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.baidu.com"];
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
     reachability.unreachableBlock = ^(Reachability * reachability) {
         callback(NO);
     };

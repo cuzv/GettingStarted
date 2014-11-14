@@ -138,3 +138,12 @@
 @end
 
 
+#pragma mark - 生成唯一字符串
+
+@implementation NSString (UniqueIdentifier)
+
++ (NSString *)uniqueIdentifier {
+	return [[[NSUUID UUID] UUIDString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+}
+
+@end
