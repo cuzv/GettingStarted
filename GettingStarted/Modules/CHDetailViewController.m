@@ -14,6 +14,7 @@
 #import "UIImageCategories.h"
 #import "UIButtonCategories.h"
 #import "GapRing.h"
+#import "UINavigationBarCategories.h"
 
 #define kMessageList @"getMobileMessageList"
 
@@ -45,48 +46,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"导航栏";
     
-    self.navigationController.navigationBar.tintColor = [UIColor redColor];
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor redColor]};
-    
-    NSLog(@"%@", self.title);
-    NSLog(@"%@", self.navigationItem.title);
-    
-    self.navigationItem.titleView = ({
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 44)];
-        view.backgroundColor = [UIColor orangeColor];
-        view;
-    });
-    
-    _button = [[UIButton alloc] initWithFrame:CGRectMake(20, 180, 80, 30)];
-    [_button addTarget:self action:@selector(handleSendAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [_button setTitle:@"点我呀" forState:UIControlStateNormal];
-    [_button setTitle:@"哦哦" forState:UIControlStateHighlighted];
-    
-    _button.backgroundColor = [UIColor purpleColor];
-    
-//    UIImage *image = [UIImage imageWithColor:[UIColor redColor] size:_button.size];
-//    [_button setBackgroundImage:image forState:UIControlStateNormal];
-
-    _button.layer.masksToBounds = YES;
-    _button.layer.cornerRadius = 5;
-    _button.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _button.layer.borderWidth = 1;
-
-    
-    [self.view addSubview:_button];
-    
-    
-    self.gapRing = [[GapRing alloc] initWithFrame:CGRectMake(20, 260, 40, 40)];
-    [self.view addSubview:_gapRing];
-    
+	[self.navigationController.navigationBar addIndicatorAnimation];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [self addNavigationBarActivityIndicatorAnimation];
-//    [self addNavigationBarRightItemActivityIndicatorAnimation];
-    [self.view addGradientCircularProgressAnimation];
+	[self.navigationController.navigationBar removeIndicatorAnimation];
 }
 
 - (IBAction)stop:(UIButton *)sender {

@@ -20,3 +20,15 @@
 @property (nonatomic, assign) CGFloat customHeight;
 
 @end
+
+
+#pragma mark - 加载进度动画
+
+@interface UINavigationBar (IndicatorAnimation)
+
+- (void)addIndicatorAnimation;
+- (void)removeIndicatorAnimation;
+
+- (BOOL)isInAnimation;
+
+@end

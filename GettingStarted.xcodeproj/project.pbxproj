@@ -51,6 +51,7 @@
 		462C373A19E90AC200A1862B /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 462C373619E90AC200A1862B /* .gitattributes */; };
 		462C373B19E90AC200A1862B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 462C373719E90AC200A1862B /* .gitignore */; };
 		462C373C19E90AC200A1862B /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 462C373919E90AC200A1862B /* UIImage+Resize.m */; };
+		46379C711A1A269B0064CF9F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46379C701A1A269B0064CF9F /* LaunchScreen.xib */; };
 		4638FB5F19D6D9F200A28891 /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4638FB5E19D6D9F200A28891 /* FourthViewController.m */; };
 		46574D44199E496C004DC73B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D43199E496C004DC73B /* Foundation.framework */; };
 		46574D46199E496C004DC73B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46574D45199E496C004DC73B /* CoreGraphics.framework */; };
@@ -175,6 +176,7 @@
 		462C373719E90AC200A1862B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		462C373819E90AC200A1862B /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		462C373919E90AC200A1862B /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		46379C701A1A269B0064CF9F /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		4638FB5D19D6D9F200A28891 /* FourthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
 		4638FB5E19D6D9F200A28891 /* FourthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
 		46574D40199E496C004DC73B /* GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -494,6 +496,7 @@
 				46574D55199E496C004DC73B /* Main.storyboard */,
 				46574D5B199E496C004DC73B /* Images.xcassets */,
 				46574D4A199E496C004DC73B /* Supporting Files */,
+				46379C701A1A269B0064CF9F /* LaunchScreen.xib */,
 			);
 			path = GettingStarted;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				46574D57199E496C004DC73B /* Main.storyboard in Resources */,
 				462C373A19E90AC200A1862B /* .gitattributes in Resources */,
 				462ABC25199FA19B006C56E1 /* ProvincesAndCities.plist in Resources */,
+				46379C711A1A269B0064CF9F /* LaunchScreen.xib in Resources */,
 				4609153019C999410024B749 /* WDActivityIndicator.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
