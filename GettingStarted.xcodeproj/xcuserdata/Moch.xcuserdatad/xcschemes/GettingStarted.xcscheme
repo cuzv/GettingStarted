@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0610"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "46574D3F199E496C004DC73B"
+               BlueprintIdentifier = "46F11DBA1A1B7958009321A0"
                BuildableName = "GettingStarted.app"
                BlueprintName = "GettingStarted"
+               ReferencedContainer = "container:GettingStarted.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "46F11DD31A1B7958009321A0"
+               BuildableName = "GettingStartedTests.xctest"
+               BlueprintName = "GettingStartedTests"
                ReferencedContainer = "container:GettingStarted.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "46574D60199E496D004DC73B"
+               BlueprintIdentifier = "46F11DD31A1B7958009321A0"
                BuildableName = "GettingStartedTests.xctest"
                BlueprintName = "GettingStartedTests"
                ReferencedContainer = "container:GettingStarted.xcodeproj">
@@ -42,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "46574D3F199E496C004DC73B"
+            BlueprintIdentifier = "46F11DBA1A1B7958009321A0"
             BuildableName = "GettingStarted.app"
             BlueprintName = "GettingStarted"
             ReferencedContainer = "container:GettingStarted.xcodeproj">
@@ -61,7 +75,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "46574D3F199E496C004DC73B"
+            BlueprintIdentifier = "46F11DBA1A1B7958009321A0"
             BuildableName = "GettingStarted.app"
             BlueprintName = "GettingStarted"
             ReferencedContainer = "container:GettingStarted.xcodeproj">
@@ -79,7 +93,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "46574D3F199E496C004DC73B"
+            BlueprintIdentifier = "46F11DBA1A1B7958009321A0"
             BuildableName = "GettingStarted.app"
             BlueprintName = "GettingStarted"
             ReferencedContainer = "container:GettingStarted.xcodeproj">
