@@ -14,7 +14,9 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-//	[self testBadgeView];	
+//	[self testBadgeView];
+	
+	NSLog(@"%f", appVersion());
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -26,8 +28,10 @@
 //		[self.navigationController.navigationBar addIndicatorAnimation];
 //	}
 	
-	[self testNavi];
-
+//	[self testNavi];
+//	openBrowser([NSURL URLWithString:@"http://www.baidu.com"]);
+//	emailTo(@"atcuan@gmail.com");
+	sendSMSTo(@"18583221776");
 }
 
 - (void)testBadgeView {

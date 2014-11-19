@@ -20,6 +20,20 @@
  */
 NSUInteger deviceSystemMajorVersion();
 
+/**
+ *  获取 App build number
+ *
+ *  @return App build number
+ */
+float appBuild();
+
+/**
+ *  获取 App 版本号
+ *
+ *  @return App 版本号
+ */
+float appVersion();
+
 #pragma mark -
 
 /**
@@ -116,6 +130,42 @@ NSString *picturesDirectory();
  */
 NSString *uniqueIdentifier();
 
+#pragma mark - 
+
+/**
+ *  拨打电话
+ *
+ *  @param phoneNumber 电话号码
+ */
+void callPhoneNumber(NSString *phoneNumber);
+
+/**
+ *  发送短信
+ *
+ *  @param phoneNumber 电话号码
+ */
+void sendSMSTo(NSString *phoneNumber);
+
+/**
+ *  打开浏览器
+ *
+ *  @param webURL 浏览网址
+ */
+void openBrowser(NSURL *webURL);
+
+/**
+ *  发送邮件
+ *
+ *  @param receiverEmail 收件人地址
+ */
+void emailTo(NSString *receiverEmail);
+
+/**
+ *  打开 App store
+ *
+ *  @param appLink App 地址
+ */
+void openAppStoreByAppLink(NSURL *appLink);
 
 @end
 

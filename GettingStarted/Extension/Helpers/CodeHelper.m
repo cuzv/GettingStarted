@@ -8,6 +8,7 @@
 
 #import "CodeHelper.h"
 #import <UIKit/UIKit.h>
+#import "UIAlertViewExtension.h"
 
 @implementation CodeHelper
 
@@ -20,6 +21,26 @@ NSUInteger deviceSystemMajorVersion() {
 		_deviceSystemMajorVersion = [[[[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."] objectAtIndex:0] intValue];
 	});
 	return _deviceSystemMajorVersion;
+}
+
+float appBuild() {
+	static float _appBuild;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		_appBuild = [[[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"] floatValue];
+	});
+	
+	return _appBuild;
+}
+
+float appVersion() {
+	static float _appVersion;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		_appVersion = [[[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] floatValue];
+	});
+	
+	return _appVersion;
 }
 
 #pragma mark -
@@ -81,6 +102,40 @@ NSString *picturesDirectory() {
 
 NSString *uniqueIdentifier() {
 	return [[[NSUUID UUID] UUIDString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+}
+
+#pragma mark - 
+
+void performApplicatonEventByURL(NSURL *eventURL) {
+	UIApplication *application = [UIApplication sharedApplication];
+	if ([application canOpenURL:eventURL]) {
+		[application openURL:eventURL];
+	} else {
+		[UIAlertView showAlertWithMessage:@"当前操作非法！"];
+	}
+}
+
+void callPhoneNumber(NSString *phoneNumber) {
+	NSURL *destination = [NSURL URLWithString:[@"telprompt:" stringByAppendingString:phoneNumber]];
+	performApplicatonEventByURL(destination);
+}
+
+void sendSMSTo(NSString *phoneNumber) {
+	NSURL *destination = [NSURL URLWithString:[@"sms:" stringByAppendingString:phoneNumber]];
+	performApplicatonEventByURL(destination);
+}
+
+void openBrowser(NSURL *webURL) {
+	performApplicatonEventByURL(webURL);
+}
+
+void emailTo(NSString *receiverEmail) {
+	NSURL *destination = [NSURL URLWithString:[@"mailto:" stringByAppendingString:receiverEmail]];
+	performApplicatonEventByURL(destination);
+}
+
+void openAppStoreByAppLink(NSURL *appLink) {
+	performApplicatonEventByURL(appLink);
 }
 
 @end
