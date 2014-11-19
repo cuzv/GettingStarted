@@ -271,4 +271,8 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     self.animating = NO;
 }
 
+- (BOOL)isInAnimation {
+	return self.animating;
+}
+
 @end

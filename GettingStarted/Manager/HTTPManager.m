@@ -13,6 +13,7 @@
 #import "NSObjectExtension.h"
 #import "HttpConfigure.h"
 #import "UIViewExtension.h"
+#import "UIAlertViewExtension.h"
 
 NSString *CHHTTPRequestMethodName = @"";
 
@@ -173,7 +174,7 @@ static NSMutableArray *sessions;
 + (BOOL)shouldContinue {
     BOOL shouldContinue = YES;
     if (![CHHTTPSessionManager isNetworkReachable]) {
-        [UIView toastWithMessage:CHNetworkNotReachable];
+		[UIAlertView showAlertWithMessage:CHNetworkNotReachable];
         shouldContinue = NO;
     }
     return shouldContinue;

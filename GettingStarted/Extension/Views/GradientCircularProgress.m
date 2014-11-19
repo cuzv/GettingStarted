@@ -7,9 +7,8 @@
 //
 
 #import "GradientCircularProgress.h"
+#import "CodeHelper.h"
 
-// 把角度转换成弧度的方式
-#define CHRadian(x) (M_PI * (x) / 180.0f)
 #define kGradientCircularProgressAnimationDuration 1.0f
 #define kDefaultCircluarWidth 2.0f
 
@@ -107,8 +106,8 @@
     // 创建 track 路径
     UIBezierPath *trackPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))
                                                              radius:(CGRectGetWidth(self.bounds) - circluarWidth) / 2
-                                                         startAngle:CHRadian(0)
-                                                           endAngle:CHRadian(360)
+                                                         startAngle:radianFromAngle(0)
+                                                           endAngle:radianFromAngle(360)
                                                           clockwise:YES];
     // 创建一个track shape layer
     CAShapeLayer *trackLayer = [CAShapeLayer layer];
@@ -129,8 +128,8 @@
     // 构建圆弧
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))
                                                         radius:(CGRectGetWidth(self.bounds) - circluarWidth) / 2
-                                                    startAngle:CHRadian(95)
-                                                      endAngle:CHRadian(445 + (_sevenColorRing ? 10 : 0))
+                                                    startAngle:radianFromAngle(95)
+                                                      endAngle:radianFromAngle(445 + (_sevenColorRing ? 10 : 0))
                                                      clockwise:YES];
     // 进度条
     _progressLayer = [CAShapeLayer layer];
@@ -152,7 +151,7 @@
     
     // right gradient layer
     CAGradientLayer *rightGradientLayer =  [CAGradientLayer layer];
-    //    right GradientLayer.locations = @[@0.1, @0.5, @1];
+    // right GradientLayer.locations = @[@0.1, @0.5, @1];
     rightGradientLayer.frame = CGRectMake(CGRectGetMidX(self.bounds), 0, CGRectGetMidX(self.bounds), CGRectGetHeight(self.bounds));
     rightGradientLayer.colors = _sevenColorRing ? [[[self gradientColorRefs] reverseObjectEnumerator] allObjects] : [self rightGradientColorRefs:progressColor];
     rightGradientLayer.startPoint = CGPointMake(0.5, 0);

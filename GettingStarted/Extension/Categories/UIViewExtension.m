@@ -7,6 +7,7 @@
 //
 
 #import "UIViewExtension.h"
+#import "CodeHelper.h"
 
 @implementation UIViewExtension
 @end
@@ -214,8 +215,8 @@ static const void *ArcLayerKey = &ArcLayerKey;
     CGFloat half = MIN(CGRectGetMidX(rect), CGRectGetMidY(rect));
     [path addArcWithCenter:CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))
                     radius:half
-                startAngle:2 * M_PI - M_PI_2
-                  endAngle:-M_PI_2
+                startAngle:radianFromAngle(-90)
+                  endAngle:radianFromAngle(270)
                  clockwise:YES];
     CAShapeLayer *arcLayer = [CAShapeLayer layer];
     arcLayer.path = path.CGPath;
@@ -259,6 +260,7 @@ static const void *ArcLayerKey = &ArcLayerKey;
 
 
 #pragma mark - 为视图添加振动动画效果
+
 @implementation UIView (ShakeAnimation)
 
 - (void)shake {
@@ -270,23 +272,6 @@ static const void *ArcLayerKey = &ArcLayerKey;
     animation.keyPath = orientation == CHAnimationOrientationHorizontal ? @"position.x" : @"position.y";
     animation.values = @[@0, @10, @-10, @10, @0];
     animation.keyTimes = @[@0, @(1 / 6.0f), @(3 / 6.0f), @(5 / 6.0f), @1];
-    animation.duration = 0.4;
-    animation.additive = YES;
-    [self.layer addAnimation:animation forKey:@"shake"];
-}
-
-#define kBottomVerticalDistanceForEdges 80
-#define kTopVerticalDistanceForEdges 65
-- (void)shakeForToastAppearOrientation:(CHToastAppearOrientation)orientation {
-    CGFloat verticalMovingValue = self.height + orientation == CHToastAppearOrientationBottom ? kBottomVerticalDistanceForEdges : kTopVerticalDistanceForEdges;
-    verticalMovingValue = orientation == CHToastAppearOrientationBottom ? verticalMovingValue: -verticalMovingValue;
-    CGFloat verticalMovingFixedValue = -20;
-    verticalMovingFixedValue = orientation == CHToastAppearOrientationBottom ? verticalMovingFixedValue : -verticalMovingFixedValue;
-    
-    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-    animation.keyPath = @"position.y";
-    animation.values = @[@0, @(verticalMovingValue), @(verticalMovingFixedValue), @0];
-    animation.keyTimes = @[@0, @0, @(2 / 3.0f), @1];
     animation.duration = 0.4;
     animation.additive = YES;
     [self.layer addAnimation:animation forKey:@"shake"];
@@ -355,125 +340,6 @@ static const void *ArcLayerKey = &ArcLayerKey;
 
 @end
 
-
-
-
-#pragma mark -  吐司框效果
-
-#import "PaddingLabel.h"
-#import "NSStringExtension.h"
-
-#define kDelayDuration 1.5
-#define kHorizontalDistanceForEdges 60
-
-@implementation UIView (Toast)
-
-+ (void)toastWithMessage:(NSString *)message
-       appearOrientation:(CHToastAppearOrientation)orientation {
-    if (!message.length) {
-        return;
-    }
-    
-    // prepare toast display label
-    UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-    CGSize size = [message sizeWithFont:font width:CGRectGetWidth([[UIScreen mainScreen] bounds]) - kHorizontalDistanceForEdges * 2];
-    PaddingLabel *toastLabel = [PaddingLabel new];
-    CGFloat paddingEdgeInsetsSideLength = toastLabel.edgeInsets.left + toastLabel.edgeInsets.right;
-    toastLabel.bounds = CGRectMake(0, 0, size.width + paddingEdgeInsetsSideLength, size.height + paddingEdgeInsetsSideLength);
-    toastLabel.backgroundColor = [UIColor blackColor];
-    toastLabel.textColor = [UIColor whiteColor];
-    toastLabel.textAlignment = NSTextAlignmentLeft;
-    toastLabel.contentMode = UIViewContentModeCenter;
-    toastLabel.numberOfLines = 0;
-    toastLabel.layer.cornerRadius = 5;
-    toastLabel.layer.masksToBounds = YES;
-    toastLabel.font = font;
-    toastLabel.text = message;
-    // resolve label right edge hava a gray line problem
-    [toastLabel setBorderLineColor:toastLabel.backgroundColor];
-    // toast can display on top of keyboard
-    [[[[UIApplication sharedApplication] windows] lastObject] addSubview:toastLabel];
-    
-    // prepare animations
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    if (orientation == CHToastAppearOrientationTop) {
-        toastLabel.center = CGPointMake(bounds.size.width / 2 , CGRectGetMidY(toastLabel.bounds) + kTopVerticalDistanceForEdges);
-    } else if (orientation == CHToastAppearOrientationBottom) {
-        toastLabel.center = CGPointMake(bounds.size.width / 2 , bounds.size.height - toastLabel.bounds.size.height - kBottomVerticalDistanceForEdges);
-    }
-    
-    // run animation
-    [toastLabel shakeForToastAppearOrientation:orientation];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.3 animations:^{
-            toastLabel.alpha = 0;
-        } completion:^(BOOL finished) {
-            [toastLabel removeFromSuperview];
-        }];
-    });
-}
-
-+ (void)toastWithMessage:(NSString *)message {
-    [self toastWithMessage:message appearOrientation:CHToastAppearOrientationTop];
-}
-
-- (void)makeToast:(NSString *)message {
-    __block UIView *backgroundView = [UIView new];
-    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
-    UIViewAutoresizingFlexibleRightMargin |
-    UIViewAutoresizingFlexibleTopMargin |
-    UIViewAutoresizingFlexibleBottomMargin;
-    backgroundView.layer.cornerRadius = 10;
-    backgroundView.layer.masksToBounds = YES;
-    __block UILabel *toastLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 220, 400)];
-    toastLabel.text = message;
-    toastLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-    toastLabel.numberOfLines = 0;
-    [toastLabel sizeToFit];
-    toastLabel.alpha = 0;
-    [backgroundView addSubview:toastLabel];
-    CGFloat toastWidth = CGRectGetWidth(toastLabel.bounds) + 40;
-    toastWidth = toastWidth < 260 ? toastWidth : 260;
-    CGFloat toastHeight = CGRectGetHeight(toastLabel.bounds) + 40;
-    toastHeight = toastHeight > 80 ? toastHeight : 80;
-    backgroundView.bounds = CGRectMake(0, 0, toastWidth, toastHeight);
-    CGFloat toastMidX = CGRectGetWidth(self.bounds) / 2;
-    CGFloat toastMidY = CGRectGetHeight(self.bounds) / 2;
-    toastMidY = [UIView isKeyBoardInDisplay] ? toastMidY - 60 : toastMidY;
-    backgroundView.center = CGPointMake(toastMidX, toastMidY);
-    toastLabel.center = CGPointMake(CGRectGetMidX(backgroundView.bounds),
-                                    CGRectGetMidY(backgroundView.bounds));
-    [backgroundView blur];
-    [self addSubview:backgroundView];
-    [UIView animateWithDuration:0.5 animations:^{
-        toastLabel.alpha = 1;
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5 delay:2 options:0 animations:^{
-            toastLabel.alpha = 0;
-            backgroundView.alpha = 0;
-        } completion:^(BOOL finished) {
-            [toastLabel removeFromSuperview];
-            toastLabel = nil;
-            [backgroundView removeFromSuperview];
-            backgroundView = nil;
-        }];
-    }];
-}
-
-+ (BOOL)isKeyBoardInDisplay {
-    BOOL isExists = NO;
-    for (UIWindow *keyboardWindow in [[UIApplication sharedApplication] windows])   {
-        if ([[keyboardWindow description] hasPrefix:@"<UITextEffectsWindow"] == YES) {
-            isExists = YES;
-        }
-    }
-    
-    return isExists;
-}
-
-@end
-
-
 #pragma mark - 为视图添加进度指示器
 
 #import <objc/runtime.h>
@@ -522,6 +388,10 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
     [self.activityIndicatorView stopAnimating];
     [self.activityIndicatorView removeFromSuperview];
     self.activityIndicatorView = nil;
+}
+
+- (BOOL)isInActivityIndicatorAnimation {
+	return self.activityIndicatorView ? YES : NO;
 }
 
 @end
@@ -606,38 +476,38 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 @implementation UIView (BorderLine)
 
 - (void)setBorderLine {
-    [self setBorderLineColor:kBorderLineGrayColor edgeOrientation:CHEdgeOrientationBottom];
-    [self setBorderLineColor:kBorderLineGrayColor edgeOrientation:CHEdgeOrientationTop];
-    [self setBorderLineColor:kBorderLineGrayColor edgeOrientation:CHEdgeOrientationLeft];
-    [self setBorderLineColor:kBorderLineGrayColor edgeOrientation:CHEdgeOrientationRight];
+    [self setBorderLineColor:kBorderLineGrayColor edge:CHEdgeBottom];
+    [self setBorderLineColor:kBorderLineGrayColor edge:CHEdgeTop];
+    [self setBorderLineColor:kBorderLineGrayColor edge:CHEdgeLeft];
+    [self setBorderLineColor:kBorderLineGrayColor edge:CHEdgeRight];
 }
 
 - (void)setBorderLineColor:(UIColor *)aColor {
-    [self setBorderLineColor:aColor edgeOrientation:CHEdgeOrientationBottom];
-    [self setBorderLineColor:aColor edgeOrientation:CHEdgeOrientationTop];
-    [self setBorderLineColor:aColor edgeOrientation:CHEdgeOrientationLeft];
-    [self setBorderLineColor:aColor edgeOrientation:CHEdgeOrientationRight];
+    [self setBorderLineColor:aColor edge:CHEdgeBottom];
+    [self setBorderLineColor:aColor edge:CHEdgeTop];
+    [self setBorderLineColor:aColor edge:CHEdgeLeft];
+    [self setBorderLineColor:aColor edge:CHEdgeRight];
 }
 
 - (void)setBorderLineColor:(UIColor *)aColor
-           edgeOrientation:(CHEdgeOrientation)orientation {
+           edge:(CHEdge)edge {
     CALayer *line = [[CALayer alloc] init];
     line.backgroundColor = aColor.CGColor;
     
     CGRect lineFrame = CGRectZero;
-    if (CHEdgeOrientationTop == orientation) {
+    if (CHEdgeTop == edge) {
         // 上边加线
         lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
                                CGRectGetMinY(self.bounds),
                                CGRectGetWidth(self.bounds),
                                kLineBorderWidth);
-    } else if (CHEdgeOrientationLeft == orientation) {
+    } else if (CHEdgeLeft == edge) {
         // 左边加线
         lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
                                CGRectGetMinY(self.bounds),
                                kLineBorderWidth,
                                CGRectGetHeight(self.bounds));
-    } else if (CHEdgeOrientationBottom == orientation) {
+    } else if (CHEdgeBottom == edge) {
         // 底边加线
         lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
                                CGRectGetMaxY(self.bounds) + kLineBorderWidth,

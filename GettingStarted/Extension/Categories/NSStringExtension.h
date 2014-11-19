@@ -43,31 +43,34 @@
 @interface NSString (Verification)
 
 /**
- *  是否为合法邮箱地址
+ *  匹配正则表达式
  *
- *  @param email 邮箱地址字符串
+ *  @param regex 正则表达式
+ *
+ *  @return 是否匹配
+ */
+- (BOOL)isMatchRegex:(NSString *)regex;
+
+/**
+ *  是否为合法邮箱地址
  *
  *  @return 是否合法
  */
-+ (BOOL)isValidEmail:(NSString *)email;
+- (BOOL)isValidEmail;
 
 /**
  *  是否为合法手机号码
  *
- *  @param phoneNumber 手机号码
- *
  *  @return 是否合法
  */
-+ (BOOL)isValidPhoneNumber:(NSString *)phoneNumber;
+- (BOOL)isValidPhoneNumber;
 
 /**
  *  是否为合法密码
  *
- *  @param password 密码
- *
  *  @return 是否合法
  */
-+ (BOOL)isValidPassword:(NSString *)password;
+- (BOOL)isValidPassword;
 
 /**
  *  是否为合法验证码
@@ -76,7 +79,7 @@
  *
  *  @return 是否合法
  */
-+ (BOOL)isvalidAuthCode:(NSString *)authCode;
+- (BOOL)isvalidAuthCode;
 
 /**
  *  是否为空
@@ -91,63 +94,5 @@
  *  @return 两头无空白的字符串
  */
 - (NSString *)trim;
-
-@end
-
-
-#pragma mark - 获取路径
-
-@interface NSString (SearchPath)
-
-/**
- *  获取文档目录
- *
- *  @return 文档目录
- */
-+ (NSString *)documentDirectory;
-
-/**
- *  获取缓存目录
- *
- *  @return 缓存目录
- */
-+ (NSString *)cachesDirectory;
-
-/**
- *  获取下载目录
- *
- *  @return 下载目录
- */
-+ (NSString *)downloadsDirectory;
-
-/**
- *  获取电影目录
- *
- *  @return 电影目录
- */
-+ (NSString *)moviesDirectory;
-
-/**
- *  获取音乐目录
- *
- *  @return 音乐目录
- */
-+ (NSString *)musicDirectory;
-
-/**
- *  获取图片目录
- *
- *  @return 图片目录
- */
-+ (NSString *)picturesDirectory;
-
-@end
-
-
-#pragma mark - 生成唯一字符串
-
-@interface NSString (UniqueIdentifier)
-
-+ (NSString *)uniqueIdentifier;
 
 @end

@@ -115,4 +115,11 @@
  */
 - (void)removeWaitingAnimation;
 
+/**
+ *  是否正在进行动画中
+ *
+ *  @return 是否正在进行动画中
+ */
+- (BOOL)isInAnimation;
+
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46602C811A1C3E5800307EEC /* CodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C801A1C3E5800307EEC /* CodeHelper.m */; };
+		46602C861A1C4DBF00307EEC /* HttpConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C851A1C4DBF00307EEC /* HttpConfigure.m */; };
 		46F11DC11A1B7958009321A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F11DC01A1B7958009321A0 /* main.m */; };
 		46F11DCA1A1B7958009321A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46F11DC81A1B7958009321A0 /* Main.storyboard */; };
 		46F11DCC1A1B7958009321A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46F11DCB1A1B7958009321A0 /* Images.xcassets */; };
@@ -78,6 +80,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		46602C7F1A1C3E5800307EEC /* CodeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeHelper.h; sourceTree = "<group>"; };
+		46602C801A1C3E5800307EEC /* CodeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeHelper.m; sourceTree = "<group>"; };
+		46602C841A1C4DBF00307EEC /* HttpConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpConfigure.h; sourceTree = "<group>"; };
+		46602C851A1C4DBF00307EEC /* HttpConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpConfigure.m; sourceTree = "<group>"; };
 		46F11DBB1A1B7958009321A0 /* GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F11DBF1A1B7958009321A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46F11DC01A1B7958009321A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -180,8 +186,6 @@
 		46F11F611A1B917E009321A0 /* WDActivityIndicator.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WDActivityIndicator.bundle; sourceTree = "<group>"; };
 		46F11F621A1B917E009321A0 /* WDActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDActivityIndicator.h; sourceTree = "<group>"; };
 		46F11F631A1B917E009321A0 /* WDActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDActivityIndicator.m; sourceTree = "<group>"; };
-		46F11F701A1B919E009321A0 /* HttpConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpConfigure.h; sourceTree = "<group>"; };
-		46F11F711A1B9329009321A0 /* CodeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodeHelper.h; sourceTree = "<group>"; };
 		46F11F741A1B946E009321A0 /* UIView+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HUD.h"; sourceTree = "<group>"; };
 		46F11F751A1B946E009321A0 /* UIView+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HUD.m"; sourceTree = "<group>"; };
 		46F11F761A1B946E009321A0 /* UIView+PercentageIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PercentageIndicatorView.h"; sourceTree = "<group>"; };
@@ -400,7 +404,8 @@
 		46F11F181A1B8CFE009321A0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				46F11F711A1B9329009321A0 /* CodeHelper.h */,
+				46602C7F1A1C3E5800307EEC /* CodeHelper.h */,
+				46602C801A1C3E5800307EEC /* CodeHelper.m */,
 				46F11F2C1A1B8E35009321A0 /* Archiver.h */,
 				46F11F2D1A1B8E35009321A0 /* Archiver.m */,
 				46F11F281A1B8D5B009321A0 /* TextEditConfigure.h */,
@@ -418,9 +423,10 @@
 			children = (
 				46F11F7F1A1B95A8009321A0 /* AccountManager.h */,
 				46F11F801A1B95A8009321A0 /* AccountManager.m */,
-				46F11F701A1B919E009321A0 /* HttpConfigure.h */,
 				46F11F3B1A1B903A009321A0 /* HTTPManager.h */,
 				46F11F3C1A1B903A009321A0 /* HTTPManager.m */,
+				46602C841A1C4DBF00307EEC /* HttpConfigure.h */,
+				46602C851A1C4DBF00307EEC /* HttpConfigure.m */,
 				46F11F3D1A1B903A009321A0 /* ReachabilityManager.h */,
 				46F11F3E1A1B903A009321A0 /* ReachabilityManager.m */,
 				46F11F401A1B903A009321A0 /* VerificationManager.h */,
@@ -711,6 +717,7 @@
 				46F11F021A1B81A8009321A0 /* GradientCircularProgress.m in Sources */,
 				46F11EF51A1B81A8009321A0 /* UIButtonExtension.m in Sources */,
 				46F11F661A1B917E009321A0 /* Base64.m in Sources */,
+				46602C861A1C4DBF00307EEC /* HttpConfigure.m in Sources */,
 				46F11EFA1A1B81A8009321A0 /* UIScrollViewExtension.m in Sources */,
 				46F11F681A1B917E009321A0 /* MLEmojiLabel.m in Sources */,
 				46F11F001A1B81A8009321A0 /* BadgeView.m in Sources */,
@@ -730,6 +737,7 @@
 				46F11F1B1A1B8D1A009321A0 /* UserDefaults.m in Sources */,
 				46F11F251A1B8D49009321A0 /* CodingableAndComparableObject.m in Sources */,
 				46F11F061A1B81A8009321A0 /* ResizableTextView.m in Sources */,
+				46602C811A1C3E5800307EEC /* CodeHelper.m in Sources */,
 				46F11DC11A1B7958009321A0 /* main.m in Sources */,
 				46F11F791A1B946E009321A0 /* UIView+PercentageIndicatorView.m in Sources */,
 				46F11EFC1A1B81A8009321A0 /* UITextFieldExtension.m in Sources */,
@@ -862,6 +870,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GettingStarted/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -873,6 +882,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GettingStarted/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

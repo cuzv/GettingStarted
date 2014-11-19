@@ -7,8 +7,7 @@
 //
 
 #import "GapRing.h"
-
-#define CHRadian(x) (M_PI * (x) / 180.0f)
+#import "CodeHelper.h"
 
 @interface GapRing ()
 
@@ -95,8 +94,8 @@
                     CGRectGetMidX(self.bounds),
                     CGRectGetMidY(self.bounds),
                     CGRectGetWidth(self.bounds) / 2 - lineWidth,
-                    CHRadian(260),
-                    CHRadian(-80),
+                    radianFromAngle(260),
+                    radianFromAngle(-80),
                     YES);
     CGContextStrokePath(context);
     CGContextRelease(context);

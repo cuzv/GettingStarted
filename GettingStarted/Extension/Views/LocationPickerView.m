@@ -7,10 +7,9 @@
 //
 
 #import "LocationPickerView.h"
+#import "CodeHelper.h"
 
 #pragma mark - 地区选择器
-
-#define kScreenBounds [[UIScreen mainScreen] bounds]
 
 @interface LocationPickerView () <UIPickerViewDelegate, UIPickerViewDataSource>
 
@@ -57,7 +56,7 @@
     if (!_pickerView) {
         _pickerView = [UIPickerView new];
         _pickerView.backgroundColor = [UIColor whiteColor];
-        _pickerView.frame = CGRectMake(0, CGRectGetHeight(kScreenBounds) - 216, 0, 0);
+        _pickerView.frame = CGRectMake(0, screenWidth() - 216, 0, 0);
         _pickerView.backgroundColor = [UIColor whiteColor];
         _pickerView.dataSource = self;
         _pickerView.delegate = self;
@@ -72,12 +71,12 @@
 }
 
 - (void)appear {
-    self.frame = CGRectOffset(kScreenBounds, 0, CGRectGetHeight(kScreenBounds));
+    self.frame = CGRectOffset(screenBounds(), 0, screenHeight());
     if ([_delegate respondsToSelector:@selector(locationPickerViewWillAppear:)]) {
         [_delegate locationPickerViewWillAppear:self];
     }
     [UIView animateWithDuration:0.3 animations:^{
-        self.transform = CGAffineTransformTranslate(self.transform, 0, -CGRectGetHeight(kScreenBounds));
+        self.transform = CGAffineTransformTranslate(self.transform, 0, -screenHeight());
     } completion:^(BOOL finished) {
         if ([_delegate respondsToSelector:@selector(locationPickerViewDidAppear:)]) {
             [_delegate locationPickerViewDidAppear:self];

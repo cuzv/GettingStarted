@@ -51,8 +51,14 @@
 
 @implementation NSString (Verification)
 
+- (BOOL)isMatchRegex:(NSString *)regex {
+	NSPredicate *phoneNumerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",
+								   regex];
+	return [phoneNumerTest evaluateWithObject:self];
+}
+
 // check email
-+ (BOOL)isValidEmail:(NSString *)email {
+- (BOOL)isValidEmail {
     // @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSString *emailRegex = @"^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
     //    NSString *emailRegex =
@@ -63,36 +69,27 @@
     //    @"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"
     //    @"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
     //    @"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
-    
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",
-                              emailRegex];
-    return [emailTest evaluateWithObject:email];
+
+	return [self isMatchRegex:emailRegex];
 }
 
 // check phone number
-+ (BOOL)isValidPhoneNumber:(NSString *)phoneNumber {
-    
+- (BOOL)isValidPhoneNumber {
     NSString *phoneNumerRegex = @"^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d{8}$";
-    NSPredicate *phoneNumerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",
-                                   phoneNumerRegex];
-    return [phoneNumerTest evaluateWithObject:phoneNumber];
+	return [self isMatchRegex:phoneNumerRegex];
 }
 
 // check password
-+ (BOOL)isValidPassword:(NSString *)password {
+- (BOOL)isValidPassword {
     NSString *passwordRegex = @"^\\w{6,20}$";
-    NSPredicate *passwordTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",
-                                 passwordRegex];
-    return [passwordTest evaluateWithObject:password];
+    return [self isMatchRegex:passwordRegex];
 }
 
 // check auth code
-+ (BOOL)isvalidAuthCode:(NSString *)authCode {
+- (BOOL)isvalidAuthCode {
     // ^\d{n}$
     NSString *authCodeRegex = @"^\\d{6}$";
-    NSPredicate *authCodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",
-                                 authCodeRegex];
-    return [authCodeTest evaluateWithObject:authCode];
+    return [self isMatchRegex:authCodeRegex];
 }
 
 - (BOOL)isEmpty {
@@ -101,49 +98,6 @@
 
 - (NSString *)trim {
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-}
-
-@end
-
-
-#pragma mark - 
-
-@implementation NSString (SearchPath)
-
-+ (NSString *)documentDirectory {
-   return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-}
-
-+ (NSString *)cachesDirectory {
-   return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
-}
-
-+ (NSString *)downloadsDirectory {
-   return [NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES) firstObject];
-}
-
-+ (NSString *)moviesDirectory {
-    return [NSSearchPathForDirectoriesInDomains(NSMoviesDirectory, NSUserDomainMask, YES) firstObject];
-}
-
-+ (NSString *)musicDirectory {
-    return [NSSearchPathForDirectoriesInDomains(NSMusicDirectory, NSUserDomainMask, YES) firstObject];
-}
-
-+ (NSString *)picturesDirectory {
-    return [NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES) firstObject];
-}
-
-
-@end
-
-
-#pragma mark - 生成唯一字符串
-
-@implementation NSString (UniqueIdentifier)
-
-+ (NSString *)uniqueIdentifier {
-	return [[[NSUUID UUID] UUIDString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
 }
 
 @end

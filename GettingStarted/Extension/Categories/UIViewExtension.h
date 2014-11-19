@@ -197,7 +197,6 @@
  */
 - (void)removeArcRotationAnimation;
 
-
 @end
 
 
@@ -248,41 +247,6 @@ typedef NS_ENUM(NSInteger, CHAnimationOrientation) {
 
 @end
 
-
-#pragma mark -  吐司框效果
-
-typedef NS_ENUM(NSInteger, CHToastAppearOrientation) {
-    CHToastAppearOrientationTop,
-    CHToastAppearOrientationBottom
-};
-
-@interface UIView (Toast)
-
-/**
- *  弹出吐司框，默认从上方出现(only support portrait orientation)
- *
- *  @param message 土司消息
- */
-+ (void)toastWithMessage:(NSString *)message;
-
-/**
- *  弹出吐司框(only support portrait orientation)
- *
- *  @param message     土司消息
- *  @param orientation 出现方向
- */
-+ (void)toastWithMessage:(NSString *)message appearOrientation:(CHToastAppearOrientation)orientation;
-
-/**
- *  弹出吐司框
- *
- *  @param message 土司消息
- */
-- (void)makeToast:(NSString *)message;
-
-@end
-
-
 #pragma mark - 为视图添加进度指示器
 
 @interface UIView (UIActivityIndicatorView)
@@ -310,6 +274,13 @@ typedef NS_ENUM(NSInteger, CHToastAppearOrientation) {
  *  移除进度指示器动画
  */
 - (void)removeActivityIndicatorAnimation;
+
+/**
+ *  是否正在进行进度动画中
+ *
+ *  @return 是否正在进行进度动画中
+ */
+- (BOOL)isInActivityIndicatorAnimation;
 
 @end
 
@@ -354,11 +325,11 @@ typedef NS_ENUM(NSInteger, CHToastAppearOrientation) {
 #define kColorDigit (213 / 255)
 #define kBorderLineGrayColor [UIColor colorWithRed:kColorDigit green:kColorDigit blue:kColorDigit alpha:kColorDigit]
 
-typedef NS_ENUM(NSInteger, CHEdgeOrientation) {
-    CHEdgeOrientationTop,
-    CHEdgeOrientationLeft,
-    CHEdgeOrientationBottom,
-    CHEdgeOrientationRight
+typedef NS_ENUM(NSInteger, CHEdge) {
+    CHEdgeTop,
+    CHEdgeLeft,
+    CHEdgeBottom,
+    CHEdgeRight
 };
 
 @interface UIView (BorderLine)
@@ -381,7 +352,7 @@ typedef NS_ENUM(NSInteger, CHEdgeOrientation) {
  *  @param aColor      边框颜色
  *  @param orientation 哪一条边框
  */
-- (void)setBorderLineColor:(UIColor *)aColor edgeOrientation:(CHEdgeOrientation)orientation;
+- (void)setBorderLineColor:(UIColor *)aColor edge:(CHEdge)edge;
 
 @end
 

@@ -2,41 +2,153 @@
 //  CodeHelper.h
 //  GettingStarted
 //
-//  Created by Moch on 11/18/14.
+//  Created by Moch on 11/19/14.
 //  Copyright (c) 2014 Moch. All rights reserved.
 //
+
+#import <Foundation/Foundation.h>
+#import <CoreGraphics/CGBase.h>
+
+@interface CodeHelper : NSObject
+
+#pragma mark -
+
+/**
+ *  获取设备系统版本号，Apple code
+ *
+ *  @return 设备系统版本号
+ */
+NSUInteger deviceSystemMajorVersion();
+
+#pragma mark -
+
+/**
+ *  获取设备屏幕dounds
+ *
+ *  @return 设备屏幕dounds
+ */
+struct CGRect screenBounds();
+
+/**
+ *  获取屏幕宽度
+ *
+ *  @return 屏幕宽度
+ */
+CGFloat screenWidth();
+
+/**
+ *  获取屏幕高度
+ *
+ *  @return 屏幕高度
+ */
+CGFloat screenHeight();
+
+#pragma mark -
+
+/**
+ *  角度转弧度
+ *
+ *  @param angle 角度值
+ *
+ *  @return 弧度值
+ */
+CGFloat radianFromAngle(CGFloat angle);
+
+/**
+ *  弧度转角度
+ *
+ *  @param radian 弧度
+ *
+ *  @return 角度
+ */
+CGFloat angleFromRadian(CGFloat radian);
+
+#pragma mark - 
+
+/**
+ *  获取沙盒文档目录
+ *
+ *  @return 沙盒文档目录
+ */
+NSString *documentDirectory();
+
+/**
+ *  获取沙盒缓存目录
+ *
+ *  @return 沙盒缓存目录
+ */
+NSString *cachesDirectory();
+
+/**
+ *  获取沙盒下载目录
+ *
+ *  @return 沙盒下载目录
+ */
+NSString *downloadsDirectory();
+
+/**
+ *  获取沙盒电影目录
+ *
+ *  @return 沙盒电影目录
+ */
+NSString *moviesDirectory();
+
+/**
+ *  获取沙盒音乐目录
+ *
+ *  @return 沙盒音乐目录
+ */
+NSString *musicDirectory();
+
+/**
+ *  获取沙盒图片目录
+ *
+ *  @return 沙盒图片目录
+ */
+NSString *picturesDirectory();
+
+#pragma mark -
+
+/**
+ *  生成唯一字符串
+ *
+ *  @return 唯一字符串
+ */
+NSString *uniqueIdentifier();
+
+
+@end
+
+
+#pragma mark - Macros
 
 #ifndef GettingStarted_CodeHelper_h
 #define GettingStarted_CodeHelper_h
 
 // Colors
-#define BlackColor [UIColor blackColor]
-#define DarkGrayColor [UIColor darkGrayColor]
-#define LightGrayColor [UIColor lightGrayColor]
-#define WhiteColor [UIColor whiteColor]
-#define GrayColor [UIColor grayColor]
-#define RedColor [UIColor redColor]
-#define GreenColor [UIColor greenColor]
-#define BlueColor [UIColor blueColor]
-#define CyanColor [UIColor cyanColor]
-#define YellowColor [UIColor yellowColor]
-#define MagentaColor [UIColor magentaColor]
-#define OrangeColor [UIColor orangeColor]
-#define PurpleColor [UIColor purpleColor]
-#define BrownColor [UIColor brownColor]
-#define ClearColor [UIColor clearColor]
+#define kBlackColor [UIColor blackColor]
+#define kDarkGrayColor [UIColor darkGrayColor]
+#define kLightGrayColor [UIColor lightGrayColor]
+#define kWhiteColor [UIColor whiteColor]
+#define kGrayColor [UIColor grayColor]
+#define kRedColor [UIColor redColor]
+#define kGreenColor [UIColor greenColor]
+#define kBlueColor [UIColor blueColor]
+#define kCyanColor [UIColor cyanColor]
+#define kYellowColor [UIColor yellowColor]
+#define kMagentaColor [UIColor magentaColor]
+#define kOrangeColor [UIColor orangeColor]
+#define kPurpleColor [UIColor purpleColor]
+#define kBrownColor [UIColor brownColor]
+#define kClearColor [UIColor clearColor]
 
 // Fonts
-#define FontHeadLine [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]
-#define FontBody [UIFont preferredFontForTextStyle:UIFontTextStyleBody]
-#define FontSubheadline [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]
-#define FontFootnote [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote]
-#define FontCaption1 [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1]
-#define FontCaption2 [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2]
-
-// Devices
-#define kScreenWidth [[UIScreen mainScreen] bounds].size.width
-#define kScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define kFontHeadLine [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]
+#define kFontBody [UIFont preferredFontForTextStyle:UIFontTextStyleBody]
+#define kFontSubheadline [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]
+#define kFontFootnote [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote]
+#define kFontCaption1 [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1]
+#define kFontCaption2 [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2]
 
 // A better version of NSLog
 #if DEBUG
@@ -50,5 +162,6 @@ __LINE__, __func__);                                                        \
 #else
 #define NSLog(format, ...) NSLog(@"")
 #endif
+
 
 #endif
