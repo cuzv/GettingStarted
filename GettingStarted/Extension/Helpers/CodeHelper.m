@@ -74,28 +74,32 @@ CGFloat angleFromRadian(CGFloat radian) {
 
 #pragma mark -
 
+NSString *searchPathDirectory(NSSearchPathDirectory searchPathDirectory) {
+	return [NSSearchPathForDirectoriesInDomains(searchPathDirectory, NSUserDomainMask, YES) firstObject];
+}
+
 NSString *documentDirectory() {
-	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+	return searchPathDirectory(NSDocumentDirectory);
 }
 
 NSString *cachesDirectory() {
-	return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+	return searchPathDirectory(NSCachesDirectory);
 }
 
 NSString *downloadsDirectory() {
-	return [NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES) firstObject];
+	return searchPathDirectory(NSDownloadsDirectory);
 }
 
 NSString *moviesDirectory() {
-	return [NSSearchPathForDirectoriesInDomains(NSMoviesDirectory, NSUserDomainMask, YES) firstObject];
+	return searchPathDirectory(NSMoviesDirectory);
 }
 
 NSString *musicDirectory() {
-	return [NSSearchPathForDirectoriesInDomains(NSMusicDirectory, NSUserDomainMask, YES) firstObject];
+	return searchPathDirectory(NSMusicDirectory);
 }
 
 NSString *picturesDirectory() {
-	return [NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES) firstObject];
+	return searchPathDirectory(NSPicturesDirectory);
 }
 
 #pragma mark - 
