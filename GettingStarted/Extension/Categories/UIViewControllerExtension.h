@@ -36,4 +36,9 @@
  */
 - (void)removeNavigationBarRightItemActivityIndicatorAnimation;
 
+/**
+ *  是否正在动画中
+ */
+- (BOOL)isNavigationActivityIndicatorViewInAnimation;
+
 @end

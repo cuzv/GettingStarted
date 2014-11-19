@@ -14,19 +14,19 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-//	[self testBadgeView];
+//	[self testBadgeView];	
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	[super touchesBegan:touches withEvent:event];
 	
-	if ([self.navigationController.navigationBar isInAnimation]) {
-		[self.navigationController.navigationBar removeIndicatorAnimation];
-	} else {
-		[self.navigationController.navigationBar addIndicatorAnimation];
-	}
+//	if ([self.navigationController.navigationBar isInAnimation]) {
+//		[self.navigationController.navigationBar removeIndicatorAnimation];
+//	} else {
+//		[self.navigationController.navigationBar addIndicatorAnimation];
+//	}
 	
-
+	[self testNavi];
 
 }
 
@@ -62,6 +62,14 @@
 	NSLog(@"%@", uniqueIdentifier());
 	
 	[UIAlertView showAlertWithMessage:@"消息来了"];
+}
+
+- (void)testNavi {
+	if (self.isNavigationActivityIndicatorViewInAnimation) {
+		[self removeNavigationBarRightItemActivityIndicatorAnimation];
+	} else {
+		[self addNavigationBarRightItemActivityIndicatorAnimation];
+	}
 }
 
 @end

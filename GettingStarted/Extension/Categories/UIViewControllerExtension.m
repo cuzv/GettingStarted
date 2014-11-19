@@ -167,11 +167,15 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
     self.rightBarInAnimation = NO;
 }
 
+- (BOOL)isNavigationActivityIndicatorViewInAnimation {
+	return self.rightBarInAnimation || self.titleInAnimation;
+}
+
 #pragma mark -
 
 - (UIView *)indicatorAnimationView {
     UIView *view = [UIView new];
-    CGFloat height = self.navigationController.navigationBar.height;
+    CGFloat height = self.navigationController.navigationBar.height / 2;
     view.bounds = CGRectMake(0, 0, height, height);
     [view addActivityIndicatorAnimation];
     
