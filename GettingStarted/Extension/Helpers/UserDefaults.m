@@ -32,7 +32,7 @@
 	return [userDefaults boolForKey:defaultName];
 }
 
-- (void)echo {
++ (void)echo {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	NSDictionary *dictionary = [userDefaults dictionaryRepresentation];
 	NSLog(@"%@", dictionary);

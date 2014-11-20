@@ -253,6 +253,10 @@
     }];
 }
 
+- (BOOL)isInAnimation {
+	return self.animating;
+}
+
 // animation delegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     if (!self.animating) {

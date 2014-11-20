@@ -48,6 +48,6 @@
 /**
  *  打印保存的所有信息
  */
-- (void)echo;
++ (void)echo;
 
 @end

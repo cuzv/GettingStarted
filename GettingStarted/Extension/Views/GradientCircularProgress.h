@@ -48,6 +48,13 @@
  */
 - (void)stopAnimation;
 
+/**
+ *  是否正在动画中
+ *
+ *  @return 是否正在动画中
+ */
+- (BOOL)isInAnimation;
+
 @end
 
 

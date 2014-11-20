@@ -27,14 +27,14 @@ NSUInteger deviceSystemMajorVersion();
  *
  *  @return App build number
  */
-float appBuild();
+float appBuildNumber();
 
 /**
  *  获取 App 版本号
  *
  *  @return App 版本号
  */
-float appVersion();
+float appVersionNumber();
 
 #pragma mark -
 

@@ -23,7 +23,7 @@ NSUInteger deviceSystemMajorVersion() {
 	return _deviceSystemMajorVersion;
 }
 
-float appBuild() {
+float appBuildNumber() {
 	static float _appBuild;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -33,7 +33,7 @@ float appBuild() {
 	return _appBuild;
 }
 
-float appVersion() {
+float appVersionNumber() {
 	static float _appVersion;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
