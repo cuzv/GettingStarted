@@ -12,8 +12,7 @@
 #import "Hashes.h"
 #import "NSObjectExtension.h"
 #import "HttpConfigure.h"
-#import "UIViewExtension.h"
-#import "UIAlertViewExtension.h"
+#import "Extension.h"
 
 NSString *CHHTTPRequestMethodName = @"";
 
@@ -227,118 +226,39 @@ static NSMutableArray *sessions;
 
 #pragma mark - encode messages
 
-// convert dictionary to url string
-+ (NSString *)URLStringWithParameters:(NSDictionary *)paramDictionary {
-    NSAssert([paramDictionary isKindOfClass:[paramDictionary class]],
-             @"The input parameters is not dictionary type!");
-    
-    NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] initWithDictionary:paramDictionary];
-    NSMutableString *URLParamMutableString = [NSMutableString new];
-    [paramDic keysOfEntriesWithOptions:NSEnumerationConcurrent passingTest:^BOOL(id key, id obj, BOOL *stop) {
-        [URLParamMutableString appendFormat:@"%@=%@&", key, obj];
-        return NO;
-    }];
-    NSString *URLParamString = [URLParamMutableString substringToIndex:URLParamMutableString.length - 1];
-
-    return URLParamString;
-}
-
-// create UTF8 string by ISO string
-+ (NSString *)UTF8StringWithISOString:(NSString *)string {
-    NSAssert([string isKindOfClass:[NSString class]],
-             @"The input parameters is not string type!");
-    
-    NSStringEncoding UTF8Encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
-    NSStringEncoding ISOEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
-    NSData *ISOData = [string dataUsingEncoding:ISOEncoding];
-    NSString *UTF8String = [[NSString alloc] initWithData:ISOData encoding:UTF8Encoding];
-    return UTF8String;
-}
-
-// Create a Foundation object from JSON data
-+ (id)JSONObjectWithData:(NSData *)data {
-    if (!data) {
-        return nil;
-    }
-    NSError *error = nil;
-    id object = [NSJSONSerialization JSONObjectWithData:data
-                                                options:NSJSONReadingMutableLeaves
-                                                  error:&error];
-    if (error) {
-        NSLog(@"Deserialized JSON string failed with error message '%@'.",
-              [error localizedDescription]);
-    }
-    
-    return object;
-}
-
-// Generate JSON data from a Foundation object
-+ (NSData *)dataWithJSONObject:(id)object {
-    if (!object) {
-        return nil;
-    }
-    NSError *error = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:object
-                                                   options:NSJSONWritingPrettyPrinted
-                                                     error:&error];
-    if (error) {
-        NSLog(@"Serialized JSON string failed with error message '%@'.",
-              [error localizedDescription]);
-    }
-    return data;
-}
-
-// Generate string from data
-+ (NSString *)stringWithData:(NSData *)data {
-    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-}
-
-// Create an NSData from a property list.
-+ (NSData *)dataWithPropertyList:(id)plist {
-    NSError *error = nil;
-    NSData *data = [NSPropertyListSerialization dataWithPropertyList:plist
-                                                              format:NSPropertyListXMLFormat_v1_0 options:0
-                                                               error:&error];
-    if (error) {
-        NSLog(@"Serialized PropertyList string failed with error message '%@'.",
-              [error localizedDescription]);
-    }
-    return data;
-}
-
 + (NSDictionary *)encodeParameters:(NSDictionary *)parameters {
     NSString *encodeString = nil;
     /* flow methods is not encode `CHParametersKey` */
     switch ([CHHTTPSessionManager sharedInstance].requestSerializerType) {
         case HTTPRequestSerializerTypeNone:
-            encodeString = [self URLStringWithParameters:parameters];
+			encodeString = [parameters URLParameterString];
             break;
         case HTTPRequestSerializerTypeJSON: {
             // convert parameters to JSON string
-            NSData *JSONData = [self dataWithJSONObject:parameters];
-            encodeString = [self stringWithData:JSONData];
+			NSData *JSONData = [NSData dataWithJSONObject:parameters];
+			encodeString =  [JSONData UTF8String];
         }
             break;
         case HTTPRequestSerializerTypePropertyList:{
-            NSData *propertyListData = [self dataWithPropertyList:parameters];
-            encodeString = [self stringWithData:propertyListData];
+            NSData *propertyListData = [NSData dataWithPropertyList:parameters];
+            encodeString = [propertyListData UTF8String];
         }
             break;
         case HTTPRequestSerializerTypeBase64: {
             // base64
-            NSString *URLString = [self URLStringWithParameters:parameters];
+            NSString *URLString = [parameters URLParameterString];
             encodeString = [URLString base64EncodedString];
         }
             break;
         case HTTPRequestSerializerTypeMd5:{
             // md5
-            NSString *URLString = [self URLStringWithParameters:parameters];
+            NSString *URLString = [parameters URLParameterString];
             encodeString = [URLString md5];
         }
             break;
         case HTTPRequestSerializerTypeSha1: {
             // sha1
-            NSString *URLString = [self URLStringWithParameters:parameters];
+            NSString *URLString = [parameters URLParameterString];
             encodeString = [URLString sha1];
         }
         default:

@@ -12,6 +12,8 @@
 // categories
 #import "NSObjectExtension.h"
 #import "NSStringExtension.h"
+#import "NSDictionaryExtension.h"
+#import "NSDataExtension.h"
 #import "UIAlertViewExtension.h"
 #import "UIButtonExtension.h"
 #import "UIColorExtension.h"

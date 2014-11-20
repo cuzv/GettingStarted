@@ -73,19 +73,19 @@
 	return [self isMatchRegex:emailRegex];
 }
 
-// check phone number
+// Check phone number
 - (BOOL)isValidPhoneNumber {
     NSString *phoneNumerRegex = @"^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d{8}$";
 	return [self isMatchRegex:phoneNumerRegex];
 }
 
-// check password
+// Check password
 - (BOOL)isValidPassword {
     NSString *passwordRegex = @"^\\w{6,20}$";
     return [self isMatchRegex:passwordRegex];
 }
 
-// check auth code
+// Check auth code
 - (BOOL)isvalidAuthCode {
     // ^\d{n}$
     NSString *authCodeRegex = @"^\\d{6}$";
@@ -98,6 +98,37 @@
 
 - (NSString *)trim {
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
+@end
+
+
+#pragma mark - 
+
+@implementation NSString (Encoding)
+
+// Create UTF8 string by ISO string
+- (NSString *)convertISOString2UTF8 {
+	NSAssert([self isKindOfClass:[NSString class]],
+			 @"The input parameters is not string type!");
+	
+	NSStringEncoding UTF8Encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
+	NSStringEncoding ISOEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingISOLatin1);
+	NSData *ISOData = [self dataUsingEncoding:ISOEncoding];
+	NSString *UTF8String = [[NSString alloc] initWithData:ISOData encoding:UTF8Encoding];
+	return UTF8String;
+}
+
+// Create ISO string by UTF-8 string
+- (NSString *)convertUTF8String2ISO {
+	NSAssert([self isKindOfClass:[NSString class]],
+			 @"The input parameters is not string type!");
+	
+	NSStringEncoding UTF8Encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
+	NSStringEncoding ISOEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingISOLatin1);
+	NSData *UTF8Data = [self dataUsingEncoding:UTF8Encoding];
+	NSString *ISOString = [[NSString alloc] initWithData:UTF8Data encoding:ISOEncoding];
+	return ISOString;
 }
 
 @end

@@ -34,7 +34,7 @@
     }
 }
 
-// runtime
+// Runtime
 - (NSArray *)properties {
     NSMutableArray *propertyArray = [[NSMutableArray alloc] init];
     u_int count;
@@ -80,7 +80,7 @@
 }
 
 - (NSString *)toString {
-    if (![self.properties count]) {
+    if (![[self properties] count]) {
         return nil;
     }
     NSMutableString *desc = [[NSMutableString alloc] init];

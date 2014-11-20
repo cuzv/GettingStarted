@@ -95,4 +95,25 @@
  */
 - (NSString *)trim;
 
+
+@end
+
+#pragma mark - 
+
+@interface NSString (Encoding)
+
+/**
+ *  Create UTF-8 string by ISO string
+ *
+ *  @return UTF-8 string
+ */
+- (NSString *)convertISOString2UTF8;
+
+/**
+ *  Create ISO string by UTF-8 string
+ *
+ *  @return ISO string
+ */
+- (NSString *)convertUTF8String2ISO;
+
 @end

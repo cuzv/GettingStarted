@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4608A3EF1A1CF75000AF5873 /* NSDictionaryExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608A3EE1A1CF75000AF5873 /* NSDictionaryExtension.m */; };
+		4608A3F21A1CF8EC00AF5873 /* NSDataExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */; };
 		46602C811A1C3E5800307EEC /* CodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C801A1C3E5800307EEC /* CodeHelper.m */; };
 		46602C861A1C4DBF00307EEC /* HttpConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C851A1C4DBF00307EEC /* HttpConfigure.m */; };
 		46F11DC11A1B7958009321A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F11DC01A1B7958009321A0 /* main.m */; };
@@ -80,6 +82,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4608A3ED1A1CF75000AF5873 /* NSDictionaryExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionaryExtension.h; sourceTree = "<group>"; };
+		4608A3EE1A1CF75000AF5873 /* NSDictionaryExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryExtension.m; sourceTree = "<group>"; };
+		4608A3F01A1CF8EC00AF5873 /* NSDataExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataExtension.h; sourceTree = "<group>"; };
+		4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataExtension.m; sourceTree = "<group>"; };
 		46602C7F1A1C3E5800307EEC /* CodeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeHelper.h; sourceTree = "<group>"; };
 		46602C801A1C3E5800307EEC /* CodeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeHelper.m; sourceTree = "<group>"; };
 		46602C841A1C4DBF00307EEC /* HttpConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpConfigure.h; sourceTree = "<group>"; };
@@ -312,6 +318,10 @@
 				46F11EC51A1B81A8009321A0 /* NSObjectExtension.m */,
 				46F11EC61A1B81A8009321A0 /* NSStringExtension.h */,
 				46F11EC71A1B81A8009321A0 /* NSStringExtension.m */,
+				4608A3ED1A1CF75000AF5873 /* NSDictionaryExtension.h */,
+				4608A3EE1A1CF75000AF5873 /* NSDictionaryExtension.m */,
+				4608A3F01A1CF8EC00AF5873 /* NSDataExtension.h */,
+				4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */,
 				46F11EC81A1B81A8009321A0 /* UIAlertViewExtension.h */,
 				46F11EC91A1B81A8009321A0 /* UIAlertViewExtension.m */,
 				46F11ECA1A1B81A8009321A0 /* UIButtonExtension.h */,
@@ -714,6 +724,7 @@
 				46F11F0A1A1B81E5009321A0 /* UINavigationBarExtension.m in Sources */,
 				46F11F6D1A1B917E009321A0 /* UIImage+Resize.m in Sources */,
 				46F11F451A1B903A009321A0 /* VerificationManager.m in Sources */,
+				4608A3F21A1CF8EC00AF5873 /* NSDataExtension.m in Sources */,
 				46F11F781A1B946E009321A0 /* UIView+HUD.m in Sources */,
 				46F11F021A1B81A8009321A0 /* GradientCircularProgress.m in Sources */,
 				46F11EF51A1B81A8009321A0 /* UIButtonExtension.m in Sources */,
@@ -743,6 +754,7 @@
 				46F11F791A1B946E009321A0 /* UIView+PercentageIndicatorView.m in Sources */,
 				46F11EFC1A1B81A8009321A0 /* UITextFieldExtension.m in Sources */,
 				46F11F2A1A1B8D5B009321A0 /* TextEditConfigure.m in Sources */,
+				4608A3EF1A1CF75000AF5873 /* NSDictionaryExtension.m in Sources */,
 				46F11EF31A1B81A8009321A0 /* NSStringExtension.m in Sources */,
 				46F11F031A1B81A8009321A0 /* LocationPickerView.m in Sources */,
 				46F11EFB1A1B81A8009321A0 /* UITableViewExtension.m in Sources */,

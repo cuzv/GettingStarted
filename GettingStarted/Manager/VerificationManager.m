@@ -8,6 +8,7 @@
 
 #import "VerificationManager.h"
 #import "UIAlertViewExtension.h"
+#import "NSStringExtension.h"
 
 NSString *const CHPhoneNumberCanNotBeNull = @"手机号不能为空";
 NSString *const CHPhoneNumberInvalid = @"手机号格式错误";
@@ -75,37 +76,24 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 // check email
 + (BOOL)isValidEmail:(NSString *)email {
     // @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSString *emailRegex = @"^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",
-                              emailRegex];
-    return [emailTest evaluateWithObject:email];
+//    NSString *emailRegex = @"^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+	return [email isValidEmail];
 }
 
 // check phone number
 + (BOOL)isValidPhoneNumber:(NSString *)phoneNumber {
-
-    NSString *phoneNumerRegex = @"^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d{8}$";
-    NSPredicate *phoneNumerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",
-                                   phoneNumerRegex];
-    return [phoneNumerTest evaluateWithObject:phoneNumber];
+	return [phoneNumber isValidPhoneNumber];
 }
 
 // check password
 + (BOOL)isValidPassword:(NSString *)password {
-    NSString *passwordRegex = @"^\\w{6,20}$";
-    NSPredicate *passwordTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",
-                                 passwordRegex];
-    return [passwordTest evaluateWithObject:password];
+    return [password isValidPassword ];
 }
 
 // check auth code
 + (BOOL)isvalidAuthCode:(NSString *)authCode {
     // ^\d{n}$
-    NSString *authCodeRegex = @"^\\d{6}$";
-    NSPredicate *authCodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",
-                                 authCodeRegex];
-    return [authCodeTest evaluateWithObject:authCode];
+	return [authCode isvalidAuthCode];
 }
-
 
 @end
