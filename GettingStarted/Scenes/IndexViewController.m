@@ -16,7 +16,13 @@
 	
 //	[self testBadgeView];
 	
-	NSLog(@"%f", appVersion());
+//	NSLog(@"%f", appVersion());
+	
+	NSInteger integer = 1;
+	NSLog(@"first number: %zd", integer);
+	
+	NSUInteger uinteger = 1;
+	NSLog(@"second number: %tu", uinteger);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -31,7 +37,8 @@
 //	[self testNavi];
 //	openBrowser([NSURL URLWithString:@"http://www.baidu.com"]);
 //	emailTo(@"atcuan@gmail.com");
-	sendSMSTo(@"18583221776");
+//	sendSMSTo(@"18583221776");
+	
 }
 
 - (void)testBadgeView {
