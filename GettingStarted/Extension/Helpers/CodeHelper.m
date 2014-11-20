@@ -142,6 +142,50 @@ void openAppStoreByAppLink(NSURL *appLink) {
 	performApplicatonEventByURL(appLink);
 }
 
+#pragma mark - 
+
+void clearApplicationIconBadge() {
+	UIApplication *application = [UIApplication sharedApplication];
+	NSInteger badgeNumber = application.applicationIconBadgeNumber;
+	application.applicationIconBadgeNumber = 1;
+	application.applicationIconBadgeNumber = 0;
+	[application cancelAllLocalNotifications];
+	application.applicationIconBadgeNumber = badgeNumber;
+}
+
+#pragma mark -
+
+UIView *hairLineForTabBar(UITabBar *tabBar) {
+	Class imageViewClass = [UIImageView class];
+	for (UIView *view in tabBar.subviews) {
+		if ([view isKindOfClass:imageViewClass] &&
+			view.frame.size.height == 0.5f) {
+			return view;
+		}
+	}
+
+	return nil;
+}
+
+UIView *hairLineForNavigationBar(UINavigationBar *navigationBar) {
+	Class navigationBarBackgroundClass = NSClassFromString(@"_UINavigationBarBackground");
+	for (UIView *view in navigationBar.subviews) {
+		if ([view isKindOfClass:navigationBarBackgroundClass]) {
+			Class imageViewClass = [UIImageView class];
+			for (UIView *subView in view.subviews) {
+				if ([subView isKindOfClass:imageViewClass] &&
+					subView.frame.size.height == 0.5f) {
+					return subView;
+				}
+			}
+		}
+	}
+	
+	return nil;
+}
+
+#pragma mark -
+
 @end
 
 

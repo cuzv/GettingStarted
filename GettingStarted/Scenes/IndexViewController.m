@@ -9,6 +9,10 @@
 #import "IndexViewController.h"
 #import "Extension.h"
 
+@interface IndexViewController () <UINavigationBarDelegate>
+
+@end
+
 @implementation IndexViewController
 
 - (void)viewDidLoad {
@@ -18,11 +22,17 @@
 	
 //	NSLog(@"%f", appVersion());
 	
-	NSInteger integer = 1;
-	NSLog(@"first number: %zd", integer);
+//	NSInteger integer = 1;
+//	NSLog(@"first number: %zd", integer);
+//	
+//	NSUInteger uinteger = 1;
+//	NSLog(@"second number: %tu", uinteger);
+	UINavigationBar *customNavigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 44)];
+	customNavigationBar.delegate = self;
+	[self.view addSubview:customNavigationBar];
+
 	
-	NSUInteger uinteger = 1;
-	NSLog(@"second number: %tu", uinteger);
+	hairLineForNavigationBar(self.navigationController.navigationBar).hidden = YES;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -81,6 +91,11 @@
 	} else {
 		[self addNavigationBarRightItemActivityIndicatorAnimation];
 	}
+}
+
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
+{
+	return UIBarPositionTopAttached;
 }
 
 @end

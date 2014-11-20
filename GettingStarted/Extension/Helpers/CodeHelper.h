@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CGBase.h>
 
+@class UIView, UINavigationBar, UITabBar;
+
 @interface CodeHelper : NSObject
 
 #pragma mark -
@@ -166,6 +168,33 @@ void emailTo(NSString *receiverEmail);
  *  @param appLink App 地址
  */
 void openAppStoreByAppLink(NSURL *appLink);
+
+#pragma mark - 
+
+/**
+ *  清除徽标
+ */
+void clearApplicationIconBadge();
+
+#pragma mark -
+
+/**
+ *  获取 TabBar 顶部那一条灰线
+ *
+ *  @param tabBar tabBar
+ *
+ *  @return 灰线
+ */
+UIView *hairLineForTabBar(UITabBar *tabBar);
+
+/**
+ *  获取导航栏底部的那一条灰线
+ *
+ *  @param navigationBar 导航栏
+ *
+ *  @return 灰线
+ */
+UIView *hairLineForNavigationBar(UINavigationBar *navigationBar);
 
 @end
 
