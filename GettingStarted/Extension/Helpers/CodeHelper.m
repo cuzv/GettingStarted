@@ -186,6 +186,27 @@ UIView *hairLineForNavigationBar(UINavigationBar *navigationBar) {
 
 #pragma mark -
 
+void imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloadedImage), void (^errorBlock)(NSError *error)) {
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		NSError *error = nil;
+		NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageLink options:NSDataReadingMappedIfSafe error:&error];
+		if (error) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				errorBlock(error);
+			});
+		} else {
+			UIImage *image = [[UIImage alloc] initWithData:imageData];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				if (image) {
+					completionBlock(image);
+				} else {
+					errorBlock(nil);
+				}
+			});
+		}
+	});
+}
+
 @end
 
 

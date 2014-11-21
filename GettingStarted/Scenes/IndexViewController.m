@@ -8,6 +8,8 @@
 
 #import "IndexViewController.h"
 #import "Extension.h"
+#import "UIImageView+AFNetworking.h"
+
 
 @interface IndexViewController () <UINavigationBarDelegate>
 
@@ -27,12 +29,20 @@
 //	
 //	NSUInteger uinteger = 1;
 //	NSLog(@"second number: %tu", uinteger);
-	UINavigationBar *customNavigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 44)];
-	customNavigationBar.delegate = self;
-	[self.view addSubview:customNavigationBar];
-
+//	UINavigationBar *customNavigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 44)];
+//	customNavigationBar.delegate = self;
+//	[self.view addSubview:customNavigationBar];
+//
+//	
+//	hairLineForNavigationBar(self.navigationController.navigationBar).hidden = YES;
 	
-	hairLineForNavigationBar(self.navigationController.navigationBar).hidden = YES;
+//	NSURL *imageLink = [NSURL URLWithString:@"http://cdn.tutsplus.com/mobile/uploads/2014/01/5a3f1-sample.jpg"];
+//	imageFromURL(imageLink, ^(UIImage *downloadedImage) {
+//		NSLog(@"%@", downloadedImage);
+//	}, ^(NSError *error) {
+//		NSLog(@"%@", [error localizedDescription]);
+//	});
+	
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

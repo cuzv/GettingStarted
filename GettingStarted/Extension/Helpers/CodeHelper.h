@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CGBase.h>
 
-@class UIView, UINavigationBar, UITabBar;
+@class UIView, UINavigationBar, UITabBar, UIImage, NSError;
 
 @interface CodeHelper : NSObject
 
@@ -195,6 +195,17 @@ UIView *hairLineForTabBar(UITabBar *tabBar);
  *  @return 灰线
  */
 UIView *hairLineForNavigationBar(UINavigationBar *navigationBar);
+
+#pragma mark -
+
+/**
+ *  异步获取图片
+ *
+ *  @param imageLink        图片地址链接
+ *  @param ^completionBlock 获取到图片后回调
+ *  @param ^errorBlock      获取图片失败回调
+ */
+void imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloadedImage), void (^errorBlock)(NSError *error));
 
 @end
 
