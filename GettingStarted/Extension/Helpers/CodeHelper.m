@@ -9,6 +9,7 @@
 #import "CodeHelper.h"
 #import <UIKit/UIKit.h>
 #import "UIAlertViewExtension.h"
+#import <objc/runtime.h>
 
 @implementation CodeHelper
 
@@ -206,6 +207,28 @@ void imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloadedI
 		}
 	});
 }
+
+#pragma mark -
+
+void methodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector) {
+	Method originalMethod = class_getInstanceMethod(clazz, originalSelector);
+	Method overrideMethod = class_getInstanceMethod(clazz, overrideSelector);
+	
+	BOOL addMethodSuccess = class_addMethod(clazz,
+											originalSelector,
+											method_getImplementation(overrideMethod),
+											method_getTypeEncoding(overrideMethod));
+	if (addMethodSuccess) {
+		class_replaceMethod(clazz,
+							overrideSelector,
+							method_getImplementation(originalMethod),
+							method_getTypeEncoding(originalMethod));
+	} else {
+		method_exchangeImplementations(originalMethod, overrideMethod);
+	}
+}
+
+#pragma mark -
 
 @end
 

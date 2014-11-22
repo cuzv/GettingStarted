@@ -207,6 +207,17 @@ UIView *hairLineForNavigationBar(UINavigationBar *navigationBar);
  */
 void imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloadedImage), void (^errorBlock)(NSError *error));
 
+#pragma mark -
+
+/**
+ *  Swizzle
+ *
+ *  @param clazz            被替换的方法所属类
+ *  @param originalSelector 原始方法
+ *  @param overrideSelector 替换方法
+ */
+void methodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector);
+
 @end
 
 
