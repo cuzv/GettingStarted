@@ -11,6 +11,16 @@
 #import "UIImageView+AFNetworking.h"
 
 
+@interface Person : NSObject
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) NSUInteger age;
+@property (nonatomic, assign) BOOL sex;
+@end
+
+@implementation Person
+
+@end
+
 @interface IndexViewController () <UINavigationBarDelegate>
 
 @end
@@ -42,6 +52,13 @@
 //	}, ^(NSError *error) {
 //		NSLog(@"%@", [error localizedDescription]);
 //	});
+	
+	Person *person = [Person new];
+	person.name = @"Lucy";
+	person.age = 22;
+	person.sex = NO;
+	
+	NSLog(@"%@", person.toString);
 	
 }
 

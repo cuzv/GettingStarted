@@ -561,12 +561,50 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
     self.layer.borderColor = [borderColor CGColor];
 }
 
-
-
 @end
 
+#pragma mark - 打印视图层级
 
+@implementation UIView (LayoutDebugging)
+- (void)printAutoLayoutTrace {
+#ifdef DEBUG
+	
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+	NSLog(@"%@", [self performSelector:@selector(_autolayoutTrace)]);
+#pragma clang diagnostic pop
+	
+#endif
+}
 
+- (void)exerciseAmiguityInLayoutRepeatedly:(BOOL)recursive {
+#ifdef DEBUG
+	if (self.hasAmbiguousLayout) {
+		[NSTimer scheduledTimerWithTimeInterval:.5
+										 target:self
+									   selector:@selector(exerciseAmbiguityInLayout)
+									   userInfo:nil
+										repeats:YES];
+	}
+	if (recursive) {
+		for (UIView *subview in self.subviews) {
+			[subview exerciseAmiguityInLayoutRepeatedly:YES];
+		}
+	}
+#endif
+}
 
+- (void)printSubviewsTrace {
+#ifdef DEBUG
+	
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+	NSLog(@"%@", [self performSelector:@selector(recursiveDescription)]);
+#pragma clang diagnostic pop
+	
+#endif
+}
+
+@end
 
 

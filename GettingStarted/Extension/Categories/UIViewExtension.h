@@ -392,4 +392,27 @@ typedef NS_ENUM(NSInteger, CHEdge) {
 
 @end
 
+#pragma mark - 打印视图层级
+
+@interface UIView (LayoutDebugging)
+
+/**
+ *  打印自动布局树
+ */
+- (void)printAutoLayoutTrace;
+
+/**
+ *  打印描述具有歧义的约束
+ *
+ *  @param recursive 是否递归
+ */
+- (void)exerciseAmiguityInLayoutRepeatedly:(BOOL)recursive;
+
+/**
+ *  打印子视图层级关系
+ */
+- (void)printSubviewsTrace;
+
+@end
+
 

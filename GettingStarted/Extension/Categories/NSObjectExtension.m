@@ -83,19 +83,16 @@
     if (![[self properties] count]) {
         return nil;
     }
-    NSMutableString *desc = [[NSMutableString alloc] init];
-    NSMutableArray *propertyArray = [[self properties] mutableCopy];
-    
-    [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSString *string = [NSString stringWithFormat:@"%@ = %@, ", obj, [self valueForKey:obj]];
-        [desc appendString:string];
-        
-    }];
-    
-    NSRange range = NSMakeRange([desc length] - 2, 1);
-    [desc deleteCharactersInRange:range];
-    
-    return desc;
+	
+	NSMutableDictionary *propertyDictionary = [NSMutableDictionary new];
+	NSMutableArray *propertyArray = [[self properties] mutableCopy];
+	[propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		[propertyDictionary setObject:[self valueForKey:obj] forKey:obj];
+	}];
+	
+	NSString *description = [NSString stringWithFormat:@"<%@: %p, %@>", [self class], self, propertyDictionary];
+	
+	return description;
 }
 
 @end
