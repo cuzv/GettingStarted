@@ -684,7 +684,9 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 #pragma mark - 添加徽标
 
 #import "BadgeView.h"
+
 static const void *BadgeKey = &BadgeKey;
+
 @implementation UIView (Badge)
 
 - (void)setBadgeView:(BadgeView *)badgeView {

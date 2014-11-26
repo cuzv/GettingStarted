@@ -9,7 +9,6 @@
 #import "BadgeView.h"
 #import "UIColorExtension.h"
 #import "UIViewExtension.h"
-#import "NSStringExtension.h"
 
 #define kBadgeTextFont [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote]
 static CGFloat kBadgeViewHeight = 18.0f;
@@ -36,7 +35,7 @@ static CGFloat kBadgeViewHeight = 18.0f;
 
 - (void)setBadgeValue:(NSString *)badgeValue {
 	_badgeValue = badgeValue;
-	CGFloat calculateWidth = [badgeValue sizeWithFont:_badgeLabel.font].width + kBadgeViewHeight / 2;
+	CGFloat calculateWidth = [badgeValue sizeWithAttributes:@{NSFontAttributeName:_badgeLabel.font}].width + kBadgeViewHeight / 2;
 	self.width = calculateWidth < kBadgeViewHeight ? kBadgeViewHeight : calculateWidth;
 	self.height = kBadgeViewHeight;
 	
