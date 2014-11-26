@@ -473,13 +473,6 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 #pragma mark - 为视图添加边框
 
 #define kLineBorderWidth 0.5
-
-@interface UIView ()
-@property (nonatomic, strong) UIView *lineView;
-@end
-
-static const void *kLineViewKey = &kLineViewKey;
-
 @implementation UIView (BorderLine)
 
 - (void)setBorderLine {
@@ -533,23 +526,11 @@ static const void *kLineViewKey = &kLineViewKey;
 
 
 // Auto layout
-
-- (void)setLineView:(UIView *)lineView {
-	[self willChangeValueForKey:@"kLineViewKey"];
-	objc_setAssociatedObject(self, kLineViewKey, lineView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-	[self didChangeValueForKey:@"kLineViewKey"];
-}
-
-- (UIView *)lineView {
-	return objc_getAssociatedObject(self, &kLineViewKey);
-}
-
 - (void)addBorderLineConstraintsWithColor:(UIColor *)color edge:(CHEdge)edge lineHeightMultiplier:(CGFloat)multiplier {
 	UIView *lineView = [UIView new];
 	lineView.backgroundColor = color ? color : kBorderLineGrayColor;
 	[lineView setTranslatesAutoresizingMaskIntoConstraints:NO];
 	[self addSubview:lineView];
-	self.lineView = lineView;
 	
 	UIView *superView = self;
 	NSLayoutAttribute edgeLayoutAttribute = NSLayoutAttributeNotAnAttribute;
