@@ -473,6 +473,13 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 #pragma mark - 为视图添加边框
 
 #define kLineBorderWidth 0.5
+
+@interface UIView ()
+@property (nonatomic, strong) UIView *lineView;
+@end
+
+static const void *kLineViewKey = &kLineViewKey;
+
 @implementation UIView (BorderLine)
 
 - (void)setBorderLine {
@@ -523,6 +530,89 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
     line.frame = lineFrame;
     [self.layer addSublayer:line];
 }
+
+
+// Auto layout
+
+- (void)setLineView:(UIView *)lineView {
+	[self willChangeValueForKey:@"kLineViewKey"];
+	objc_setAssociatedObject(self, kLineViewKey, lineView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	[self didChangeValueForKey:@"kLineViewKey"];
+}
+
+- (UIView *)lineView {
+	return objc_getAssociatedObject(self, &kLineViewKey);
+}
+
+- (void)addBorderLineConstraintsWithColor:(UIColor *)color edge:(CHEdge)edge lineHeightMultiplier:(CGFloat)multiplier {
+	UIView *lineView = [UIView new];
+	lineView.backgroundColor = color ? color : kBorderLineGrayColor;
+	[lineView setTranslatesAutoresizingMaskIntoConstraints:NO];
+	[self addSubview:lineView];
+	self.lineView = lineView;
+	
+	UIView *superView = self;
+	NSLayoutAttribute edgeLayoutAttribute = NSLayoutAttributeNotAnAttribute;
+	NSLayoutAttribute centerLayoutAttribute = NSLayoutAttributeNotAnAttribute;
+	NSLayoutAttribute sizeLayoutAttribute = NSLayoutAttributeNotAnAttribute;
+	NSString *visualFormat = nil;
+	switch (edge) {
+		case CHEdgeLeft:
+			edgeLayoutAttribute = NSLayoutAttributeLeft;
+			centerLayoutAttribute = NSLayoutAttributeCenterY;
+			sizeLayoutAttribute = NSLayoutAttributeHeight;
+			visualFormat = @"[lineView(0.5)]";
+				break;
+		case CHEdgeRight:
+			edgeLayoutAttribute = NSLayoutAttributeRight;
+			centerLayoutAttribute = NSLayoutAttributeCenterY;
+			sizeLayoutAttribute = NSLayoutAttributeHeight;
+			visualFormat = @"[lineView(0.5)]";
+			break;
+		case CHEdgeTop:
+			edgeLayoutAttribute = NSLayoutAttributeTop;
+			centerLayoutAttribute = NSLayoutAttributeCenterX;
+			sizeLayoutAttribute = NSLayoutAttributeWidth;
+			visualFormat = @"V:[lineView(0.5)]";
+			break;
+		case CHEdgeBottom:
+			edgeLayoutAttribute = NSLayoutAttributeBottom;
+			centerLayoutAttribute = NSLayoutAttributeCenterX;
+			sizeLayoutAttribute = NSLayoutAttributeWidth;
+			visualFormat = @"V:[lineView(0.5)]";
+			break;
+	  default:
+			break;
+	}
+
+	[superView addConstraints:@[
+							   [NSLayoutConstraint constraintWithItem:lineView
+															attribute:edgeLayoutAttribute
+															relatedBy:NSLayoutRelationEqual
+															   toItem:superView
+															attribute:edgeLayoutAttribute
+														   multiplier:1
+															 constant:0],
+							   [NSLayoutConstraint constraintWithItem:lineView
+															attribute:centerLayoutAttribute
+															relatedBy:NSLayoutRelationEqual
+															   toItem:superView
+															attribute:centerLayoutAttribute
+														   multiplier:1
+															 constant:0],
+							   [NSLayoutConstraint constraintWithItem:lineView
+															attribute:sizeLayoutAttribute
+															relatedBy:NSLayoutRelationEqual
+															   toItem:superView
+															attribute:sizeLayoutAttribute
+														   multiplier:multiplier
+															 constant:0]
+							   ]
+	 ];
+	
+	[superView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:visualFormat options:0 metrics:nil views:NSDictionaryOfVariableBindings(lineView)]];
+}
+
 
 @end
 

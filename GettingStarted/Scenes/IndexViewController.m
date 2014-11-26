@@ -53,13 +53,25 @@
 //		NSLog(@"%@", [error localizedDescription]);
 //	});
 	
-	Person *person = [Person new];
-	person.name = @"Lucy";
-	person.age = 22;
-	person.sex = NO;
+//	Person *person = [Person new];
+//	person.name = @"Lucy";
+//	person.age = 22;
+//	person.sex = NO;
+//	
+//	NSLog(@"%@", person.toString);
 	
-	NSLog(@"%@", person.toString);
+	UIView *view1 = [[UIView alloc] init];
+	view1.translatesAutoresizingMaskIntoConstraints = NO;
+	view1.backgroundColor = [UIColor greenColor];
+	[self.view addSubview:view1];
 	
+	UIView *superview = self.view;
+	
+	[superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[view1]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view1)]];
+	[superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-100-[view1]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view1)]];
+
+	[view1 addBorderLineConstraintsWithColor:[UIColor redColor] edge:CHEdgeTop lineHeightMultiplier:0.5];
+	[view1 addBorderLineConstraintsWithColor:[UIColor redColor] edge:CHEdgeLeft lineHeightMultiplier:0.5];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

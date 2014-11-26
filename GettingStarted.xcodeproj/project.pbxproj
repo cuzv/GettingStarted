@@ -86,6 +86,8 @@
 		4608A3EE1A1CF75000AF5873 /* NSDictionaryExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryExtension.m; sourceTree = "<group>"; };
 		4608A3F01A1CF8EC00AF5873 /* NSDataExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataExtension.h; sourceTree = "<group>"; };
 		4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataExtension.m; sourceTree = "<group>"; };
+		465C07A51A24A5DE00ABE213 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		465C07A61A24A5DE00ABE213 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		46602C7F1A1C3E5800307EEC /* CodeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeHelper.h; sourceTree = "<group>"; };
 		46602C801A1C3E5800307EEC /* CodeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeHelper.m; sourceTree = "<group>"; };
 		46602C841A1C4DBF00307EEC /* HttpConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpConfigure.h; sourceTree = "<group>"; };
@@ -786,6 +788,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				46F11DC91A1B7958009321A0 /* Base */,
+				465C07A51A24A5DE00ABE213 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				46F11DCE1A1B7958009321A0 /* Base */,
+				465C07A61A24A5DE00ABE213 /* zh-Hans */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

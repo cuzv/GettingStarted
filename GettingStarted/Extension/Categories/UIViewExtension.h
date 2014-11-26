@@ -327,7 +327,7 @@ typedef NS_ENUM(NSInteger, CHAnimationOrientation) {
 
 typedef NS_ENUM(NSInteger, CHEdge) {
     CHEdgeTop,
-    CHEdgeLeft,
+	CHEdgeLeft,
     CHEdgeBottom,
     CHEdgeRight
 };
@@ -353,6 +353,15 @@ typedef NS_ENUM(NSInteger, CHEdge) {
  *  @param orientation 哪一条边框
  */
 - (void)setBorderLineColor:(UIColor *)aColor edge:(CHEdge)edge;
+
+/**
+ *  添加边线约束
+ *
+ *  @param color      边线颜色
+ *  @param edge       边缘方向
+ *  @param multiplier 边线高度乘法器([0, 1])
+ */
+- (void)addBorderLineConstraintsWithColor:(UIColor *)color edge:(CHEdge)edge lineHeightMultiplier:(CGFloat)multiplier;
 
 @end
 
