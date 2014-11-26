@@ -424,4 +424,26 @@ typedef NS_ENUM(NSInteger, CHEdge) {
 
 @end
 
+#pragma mark - 添加徽标
+
+@interface UIView (Badge)
+
+/**
+ *  设置徽标
+ *
+ *  @param badgeValue 徽标值
+ */
+- (void)setBadgeValue:(NSString *)badgeValue;
+
+/**
+ *  获取徽标
+ *
+ *  @return 徽标值
+ */
+- (NSString *)badgeValue;
+
+@end
+
+
+
 

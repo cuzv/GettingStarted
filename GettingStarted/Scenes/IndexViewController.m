@@ -22,7 +22,7 @@
 @end
 
 @interface IndexViewController () <UINavigationBarDelegate>
-
+@property (nonatomic, strong) BadgeView *badgeView;
 @end
 
 @implementation IndexViewController
@@ -30,36 +30,10 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-//	[self testBadgeView];
-	
-//	NSLog(@"%f", appVersion());
-	
-//	NSInteger integer = 1;
-//	NSLog(@"first number: %zd", integer);
-//	
-//	NSUInteger uinteger = 1;
-//	NSLog(@"second number: %tu", uinteger);
-//	UINavigationBar *customNavigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 44)];
-//	customNavigationBar.delegate = self;
-//	[self.view addSubview:customNavigationBar];
-//
-//	
-//	hairLineForNavigationBar(self.navigationController.navigationBar).hidden = YES;
-	
-//	NSURL *imageLink = [NSURL URLWithString:@"http://cdn.tutsplus.com/mobile/uploads/2014/01/5a3f1-sample.jpg"];
-//	imageFromURL(imageLink, ^(UIImage *downloadedImage) {
-//		NSLog(@"%@", downloadedImage);
-//	}, ^(NSError *error) {
-//		NSLog(@"%@", [error localizedDescription]);
-//	});
-	
-//	Person *person = [Person new];
-//	person.name = @"Lucy";
-//	person.age = 22;
-//	person.sex = NO;
-//	
-//	NSLog(@"%@", person.toString);
-	
+	[self testBadgeView];
+}
+
+- (void)testBadgeView {
 	UIView *view1 = [[UIView alloc] init];
 	view1.translatesAutoresizingMaskIntoConstraints = NO;
 	view1.backgroundColor = [UIColor greenColor];
@@ -70,71 +44,13 @@
 	[superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[view1]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view1)]];
 	[superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-100-[view1]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view1)]];
 
-	[view1 addBorderLineConstraintsWithColor:[UIColor redColor] edge:CHEdgeTop lineHeightMultiplier:0.5];
-	[view1 addBorderLineConstraintsWithColor:[UIColor redColor] edge:CHEdgeLeft lineHeightMultiplier:0.5];
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	[super touchesBegan:touches withEvent:event];
+	[view1 setBadgeValue:@"22"];
 	
-//	if ([self.navigationController.navigationBar isInAnimation]) {
-//		[self.navigationController.navigationBar removeIndicatorAnimation];
-//	} else {
-//		[self.navigationController.navigationBar addIndicatorAnimation];
-//	}
-	
-//	[self testNavi];
-//	openBrowser([NSURL URLWithString:@"http://www.baidu.com"]);
-//	emailTo(@"atcuan@gmail.com");
-//	sendSMSTo(@"18583221776");
-	
-}
-
-- (void)testBadgeView {
-	[self.view addSubview:({
-		BadgeView *badgeView = [[BadgeView alloc] initWithOrigin:CGPointMake(2, self.view.height - 84) unreadNumber:1000];
-		badgeView;
-	})];
-	
-	[self.view addSubview:({
-		BadgeView *badgeView = [[BadgeView alloc] initWithOrigin:CGPointMake(20, 188) unreadNumber:10];
-		badgeView;
-	})];
-	
-	[self.view addSubview:({
-		BadgeView *badgeView = [[BadgeView alloc] initWithOrigin:CGPointMake(20, 288) unreadNumber:3];
-		badgeView;
-	})];
-	
-	[self.view addSubview:({
-		UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(40, 250, 30, 30)];
-		[button setTitle:@"" forState:UIControlStateNormal];
-		UIImage *image = [UIImage imageWithColor:[UIColor redColor] size:button.size ];
-		[button setBackgroundImage:image forState:UIControlStateNormal];
-		
-		[button addArcRotationAnimaionWithDuration:5 lineColor:[UIColor greenColor]];
-		button;
-	})];
-	
-	NSString *email = @"atcuan@gmail.com";
-	NSLog(@"%@", [email isValidEmail] ? @" YES" : @"NO");
-	
-	NSLog(@"%@", uniqueIdentifier());
-	
-	[UIAlertView showAlertWithMessage:@"消息来了"];
-}
-
-- (void)testNavi {
-	if (self.isNavigationActivityIndicatorViewInAnimation) {
-		[self removeNavigationBarRightItemActivityIndicatorAnimation];
-	} else {
-		[self addNavigationBarRightItemActivityIndicatorAnimation];
-	}
-}
-
-- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
-{
-	return UIBarPositionTopAttached;
+//	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(20, 100, 200, 80)];
+//	view.backgroundColor = [UIColor greenColor];
+//	[self.view addSubview:view];
+//	
+//	[view setBadgeValue:@"33"];
 }
 
 @end

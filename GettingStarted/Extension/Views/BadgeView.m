@@ -20,53 +20,43 @@ static CGFloat kBadgeViewHeight = 18.0f;
 
 @implementation BadgeView
 
-- (instancetype)initWithOrigin:(CGPoint)origin {
-    return [self initWithFrame:CGRectMake(origin.x, origin.y, 0, 0)];
+- (instancetype)init {
+	if (self = [super init]) {
+		self.backgroundColor = [UIColor colorWithRGBA:@[@255, @65, @73, @1]];
+		_badgeLabel = [UILabel new];
+		_badgeLabel.textColor = [UIColor whiteColor];
+		_badgeLabel.backgroundColor = self.backgroundColor;
+		_badgeLabel.font = kBadgeTextFont;
+		_badgeLabel.textAlignment = NSTextAlignmentCenter;
+		self.layer.masksToBounds = YES;
+	}
+	
+	return self;
 }
 
-- (instancetype)initWithOrigin:(CGPoint)origin unreadNumber:(NSUInteger)unreadNumber {
-    if (self = [self initWithOrigin:origin]) {
-        [self setUnreadNumber:unreadNumber];
-    }
-    return self;
-}
-
-- (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.backgroundColor = [UIColor colorWithRGBA:@[@255, @65, @73, @1]];
-        _badgeLabel = [UILabel new];
-        _badgeLabel.textColor = [UIColor whiteColor];
-        _badgeLabel.backgroundColor = self.backgroundColor;
-        _badgeLabel.font = kBadgeTextFont;
-        _badgeLabel.textAlignment = NSTextAlignmentCenter;
-        self.layer.masksToBounds = YES;
-    }
-    return self;
-}
-
-- (void)setUnreadNumber:(NSUInteger)unreadNumber {
-    _unreadNumber = unreadNumber;
-    NSString *unreadStr = [@(_unreadNumber) stringValue];
-	self.width = [unreadStr sizeWithFont:kBadgeTextFont width:MAXFLOAT].width + kBadgeViewHeight / 2;
-    self.width = self.width < kBadgeViewHeight ? kBadgeViewHeight : self.width;
+- (void)setBadgeValue:(NSString *)badgeValue {
+	_badgeValue = badgeValue;
+	CGFloat calculateWidth = [badgeValue sizeWithFont:_badgeLabel.font].width + kBadgeViewHeight / 2;
+	self.width = calculateWidth < kBadgeViewHeight ? kBadgeViewHeight : calculateWidth;
 	self.height = kBadgeViewHeight;
 	
-    if(unreadNumber > 0) {
-        [self setNeedsDisplay];
-        self.hidden = NO;
-    } else {
-        self.hidden = YES;
-    }
+	BOOL shouldHidden = [badgeValue isEqualToString:@"0"];
+	self.hidden = shouldHidden;
+	if (!shouldHidden) {
+		[self setNeedsDisplay];
+		[self invalidateIntrinsicContentSize];
+	}
 }
 
 - (void)drawRect:(CGRect)rect {
-    NSString *unreadStr = [@(_unreadNumber) stringValue];
-    _badgeLabel.text = unreadStr;
+    _badgeLabel.text = _badgeValue;
 	self.layer.cornerRadius = kBadgeViewHeight / 2;
     [_badgeLabel drawTextInRect:self.bounds];
 }
 
+- (CGSize)intrinsicContentSize {
+	return CGSizeMake(self.width, self.height);
+}
 
 @end
 

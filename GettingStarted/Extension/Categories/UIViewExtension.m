@@ -676,6 +676,65 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 #endif
 }
 
+
+
+@end
+
+
+#pragma mark - 添加徽标
+
+#import "BadgeView.h"
+static const void *BadgeKey = &BadgeKey;
+@implementation UIView (Badge)
+
+- (void)setBadgeView:(BadgeView *)badgeView {
+	[self willChangeValueForKey:@"BadgeKey"];
+	objc_setAssociatedObject(self, BadgeKey, badgeView, OBJC_ASSOCIATION_ASSIGN);
+	[self didChangeValueForKey:@"BadgeKey"];
+}
+
+- (BadgeView *)badgeView {
+	return objc_getAssociatedObject(self, &BadgeKey);
+}
+
+- (void)setBadgeValue:(NSString *)badgeValue {
+	if (![self badgeView]) {
+		BadgeView *badeView = [BadgeView new];
+		[self addSubview:badeView];
+		[self setBadgeView:badeView];
+	}
+	
+	BadgeView *badgeView = [self badgeView];
+	badgeView.badgeValue = badgeValue;
+	
+	// Base on Frame
+	badgeView.midX = self.width;
+	badgeView.midY = 0;
+		
+	// Base on auto layout
+	UIView *superView = self;
+	[badgeView setTranslatesAutoresizingMaskIntoConstraints:NO];
+	[superView addConstraints:@[[NSLayoutConstraint constraintWithItem:badgeView
+														   attribute:NSLayoutAttributeCenterX
+														   relatedBy:NSLayoutRelationEqual
+															  toItem:superView
+														   attribute:NSLayoutAttributeRight
+														  multiplier:1
+															constant:0],
+								[NSLayoutConstraint constraintWithItem:badgeView
+															 attribute:NSLayoutAttributeCenterY
+															 relatedBy:NSLayoutRelationEqual
+																toItem:superView
+															 attribute:NSLayoutAttributeTop
+															multiplier:1
+															  constant:0]
+								]];
+}
+
+- (NSString *)badgeValue {
+	return [self badgeView].badgeValue;
+}
+
 @end
 
 

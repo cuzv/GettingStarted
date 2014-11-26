@@ -10,15 +10,9 @@
 
 #pragma mark - 徽标
 
-@interface BadgeView : UILabel
+@interface BadgeView : UIView
 
-/**
- *  未读数量
- */
-@property (nonatomic, assign) NSUInteger unreadNumber;
-
-- (instancetype)initWithOrigin:(CGPoint)origin;
-- (instancetype)initWithOrigin:(CGPoint)origin unreadNumber:(NSUInteger)unreadNumber;
+@property (nonatomic, assign) NSString *badgeValue;
 
 @end
 
