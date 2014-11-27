@@ -67,6 +67,9 @@ typedef NS_ENUM (NSInteger, FileSuffixName) {
     FileSuffixNameP12
 };
 
+typedef void (^NetowrkPushResultSuccessCompletionHandle)(NSURLSessionDataTask *task, id responseObject);
+typedef void (^NetowrkPushResultFailureCompletionHandle)(NSURLSessionDataTask *task, NSError *error);
+
 @interface HTTPManager : NSObject
 
 // messages
@@ -84,14 +87,14 @@ typedef NS_ENUM (NSInteger, FileSuffixName) {
 // POST
 + (void)POSTWithMethodName:(NSString *)methodName
                 parameters:(NSDictionary *)parameters
-                   success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                   failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+                   success:(NetowrkPushResultFailureCompletionHandle)success
+                   failure:(NetowrkPushResultFailureCompletionHandle)failure;
 
 // POST png
 + (void)POSTPNGWithMethodName:(NSString *)methodName
 				   parameters:(NSDictionary *)parameters
 					formDatas:(NSArray *)datas
-					  success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+					  success:(NetowrkPushResultFailureCompletionHandle)success
 					  failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 // POST with data
 + (void)POSTWithMethodName:(NSString *)methodName
@@ -99,11 +102,8 @@ typedef NS_ENUM (NSInteger, FileSuffixName) {
                  formDatas:(NSArray *)datas
                  formField:(HTTPFormField)fieldName
                   mineType:(HTTPMineType)mineType
-                   success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                   failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
-
-
-
+                   success:(NetowrkPushResultFailureCompletionHandle)success
+                   failure:(NetowrkPushResultFailureCompletionHandle)failure;
 
 // present progress animation
 + (void)requestWillBeginWithProgressAnimation;

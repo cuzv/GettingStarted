@@ -9,7 +9,7 @@
 #import "IndexViewController.h"
 #import "Extension.h"
 #import "UIImageView+AFNetworking.h"
-
+#import "HTTPManager.h"
 
 @interface Person : NSObject
 @property (nonatomic, strong) NSString *name;
@@ -51,6 +51,7 @@
 //	[self.view addSubview:view];
 //	
 //	[view setBadgeValue:@"33"];
+	
 }
 
 @end

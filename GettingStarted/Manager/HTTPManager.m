@@ -314,9 +314,9 @@ static NSMutableArray *sessions;
 // 后台接收哪种格式的参数，传递参数的时候就发什么格式的过去，「团队宝」后台需要的是 base64，所以不用 AFNetworking 的 AFJSONRequestSerializer 转换器
 // POST
 + (void)POSTWithMethodName:(NSString *)methodName
-                parameters:(NSDictionary *)parameters
-                   success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                   failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+				parameters:(NSDictionary *)parameters
+				   success:(NetowrkPushResultFailureCompletionHandle)success
+				   failure:(NetowrkPushResultFailureCompletionHandle)failure {
     if (![HTTPManager shouldContinue]) {
         return;
     }
@@ -339,7 +339,7 @@ static NSMutableArray *sessions;
 + (void)POSTPNGWithMethodName:(NSString *)methodName
 				   parameters:(NSDictionary *)parameters
 					formDatas:(NSArray *)datas
-					  success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+					  success:(NetowrkPushResultFailureCompletionHandle)success
 					  failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
 	[self POSTWithMethodName:methodName
 				  parameters:parameters
@@ -352,16 +352,16 @@ static NSMutableArray *sessions;
 
 // POST with data
 + (void)POSTWithMethodName:(NSString *)methodName
-                parameters:(NSDictionary *)parameters
-                 formDatas:(NSArray *)datas
-                 formField:(HTTPFormField)fieldName
-                  mineType:(HTTPMineType)mineType
-                   success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                   failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+				parameters:(NSDictionary *)parameters
+				 formDatas:(NSArray *)datas
+				 formField:(HTTPFormField)fieldName
+				  mineType:(HTTPMineType)mineType
+				   success:(NetowrkPushResultFailureCompletionHandle)success
+				   failure:(NetowrkPushResultFailureCompletionHandle)failure {
     if (![HTTPManager shouldContinue]) {
         return;
     }
-    
+	
     // remove same request
     [self removeRequestByMthodName:methodName];
     

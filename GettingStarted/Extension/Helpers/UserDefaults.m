@@ -10,24 +10,24 @@
 
 @implementation UserDefaults
 
-- (void)setValue:(id)value forKey:(NSString *)key {
++ (void)setValue:(id)value forKey:(NSString *)key {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setValue:value forKey:key];
 	[userDefaults synchronize];
 }
 
-- (id)valueForKey:(NSString *)key {
++ (id)valueForKey:(NSString *)key {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	return [userDefaults valueForKey:key];
 }
 
-- (void)setBool:(BOOL)value forKey:(NSString *)defaultName {
++ (void)setBool:(BOOL)value forKey:(NSString *)defaultName {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setBool:value forKey:defaultName];
 	[userDefaults synchronize];
 }
 
-- (BOOL)boolForKey:(NSString *)defaultName {
++ (BOOL)boolForKey:(NSString *)defaultName {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	return [userDefaults boolForKey:defaultName];
 }
