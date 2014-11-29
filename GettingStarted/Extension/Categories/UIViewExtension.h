@@ -14,7 +14,7 @@
 
 #pragma mark - 视图框架访问器方法
 
-@interface UIView (Accessor)
+@interface UIView (VAccessor)
 
 /**
  *  设置视图原点
@@ -161,14 +161,14 @@
 
 #pragma mark - 为视图添加动画
 
-@interface UIView (Animation)
+@interface UIView (VAnimation)
 
 @end
 
 
 #pragma mark - 添加环形动画
 
-@interface UIView (ArcRotationAnimation)
+@interface UIView (VArcRotationAnimation)
 
 /**
  *  添加环形动画
@@ -202,12 +202,12 @@
 
 #pragma mark - 为视图添加振动动画效果
 
-typedef NS_ENUM(NSInteger, CHAnimationOrientation) {
-    CHAnimationOrientationHorizontal,
-    CHAnimationOrientationVertical
+typedef NS_ENUM(NSInteger, VAnimationOrientation) {
+    VAnimationOrientationHorizontal,
+    VAnimationOrientationVertical
 };
 
-@interface UIView (ShakeAnimation)
+@interface UIView (VShakeAnimation)
 
 /**
  *  振动效果
@@ -219,14 +219,14 @@ typedef NS_ENUM(NSInteger, CHAnimationOrientation) {
  *
  *  @param orientation 振动方向
  */
-- (void)shakeWithOrientation:(CHAnimationOrientation)orientation;
+- (void)shakeWithOrientation:(VAnimationOrientation)orientation;
 
 @end
 
 
 #pragma mark - 加载动画效果(打乒乓球效果)
 
-@interface UIView (PingPang)
+@interface UIView (VPingPang)
 
 /**
  *  加载动画效果(打乒乓球效果)
@@ -249,7 +249,7 @@ typedef NS_ENUM(NSInteger, CHAnimationOrientation) {
 
 #pragma mark - 为视图添加进度指示器
 
-@interface UIView (UIActivityIndicatorView)
+@interface UIView (VUIActivityIndicatorView)
 
 /**
  *  获取进度指示器
@@ -287,7 +287,7 @@ typedef NS_ENUM(NSInteger, CHAnimationOrientation) {
 
 #pragma mark - 为视图添加渐变环形进度指示器
 
-@interface UIView (GradientCircularProgress)
+@interface UIView (VGradientCircularProgress)
 
 /**
  *  为视图添加渐变环形进度指示器动画
@@ -311,7 +311,7 @@ typedef NS_ENUM(NSInteger, CHAnimationOrientation) {
 
 #pragma mark - 让视图产生半透明毛玻璃效果
 
-@interface UIView (Blur)
+@interface UIView (VBlur)
 
 /**
  *  让视图产生半透明毛玻璃效果(You should call this message at last when call messages for view)
@@ -325,14 +325,14 @@ typedef NS_ENUM(NSInteger, CHAnimationOrientation) {
 #define kColorDigit (213 / 255)
 #define kBorderLineGrayColor [UIColor colorWithRed:kColorDigit green:kColorDigit blue:kColorDigit alpha:kColorDigit]
 
-typedef NS_ENUM(NSInteger, CHEdge) {
-    CHEdgeTop,
-	CHEdgeLeft,
-    CHEdgeBottom,
-    CHEdgeRight
+typedef NS_ENUM(NSInteger, VEdge) {
+    VEdgeTop,
+	VEdgeLeft,
+    VEdgeBottom,
+    VEdgeRight
 };
 
-@interface UIView (BorderLine)
+@interface UIView (VBorderLine)
 
 /**
  *  设置边框
@@ -352,7 +352,7 @@ typedef NS_ENUM(NSInteger, CHEdge) {
  *  @param aColor      边框颜色
  *  @param orientation 哪一条边框
  */
-- (void)setBorderLineColor:(UIColor *)aColor edge:(CHEdge)edge;
+- (void)setBorderLineColor:(UIColor *)aColor edge:(VEdge)edge;
 
 /**
  *  添加边线约束
@@ -361,14 +361,14 @@ typedef NS_ENUM(NSInteger, CHEdge) {
  *  @param edge       边缘方向
  *  @param multiplier 边线高度乘法器([0, 1])
  */
-- (void)addBorderLineConstraintsWithColor:(UIColor *)color edge:(CHEdge)edge lineHeightMultiplier:(CGFloat)multiplier;
+- (void)addBorderLineConstraintsWithColor:(UIColor *)color edge:(VEdge)edge lineHeightMultiplier:(CGFloat)multiplier;
 
 @end
 
 
 #pragma mark - 通过视图查找它所属视图控制器
 
-@interface UIView (UIViewController)
+@interface UIView (VUIViewController)
 
 /**
  *  通过视图查找它所属视图控制器
@@ -382,7 +382,7 @@ typedef NS_ENUM(NSInteger, CHEdge) {
 
 #pragma mark - Layer 裁剪等操作
 
-@interface UIView (Layer)
+@interface UIView (VLayer)
 
 /**
  *  边角裁剪
@@ -403,7 +403,7 @@ typedef NS_ENUM(NSInteger, CHEdge) {
 
 #pragma mark - 打印视图层级
 
-@interface UIView (LayoutDebugging)
+@interface UIView (VLayoutDebugging)
 
 /**
  *  打印自动布局树
@@ -426,7 +426,7 @@ typedef NS_ENUM(NSInteger, CHEdge) {
 
 #pragma mark - 添加徽标
 
-@interface UIView (Badge)
+@interface UIView (VBadge)
 
 /**
  *  设置徽标

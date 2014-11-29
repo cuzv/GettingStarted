@@ -16,7 +16,7 @@
 
 #pragma mark - 快速生成按钮
 
-@interface UIButton (Generate)
+@interface UIButton (VGenerate)
 
 /**
  *  快速生成按钮，适用于只提供图片的方式
@@ -103,7 +103,7 @@
 
 #pragma mark - 点击等待
 
-@interface UIButton (IndicatorAnimation)
+@interface UIButton (VIndicatorAnimation)
 
 /**
  *  添加等待动画
@@ -123,3 +123,15 @@
 - (BOOL)isInAnimation;
 
 @end
+
+#pragma mark - 图片右对齐
+
+@interface UIButton (VImageAlignment)
+
+/**
+ *  Button 图片右侧对齐
+ */
+- (void)updateImageAlignmentToRight;
+
+@end
+

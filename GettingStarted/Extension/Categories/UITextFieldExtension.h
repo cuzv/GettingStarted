@@ -16,7 +16,7 @@
 
 #pragma mark - 快速创建文本域
 
-@interface UITextField (Generate)
+@interface UITextField (VGenerate)
 
 /**
  *  快速创建文本域

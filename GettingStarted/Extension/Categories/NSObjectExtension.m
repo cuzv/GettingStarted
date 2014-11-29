@@ -16,7 +16,7 @@
 
 #pragma mark - 对象模型与原生类型间的转换
 
-@implementation NSObject (Convert)
+@implementation NSObject (VConvert)
 
 - (instancetype)initWithProperties:(NSDictionary *)properties {
     if (self = [self init]) {

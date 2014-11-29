@@ -22,7 +22,7 @@
 
 @end
 
-@implementation UIViewController (NavigationActivityIndicatorView)
+@implementation UIViewController (VNavigationActivityIndicatorView)
 
 static const void *ContextKey = &ContextKey;
 static const void *TitleInAnimationKey = &TitleInAnimationKey;

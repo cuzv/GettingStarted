@@ -28,21 +28,21 @@
 #import "UINavigationBarExtension.h"
 
 // views
-#import "BadgeView.h"
-#import "GapRing.h"
-#import "GradientCircularProgress.h"
-#import "LocationPickerView.h"
-#import "PaddingField.h"
-#import "PaddingLabel.h"
-#import "ResizableTextView.h"
-#import "TrackArcView.h"
+#import "VBadgeView.h"
+#import "VGapRing.h"
+#import "VGradientCircularProgress.h"
+#import "VLocationPickerView.h"
+#import "VPaddingField.h"
+#import "VPaddingLabel.h"
+#import "VFlexibleTextView.h"
+#import "VTrackArcView.h"
 
 // Helpers
-#import "CodeHelper.h"
-#import "Archiver.h"
-#import "TextEditConfigure.h"
-#import "ArrayDataSource.h"
-#import "UserDefaults.h"
+#import "VGlobalServices.h"
+#import "VArchiver.h"
+#import "VTextEditConfigure.h"
+#import "VArrayDataSource.h"
+#import "VUserDefaults.h"
 
 // Dependent
 #import "UIView+HUD.h"

@@ -13,7 +13,7 @@
 
 @end
 
-@interface UIViewController (NavigationActivityIndicatorView)
+@interface UIViewController (VNavigationActivityIndicatorView)
 
 /**
  *  添加导航栏中间部位进度指示器

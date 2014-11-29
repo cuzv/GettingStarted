@@ -14,7 +14,7 @@
 
 #pragma mark - 获取 NSBundle 中的图片
 
-@interface UIImage (Fetch)
+@interface UIImage (VFetch)
 
 /**
  *  通过名字获取图片，不带后缀，png 格式图片
@@ -49,7 +49,7 @@
 
 #pragma mark - 快速生成图片
 
-@interface UIImage (Generate)
+@interface UIImage (VGenerate)
 
 /**
  *  根据颜色快速生成图片

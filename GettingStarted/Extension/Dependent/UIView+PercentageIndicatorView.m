@@ -16,7 +16,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
 @property (nonatomic, weak) MDRadialProgressView *percentageIndicatorView;
 @end
 
-@implementation UIView (PercentageIndicatorView)
+@implementation UIView (VPercentageIndicatorView)
 
 - (void)setPercentageIndicatorView:(MDRadialProgressView *)percentageIndicatorView {
     [self willChangeValueForKey:@"PercentageIndicatorViewKey"];

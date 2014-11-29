@@ -16,7 +16,7 @@
 
 #pragma mark - 快速创建文本域
 
-@implementation UITextField (Generate)
+@implementation UITextField (VGenerate)
 
 + (instancetype)textFieldWithFrame:(CGRect)frame
                      textAlignment:(NSTextAlignment)alignment

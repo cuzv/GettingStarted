@@ -14,7 +14,7 @@
 
 #pragma mark - 生成颜色
 
-@interface UIColor (RandomColor)
+@interface UIColor (VRandomColor)
 
 /**
  *  随机生成 RGB 颜色

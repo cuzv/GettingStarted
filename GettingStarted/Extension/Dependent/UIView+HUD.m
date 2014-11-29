@@ -24,7 +24,7 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
 @property(nonatomic, weak) JGProgressHUD *HUD;
 @end
 
-@implementation UIView (HUD)
+@implementation UIView (VHUD)
 
 - (void)setHUD:(JGProgressHUD *)HUD {
     [self willChangeValueForKey:@"UIViewHUDKey"];

@@ -14,7 +14,7 @@
 
 #pragma mark - 计算字符串所占空间尺寸大小
 
-@interface NSString (TextSize)
+@interface NSString (VTextSize)
 
 /**
  *  根据字体获取所占空间尺寸大小
@@ -40,7 +40,7 @@
 
 #pragma mark - 正则验证
 
-@interface NSString (Verification)
+@interface NSString (VVerification)
 
 /**
  *  匹配正则表达式
@@ -100,7 +100,7 @@
 
 #pragma mark - 
 
-@interface NSString (Encoding)
+@interface NSString (VEncoding)
 
 /**
  *  Create UTF-8 string by ISO string

@@ -13,7 +13,7 @@
 
 #pragma mark - 计算字符串所占空间尺寸大小
 
-@implementation NSString (TextSize)
+@implementation NSString (VTextSize)
 
 /**
  *  计算字符所占空间尺寸大小
@@ -49,7 +49,7 @@
 
 #pragma mark - 正则验证
 
-@implementation NSString (Verification)
+@implementation NSString (VVerification)
 
 - (BOOL)isMatchRegex:(NSString *)regex {
 	NSPredicate *phoneNumerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",
@@ -105,7 +105,7 @@
 
 #pragma mark - 
 
-@implementation NSString (Encoding)
+@implementation NSString (VEncoding)
 
 // Create UTF8 string by ISO string
 - (NSString *)convertISOString2UTF8 {

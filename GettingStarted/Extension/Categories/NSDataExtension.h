@@ -13,7 +13,7 @@
 @end
 
 
-@interface NSData (JSON)
+@interface NSData (VJSON)
 
 /**
  *  Create a Foundation object from JSON data
@@ -44,7 +44,7 @@
 
 @end
 
-@interface NSData (Encoding)
+@interface NSData (VEncoding)
 
 /**
  *  Generate UTF-8 string from data

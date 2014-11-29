@@ -14,7 +14,7 @@
 
 #pragma mark - 快速生成提示框
 
-@implementation UIAlertView (Generate)
+@implementation UIAlertView (VGenerate)
 
 + (void)showAlertWithMessage:(NSString *)message {
     UIAlertView *alertView = [[self alloc] initWithTitle:@""

@@ -12,7 +12,7 @@
 
 @end
 
-@implementation NSDictionary (URLPath)
+@implementation NSDictionary (VURLPath)
 
 // Convert dictionary to url string
 - (NSString *)URLParameterString {

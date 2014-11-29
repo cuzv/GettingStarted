@@ -15,7 +15,7 @@
 
 #pragma mark - 快速生成标签
 
-@implementation UILabel (Generate)
+@implementation UILabel (VGenerate)
 
 + (instancetype)labelWithFrame:(CGRect)frame
                  textAlignment:(NSTextAlignment)alignment

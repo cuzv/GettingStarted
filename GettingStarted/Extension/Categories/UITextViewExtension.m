@@ -16,7 +16,7 @@
 
 #pragma mark - 快速创建文本框
 
-@implementation UITextView (Generate)
+@implementation UITextView (VGenerate)
 
 + (instancetype)textViewWithFrame:(CGRect)frame
                              font:(UIFont *)font

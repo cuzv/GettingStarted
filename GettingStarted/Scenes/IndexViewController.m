@@ -9,7 +9,7 @@
 #import "IndexViewController.h"
 #import "Extension.h"
 #import "UIImageView+AFNetworking.h"
-#import "HTTPManager.h"
+#import "VHTTPManager.h"
 
 @interface Person : NSObject
 @property (nonatomic, strong) NSString *name;
@@ -22,7 +22,7 @@
 @end
 
 @interface IndexViewController () <UINavigationBarDelegate>
-@property (nonatomic, strong) BadgeView *badgeView;
+@property (nonatomic, strong) VBadgeView *badgeView;
 @end
 
 @implementation IndexViewController

@@ -7,7 +7,7 @@
 //
 
 #import "UIViewExtension.h"
-#import "CodeHelper.h"
+#import "VGlobalServices.h"
 
 @implementation UIViewExtension
 @end
@@ -17,7 +17,7 @@
 
 #pragma mark - 视图框架访问器方法
 
-@implementation UIView (Accessor)
+@implementation UIView (VAccessor)
 
 - (void)setOrigin:(CGPoint)point {
     self.frame = CGRectMake(point.x, point.y, self.width, self.height);
@@ -103,7 +103,7 @@
 
 #pragma mark - 为视图添加动画
 
-@implementation UIView (Animation)
+@implementation UIView (VAnimation)
 
 #define kLoadingAnimationDuration 3
 // for PingPang
@@ -192,7 +192,7 @@
 @property (nonatomic, weak) CAShapeLayer *arcLayer;
 @end
 
-@implementation UIView (ArcRotationAnimation)
+@implementation UIView (VArcRotationAnimation)
 
 static const void *ArcLayerKey = &ArcLayerKey;
 - (void)setArcLayer:(CAShapeLayer *)arcLayer {
@@ -261,15 +261,15 @@ static const void *ArcLayerKey = &ArcLayerKey;
 
 #pragma mark - 为视图添加振动动画效果
 
-@implementation UIView (ShakeAnimation)
+@implementation UIView (VShakeAnimation)
 
 - (void)shake {
-    [self shakeWithOrientation:CHAnimationOrientationHorizontal];
+    [self shakeWithOrientation:VAnimationOrientationHorizontal];
 }
 
-- (void)shakeWithOrientation:(CHAnimationOrientation)orientation {
+- (void)shakeWithOrientation:(VAnimationOrientation)orientation {
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-    animation.keyPath = orientation == CHAnimationOrientationHorizontal ? @"position.x" : @"position.y";
+    animation.keyPath = orientation == VAnimationOrientationHorizontal ? @"position.x" : @"position.y";
     animation.values = @[@0, @10, @-10, @10, @0];
     animation.keyTimes = @[@0, @(1 / 6.0f), @(3 / 6.0f), @(5 / 6.0f), @1];
     animation.duration = 0.4;
@@ -281,7 +281,7 @@ static const void *ArcLayerKey = &ArcLayerKey;
 
 #pragma mark - 加载动画效果(打乒乓球效果)
 
-@implementation UIView (PingPang)
+@implementation UIView (VPingPang)
 
 - (void)addLoadingAnimation {
     [self addLoadingAnimationWitchColor:[UIColor whiteColor]];
@@ -350,7 +350,7 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 @property(nonatomic, weak, readwrite) UIActivityIndicatorView *activityIndicatorView;
 @end
 
-@implementation UIView (UIActivityIndicatorView)
+@implementation UIView (VUIActivityIndicatorView)
 
 - (void)setActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView {
     [self willChangeValueForKey:@"ActivityIndicatorViewKey"];
@@ -400,23 +400,23 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 #pragma mark - 为视图添加渐变环形进度指示器
 
 #import <objc/runtime.h>
-#import "GradientCircularProgress.h"
+#import "VGradientCircularProgress.h"
 
 static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 @interface UIView ()
-@property(nonatomic, weak) GradientCircularProgress *gradientCircularProgress;
+@property(nonatomic, weak) VGradientCircularProgress *gradientCircularProgress;
 @end
 
-@implementation UIView (GradientCircularProgress)
+@implementation UIView (VGradientCircularProgress)
 
-- (void)setGradientCircularProgress:(GradientCircularProgress *)gradientCircularProgress {
+- (void)setGradientCircularProgress:(VGradientCircularProgress *)gradientCircularProgress {
     [self willChangeValueForKey:@"GradientCircularProgressKey"];
     objc_setAssociatedObject(self, GradientCircularProgressKey, gradientCircularProgress, OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"GradientCircularProgressKey"];
 }
 
-- (GradientCircularProgress *)gradientCircularProgress {
+- (VGradientCircularProgress *)gradientCircularProgress {
     return objc_getAssociatedObject(self, &GradientCircularProgressKey);
 }
 
@@ -429,7 +429,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
         return;
     }
     
-    GradientCircularProgress *gradientCircularProgress = [[GradientCircularProgress alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    VGradientCircularProgress *gradientCircularProgress = [[VGradientCircularProgress alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     gradientCircularProgress.center = center;
     self.gradientCircularProgress = gradientCircularProgress;
     [self addSubview:gradientCircularProgress];
@@ -448,7 +448,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 #pragma mark - 让视图产生半透明毛玻璃效果
 
-@implementation UIView (Blur)
+@implementation UIView (VBlur)
 
 //- (void)blur {
 //    self.backgroundColor = [UIColor clearColor];
@@ -473,41 +473,41 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 #pragma mark - 为视图添加边框
 
 #define kLineBorderWidth 0.5
-@implementation UIView (BorderLine)
+@implementation UIView (VBorderLine)
 
 - (void)setBorderLine {
-    [self setBorderLineColor:kBorderLineGrayColor edge:CHEdgeBottom];
-    [self setBorderLineColor:kBorderLineGrayColor edge:CHEdgeTop];
-    [self setBorderLineColor:kBorderLineGrayColor edge:CHEdgeLeft];
-    [self setBorderLineColor:kBorderLineGrayColor edge:CHEdgeRight];
+    [self setBorderLineColor:kBorderLineGrayColor edge:VEdgeBottom];
+    [self setBorderLineColor:kBorderLineGrayColor edge:VEdgeTop];
+    [self setBorderLineColor:kBorderLineGrayColor edge:VEdgeLeft];
+    [self setBorderLineColor:kBorderLineGrayColor edge:VEdgeRight];
 }
 
 - (void)setBorderLineColor:(UIColor *)aColor {
-    [self setBorderLineColor:aColor edge:CHEdgeBottom];
-    [self setBorderLineColor:aColor edge:CHEdgeTop];
-    [self setBorderLineColor:aColor edge:CHEdgeLeft];
-    [self setBorderLineColor:aColor edge:CHEdgeRight];
+    [self setBorderLineColor:aColor edge:VEdgeBottom];
+    [self setBorderLineColor:aColor edge:VEdgeTop];
+    [self setBorderLineColor:aColor edge:VEdgeLeft];
+    [self setBorderLineColor:aColor edge:VEdgeRight];
 }
 
 - (void)setBorderLineColor:(UIColor *)aColor
-           edge:(CHEdge)edge {
+           edge:(VEdge)edge {
     CALayer *line = [[CALayer alloc] init];
     line.backgroundColor = aColor.CGColor;
     
     CGRect lineFrame = CGRectZero;
-    if (CHEdgeTop == edge) {
+    if (VEdgeTop == edge) {
         // 上边加线
         lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
                                CGRectGetMinY(self.bounds),
                                CGRectGetWidth(self.bounds),
                                kLineBorderWidth);
-    } else if (CHEdgeLeft == edge) {
+    } else if (VEdgeLeft == edge) {
         // 左边加线
         lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
                                CGRectGetMinY(self.bounds),
                                kLineBorderWidth,
                                CGRectGetHeight(self.bounds));
-    } else if (CHEdgeBottom == edge) {
+    } else if (VEdgeBottom == edge) {
         // 底边加线
         lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
                                CGRectGetMaxY(self.bounds) + kLineBorderWidth,
@@ -526,7 +526,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 
 // Auto layout
-- (void)addBorderLineConstraintsWithColor:(UIColor *)color edge:(CHEdge)edge lineHeightMultiplier:(CGFloat)multiplier {
+- (void)addBorderLineConstraintsWithColor:(UIColor *)color edge:(VEdge)edge lineHeightMultiplier:(CGFloat)multiplier {
 	UIView *lineView = [UIView new];
 	lineView.backgroundColor = color ? color : kBorderLineGrayColor;
 	[lineView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -538,25 +538,25 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 	NSLayoutAttribute sizeLayoutAttribute = NSLayoutAttributeNotAnAttribute;
 	NSString *visualFormat = nil;
 	switch (edge) {
-		case CHEdgeLeft:
+		case VEdgeLeft:
 			edgeLayoutAttribute = NSLayoutAttributeLeft;
 			centerLayoutAttribute = NSLayoutAttributeCenterY;
 			sizeLayoutAttribute = NSLayoutAttributeHeight;
 			visualFormat = @"[lineView(0.5)]";
 				break;
-		case CHEdgeRight:
+		case VEdgeRight:
 			edgeLayoutAttribute = NSLayoutAttributeRight;
 			centerLayoutAttribute = NSLayoutAttributeCenterY;
 			sizeLayoutAttribute = NSLayoutAttributeHeight;
 			visualFormat = @"[lineView(0.5)]";
 			break;
-		case CHEdgeTop:
+		case VEdgeTop:
 			edgeLayoutAttribute = NSLayoutAttributeTop;
 			centerLayoutAttribute = NSLayoutAttributeCenterX;
 			sizeLayoutAttribute = NSLayoutAttributeWidth;
 			visualFormat = @"V:[lineView(0.5)]";
 			break;
-		case CHEdgeBottom:
+		case VEdgeBottom:
 			edgeLayoutAttribute = NSLayoutAttributeBottom;
 			centerLayoutAttribute = NSLayoutAttributeCenterX;
 			sizeLayoutAttribute = NSLayoutAttributeWidth;
@@ -600,7 +600,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 #pragma mark - 通过视图查找它所属视图控制器
 
-@implementation UIView (UIViewController)
+@implementation UIView (VUIViewController)
 
 - (UIViewController *)viewController {
     /// Finds the view's view controller.
@@ -620,7 +620,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 #pragma mark - Layer 裁剪等操作
 
-@implementation UIView (Layer)
+@implementation UIView (VLayer)
 
 - (void)setCornerRadius:(CGFloat)radius {
     self.layer.masksToBounds = YES;
@@ -636,7 +636,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 #pragma mark - 打印视图层级
 
-@implementation UIView (LayoutDebugging)
+@implementation UIView (VLayoutDebugging)
 - (void)printAutoLayoutTrace {
 #ifdef DEBUG
 	
@@ -683,30 +683,30 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 #pragma mark - 添加徽标
 
-#import "BadgeView.h"
+#import "VBadgeView.h"
 
 static const void *BadgeKey = &BadgeKey;
 
-@implementation UIView (Badge)
+@implementation UIView (VBadge)
 
-- (void)setBadgeView:(BadgeView *)badgeView {
+- (void)setBadgeView:(VBadgeView *)badgeView {
 	[self willChangeValueForKey:@"BadgeKey"];
 	objc_setAssociatedObject(self, BadgeKey, badgeView, OBJC_ASSOCIATION_ASSIGN);
 	[self didChangeValueForKey:@"BadgeKey"];
 }
 
-- (BadgeView *)badgeView {
+- (VBadgeView *)badgeView {
 	return objc_getAssociatedObject(self, &BadgeKey);
 }
 
 - (void)setBadgeValue:(NSString *)badgeValue {
 	if (![self badgeView]) {
-		BadgeView *badeView = [BadgeView new];
+		VBadgeView *badeView = [VBadgeView new];
 		[self addSubview:badeView];
 		[self setBadgeView:badeView];
 	}
 	
-	BadgeView *badgeView = [self badgeView];
+	VBadgeView *badgeView = [self badgeView];
 	badgeView.badgeValue = badgeValue;
 	
 	// Base on Frame

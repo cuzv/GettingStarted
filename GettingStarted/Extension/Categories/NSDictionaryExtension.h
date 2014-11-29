@@ -13,7 +13,7 @@
 @end
 
 
-@interface NSDictionary (URLPath)
+@interface NSDictionary (VURLPath)
 
 /**
  *  将字典转为链接参数形式

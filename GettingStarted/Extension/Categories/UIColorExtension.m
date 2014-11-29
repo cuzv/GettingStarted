@@ -13,7 +13,7 @@
 
 #pragma mark - 生成颜色
 
-@implementation UIColor (RandomColor)
+@implementation UIColor (VRandomColor)
 
 + (UIColor *)randomRGBColor {
     static BOOL seeded = NO;

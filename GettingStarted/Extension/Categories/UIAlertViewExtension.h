@@ -16,7 +16,7 @@
 
 #pragma mark - 快速生成提示框
 
-@interface UIAlertView (Generate)
+@interface UIAlertView (VGenerate)
 
 /**
  *  弹出提示框

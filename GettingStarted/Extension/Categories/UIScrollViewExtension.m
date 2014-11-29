@@ -15,7 +15,7 @@
 
 #pragma mark - 滚动视图框架访问器方法
 
-@implementation UIScrollView (Accessor)
+@implementation UIScrollView (VAccessor)
 
 - (void)setContentInsetTop:(CGFloat)contentInsetTop {
     UIEdgeInsets inset = self.contentInset;

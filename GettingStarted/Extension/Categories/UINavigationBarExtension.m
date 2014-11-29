@@ -28,7 +28,7 @@ static const void *IndicatorAnimationKey = &IndicatorAnimationKey;
 static const void *IndicatorInAnimationKey = &IndicatorInAnimationKey;
 static const void *IndicatorAnimationTimerKey = &IndicatorAnimationTimerKey;
 
-@implementation UINavigationBar (IndicatorAnimation)
+@implementation UINavigationBar (VIndicatorAnimation)
 
 - (void)setTitleLabel:(UILabel *)titleLabel {
 	[self willChangeValueForKey:@"IndicatorAnimationKey"];

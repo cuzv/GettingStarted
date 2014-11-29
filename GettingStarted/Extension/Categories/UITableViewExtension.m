@@ -15,7 +15,7 @@
 
 #pragma mark - 快速创建表视图
 
-@implementation UITableView (Generate)
+@implementation UITableView (VGenerate)
 
 + (instancetype)tableViewWithFrame:(CGRect)frame
                              style:(UITableViewStyle)style

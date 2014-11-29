@@ -16,7 +16,7 @@
 
 #pragma mark - 快速创建文本框
 
-@interface UITextView (Generate)
+@interface UITextView (VGenerate)
 
 /**
  *  快速创建文本框

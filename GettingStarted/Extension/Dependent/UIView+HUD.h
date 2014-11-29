@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JGProgressHUD.h"
 
-@interface UIView (HUD)
+@interface UIView (VHUD)
 
 - (void)showHUDWithMessage:(NSString *)message;
 - (void)showLoadingHUD;

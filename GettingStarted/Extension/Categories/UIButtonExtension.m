@@ -16,7 +16,7 @@
 
 #pragma mark - 快速生成按钮
 
-@implementation UIButton (Generate)
+@implementation UIButton (VGenerate)
 
 + (instancetype)buttonWithFrame:(CGRect)frame
                 backgroundImage:(UIImage *)backgroundImage
@@ -102,7 +102,7 @@
 
 #pragma mark - 点击等待
 
-#import "GapRing.h"
+#import "VGapRing.h"
 #import "UIImageExtension.h"
 #import <objc/runtime.h>
 #import "UIColorExtension.h"
@@ -112,7 +112,7 @@
 @property (nonatomic, strong) NSDictionary *context;
 @end
 
-@implementation UIButton (IndicatorAnimation)
+@implementation UIButton (VIndicatorAnimation)
 
 static const void *IndicatorAnimationKey = &IndicatorAnimationKey;
 static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
@@ -191,7 +191,7 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     
     // 添加动画
     CGFloat lengthOfSide = self.height * 0.8;
-    GapRing *gapRing = [[GapRing alloc] initWithFrame:CGRectMake(0, 0, lengthOfSide, lengthOfSide)];
+    VGapRing *gapRing = [[VGapRing alloc] initWithFrame:CGRectMake(0, 0, lengthOfSide, lengthOfSide)];
     gapRing.midX = self.width / 2;
     gapRing.midY = self.height / 2;
     gapRing.lineColor = [UIColor colorWithRGBA:@[@0, @122, @255, @1]];
@@ -208,8 +208,8 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
 
     // 移除动画
     for (UIView *subView in self.subviews) {
-        if ([subView isKindOfClass:[GapRing class]]) {
-            GapRing *gapRing = (GapRing *)subView;
+        if ([subView isKindOfClass:[VGapRing class]]) {
+            VGapRing *gapRing = (VGapRing *)subView;
             [gapRing stopAnimation];
             [gapRing removeFromSuperview];
             gapRing = nil;
@@ -276,3 +276,19 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
 }
 
 @end
+
+
+#pragma mark - 图片右对齐
+
+@implementation UIButton (VImageAlignment)
+
+- (void)updateImageAlignmentToRight {
+	CGFloat imageWidth = self.currentImage.size.width;
+	[self setTitleEdgeInsets:UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth)];
+	
+	CGFloat edgeWidth = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}].width;
+	[self setImageEdgeInsets:UIEdgeInsetsMake(0, edgeWidth, 0, -edgeWidth)];
+}
+
+@end
+

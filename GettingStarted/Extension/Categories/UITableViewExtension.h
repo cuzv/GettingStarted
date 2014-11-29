@@ -15,7 +15,7 @@
 
 #pragma mark - 快速创建表视图
 
-@interface UITableView (Generate)
+@interface UITableView (VGenerate)
 
 /**
  *  快速生成表视图

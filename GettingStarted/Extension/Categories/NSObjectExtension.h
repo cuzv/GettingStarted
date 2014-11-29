@@ -15,7 +15,7 @@
 
 #pragma mark - 对象模型与原生类型间的转换
 
-@interface NSObject (Convert)
+@interface NSObject (VConvert)
 
 /**
  *  快速创建模型

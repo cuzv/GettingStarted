@@ -15,7 +15,7 @@
 
 #pragma mark - 滚动视图框架访问器方法
 
-@interface UIScrollView (Accessor)
+@interface UIScrollView (VAccessor)
 
 /**
  *  设置滚动视图的顶部内容缩进

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MDRadialProgressTheme.h"
 
-@interface UIView (PercentageIndicatorView)
+@interface UIView (VPercentageIndicatorView)
 
 - (void)addPercentageIndicatorView;
 - (void)addPercentageIndicatorViewOnCenter:(CGPoint)center withThem:(MDRadialProgressTheme *)anThemt;

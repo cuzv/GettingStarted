@@ -14,7 +14,7 @@
 
 #pragma mark - 获取 NSBundle 中的图片
 
-@implementation UIImage (Fetch)
+@implementation UIImage (VFetch)
 
 + (UIImage *)imageWithName:(NSString *)imageName {
     return [self imageWithName:imageName suffix:@"png"];
@@ -33,7 +33,7 @@
 
 #pragma mark - 快速生成图片
 
-@implementation UIImage (Generate)
+@implementation UIImage (VGenerate)
 
 + (UIImage *)imageWithColor:(UIColor *)aColor {
     return [self imageWithColor:aColor size:CGSizeMake(1, 1)];

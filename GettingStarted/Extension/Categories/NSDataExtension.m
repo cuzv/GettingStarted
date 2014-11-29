@@ -13,7 +13,7 @@
 @end
 
 
-@implementation NSData (JSON)
+@implementation NSData (VJSON)
 
 // Create a Foundation object from JSON data
 - (id)JSONObject {
@@ -64,7 +64,7 @@
 
 @end
 
-@implementation NSData (Encoding)
+@implementation NSData (VEncoding)
 
 // Generate UTF-8 string from data
 - (NSString *)UTF8String {

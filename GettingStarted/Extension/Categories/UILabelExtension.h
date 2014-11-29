@@ -16,7 +16,7 @@
 
 #pragma mark - 快速生成标签
 
-@interface UILabel (Generate)
+@interface UILabel (VGenerate)
 
 /**
  *  快速创建标签
