@@ -17,10 +17,10 @@
 
 @implementation UILabel (VGenerate)
 
-+ (instancetype)labelWithFrame:(CGRect)frame
-                 textAlignment:(NSTextAlignment)alignment
-                          font:(UIFont *)font
-                     textColor:(UIColor *)color {
++ (instancetype)v_labelWithFrame:(CGRect)frame
+				   textAlignment:(NSTextAlignment)alignment
+							font:(UIFont *)font
+					   textColor:(UIColor *)color {
     UILabel *label = [[self alloc] initWithFrame:frame];
     label.textAlignment = alignment ? : NSTextAlignmentLeft;
     label.font = font ? : [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
@@ -30,16 +30,16 @@
     return label;
 }
 
-+ (instancetype)labelWithSize:(CGSize)size
-                       center:(CGPoint)center
-                textAlignment:(NSTextAlignment)alignment
-                         font:(UIFont *)font
-                    textColor:(UIColor *)textColor {
++ (instancetype)v_labelWithSize:(CGSize)size
+						 center:(CGPoint)center
+				  textAlignment:(NSTextAlignment)alignment
+						   font:(UIFont *)font
+					  textColor:(UIColor *)textColor {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,
                               size.height);
-    return [self labelWithFrame:frame textAlignment:alignment font:font textColor:textColor];
+    return [self v_labelWithFrame:frame textAlignment:alignment font:font textColor:textColor];
 }
 
 @end

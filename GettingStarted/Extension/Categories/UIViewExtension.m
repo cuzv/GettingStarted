@@ -19,83 +19,83 @@
 
 @implementation UIView (VAccessor)
 
-- (void)setOrigin:(CGPoint)point {
-    self.frame = CGRectMake(point.x, point.y, self.width, self.height);
+- (void)v_setOrigin:(CGPoint)point {
+    self.frame = CGRectMake(point.x, point.y, [self v_width], [self v_height]);
 }
 
-- (CGPoint)origin {
+- (CGPoint)v_origin {
     return self.frame.origin;
 }
 
-- (void)setSize:(CGSize)size {
-    self.frame = CGRectMake(self.minX, self.minY, size.width, size.height);
+- (void)v_setSize:(CGSize)size {
+    self.frame = CGRectMake([self v_minX], [self v_minY], size.width, size.height);
 }
 
-- (CGSize)size {
+- (CGSize)v_size {
     return self.frame.size;
 }
 
-- (void)setMinX:(CGFloat)x {
-    self.frame = CGRectMake(x, self.minY, self.width, self.height);
+- (void)v_setMinX:(CGFloat)x {
+    self.frame = CGRectMake(x, [self v_minY], [self v_width], [self v_height]);
 }
 
-- (CGFloat)minX {
+- (CGFloat)v_minX {
     return self.frame.origin.x;
 }
 
-- (void)setMidX:(CGFloat)x {
-    self.frame = CGRectMake(x - self.width / 2, self.minY, self.width, self.height);
+- (void)v_setMidX:(CGFloat)x {
+    self.frame = CGRectMake(x - [self v_width] / 2, [self v_minY], [self v_width], [self v_height]);
 }
 
-- (CGFloat)midX {
+- (CGFloat)v_midX {
     return CGRectGetMidX(self.frame);
 }
 
-- (void)setMaxX:(CGFloat)x {
-    self.frame = CGRectMake(x - self.width, self.minY, self.width, self.height);
+- (void)v_setMaxX:(CGFloat)x {
+    self.frame = CGRectMake(x - [self v_width], [self v_minY], [self v_width], [self v_height]);
 }
 
-- (CGFloat)maxX {
-    return self.minX + self.width;
+- (CGFloat)v_maxX {
+    return [self v_minX] + [self v_width];
 }
 
-- (void)setMinY:(CGFloat)y {
-    self.frame = CGRectMake(self.minX, y, self.width, self.height);
+- (void)v_setMinY:(CGFloat)y {
+    self.frame = CGRectMake([self v_minX], y, [self v_width], [self v_height]);
 }
 
-- (CGFloat)minY {
+- (CGFloat)v_minY {
     return self.frame.origin.y;
 }
 
-- (void)setMidY:(CGFloat)y {
-    self.frame = CGRectMake(self.minX, y - self.height / 2, self.width, self.height);
+- (void)v_setMidY:(CGFloat)y {
+    self.frame = CGRectMake([self v_minX], y - [self v_height] / 2, [self v_width], [self v_height]);
 }
 
-- (CGFloat)midY {
+- (CGFloat)v_midY {
     return CGRectGetMidY(self.frame);
 }
 
-- (void)setMaxY:(CGFloat)y {
-    self.frame = CGRectMake(self.minX, y - self.height, self.width, self.height);
+- (void)v_setMaxY:(CGFloat)y {
+    self.frame = CGRectMake([self v_minX], y - [self v_height], [self v_width], [self v_height]);
 }
 
-- (CGFloat)maxY {
-    return self.minY + self.height;
+- (CGFloat)v_maxY {
+    return [self v_minY] + [self v_height];
 }
 
-- (void)setWidth:(CGFloat)width {
-    self.frame = CGRectMake(self.minX, self.minY, width, self.height);
+- (void)v_setWidth:(CGFloat)width {
+    self.frame = CGRectMake([self v_minX], [self v_minY], width, [self v_height]);
 }
 
-- (CGFloat)width {
+- (CGFloat)v_width {
     return CGRectGetWidth(self.bounds);
 }
 
-- (void)setHeight:(CGFloat)height {
-    self.frame = CGRectMake(self.minX, self.minY, self.width, height);
+- (void)v_setHeight:(CGFloat)height {
+    self.frame = CGRectMake([self v_minX], [self v_minY], [self v_width], height);
 }
 
-- (CGFloat)height {
+- (CGFloat)v_height {
     return CGRectGetHeight(self.bounds);
 }
 
@@ -188,24 +188,20 @@
 
 #import <objc/runtime.h>
 
-@interface UIView ()
-@property (nonatomic, weak) CAShapeLayer *arcLayer;
-@end
-
 @implementation UIView (VArcRotationAnimation)
 
 static const void *ArcLayerKey = &ArcLayerKey;
-- (void)setArcLayer:(CAShapeLayer *)arcLayer {
+- (void)v_setArcLayer:(CAShapeLayer *)arcLayer {
     [self willChangeValueForKey:@"ArcLayerKey"];
     objc_setAssociatedObject(self, ArcLayerKey, arcLayer, OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"ArcLayerKey"];
 }
 
-- (CAShapeLayer *)arcLayer {
+- (CAShapeLayer *)v_arcLayer {
     return objc_getAssociatedObject(self, &ArcLayerKey);
 }
 
-- (void)addArcShapeLayerWithColor:(UIColor *)strokeColor {
+- (void)v_addArcShapeLayerWithColor:(UIColor *)strokeColor {
     [self.layer addSublayer:[self arcShapeLayerWithColor:strokeColor]];
 }
 
@@ -215,8 +211,8 @@ static const void *ArcLayerKey = &ArcLayerKey;
     CGFloat half = MIN(CGRectGetMidX(rect), CGRectGetMidY(rect));
     [path addArcWithCenter:CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))
                     radius:half
-                startAngle:radianFromAngle(-90)
-                  endAngle:radianFromAngle(270)
+                startAngle:v_radianFromAngle(-90)
+                  endAngle:v_radianFromAngle(270)
                  clockwise:YES];
     CAShapeLayer *arcLayer = [CAShapeLayer layer];
     arcLayer.path = path.CGPath;
@@ -228,17 +224,17 @@ static const void *ArcLayerKey = &ArcLayerKey;
     return arcLayer;
 }
 
-- (void)addArcRotationAnimaionWithDuration:(NSTimeInterval)duration {
-    [self addArcRotationAnimaionWithDuration:duration lineColor:[UIColor blueColor]];
+- (void)v_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration {
+    [self v_addArcRotationAnimaionWithDuration:duration lineColor:[UIColor blueColor]];
 }
 
-- (void)addArcRotationAnimaionWithDuration:(NSTimeInterval)duration lineColor:(UIColor *)color {
-    if (self.arcLayer) {
+- (void)v_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration lineColor:(UIColor *)color {
+    if ([self v_arcLayer]) {
         return;
     }
     // 添加 layer
     CAShapeLayer *arcLayer = [self arcShapeLayerWithColor:color];
-    self.arcLayer = arcLayer;
+	[self v_setArcLayer:arcLayer];
     [self.layer addSublayer:arcLayer];
     
     CABasicAnimation *animation=[CABasicAnimation animationWithKeyPath:@"strokeEnd"];
@@ -250,10 +246,11 @@ static const void *ArcLayerKey = &ArcLayerKey;
     [arcLayer addAnimation:animation forKey:@"animation"];
 }
 
-- (void)removeArcRotationAnimation {
-    [self.arcLayer removeAllAnimations];
-    [self.arcLayer removeFromSuperlayer];
-    self.arcLayer = nil;
+- (void)v_removeArcRotationAnimation {
+	[[self v_arcLayer] removeAllAnimations];
+    [[self v_arcLayer] removeAllAnimations];
+    [[self v_arcLayer] removeFromSuperlayer];
+	[self v_setArcLayer:nil];
 }
 
 @end
@@ -263,11 +260,11 @@ static const void *ArcLayerKey = &ArcLayerKey;
 
 @implementation UIView (VShakeAnimation)
 
-- (void)shake {
-    [self shakeWithOrientation:VAnimationOrientationHorizontal];
+- (void)v_shake {
+    [self v_shakeWithOrientation:VAnimationOrientationHorizontal];
 }
 
-- (void)shakeWithOrientation:(VAnimationOrientation)orientation {
+- (void)v_shakeWithOrientation:(VAnimationOrientation)orientation {
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
     animation.keyPath = orientation == VAnimationOrientationHorizontal ? @"position.x" : @"position.y";
     animation.values = @[@0, @10, @-10, @10, @0];
@@ -283,12 +280,12 @@ static const void *ArcLayerKey = &ArcLayerKey;
 
 @implementation UIView (VPingPang)
 
-- (void)addLoadingAnimation {
-    [self addLoadingAnimationWitchColor:[UIColor whiteColor]];
+- (void)v_addLoadingAnimation {
+    [self v_addLoadingAnimationWitchColor:[UIColor whiteColor]];
 }
 
 #define kCircleTag 300
-- (void)addLoadingAnimationWitchColor:(UIColor *)color {
+- (void)v_addLoadingAnimationWitchColor:(UIColor *)color {
     if (self.frame.size.width < 80) {
         NSLog(@"can not add this animation for view which width < 80");
         return;
@@ -325,7 +322,7 @@ static const void *ArcLayerKey = &ArcLayerKey;
     });
 }
 
-- (void)removeLoadingAnimation {
+- (void)v_removeLoadingAnimation {
     [self.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIView *subView = obj;
         if (subView.tag == kCircleTag ||
@@ -346,19 +343,15 @@ static const void *ArcLayerKey = &ArcLayerKey;
 
 static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 
-@interface UIView ()
-@property(nonatomic, weak, readwrite) UIActivityIndicatorView *activityIndicatorView;
-@end
-
 @implementation UIView (VUIActivityIndicatorView)
 
-- (void)setActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView {
+- (void)v_setActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView {
     [self willChangeValueForKey:@"ActivityIndicatorViewKey"];
     objc_setAssociatedObject(self, ActivityIndicatorViewKey, activityIndicatorView, OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"ActivityIndicatorViewKey"];
 }
 
-- (UIActivityIndicatorView *)activityIndicatorView {
+- (UIActivityIndicatorView *)v_activityIndicatorView {
     return objc_getAssociatedObject(self, &ActivityIndicatorViewKey);
 }
 
@@ -367,99 +360,40 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
                                           center:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
 }
 
-- (void)addActivityIndicatorAnimationOnCenter:(CGPoint)center {
+- (void)v_addActivityIndicatorAnimationOnCenter:(CGPoint)center {
     [self addActivityIndicatorAnimationWithStyle:UIActivityIndicatorViewStyleWhite center:center];
 }
 
 - (void)addActivityIndicatorAnimationWithStyle:(UIActivityIndicatorViewStyle)style center:(CGPoint)center {
-    if (self.activityIndicatorView) {
+    if ([self v_activityIndicatorView]) {
         return;
     }
     
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
     activityIndicatorView.color = [UIColor lightGrayColor];
     activityIndicatorView.center = center;
-    self.activityIndicatorView = activityIndicatorView;
+	[self v_setActivityIndicatorView:activityIndicatorView];
     [self addSubview:activityIndicatorView];
     [activityIndicatorView startAnimating];
 }
 
-- (void)removeActivityIndicatorAnimation {
-    [self.activityIndicatorView stopAnimating];
-    [self.activityIndicatorView removeFromSuperview];
-    self.activityIndicatorView = nil;
+- (void)v_removeActivityIndicatorAnimation {
+    [[self v_activityIndicatorView] stopAnimating];
+    [[self v_activityIndicatorView] removeFromSuperview];
+	[self v_setActivityIndicatorView:nil];
 }
 
-- (BOOL)isInActivityIndicatorAnimation {
-	return self.activityIndicatorView ? YES : NO;
-}
-
-@end
-
-
-#pragma mark - 为视图添加渐变环形进度指示器
-
-#import <objc/runtime.h>
-#import "VGradientCircularProgress.h"
-
-static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
-
-@interface UIView ()
-@property(nonatomic, weak) VGradientCircularProgress *gradientCircularProgress;
-@end
-
-@implementation UIView (VGradientCircularProgress)
-
-- (void)setGradientCircularProgress:(VGradientCircularProgress *)gradientCircularProgress {
-    [self willChangeValueForKey:@"GradientCircularProgressKey"];
-    objc_setAssociatedObject(self, GradientCircularProgressKey, gradientCircularProgress, OBJC_ASSOCIATION_ASSIGN);
-    [self didChangeValueForKey:@"GradientCircularProgressKey"];
-}
-
-- (VGradientCircularProgress *)gradientCircularProgress {
-    return objc_getAssociatedObject(self, &GradientCircularProgressKey);
-}
-
-- (void)addGradientCircularProgressAnimation {
-    [self addGradientCircularProgressAnimationOnCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
-}
-
-- (void)addGradientCircularProgressAnimationOnCenter:(CGPoint)center {
-    if (self.gradientCircularProgress) {
-        return;
-    }
-    
-    VGradientCircularProgress *gradientCircularProgress = [[VGradientCircularProgress alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    gradientCircularProgress.center = center;
-    self.gradientCircularProgress = gradientCircularProgress;
-    [self addSubview:gradientCircularProgress];
-    [gradientCircularProgress startAnimation];
-}
-
-
-- (void)removeGradientCircularProgressAnimation {
-    [self.gradientCircularProgress stopAnimation];
-    [self.gradientCircularProgress removeFromSuperview];
-    self.gradientCircularProgress = nil;
+- (BOOL)v_isInActivityIndicatorAnimation {
+	return [self v_activityIndicatorView] ? YES : NO;
 }
 
 @end
-
 
 #pragma mark - 让视图产生半透明毛玻璃效果
 
 @implementation UIView (VBlur)
 
-//- (void)blur {
-//    self.backgroundColor = [UIColor clearColor];
-//    UIToolbar *backgroundToolbar = [[UIToolbar alloc] initWithFrame:self.frame];
-//    backgroundToolbar.barStyle = UIBarStyleDefault;
-//    backgroundToolbar.autoresizingMask = self.autoresizingMask;
-//    backgroundToolbar.clipsToBounds = YES;
-//    [self.superview insertSubview:backgroundToolbar atIndex:0];
-//}
-
-- (void)blur {
+- (void)v_blur {
     self.backgroundColor = [UIColor clearColor];
     UIToolbar *backgroundToolbar = [[UIToolbar alloc] initWithFrame:self.bounds];
     backgroundToolbar.barStyle = UIBarStyleDefault;
@@ -475,21 +409,21 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 #define kLineBorderWidth 0.5
 @implementation UIView (VBorderLine)
 
-- (void)setBorderLine {
-    [self setBorderLineColor:kBorderLineGrayColor edge:VEdgeBottom];
-    [self setBorderLineColor:kBorderLineGrayColor edge:VEdgeTop];
-    [self setBorderLineColor:kBorderLineGrayColor edge:VEdgeLeft];
-    [self setBorderLineColor:kBorderLineGrayColor edge:VEdgeRight];
+- (void)v_setBorderLine {
+    [self v_setBorderLineColor:kBorderLineGrayColor edge:VEdgeBottom];
+    [self v_setBorderLineColor:kBorderLineGrayColor edge:VEdgeTop];
+    [self v_setBorderLineColor:kBorderLineGrayColor edge:VEdgeLeft];
+    [self v_setBorderLineColor:kBorderLineGrayColor edge:VEdgeRight];
 }
 
-- (void)setBorderLineColor:(UIColor *)aColor {
-    [self setBorderLineColor:aColor edge:VEdgeBottom];
-    [self setBorderLineColor:aColor edge:VEdgeTop];
-    [self setBorderLineColor:aColor edge:VEdgeLeft];
-    [self setBorderLineColor:aColor edge:VEdgeRight];
+- (void)v_setBorderLineColor:(UIColor *)aColor {
+    [self v_setBorderLineColor:aColor edge:VEdgeBottom];
+    [self v_setBorderLineColor:aColor edge:VEdgeTop];
+    [self v_setBorderLineColor:aColor edge:VEdgeLeft];
+    [self v_setBorderLineColor:aColor edge:VEdgeRight];
 }
 
-- (void)setBorderLineColor:(UIColor *)aColor
+- (void)v_setBorderLineColor:(UIColor *)aColor
            edge:(VEdge)edge {
     CALayer *line = [[CALayer alloc] init];
     line.backgroundColor = aColor.CGColor;
@@ -526,7 +460,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 
 // Auto layout
-- (void)addBorderLineConstraintsWithColor:(UIColor *)color edge:(VEdge)edge lineHeightMultiplier:(CGFloat)multiplier {
+- (void)v_addBorderLineConstraintsWithColor:(UIColor *)color edge:(VEdge)edge lineHeightMultiplier:(CGFloat)multiplier {
 	UIView *lineView = [UIView new];
 	lineView.backgroundColor = color ? color : kBorderLineGrayColor;
 	[lineView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -602,7 +536,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 @implementation UIView (VUIViewController)
 
-- (UIViewController *)viewController {
+- (UIViewController *)v_viewController {
     /// Finds the view's view controller.
     
     // Traverse responder chain. Return first found view controller, which will be the view's view controller.
@@ -622,12 +556,12 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 @implementation UIView (VLayer)
 
-- (void)setCornerRadius:(CGFloat)radius {
+- (void)v_setCornerRadius:(CGFloat)radius {
     self.layer.masksToBounds = YES;
     self.layer.cornerRadius = radius;
 }
 
-- (void)setBorderWidth:(CGFloat)width color:(UIColor *)borderColor {
+- (void)v_setBorderWidth:(CGFloat)width color:(UIColor *)borderColor {
     self.layer.borderWidth = width;
     self.layer.borderColor = [borderColor CGColor];
 }
@@ -637,7 +571,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 #pragma mark - 打印视图层级
 
 @implementation UIView (VLayoutDebugging)
-- (void)printAutoLayoutTrace {
+- (void)v_printAutoLayoutTrace {
 #ifdef DEBUG
 	
 #pragma clang diagnostic push
@@ -648,7 +582,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 #endif
 }
 
-- (void)exerciseAmiguityInLayoutRepeatedly:(BOOL)recursive {
+- (void)v_exerciseAmiguityInLayoutRepeatedly:(BOOL)recursive {
 #ifdef DEBUG
 	if (self.hasAmbiguousLayout) {
 		[NSTimer scheduledTimerWithTimeInterval:.5
@@ -659,13 +593,13 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 	}
 	if (recursive) {
 		for (UIView *subview in self.subviews) {
-			[subview exerciseAmiguityInLayoutRepeatedly:YES];
+			[subview v_exerciseAmiguityInLayoutRepeatedly:YES];
 		}
 	}
 #endif
 }
 
-- (void)printSubviewsTrace {
+- (void)v_printSubviewsTrace {
 #ifdef DEBUG
 	
 #pragma clang diagnostic push
@@ -677,65 +611,6 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 }
 
 
-
-@end
-
-
-#pragma mark - 添加徽标
-
-#import "VBadgeView.h"
-
-static const void *BadgeKey = &BadgeKey;
-
-@implementation UIView (VBadge)
-
-- (void)setBadgeView:(VBadgeView *)badgeView {
-	[self willChangeValueForKey:@"BadgeKey"];
-	objc_setAssociatedObject(self, BadgeKey, badgeView, OBJC_ASSOCIATION_ASSIGN);
-	[self didChangeValueForKey:@"BadgeKey"];
-}
-
-- (VBadgeView *)badgeView {
-	return objc_getAssociatedObject(self, &BadgeKey);
-}
-
-- (void)setBadgeValue:(NSString *)badgeValue {
-	if (![self badgeView]) {
-		VBadgeView *badeView = [VBadgeView new];
-		[self addSubview:badeView];
-		[self setBadgeView:badeView];
-	}
-	
-	VBadgeView *badgeView = [self badgeView];
-	badgeView.badgeValue = badgeValue;
-	
-	// Base on Frame
-	badgeView.midX = self.width;
-	badgeView.midY = 0;
-		
-	// Base on auto layout
-	UIView *superView = self;
-	[badgeView setTranslatesAutoresizingMaskIntoConstraints:NO];
-	[superView addConstraints:@[[NSLayoutConstraint constraintWithItem:badgeView
-														   attribute:NSLayoutAttributeCenterX
-														   relatedBy:NSLayoutRelationEqual
-															  toItem:superView
-														   attribute:NSLayoutAttributeRight
-														  multiplier:1
-															constant:0],
-								[NSLayoutConstraint constraintWithItem:badgeView
-															 attribute:NSLayoutAttributeCenterY
-															 relatedBy:NSLayoutRelationEqual
-																toItem:superView
-															 attribute:NSLayoutAttributeTop
-															multiplier:1
-															  constant:0]
-								]];
-}
-
-- (NSString *)badgeValue {
-	return [self badgeView].badgeValue;
-}
 
 @end
 

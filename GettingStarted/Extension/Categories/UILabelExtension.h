@@ -28,10 +28,10 @@
  *
  *  @return 标签
  */
-+ (instancetype)labelWithFrame:(CGRect)frame
-              textAlignment:(NSTextAlignment)alignment
-                       font:(UIFont *)font
-                  textColor:(UIColor *)color;
++ (instancetype)v_labelWithFrame:(CGRect)frame
+				   textAlignment:(NSTextAlignment)alignment
+							font:(UIFont *)font
+					   textColor:(UIColor *)color;
 
 /**
  *  快速创建标签
@@ -44,10 +44,10 @@
  *
  *  @return 标签
  */
-+ (instancetype)labelWithSize:(CGSize)size
-                       center:(CGPoint)center
-                textAlignment:(NSTextAlignment)alignment
-                         font:(UIFont *)font
-                    textColor:(UIColor *)textColor;
++ (instancetype)v_labelWithSize:(CGSize)size
+						 center:(CGPoint)center
+				  textAlignment:(NSTextAlignment)alignment
+						   font:(UIFont *)font
+					  textColor:(UIColor *)textColor;
 
 @end

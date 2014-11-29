@@ -16,15 +16,15 @@
 
 @implementation UIImage (VFetch)
 
-+ (UIImage *)imageWithName:(NSString *)imageName {
-    return [self imageWithName:imageName suffix:@"png"];
++ (UIImage *)v_imageWithName:(NSString *)imageName {
+    return [self v_imageWithName:imageName suffix:@"png"];
 }
 
-+ (UIImage *)imageWithName:(NSString *)imageName suffix:(NSString *)aSuffix {
++ (UIImage *)v_imageWithName:(NSString *)imageName suffix:(NSString *)aSuffix {
     return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageName ofType:aSuffix]];
 }
 
-+ (UIImage *)imageWithNameHasSuffix:(NSString *)aNameHasSuffix {
++ (UIImage *)v_imageWithNameHasSuffix:(NSString *)aNameHasSuffix {
     return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForAuxiliaryExecutable:aNameHasSuffix]];
 }
 
@@ -35,11 +35,11 @@
 
 @implementation UIImage (VGenerate)
 
-+ (UIImage *)imageWithColor:(UIColor *)aColor {
-    return [self imageWithColor:aColor size:CGSizeMake(1, 1)];
++ (UIImage *)v_imageWithColor:(UIColor *)aColor {
+    return [self v_imageWithColor:aColor size:CGSizeMake(1, 1)];
 }
 
-+ (UIImage *)imageWithColor:(UIColor *)aColor size:(CGSize)aSize {
++ (UIImage *)v_imageWithColor:(UIColor *)aColor size:(CGSize)aSize {
     UIGraphicsBeginImageContext(aSize);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -53,7 +53,7 @@
     return image;
 }
 
-+ (UIImage *)imageWithView:(UIView *)view {
++ (UIImage *)v_imageWithView:(UIView *)view {
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();

@@ -21,14 +21,14 @@
  *
  *  @return RGB 颜色
  */
-+ (UIColor *)randomRGBColor;
++ (UIColor *)v_randomRGBColor;
 
 /**
  *  随机生成 SHB 颜色
  *
  *  @return SHB 颜色
  */
-+ (UIColor *)randomSHBColor;
++ (UIColor *)v_randomSHBColor;
 
 /**
  *  根据 RGB 值生成颜色
@@ -37,7 +37,7 @@
  *
  *  @return RGB 颜色
  */
-+ (UIColor *)colorWithRGBA:(NSArray *)rgba;
++ (UIColor *)v_colorWithRGBA:(NSArray *)rgba;
 
 @end
 

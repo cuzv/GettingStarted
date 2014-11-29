@@ -45,7 +45,7 @@
 #import "VUserDefaults.h"
 
 // Dependent
-#import "UIView+HUD.h"
-#import "UIView+PercentageIndicatorView.h"
+#import "UIView+VHUD.h"
+#import "UIView+VPercentageIndicatorView.h"
 
 #endif

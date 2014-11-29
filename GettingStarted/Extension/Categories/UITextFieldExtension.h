@@ -28,10 +28,10 @@
  *
  *  @return 文本域
  */
-+ (instancetype)textFieldWithFrame:(CGRect)frame
-                     textAlignment:(NSTextAlignment)alignment
-                              font:(UIFont *)font
-                displayBorderLayer:(BOOL)display;
++ (instancetype)v_textFieldWithFrame:(CGRect)frame
+					   textAlignment:(NSTextAlignment)alignment
+								font:(UIFont *)font
+				  displayBorderLayer:(BOOL)display;
 
 /**
  *  快速创建文本域
@@ -44,9 +44,9 @@
  *
  *  @return 文本域
  */
-+ (instancetype)textFieldWithSize:(CGSize)size
-                           center:(CGPoint)center
-                    textAlignment:(NSTextAlignment)alignment
-                             font:(UIFont *)font
-               displayBorderLayer:(BOOL)display;
++ (instancetype)v_textFieldWithSize:(CGSize)size
+							 center:(CGPoint)center
+					  textAlignment:(NSTextAlignment)alignment
+							   font:(UIFont *)font
+				 displayBorderLayer:(BOOL)display;
 @end

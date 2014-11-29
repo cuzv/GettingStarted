@@ -18,10 +18,10 @@
 
 @implementation UITextField (VGenerate)
 
-+ (instancetype)textFieldWithFrame:(CGRect)frame
-                     textAlignment:(NSTextAlignment)alignment
-                              font:(UIFont *)font
-                displayBorderLayer:(BOOL)display {
++ (instancetype)v_textFieldWithFrame:(CGRect)frame
+					   textAlignment:(NSTextAlignment)alignment
+								font:(UIFont *)font
+				  displayBorderLayer:(BOOL)display {
     UITextField *textField = [[self alloc] initWithFrame:frame];
     textField.backgroundColor = [UIColor whiteColor];
     textField.textAlignment = alignment ? : NSTextAlignmentLeft;
@@ -37,8 +37,8 @@
     textField.rightView = view;
     
     if (display) {
-        [textField setCornerRadius:5];
-        [textField setBorderWidth:0.5 color:[UIColor lightGrayColor]];
+        [textField v_setCornerRadius:5];
+        [textField v_setBorderWidth:0.5 color:[UIColor lightGrayColor]];
     }
     
     textField.autocorrectionType = UITextAutocorrectionTypeDefault;
@@ -47,16 +47,16 @@
     return textField;
 }
 
-+ (instancetype)textFieldWithSize:(CGSize)size
-                           center:(CGPoint)center
-                     textAlignment:(NSTextAlignment)alignment
-                             font:(UIFont *)font
-                displayBorderLayer:(BOOL)display {
++ (instancetype)v_textFieldWithSize:(CGSize)size
+							 center:(CGPoint)center
+					  textAlignment:(NSTextAlignment)alignment
+							   font:(UIFont *)font
+				 displayBorderLayer:(BOOL)display {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,
                               size.height);
-    return [self textFieldWithFrame:frame textAlignment:alignment font:font displayBorderLayer:display];
+    return [self v_textFieldWithFrame:frame textAlignment:alignment font:font displayBorderLayer:display];
 }
 
 @end

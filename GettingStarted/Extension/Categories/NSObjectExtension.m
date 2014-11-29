@@ -18,14 +18,15 @@
 
 @implementation NSObject (VConvert)
 
-- (instancetype)initWithProperties:(NSDictionary *)properties {
+- (instancetype)v_initWithProperties:(NSDictionary *)properties {
     if (self = [self init]) {
         [self setValuesForKeysWithDictionary:properties];
-    }
+    };
     
     return self;
 }
 
+// KVC
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     if([key isEqualToString:@"id"]) {
         [self setValue:value forKey:@"ID"];
@@ -35,7 +36,7 @@
 }
 
 // Runtime
-- (NSArray *)properties {
+- (NSArray *)v_properties {
     NSMutableArray *propertyArray = [[NSMutableArray alloc] init];
     u_int count;
     objc_property_t *propertyList = class_copyPropertyList([self class], &count);
@@ -51,7 +52,7 @@
     return [[NSArray alloc] initWithArray:propertyArray];
 }
 
-+ (NSArray *)properties {
++ (NSArray *)v_properties {
     NSMutableArray *propertyArray = [[NSMutableArray alloc] init];
     u_int count;
     objc_property_t *propertyList = class_copyPropertyList([self class], &count);
@@ -67,10 +68,10 @@
     return [[NSArray alloc] initWithArray:propertyArray];
 }
 
-- (NSDictionary *)convertToDictionary {
+- (NSDictionary *)v_convertToDictionary {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     // 获取本类属性列表字符串数组
-    NSMutableArray *propertyArray = [[self properties] mutableCopy];
+    NSMutableArray *propertyArray = [[self v_properties] mutableCopy];
     
     [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [dict setObject:[self valueForKey:obj] forKey:obj];
@@ -79,13 +80,13 @@
     return dict;
 }
 
-- (NSString *)toString {
-    if (![[self properties] count]) {
+- (NSString *)v_toString {
+    if (![[self v_properties] count]) {
         return nil;
     }
 	
 	NSMutableDictionary *propertyDictionary = [NSMutableDictionary new];
-	NSMutableArray *propertyArray = [[self properties] mutableCopy];
+	NSMutableArray *propertyArray = [[self v_properties] mutableCopy];
 	[propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		[propertyDictionary setObject:[self valueForKey:obj] forKey:obj];
 	}];

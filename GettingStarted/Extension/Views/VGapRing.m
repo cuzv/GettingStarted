@@ -94,8 +94,8 @@
                     CGRectGetMidX(self.bounds),
                     CGRectGetMidY(self.bounds),
                     CGRectGetWidth(self.bounds) / 2 - lineWidth,
-                    radianFromAngle(260),
-                    radianFromAngle(-80),
+                    v_radianFromAngle(260),
+                    v_radianFromAngle(-80),
                     YES);
     CGContextStrokePath(context);
     CGContextRelease(context);

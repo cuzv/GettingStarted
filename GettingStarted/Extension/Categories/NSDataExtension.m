@@ -16,7 +16,7 @@
 @implementation NSData (VJSON)
 
 // Create a Foundation object from JSON data
-- (id)JSONObject {
+- (id)v_JSONObject {
 	if (!self) {
 		return nil;
 	}
@@ -33,7 +33,7 @@
 }
 
 // Generate JSON data from a Foundation object
-+ (NSData *)dataWithJSONObject:(id)object {
++ (NSData *)v_dataWithJSONObject:(id)object {
 	if (!object) {
 		return nil;
 	}
@@ -49,7 +49,7 @@
 }
 
 // Generate an JSON data from a property list
-+ (NSData *)dataWithPropertyList:(id)plist {
++ (NSData *)v_dataWithPropertyList:(id)plist {
 	NSError *error = nil;
 	NSData *data = [NSPropertyListSerialization dataWithPropertyList:plist
 															  format:NSPropertyListXMLFormat_v1_0
@@ -67,17 +67,17 @@
 @implementation NSData (VEncoding)
 
 // Generate UTF-8 string from data
-- (NSString *)UTF8String {
+- (NSString *)v_UTF8String {
 	return [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
 }
 
 // Generate ASCII string form data
-- (NSString *)ASCIIString {
+- (NSString *)v_ASCIIString {
 	return [[NSString alloc] initWithData:self encoding:NSASCIIStringEncoding];
 }
 
 // Generate ISOLatin1 string form data
-- (NSString *)ISOLatin1String {
+- (NSString *)v_ISOLatin1String {
 	return [[NSString alloc] initWithData:self encoding:NSISOLatin1StringEncoding];
 }
 

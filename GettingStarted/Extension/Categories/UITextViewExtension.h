@@ -28,10 +28,10 @@
  *
  *  @return 文本域
  */
-+ (instancetype)textViewWithFrame:(CGRect)frame
-                             font:(UIFont *)font
-                         delegate:(id <UITextViewDelegate>)delegate
-               displayBorderLayer:(BOOL)display;
++ (instancetype)v_textViewWithFrame:(CGRect)frame
+							   font:(UIFont *)font
+						   delegate:(id <UITextViewDelegate>)delegate
+				 displayBorderLayer:(BOOL)display;
 
 /**
  *  快速创建文本框
@@ -44,9 +44,9 @@
  *
  *  @return 文本域
  */
-+ (instancetype)textViewWithSize:(CGSize)size
-                          center:(CGPoint)center
-                            font:(UIFont *)font
-                        delegate:(id <UITextViewDelegate>)delegate
-              displayBorderLayer:(BOOL)display;
++ (instancetype)v_textViewWithSize:(CGSize)size
+							center:(CGPoint)center
+							  font:(UIFont *)font
+						  delegate:(id <UITextViewDelegate>)delegate
+				displayBorderLayer:(BOOL)display;
 @end

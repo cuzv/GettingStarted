@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Moch. All rights reserved.
 //
 
-#import "UIView+PercentageIndicatorView.h"
+#import "UIView+VPercentageIndicatorView.h"
 #import "MDRadialProgressView.h"
 #import <objc/runtime.h>
 
@@ -28,12 +28,12 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
     return objc_getAssociatedObject(self, &PercentageIndicatorViewKey);
 }
 
-- (void)addPercentageIndicatorView {
+- (void)v_addPercentageIndicatorView {
     CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-    [self addPercentageIndicatorViewOnCenter:center withThem:[MDRadialProgressTheme sectorTheme]];
+    [self v_addPercentageIndicatorViewOnCenter:center withThem:[MDRadialProgressTheme v_sectorTheme]];
 }
 
-- (void)addPercentageIndicatorViewOnCenter:(CGPoint)center withThem:(MDRadialProgressTheme *)theme {
+- (void)v_addPercentageIndicatorViewOnCenter:(CGPoint)center withThem:(MDRadialProgressTheme *)theme {
     MDRadialProgressView *percentageIndicatorView = [[MDRadialProgressView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)
                                                                                        andTheme:theme];
     percentageIndicatorView.center = center;
@@ -41,12 +41,12 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
     [self addSubview:percentageIndicatorView];
 }
 
-- (void)updatePercentage:(CGFloat)percentage {
+- (void)v_updatePercentage:(CGFloat)percentage {
     self.percentageIndicatorView.progressCounter = percentage;
     self.percentageIndicatorView.progressTotal = 100;
 }
 
-- (void)removePercentageIndicatorView {
+- (void)v_removePercentageIndicatorView {
     [self.percentageIndicatorView removeFromSuperview];
     self.percentageIndicatorView = nil;
 }
@@ -55,7 +55,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
 
 @implementation MDRadialProgressTheme (Themes)
 
-+ (instancetype)detailTheme {
++ (instancetype)v_detailTheme {
     MDRadialProgressTheme *theme = [MDRadialProgressTheme new];
     theme.completedColor = [UIColor colorWithRed:90/255.0 green:212/255.0 blue:39/255.0 alpha:1.0];
     theme.incompletedColor = [UIColor colorWithRed:164/255.0 green:231/255.0 blue:134/255.0 alpha:1.0];
@@ -68,7 +68,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
     return theme;
 }
 
-+ (instancetype)simpleTheme {
++ (instancetype)v_simpleTheme {
     MDRadialProgressTheme *theme = [MDRadialProgressTheme new];
     theme.thickness = 15;
     theme.incompletedColor = [UIColor clearColor];
@@ -78,7 +78,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
     return theme;
 }
 
-+ (instancetype)peripheryTheme {
++ (instancetype)v_peripheryTheme {
     MDRadialProgressTheme *theme = [MDRadialProgressTheme new];
     theme.completedColor = [UIColor colorWithRed:247/255.0 green:247/255.0 blue:247/255.0 alpha:1.0];
     theme.incompletedColor = [UIColor blackColor];
@@ -88,7 +88,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
     return theme;
 }
 
-+ (instancetype)colorfulTheme {
++ (instancetype)v_colorfulTheme {
     MDRadialProgressTheme *theme = [MDRadialProgressTheme new];
     theme.completedColor = [UIColor colorWithRed:90/255.0 green:200/255.0 blue:251/255.0 alpha:1.0];
     theme.incompletedColor = [UIColor colorWithRed:82/255.0 green:237/255.0 blue:199/255.0 alpha:1.0];
@@ -100,7 +100,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
     return theme;
 }
 
-+ (instancetype)ringsTheme {
++ (instancetype)v_ringsTheme {
     MDRadialProgressTheme *theme = [MDRadialProgressTheme new];
     theme.sliceDividerHidden = NO;
     theme.sliceDividerThickness = 1;
@@ -112,7 +112,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
     return theme;
 }
 
-+ (instancetype)sectorTheme {
++ (instancetype)v_sectorTheme {
     MDRadialProgressTheme *theme = [MDRadialProgressTheme new];
     theme.thickness = 70;
     theme.completedColor = [UIColor brownColor];

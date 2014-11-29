@@ -14,13 +14,6 @@
 
 @end
 
-@interface UIViewController ()
-
-@property (nonatomic, strong) NSDictionary *context;
-@property (nonatomic, assign) BOOL titleInAnimation;
-@property (nonatomic, assign) BOOL rightBarInAnimation;
-
-@end
 
 @implementation UIViewController (VNavigationActivityIndicatorView)
 
@@ -28,79 +21,79 @@ static const void *ContextKey = &ContextKey;
 static const void *TitleInAnimationKey = &TitleInAnimationKey;
 static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 
-- (void)setContext:(NSDictionary *)context {
+- (void)v_setContext:(NSDictionary *)context {
     [self willChangeValueForKey:@"ContextKey"];
     objc_setAssociatedObject(self, ContextKey, context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"ContextKey"];
 }
 
-- (NSDictionary *)context {
+- (NSDictionary *)v_context {
     return objc_getAssociatedObject(self, &ContextKey);
 }
 
-- (void)setTitleInAnimation:(BOOL)titleInAnimation {
+- (void)v_setTitleInAnimation:(BOOL)titleInAnimation {
     [self willChangeValueForKey:@"TitleInAnimationKey"];
     objc_setAssociatedObject(self, TitleInAnimationKey, @(titleInAnimation), OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"TitleInAnimationKey"];
 }
 
-- (BOOL)titleInAnimation {
+- (BOOL)v_titleInAnimation {
     return [objc_getAssociatedObject(self, &TitleInAnimationKey) boolValue];
 }
 
-- (void)setRightBarInAnimation:(BOOL)rightBarInAnimation {
+- (void)v_setRightBarInAnimation:(BOOL)rightBarInAnimation {
     [self willChangeValueForKey:@"RightBarInAnimationKey"];
     objc_setAssociatedObject(self, RightBarInAnimationKey, @(rightBarInAnimation), OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"RightBarInAnimationKey"];
 }
 
-- (BOOL)rightBarInAnimation {
+- (BOOL)v_rightBarInAnimation {
     return [objc_getAssociatedObject(self, &RightBarInAnimationKey) boolValue];
 }
 
-- (void)addNavigationBarActivityIndicatorAnimation {
+- (void)v_addNavigationBarActivityIndicatorAnimation {
     if (!self.navigationController) {
         return;
     }
     
     // if add already, return
-    if (self.titleInAnimation) {
+    if ([self v_titleInAnimation]) {
         return;
     }
     
     // save title or title view if have value
-    self.context = ({
-        id title = self.navigationItem.title ? : [NSNull null];
-        id titleView = self.navigationItem.titleView ? : [NSNull null];
-        
-        NSMutableDictionary *context = [[NSMutableDictionary alloc] initWithDictionary:self.context];
-        [context setValue:title forKey:@"title"];
-        [context setValue:titleView forKey:@"titleView"];
-        [context setValue:@"YES" forKey:@"titleAnimation"];
-        
-        [NSDictionary dictionaryWithDictionary:context];
-    });
-    
+	[self v_setContext:({
+		id title = self.navigationItem.title ? : [NSNull null];
+		id titleView = self.navigationItem.titleView ? : [NSNull null];
+		
+		NSMutableDictionary *context = [[NSMutableDictionary alloc] initWithDictionary:[self v_context]];
+		[context setValue:title forKey:@"title"];
+		[context setValue:titleView forKey:@"titleView"];
+		[context setValue:@"YES" forKey:@"titleAnimation"];
+		
+		[NSDictionary dictionaryWithDictionary:context];
+	})];
+	
     // add activity indicator animation
     self.navigationItem.titleView = ({
         [self indicatorAnimationView];
     });
-    
-    self.titleInAnimation = YES;
+	
+	[self v_setTitleInAnimation:YES];
 }
 
-- (void)removeNavigationBarActivityIndicatorAnimation {
-    if (!self.titleInAnimation) {
+- (void)v_removeNavigationBarActivityIndicatorAnimation {
+    if (![self v_titleInAnimation]) {
         return;
     }
     
     // remove animation
-    [self.navigationItem.titleView removeActivityIndicatorAnimation];
+    [self.navigationItem.titleView v_removeActivityIndicatorAnimation];
     [self.navigationItem.titleView removeFromSuperview];
     self.navigationItem.titleView = nil;
     
     // recovery context
-    id context = self.context;
+    id context = [self v_context];
     
     id titleView = [context valueForKey:@"titleView"];
     if ([titleView isKindOfClass:[UIView class]]) {
@@ -111,75 +104,75 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
     if ([title isKindOfClass:[NSString class]]) {
         self.navigationItem.title = title;
     }
-    
-    self.titleInAnimation = NO;
+
+	[self v_setTitleInAnimation:NO];
 }
 
 
-- (void)addNavigationBarRightItemActivityIndicatorAnimation {
+- (void)v_addNavigationBarRightItemActivityIndicatorAnimation {
     if (!self.navigationController) {
         return;
     }
     
     // if add already, return
-    if (self.rightBarInAnimation) {
+    if ([self v_rightBarInAnimation]) {
         return;
     }
     
     // save right items
-    self.context = ({
-        id rightBarButtonItems = self.navigationItem.rightBarButtonItems ? : [NSNull null];
-        NSMutableDictionary *context = [[NSMutableDictionary alloc] initWithDictionary:self.context];
-        [context setValue:rightBarButtonItems forKey:@"rightBarButtonItems"];
-        
-        [NSDictionary dictionaryWithDictionary:context];
-    });
-    
+	[self v_setContext:({
+		id rightBarButtonItems = self.navigationItem.rightBarButtonItems ? : [NSNull null];
+		NSMutableDictionary *context = [[NSMutableDictionary alloc] initWithDictionary:[self v_context]];
+		[context setValue:rightBarButtonItems forKey:@"rightBarButtonItems"];
+		
+		[NSDictionary dictionaryWithDictionary:context];
+	})];
+	
     // add indicator animation
     self.navigationItem.rightBarButtonItem = ({
         UIView *indicatorAnimationView = [self indicatorAnimationView];
         UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:indicatorAnimationView];
         rightItem;
     });
-    
-    self.rightBarInAnimation = YES;
+	
+	[self v_setRightBarInAnimation:YES];
 }
 
-- (void)removeNavigationBarRightItemActivityIndicatorAnimation {
-    if (!self.rightBarInAnimation) {
+- (void)v_removeNavigationBarRightItemActivityIndicatorAnimation {
+    if (![self v_rightBarInAnimation]) {
         return;
     }
 
     // reomve animation
-    [self.navigationItem.rightBarButtonItem.customView removeActivityIndicatorAnimation];
+    [self.navigationItem.rightBarButtonItem.customView v_removeActivityIndicatorAnimation];
     [self.navigationItem.rightBarButtonItem.customView removeFromSuperview];
     self.navigationItem.rightBarButtonItem.customView = nil;
     
     // recovery context
-    id context = self.context;
+    id context = [self v_context];
     
     id rightBarButtonItems = [context valueForKey:@"rightBarButtonItems"];
     if ([rightBarButtonItems isKindOfClass:[NSArray class]] &&
         [rightBarButtonItems count]) {
         self.navigationItem.rightBarButtonItems = rightBarButtonItems;
     }
-    
-    self.rightBarInAnimation = NO;
+	
+	[self v_setRightBarInAnimation:NO];
 }
 
-- (BOOL)isNavigationActivityIndicatorViewInAnimation {
-	return self.rightBarInAnimation || self.titleInAnimation;
+- (BOOL)v_isNavigationActivityIndicatorViewInAnimation {
+	return [self v_rightBarInAnimation] || [self v_titleInAnimation];
 }
 
 #pragma mark -
 
 - (UIView *)indicatorAnimationView {
     UIView *view = [UIView new];
-    CGFloat height = self.navigationController.navigationBar.height / 2;
+    CGFloat height = [self.navigationController.navigationBar v_height] / 2;
     view.bounds = CGRectMake(0, 0, height, height);
     [view addActivityIndicatorAnimation];
     
-    UIActivityIndicatorView *indicator = [view activityIndicatorView];
+    UIActivityIndicatorView *indicator = [view v_activityIndicatorView];
     indicator.color = self.navigationController.navigationBar.tintColor;
 
     return view;

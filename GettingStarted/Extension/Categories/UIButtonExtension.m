@@ -18,11 +18,11 @@
 
 @implementation UIButton (VGenerate)
 
-+ (instancetype)buttonWithFrame:(CGRect)frame
-                backgroundImage:(UIImage *)backgroundImage
-               highlightedImage:(UIImage *)highlightedImage
-                         target:(id)target
-                         action:(SEL)selector {
++ (instancetype)v_buttonWithFrame:(CGRect)frame
+				  backgroundImage:(UIImage *)backgroundImage
+				 highlightedImage:(UIImage *)highlightedImage
+						   target:(id)target
+						   action:(SEL)selector {
     UIButton *button = [[self alloc] initWithFrame:frame];
     [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
@@ -31,7 +31,7 @@
     return button;
 }
 
-+ (instancetype)buttonWithSize:(CGSize)size
++ (instancetype)v_buttonWithSize:(CGSize)size
                           center:(CGPoint)center
                 backgroundImage:(UIImage *)backgroundImage
                highlightedImage:(UIImage *)highlightedImage
@@ -41,14 +41,14 @@
                               center.y - size.height / 2,
                               size.width,
                               size.height);
-    return [self buttonWithFrame:frame
+    return [self v_buttonWithFrame:frame
                  backgroundImage:backgroundImage
                 highlightedImage:highlightedImage
                           target:target
                           action:selector];;
 }
 
-+ (instancetype)buttonWithFrame:(CGRect)frame
++ (instancetype)v_buttonWithFrame:(CGRect)frame
                           title:(NSString *)title
                      titleColor:(UIColor *)titleColor
                 backgroundColor:(UIColor *)backgroundColor
@@ -62,20 +62,20 @@
     button.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     
     if (backgroundColor) {
-        UIImage *backgroundImage = [UIImage imageWithColor:backgroundColor size:frame.size];
+        UIImage *backgroundImage = [UIImage v_imageWithColor:backgroundColor size:frame.size];
         [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     }
     if (highlightedColor) {
-        UIImage *highlightedImage = [UIImage imageWithColor:highlightedColor size:frame.size];
+        UIImage *highlightedImage = [UIImage v_imageWithColor:highlightedColor size:frame.size];
         [button setBackgroundImage:highlightedImage forState:UIControlStateHighlighted];
     }
     
-    [button setCornerRadius:5];
+    [button v_setCornerRadius:5];
     
     return button;
 }
 
-+ (instancetype)buttonWithSize:(CGSize)size
++ (instancetype)v_buttonWithSize:(CGSize)size
                         center:(CGPoint)center
                          title:(NSString *)title
                     titleColor:(UIColor *)titleColor
@@ -87,7 +87,7 @@
                               center.y - size.height / 2,
                               size.width,
                               size.height);
-    return [self buttonWithFrame:frame
+    return [self v_buttonWithFrame:frame
                            title:title
                       titleColor:titleColor
                  backgroundColor:backgroundColor
@@ -107,74 +107,69 @@
 #import <objc/runtime.h>
 #import "UIColorExtension.h"
 
-@interface UIButton ()
-@property (nonatomic, assign) BOOL animating;
-@property (nonatomic, strong) NSDictionary *context;
-@end
-
 @implementation UIButton (VIndicatorAnimation)
 
 static const void *IndicatorAnimationKey = &IndicatorAnimationKey;
 static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
 
-- (void)setAnimating:(BOOL)animating {
+- (void)v_setAnimating:(BOOL)animating {
     [self willChangeValueForKey:@"IndicatorAnimationKey"];
     objc_setAssociatedObject(self, IndicatorAnimationKey, @(animating), OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"IndicatorAnimationKey"];
 }
 
-- (BOOL)animating {
+- (BOOL)v_animating {
     return [objc_getAssociatedObject(self, &IndicatorAnimationKey) boolValue];
 }
 
-- (void)setContext:(NSDictionary *)context {
+- (void)v_setContext:(NSDictionary *)context {
     [self willChangeValueForKey:@"IndicatorAnimationContextKey"];
     objc_setAssociatedObject(self, IndicatorAnimationContextKey, context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"IndicatorAnimationContextKey"];
 }
 
-- (NSDictionary *)context {
+- (NSDictionary *)v_context {
     return objc_getAssociatedObject(self, &IndicatorAnimationContextKey);
 }
 
 #pragma mark -
 
-- (void)addWaitingAnimation {
-    if (self.animating) {
+- (void)v_addWaitingAnimation {
+    if ([self v_animating]) {
         return;
     }
     
     // 保存上下文数据
-    self.context = ({
-        NSMutableDictionary *context = [NSMutableDictionary new];
-        
-        id normalimage = [self imageForState:UIControlStateNormal] ? : [NSNull null];
-        [context setObject:normalimage forKey:@"normalimage"];
-        id highlightedImage = [self imageForState:UIControlStateHighlighted] ? : [NSNull null];
-        [context setObject:highlightedImage forKey:@"highlightedImage"];
-        id selectedImage = [self imageForState:UIControlStateSelected] ? : [NSNull null];
-        [context setObject:selectedImage forKey:@"selectedImage"];
-        
-        id normalBackgroundImage = [self backgroundImageForState:UIControlStateNormal] ? : [NSNull null];
-        [context setObject:normalBackgroundImage forKey:@"normalBackgroundImage"];
-        id highlightedBackgroundImage = [self backgroundImageForState:UIControlStateHighlighted] ? : [NSNull null];
-        [context setObject:highlightedBackgroundImage forKey:@"highlightedBackgroundImage"];
-        id selectedBackgroundImage = [self backgroundImageForState:UIControlStateSelected] ? : [NSNull null];
-        [context setObject:selectedBackgroundImage forKey:@"selectedBackgroundImage"];
-        
-        id normalTitle = [self titleForState:UIControlStateNormal] ? : [NSNull null];
-        [context setObject:normalTitle forKey:@"normalTitle"];
-        id highlightedTitle = [self titleForState:UIControlStateHighlighted]  ? : [NSNull null];
-        [context setObject:highlightedTitle forKey:@"highlightedTitle"];
-        id selectedTitle = [self titleForState:UIControlStateSelected] ? : [NSNull null];
-        [context setObject:selectedTitle forKey:@"selectedTitle"];
-        
-        id backgroundColor = self.backgroundColor ? : [NSNull null];
-        [context setObject:backgroundColor forKey:@"backgroundColor"];
-        
-        [NSDictionary dictionaryWithDictionary:context];
-    });
-    
+	[self v_setContext:({
+		NSMutableDictionary *context = [NSMutableDictionary new];
+		
+		id normalimage = [self imageForState:UIControlStateNormal] ? : [NSNull null];
+		[context setObject:normalimage forKey:@"normalimage"];
+		id highlightedImage = [self imageForState:UIControlStateHighlighted] ? : [NSNull null];
+		[context setObject:highlightedImage forKey:@"highlightedImage"];
+		id selectedImage = [self imageForState:UIControlStateSelected] ? : [NSNull null];
+		[context setObject:selectedImage forKey:@"selectedImage"];
+		
+		id normalBackgroundImage = [self backgroundImageForState:UIControlStateNormal] ? : [NSNull null];
+		[context setObject:normalBackgroundImage forKey:@"normalBackgroundImage"];
+		id highlightedBackgroundImage = [self backgroundImageForState:UIControlStateHighlighted] ? : [NSNull null];
+		[context setObject:highlightedBackgroundImage forKey:@"highlightedBackgroundImage"];
+		id selectedBackgroundImage = [self backgroundImageForState:UIControlStateSelected] ? : [NSNull null];
+		[context setObject:selectedBackgroundImage forKey:@"selectedBackgroundImage"];
+		
+		id normalTitle = [self titleForState:UIControlStateNormal] ? : [NSNull null];
+		[context setObject:normalTitle forKey:@"normalTitle"];
+		id highlightedTitle = [self titleForState:UIControlStateHighlighted]  ? : [NSNull null];
+		[context setObject:highlightedTitle forKey:@"highlightedTitle"];
+		id selectedTitle = [self titleForState:UIControlStateSelected] ? : [NSNull null];
+		[context setObject:selectedTitle forKey:@"selectedTitle"];
+		
+		id backgroundColor = self.backgroundColor ? : [NSNull null];
+		[context setObject:backgroundColor forKey:@"backgroundColor"];
+		
+		[NSDictionary dictionaryWithDictionary:context];
+	})];
+	
     // 干掉之前的数据
     [self setImage:nil forState:UIControlStateNormal];
     [self setImage:nil forState:UIControlStateHighlighted];
@@ -190,19 +185,19 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     self.backgroundColor = [UIColor clearColor];
     
     // 添加动画
-    CGFloat lengthOfSide = self.height * 0.8;
+    CGFloat lengthOfSide = [self v_height] * 0.8;
     VGapRing *gapRing = [[VGapRing alloc] initWithFrame:CGRectMake(0, 0, lengthOfSide, lengthOfSide)];
-    gapRing.midX = self.width / 2;
-    gapRing.midY = self.height / 2;
-    gapRing.lineColor = [UIColor colorWithRGBA:@[@0, @122, @255, @1]];
+	[gapRing v_setMidX:[self v_width] / 2];
+	[gapRing v_setMidY:[self v_height] / 2];
+    gapRing.lineColor = [UIColor v_colorWithRGBA:@[@0, @122, @255, @1]];
     [gapRing startAnimation];
     [self addSubview:gapRing];
 
-    self.animating = YES;
+	[self v_setAnimating:YES];
 }
 
-- (void)removeWaitingAnimation {
-    if (!self.animating) {
+- (void)v_removeWaitingAnimation {
+    if (![self v_animating]) {
         return;
     }
 
@@ -218,7 +213,7 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     }
     
     // 恢复上下文信息
-    id context = self.context;
+    id context = [self v_context];
     
     Class imageClass = [UIImage class];
     
@@ -268,11 +263,11 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
         self.backgroundColor = backgroundColor;
     }
 
-    self.animating = NO;
+    [self v_setAnimating:NO];
 }
 
-- (BOOL)isInAnimation {
-	return self.animating;
+- (BOOL)v_isInAnimation {
+	return [self v_animating];
 }
 
 @end
@@ -282,7 +277,7 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
 
 @implementation UIButton (VImageAlignment)
 
-- (void)updateImageAlignmentToRight {
+- (void)v_updateImageAlignmentToRight {
 	CGFloat imageWidth = self.currentImage.size.width;
 	[self setTitleEdgeInsets:UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth)];
 	

@@ -17,3 +17,22 @@
 @end
 
 
+#pragma mark - 添加徽标
+
+@interface UIView (VBadge)
+
+/**
+ *  设置徽标
+ *
+ *  @param badgeValue 徽标值
+ */
+- (void)v_setBadgeValue:(NSString *)badgeValue;
+
+/**
+ *  获取徽标
+ *
+ *  @return 徽标值
+ */
+- (NSString *)v_badgeValue;
+
+@end

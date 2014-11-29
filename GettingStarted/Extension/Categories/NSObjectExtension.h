@@ -24,34 +24,34 @@
  *
  *  @return 对象实例
  */
-- (instancetype)initWithProperties:(NSDictionary *)properties;
+- (instancetype)v_initWithProperties:(NSDictionary *)properties NS_REPLACES_RECEIVER;
 
 /**
  *  获取属性列表
  *
  *  @return 属性列表
  */
-- (NSArray *)properties;
+- (NSArray *)v_properties;
 
 /**
  *  获取属性列表
  *
  *  @return 属性列表
  */
-+ (NSArray *)properties;
++ (NSArray *)v_properties;
 
 /**
  *  自身对象转为字典
  *
  *  @return 自身属性打包的字典
  */
-- (NSDictionary *)convertToDictionary;
+- (NSDictionary *)v_convertToDictionary;
 
 /**
  *  打印对象
  *
  *  @return 对象描述字符串
  */
-- (NSString *)toString;
+- (NSString *)v_toString;
 
 @end

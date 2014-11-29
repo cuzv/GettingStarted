@@ -58,3 +58,29 @@
 @end
 
 
+#pragma mark - 为视图添加渐变环形进度指示器
+
+@interface UIView (VGradientCircularProgress)
+
+/**
+ *  为视图添加渐变环形进度指示器动画
+ */
+- (void)v_addGradientCircularProgressAnimation;
+
+/**
+ *  为视图添加渐变环形进度指示器动画
+ *
+ *  @param center 指示器动画中心位置
+ */
+- (void)v_addGradientCircularProgressAnimationOnCenter:(CGPoint)center;
+
+/**
+ *  移除渐变环形进度指示器动画
+ */
+- (void)v_removeGradientCircularProgressAnimation;
+
+@end
+
+
+
+

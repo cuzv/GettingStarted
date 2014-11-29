@@ -15,7 +15,7 @@
 
 #pragma mark -
 
-NSUInteger deviceSystemMajorVersion() {
+NSUInteger v_deviceSystemMajorVersion() {
 	static NSUInteger _deviceSystemMajorVersion = -1;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -24,7 +24,7 @@ NSUInteger deviceSystemMajorVersion() {
 	return _deviceSystemMajorVersion;
 }
 
-float appBuildNumber() {
+float v_appBuildNumber() {
 	static float _appBuild;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -34,7 +34,7 @@ float appBuildNumber() {
 	return _appBuild;
 }
 
-float appVersionNumber() {
+float v_appVersionNumber() {
 	static float _appVersion;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -46,7 +46,7 @@ float appVersionNumber() {
 
 #pragma mark -
 
-CGRect screenBounds() {
+CGRect v_screenBounds() {
 	static CGRect _screenBounds;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -55,57 +55,57 @@ CGRect screenBounds() {
 	return _screenBounds;
 }
 
-CGFloat screenWidth() {
-	return screenBounds().size.width;
+CGFloat v_screenWidth() {
+	return v_screenBounds().size.width;
 }
 
-CGFloat screenHeight() {
-	return screenBounds().size.height;
+CGFloat v_screenHeight() {
+	return v_screenBounds().size.height;
 }
 
 #pragma mark -
 
-CGFloat radianFromAngle(CGFloat angle) {
+CGFloat v_radianFromAngle(CGFloat angle) {
 	return M_PI * angle / 180.0f;
 }
 
-CGFloat angleFromRadian(CGFloat radian) {
+CGFloat v_angleFromRadian(CGFloat radian) {
 	return M_PI * 180.0f / radian;
 }
 
 #pragma mark -
 
-NSString *searchPathDirectory(NSSearchPathDirectory searchPathDirectory) {
+NSString *v_searchPathDirectory(NSSearchPathDirectory searchPathDirectory) {
 	return [NSSearchPathForDirectoriesInDomains(searchPathDirectory, NSUserDomainMask, YES) firstObject];
 }
 
-NSString *documentDirectory() {
-	return searchPathDirectory(NSDocumentDirectory);
+NSString *v_documentDirectory() {
+	return v_searchPathDirectory(NSDocumentDirectory);
 }
 
-NSString *cachesDirectory() {
-	return searchPathDirectory(NSCachesDirectory);
+NSString *v_cachesDirectory() {
+	return v_searchPathDirectory(NSCachesDirectory);
 }
 
-NSString *downloadsDirectory() {
-	return searchPathDirectory(NSDownloadsDirectory);
+NSString *v_downloadsDirectory() {
+	return v_searchPathDirectory(NSDownloadsDirectory);
 }
 
-NSString *moviesDirectory() {
-	return searchPathDirectory(NSMoviesDirectory);
+NSString *v_moviesDirectory() {
+	return v_searchPathDirectory(NSMoviesDirectory);
 }
 
-NSString *musicDirectory() {
-	return searchPathDirectory(NSMusicDirectory);
+NSString *v_musicDirectory() {
+	return v_searchPathDirectory(NSMusicDirectory);
 }
 
-NSString *picturesDirectory() {
-	return searchPathDirectory(NSPicturesDirectory);
+NSString *v_picturesDirectory() {
+	return v_searchPathDirectory(NSPicturesDirectory);
 }
 
 #pragma mark - 
 
-NSString *uniqueIdentifier() {
+NSString *v_uniqueIdentifier() {
 	return [[[NSUUID UUID] UUIDString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
 }
 
@@ -116,36 +116,36 @@ void performApplicatonEventByURL(NSURL *eventURL) {
 	if ([application canOpenURL:eventURL]) {
 		[application openURL:eventURL];
 	} else {
-		[UIAlertView showAlertWithMessage:@"当前操作非法！"];
+		[UIAlertView v_showAlertWithMessage:@"当前操作非法！"];
 	}
 }
 
-void callPhoneNumber(NSString *phoneNumber) {
+void v_callPhoneNumber(NSString *phoneNumber) {
 	NSURL *destination = [NSURL URLWithString:[@"telprompt:" stringByAppendingString:phoneNumber]];
 	performApplicatonEventByURL(destination);
 }
 
-void sendSMSTo(NSString *phoneNumber) {
+void v_sendSMSTo(NSString *phoneNumber) {
 	NSURL *destination = [NSURL URLWithString:[@"sms:" stringByAppendingString:phoneNumber]];
 	performApplicatonEventByURL(destination);
 }
 
-void openBrowser(NSURL *webURL) {
+void v_openBrowser(NSURL *webURL) {
 	performApplicatonEventByURL(webURL);
 }
 
-void emailTo(NSString *receiverEmail) {
+void v_emailTo(NSString *receiverEmail) {
 	NSURL *destination = [NSURL URLWithString:[@"mailto:" stringByAppendingString:receiverEmail]];
 	performApplicatonEventByURL(destination);
 }
 
-void openAppStoreByAppLink(NSURL *appLink) {
+void v_openAppStoreByAppLink(NSURL *appLink) {
 	performApplicatonEventByURL(appLink);
 }
 
 #pragma mark - 
 
-void clearApplicationIconBadge() {
+void v_clearApplicationIconBadge() {
 	UIApplication *application = [UIApplication sharedApplication];
 	NSInteger badgeNumber = application.applicationIconBadgeNumber;
 	application.applicationIconBadgeNumber = 1;
@@ -156,7 +156,7 @@ void clearApplicationIconBadge() {
 
 #pragma mark -
 
-UIView *hairLineForTabBar(UITabBar *tabBar) {
+UIView *v_hairLineForTabBar(UITabBar *tabBar) {
 	Class imageViewClass = [UIImageView class];
 	for (UIView *view in tabBar.subviews) {
 		if ([view isKindOfClass:imageViewClass] &&
@@ -168,7 +168,7 @@ UIView *hairLineForTabBar(UITabBar *tabBar) {
 	return nil;
 }
 
-UIView *hairLineForNavigationBar(UINavigationBar *navigationBar) {
+UIView *v_hairLineForNavigationBar(UINavigationBar *navigationBar) {
 	Class navigationBarBackgroundClass = NSClassFromString(@"_UINavigationBarBackground");
 	for (UIView *view in navigationBar.subviews) {
 		if ([view isKindOfClass:navigationBarBackgroundClass]) {
@@ -187,7 +187,7 @@ UIView *hairLineForNavigationBar(UINavigationBar *navigationBar) {
 
 #pragma mark -
 
-void imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloadedImage), void (^errorBlock)(NSError *error)) {
+void v_imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloadedImage), void (^errorBlock)(NSError *error)) {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		NSError *error = nil;
 		NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageLink options:NSDataReadingMappedIfSafe error:&error];
@@ -210,7 +210,7 @@ void imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloadedI
 
 #pragma mark -
 
-void methodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector) {
+void v_methodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector) {
 	Method originalMethod = class_getInstanceMethod(clazz, originalSelector);
 	Method overrideMethod = class_getInstanceMethod(clazz, overrideSelector);
 	
@@ -230,7 +230,7 @@ void methodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector) {
 
 #pragma mark -
 
-CGFloat minimumInteritemSpacingForCollection(CGFloat collectionViewWidth, CGFloat cellWidth, CGFloat horizontalCount) {
+CGFloat v_minimumInteritemSpacingForCollection(CGFloat collectionViewWidth, CGFloat cellWidth, CGFloat horizontalCount) {
 	return (collectionViewWidth - cellWidth * horizontalCount) / (horizontalCount + 1);
 }
 

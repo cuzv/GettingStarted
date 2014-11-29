@@ -20,6 +20,6 @@
  *
  *  @return 链接字符串
  */
-- (NSString *)URLParameterString;
+- (NSString *)v_URLParameterString;
 
 @end

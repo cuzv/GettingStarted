@@ -130,7 +130,7 @@ static const void *UITextFieldKey = &UITextFieldKey;
 
 @implementation UITextField (TextConfigure)
 
-- (void)setTextConfigure:(VTextEditConfigure *)textConfigure {
+- (void)v_setTextConfigure:(VTextEditConfigure *)textConfigure {
     [self willChangeValueForKey:@"UITextFieldKey"];
     objc_setAssociatedObject(self, UITextFieldKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
     [self didChangeValueForKey:@"UITextFieldKey"];
@@ -138,7 +138,7 @@ static const void *UITextFieldKey = &UITextFieldKey;
     [textConfigure initialNotificationForObject:self];
 }
 
-- (VTextEditConfigure *)textConfigure {
+- (VTextEditConfigure *)v_textConfigure {
     return objc_getAssociatedObject(self, &UITextFieldKey);
 }
 
@@ -150,16 +150,17 @@ static const void *UITextViewKey = &UITextViewKey;
 
 @implementation UITextView (TextConfigure)
 
-- (void)setTextConfigure:(VTextEditConfigure *)textConfigure {
-    [self willChangeValueForKey:@"UITextViewKey"];
-    objc_setAssociatedObject(self, UITextViewKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
-    [self didChangeValueForKey:@"UITextViewKey"];
-    
-    [textConfigure initialNotificationForObject:self];
+- (void)v_setTextConfigure:(VTextEditConfigure *)textConfigure {
+	[self willChangeValueForKey:@"UITextViewKey"];
+	objc_setAssociatedObject(self, UITextViewKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
+	[self didChangeValueForKey:@"UITextViewKey"];
+	
+	[textConfigure initialNotificationForObject:self];
 }
 
-- (VTextEditConfigure *)textConfigure {
-    return objc_getAssociatedObject(self, &UITextViewKey);
+- (VTextEditConfigure *)v_textConfigure {
+	return objc_getAssociatedObject(self, &UITextViewKey);
 }
+
 
 @end

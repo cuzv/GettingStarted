@@ -40,7 +40,7 @@ static VHTTPSessionManager *sharedInstance;
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
     VHTTPSessionManager *mutableCopy = [[[self class] allocWithZone:zone] init];
-    [[self properties] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [[self v_properties] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [mutableCopy setValue:[self valueForKey:obj] forKey:obj];
     }];
     
@@ -173,7 +173,7 @@ static NSMutableArray *sessions;
 + (BOOL)shouldContinue {
     BOOL shouldContinue = YES;
     if (![VHTTPSessionManager isNetworkReachable]) {
-		[UIAlertView showAlertWithMessage:CHNetworkNotReachable];
+		[UIAlertView v_showAlertWithMessage:CHNetworkNotReachable];
         shouldContinue = NO;
     }
     return shouldContinue;
@@ -231,34 +231,34 @@ static NSMutableArray *sessions;
     /* flow methods is not encode `CHParametersKey` */
     switch ([VHTTPSessionManager sharedInstance].requestSerializerType) {
         case HTTPRequestSerializerTypeNone:
-			encodeString = [parameters URLParameterString];
+			encodeString = [parameters v_URLParameterString];
             break;
         case HTTPRequestSerializerTypeJSON: {
             // convert parameters to JSON string
-			NSData *JSONData = [NSData dataWithJSONObject:parameters];
-			encodeString =  [JSONData UTF8String];
+			NSData *JSONData = [NSData v_dataWithJSONObject:parameters];
+			encodeString =  [JSONData v_UTF8String];
         }
             break;
         case HTTPRequestSerializerTypePropertyList:{
-            NSData *propertyListData = [NSData dataWithPropertyList:parameters];
-            encodeString = [propertyListData UTF8String];
+            NSData *propertyListData = [NSData v_dataWithPropertyList:parameters];
+            encodeString = [propertyListData v_UTF8String];
         }
             break;
         case HTTPRequestSerializerTypeBase64: {
             // base64
-            NSString *URLString = [parameters URLParameterString];
+            NSString *URLString = [parameters v_URLParameterString];
             encodeString = [URLString base64EncodedString];
         }
             break;
         case HTTPRequestSerializerTypeMd5:{
             // md5
-            NSString *URLString = [parameters URLParameterString];
+            NSString *URLString = [parameters v_URLParameterString];
             encodeString = [URLString md5];
         }
             break;
         case HTTPRequestSerializerTypeSha1: {
             // sha1
-            NSString *URLString = [parameters URLParameterString];
+            NSString *URLString = [parameters v_URLParameterString];
             encodeString = [URLString sha1];
         }
         default:
@@ -298,7 +298,7 @@ static NSMutableArray *sessions;
 }
 
 + (void)requestWillBeginWithProgressAnimation {
-    [[[[UIApplication sharedApplication] windows] lastObject] addGradientCircularProgressAnimation];
+    [[[[UIApplication sharedApplication] windows] lastObject] v_addGradientCircularProgressAnimation];
 }
 
 + (void)requestWillBegin {
@@ -307,7 +307,7 @@ static NSMutableArray *sessions;
 
 + (void)requestDidEnd {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [[[[UIApplication sharedApplication] windows] lastObject] removeGradientCircularProgressAnimation];
+    [[[[UIApplication sharedApplication] windows] lastObject] v_removeGradientCircularProgressAnimation];
     CHHTTPRequestMethodName = @"";
 }
 

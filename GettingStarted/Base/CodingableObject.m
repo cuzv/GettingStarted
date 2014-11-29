@@ -13,14 +13,14 @@
 @implementation CodingableObject
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [self.properties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [[self v_properties] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [aCoder encodeObject:[self valueForKey:obj] forKey:obj];
     }];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super init]) {
-        [self.properties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[self v_properties] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [self setValue:[aDecoder decodeObjectForKey:obj] forKey:obj];
         }];
     }

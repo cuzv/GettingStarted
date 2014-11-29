@@ -23,7 +23,7 @@
  *
  *  @return 尺寸大小
  */
-- (CGSize)sizeWithFont:(UIFont *)font;
+- (CGSize)v_sizeWithFont:(UIFont *)font;
 
 /**
  *  根据字体获取所占空间尺寸大小
@@ -33,7 +33,7 @@
  *
  *  @return 尺寸大小
  */
-- (CGSize)sizeWithFont:(UIFont *)font width:(CGFloat)width;
+- (CGSize)v_sizeWithFont:(UIFont *)font width:(CGFloat)width;
 
 @end
 
@@ -49,28 +49,28 @@
  *
  *  @return 是否匹配
  */
-- (BOOL)isMatchRegex:(NSString *)regex;
+- (BOOL)v_isMatchRegex:(NSString *)regex;
 
 /**
  *  是否为合法邮箱地址
  *
  *  @return 是否合法
  */
-- (BOOL)isValidEmail;
+- (BOOL)v_isValidEmail;
 
 /**
  *  是否为合法手机号码
  *
  *  @return 是否合法
  */
-- (BOOL)isValidPhoneNumber;
+- (BOOL)v_isValidPhoneNumber;
 
 /**
  *  是否为合法密码
  *
  *  @return 是否合法
  */
-- (BOOL)isValidPassword;
+- (BOOL)v_isValidPassword;
 
 /**
  *  是否为合法验证码
@@ -79,21 +79,21 @@
  *
  *  @return 是否合法
  */
-- (BOOL)isvalidAuthCode;
+- (BOOL)v_isvalidAuthCode;
 
 /**
  *  是否为空
  *
  *  @return 是否为空
  */
-- (BOOL)isEmpty;
+- (BOOL)v_isEmpty;
 
 /**
  *  去除两头空白
  *
  *  @return 两头无空白的字符串
  */
-- (NSString *)trim;
+- (NSString *)v_trim;
 
 
 @end
@@ -107,13 +107,13 @@
  *
  *  @return UTF-8 string
  */
-- (NSString *)convertISOString2UTF8;
+- (NSString *)v_convertISOString2UTF8;
 
 /**
  *  Create ISO string by UTF-8 string
  *
  *  @return ISO string
  */
-- (NSString *)convertUTF8String2ISO;
+- (NSString *)v_convertUTF8String2ISO;
 
 @end

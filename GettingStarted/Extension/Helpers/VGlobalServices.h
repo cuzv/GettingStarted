@@ -20,21 +20,21 @@
  *
  *  @return 设备系统版本号
  */
-NSUInteger deviceSystemMajorVersion();
+NSUInteger v_deviceSystemMajorVersion();
 
 /**
  *  获取 App build number
  *
  *  @return App build number
  */
-float appBuildNumber();
+float v_appBuildNumber();
 
 /**
  *  获取 App 版本号
  *
  *  @return App 版本号
  */
-float appVersionNumber();
+float v_appVersionNumber();
 
 #pragma mark -
 
@@ -43,21 +43,21 @@ float appVersionNumber();
  *
  *  @return 设备屏幕dounds
  */
-struct CGRect screenBounds();
+struct CGRect v_screenBounds();
 
 /**
  *  获取屏幕宽度
  *
  *  @return 屏幕宽度
  */
-CGFloat screenWidth();
+CGFloat v_screenWidth();
 
 /**
  *  获取屏幕高度
  *
  *  @return 屏幕高度
  */
-CGFloat screenHeight();
+CGFloat v_screenHeight();
 
 #pragma mark -
 
@@ -68,7 +68,7 @@ CGFloat screenHeight();
  *
  *  @return 弧度值
  */
-CGFloat radianFromAngle(CGFloat angle);
+CGFloat v_radianFromAngle(CGFloat angle);
 
 /**
  *  弧度转角度
@@ -77,7 +77,7 @@ CGFloat radianFromAngle(CGFloat angle);
  *
  *  @return 角度
  */
-CGFloat angleFromRadian(CGFloat radian);
+CGFloat v_angleFromRadian(CGFloat radian);
 
 #pragma mark - 
 
@@ -86,42 +86,42 @@ CGFloat angleFromRadian(CGFloat radian);
  *
  *  @return 沙盒文档目录
  */
-NSString *documentDirectory();
+NSString *v_documentDirectory();
 
 /**
  *  获取沙盒缓存目录
  *
  *  @return 沙盒缓存目录
  */
-NSString *cachesDirectory();
+NSString *v_cachesDirectory();
 
 /**
  *  获取沙盒下载目录
  *
  *  @return 沙盒下载目录
  */
-NSString *downloadsDirectory();
+NSString *v_downloadsDirectory();
 
 /**
  *  获取沙盒电影目录
  *
  *  @return 沙盒电影目录
  */
-NSString *moviesDirectory();
+NSString *v_moviesDirectory();
 
 /**
  *  获取沙盒音乐目录
  *
  *  @return 沙盒音乐目录
  */
-NSString *musicDirectory();
+NSString *v_musicDirectory();
 
 /**
  *  获取沙盒图片目录
  *
  *  @return 沙盒图片目录
  */
-NSString *picturesDirectory();
+NSString *v_picturesDirectory();
 
 #pragma mark -
 
@@ -130,7 +130,7 @@ NSString *picturesDirectory();
  *
  *  @return 唯一字符串
  */
-NSString *uniqueIdentifier();
+NSString *v_uniqueIdentifier();
 
 #pragma mark - 
 
@@ -139,42 +139,42 @@ NSString *uniqueIdentifier();
  *
  *  @param phoneNumber 电话号码
  */
-void callPhoneNumber(NSString *phoneNumber);
+void v_callPhoneNumber(NSString *phoneNumber);
 
 /**
  *  发送短信
  *
  *  @param phoneNumber 电话号码
  */
-void sendSMSTo(NSString *phoneNumber);
+void v_sendSMSTo(NSString *phoneNumber);
 
 /**
  *  打开浏览器
  *
  *  @param webURL 浏览网址
  */
-void openBrowser(NSURL *webURL);
+void v_openBrowser(NSURL *webURL);
 
 /**
  *  发送邮件
  *
  *  @param receiverEmail 收件人地址
  */
-void emailTo(NSString *receiverEmail);
+void v_emailTo(NSString *receiverEmail);
 
 /**
  *  打开 App store
  *
  *  @param appLink App 地址
  */
-void openAppStoreByAppLink(NSURL *appLink);
+void v_openAppStoreByAppLink(NSURL *appLink);
 
 #pragma mark - 
 
 /**
  *  清除徽标
  */
-void clearApplicationIconBadge();
+void v_clearApplicationIconBadge();
 
 #pragma mark -
 
@@ -185,7 +185,7 @@ void clearApplicationIconBadge();
  *
  *  @return 灰线
  */
-UIView *hairLineForTabBar(UITabBar *tabBar);
+UIView *v_hairLineForTabBar(UITabBar *tabBar);
 
 /**
  *  获取导航栏底部的那一条灰线
@@ -194,7 +194,7 @@ UIView *hairLineForTabBar(UITabBar *tabBar);
  *
  *  @return 灰线
  */
-UIView *hairLineForNavigationBar(UINavigationBar *navigationBar);
+UIView *v_hairLineForNavigationBar(UINavigationBar *navigationBar);
 
 #pragma mark -
 
@@ -205,7 +205,7 @@ UIView *hairLineForNavigationBar(UINavigationBar *navigationBar);
  *  @param ^completionBlock 获取到图片后回调
  *  @param ^errorBlock      获取图片失败回调
  */
-void imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloadedImage), void (^errorBlock)(NSError *error));
+void v_imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloadedImage), void (^errorBlock)(NSError *error));
 
 #pragma mark -
 
@@ -216,11 +216,11 @@ void imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloadedI
  *  @param originalSelector 原始方法
  *  @param overrideSelector 替换方法
  */
-void methodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector);
+void v_methodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector);
 
 #pragma mark - 
 
-CGFloat minimumInteritemSpacingForCollection(CGFloat collectionViewWidth, CGFloat cellWidth, CGFloat horizontalCount);
+CGFloat v_minimumInteritemSpacingForCollection(CGFloat collectionViewWidth, CGFloat cellWidth, CGFloat horizontalCount);
 
 
 @end

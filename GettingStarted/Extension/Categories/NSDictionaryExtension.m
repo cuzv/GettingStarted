@@ -15,7 +15,7 @@
 @implementation NSDictionary (VURLPath)
 
 // Convert dictionary to url string
-- (NSString *)URLParameterString {
+- (NSString *)v_URLParameterString {
 	NSAssert([self isKindOfClass:[NSDictionary class]],
 			 @"The input parameters is not dictionary type!");
 	

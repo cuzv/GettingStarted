@@ -17,10 +17,10 @@
 
 @implementation UITableView (VGenerate)
 
-+ (instancetype)tableViewWithFrame:(CGRect)frame
-                             style:(UITableViewStyle)style
-                         dataSouce:(id <UITableViewDataSource>)dataSource
-                          delegate:(id <UITableViewDelegate>) delegate {
++ (instancetype)v_tableViewWithFrame:(CGRect)frame
+							   style:(UITableViewStyle)style
+						   dataSouce:(id <UITableViewDataSource>)dataSource
+							delegate:(id <UITableViewDelegate>) delegate {
     UITableView *tableView = [[self alloc] initWithFrame:frame style:style];
     tableView.dataSource = dataSource;
     tableView.delegate = delegate;
@@ -35,16 +35,16 @@
     return tableView;
 }
 
-+ (instancetype)tableViewWithSize:(CGSize)size
-                           center:(CGPoint)center
-                            style:(UITableViewStyle)style
-                        dataSouce:(id <UITableViewDataSource>)dataSource
-                         delegate:(id <UITableViewDelegate>) delegate {
++ (instancetype)v_tableViewWithSize:(CGSize)size
+							 center:(CGPoint)center
+							  style:(UITableViewStyle)style
+						  dataSouce:(id <UITableViewDataSource>)dataSource
+						   delegate:(id <UITableViewDelegate>) delegate {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,
                               size.height);
-    return [self tableViewWithFrame:frame style:style dataSouce:dataSource delegate:delegate];
+    return [self v_tableViewWithFrame:frame style:style dataSouce:dataSource delegate:delegate];
 }
 
 @end

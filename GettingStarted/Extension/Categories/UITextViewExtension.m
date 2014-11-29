@@ -18,10 +18,10 @@
 
 @implementation UITextView (VGenerate)
 
-+ (instancetype)textViewWithFrame:(CGRect)frame
-                             font:(UIFont *)font
-                         delegate:(id <UITextViewDelegate>)delegate
-               displayBorderLayer:(BOOL)display {
++ (instancetype)v_textViewWithFrame:(CGRect)frame
+							   font:(UIFont *)font
+						   delegate:(id <UITextViewDelegate>)delegate
+				 displayBorderLayer:(BOOL)display {
     UITextView *textView = [[self alloc] initWithFrame:frame];
     textView.font = font ? : [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     textView.textContainerInset = UIEdgeInsetsMake(5, 5, 5, 5);
@@ -30,23 +30,23 @@
     textView.delegate = delegate;
     
     if (display) {
-        [textView setCornerRadius:5];
-        [textView setBorderWidth:0.5 color:[UIColor lightGrayColor]];
+        [textView v_setCornerRadius:5];
+        [textView v_setBorderWidth:0.5 color:[UIColor lightGrayColor]];
     }
     
     return textView;
 }
 
-+ (instancetype)textViewWithSize:(CGSize)size
-                          center:(CGPoint)center
-                             font:(UIFont *)font
-                         delegate:(id <UITextViewDelegate>)delegate
-              displayBorderLayer:(BOOL)display {
++ (instancetype)v_textViewWithSize:(CGSize)size
+							center:(CGPoint)center
+							  font:(UIFont *)font
+						  delegate:(id <UITextViewDelegate>)delegate
+				displayBorderLayer:(BOOL)display {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,
                               size.height);
-    return [self textViewWithFrame:frame font:font delegate:delegate displayBorderLayer:display];
+    return [self v_textViewWithFrame:frame font:font delegate:delegate displayBorderLayer:display];
 }
 
 @end

@@ -21,140 +21,140 @@
  *
  *  @param point 原点坐标
  */
-- (void)setOrigin:(CGPoint)point;
+- (void)v_setOrigin:(CGPoint)point;
 
 /**
  *  获取视图原点
  *
  *  @return 视图原点坐标
  */
-- (CGPoint)origin;
+- (CGPoint)v_origin;
 
 /**
  *  设置视图尺寸大小
  *
  *  @param size 尺寸大小
  */
-- (void)setSize:(CGSize)size;
+- (void)v_setSize:(CGSize)size;
 
 /**
  *  获取视图尺寸大小
  *
  *  @return 尺寸大小
  */
-- (CGSize)size;
+- (CGSize)v_size;
 
 /**
  *  设置视图横坐标最小值
  *
  *  @param x 横坐标值
  */
-- (void)setMinX:(CGFloat)x;
+- (void)v_setMinX:(CGFloat)x;
 
 /**
  *  获取视图横坐标最小值
  *
  *  @return 横坐标最小值
  */
-- (CGFloat)minX;
+- (CGFloat)v_minX;
 
 /**
  *  设置视图横坐标中间值
  *
  *  @param x 横坐标中间值
  */
-- (void)setMidX:(CGFloat)x;
+- (void)v_setMidX:(CGFloat)x;
 
 /**
  *  获取视图横坐标中间值
  *
  *  @return 横坐标中间值
  */
-- (CGFloat)midX;
+- (CGFloat)v_midX;
 
 /**
  *  设置视图横坐标最大值
  *
  *  @param x 横坐标最大值
  */
-- (void)setMaxX:(CGFloat)x;
+- (void)v_setMaxX:(CGFloat)x;
 
 /**
  *  获取视图横坐标最大值
  *
  *  @return 横坐标最大值
  */
-- (CGFloat)maxX;
+- (CGFloat)v_maxX;
 
 /**
  *  设置视图纵坐标最小值
  *
  *  @param y 纵坐标最小值
  */
-- (void)setMinY:(CGFloat)y;
+- (void)v_setMinY:(CGFloat)y;
 
 /**
  *  获取视图纵坐标最小值
  *
  *  @return 纵坐标最小值
  */
-- (CGFloat)minY;
+- (CGFloat)v_minY;
 
 /**
  *  设置视图纵坐标中间值
  *
  *  @param y 纵坐标中间值
  */
-- (void)setMidY:(CGFloat)y;
+- (void)v_setMidY:(CGFloat)y;
 
 /**
  *  获取视图纵坐标中间值
  *
  *  @return 纵坐标中间值
  */
-- (CGFloat)midY;
+- (CGFloat)v_midY;
 
 /**
  *  设置视图纵坐标最大值
  *
  *  @param y 纵坐标最大值
  */
-- (void)setMaxY:(CGFloat)y;
+- (void)v_setMaxY:(CGFloat)y;
 
 /**
  *  获取视图纵坐标最大值
  *
  *  @return 纵坐标最大值
  */
-- (CGFloat)maxY;
+- (CGFloat)v_maxY;
 
 /**
  *  设置视图宽度
  *
  *  @param width 宽度
  */
-- (void)setWidth:(CGFloat)width;
+- (void)v_setWidth:(CGFloat)width;
 
 /**
  *  获取视图宽度
  *
  *  @return 宽度
  */
-- (CGFloat)width;
+- (CGFloat)v_width;
 
 /**
  *  设置视图高度
  *
  *  @param height 高度
  */
-- (void)setHeight:(CGFloat)height;
+- (void)v_setHeight:(CGFloat)height;
 
 /**
  *  获取视图高度
  *
  *  @return 高度
  */
-- (CGFloat)height;
+- (CGFloat)v_height;
 
 @end
 
@@ -175,14 +175,14 @@
  *
  *  @param strokeColor 环形颜色
  */
-- (void)addArcShapeLayerWithColor:(UIColor *)strokeColor;
+- (void)v_addArcShapeLayerWithColor:(UIColor *)strokeColor;
 
 /**
  *  添加转圈圈动画
  *
  *  @param duration 动画时长
  */
-- (void)addArcRotationAnimaionWithDuration:(NSTimeInterval)duration;
+- (void)v_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration;
 
 /**
  *  添加转圈圈动画
@@ -190,12 +190,12 @@
  *  @param duration 动画时长
  *  @param color    环形颜色
  */
-- (void)addArcRotationAnimaionWithDuration:(NSTimeInterval)duration lineColor:(UIColor *)color;
+- (void)v_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration lineColor:(UIColor *)color;
 
 /**
  *  移除转圈圈动画
  */
-- (void)removeArcRotationAnimation;
+- (void)v_removeArcRotationAnimation;
 
 @end
 
@@ -212,14 +212,14 @@ typedef NS_ENUM(NSInteger, VAnimationOrientation) {
 /**
  *  振动效果
  */
-- (void)shake;
+- (void)v_shake;
 
 /**
  *  振动效果
  *
  *  @param orientation 振动方向
  */
-- (void)shakeWithOrientation:(VAnimationOrientation)orientation;
+- (void)v_shakeWithOrientation:(VAnimationOrientation)orientation;
 
 @end
 
@@ -231,19 +231,19 @@ typedef NS_ENUM(NSInteger, VAnimationOrientation) {
 /**
  *  加载动画效果(打乒乓球效果)
  */
-- (void)addLoadingAnimation;
+- (void)v_addLoadingAnimation;
 
 /**
  *  加载动画效果(打乒乓球效果)
  *
  *  @param color 球星颜色
  */
-- (void)addLoadingAnimationWitchColor:(UIColor *)color;
+- (void)v_addLoadingAnimationWitchColor:(UIColor *)color;
 
 /**
  *  移除动画效果(打乒乓球效果)
  */
-- (void)removeLoadingAnimation;
+- (void)v_removeLoadingAnimation;
 
 @end
 
@@ -256,7 +256,7 @@ typedef NS_ENUM(NSInteger, VAnimationOrientation) {
  *
  *  @return 进度指示器
  */
-- (UIActivityIndicatorView *)activityIndicatorView;
+- (UIActivityIndicatorView *)v_activityIndicatorView;
 
 /**
  *  为视图添加进度指示器动画
@@ -268,43 +268,19 @@ typedef NS_ENUM(NSInteger, VAnimationOrientation) {
  *
  *  @param center 指示器动画中心位置
  */
-- (void)addActivityIndicatorAnimationOnCenter:(CGPoint)center;
+- (void)v_addActivityIndicatorAnimationOnCenter:(CGPoint)center;
 
 /**
  *  移除进度指示器动画
  */
-- (void)removeActivityIndicatorAnimation;
+- (void)v_removeActivityIndicatorAnimation;
 
 /**
  *  是否正在进行进度动画中
  *
  *  @return 是否正在进行进度动画中
  */
-- (BOOL)isInActivityIndicatorAnimation;
-
-@end
-
-
-#pragma mark - 为视图添加渐变环形进度指示器
-
-@interface UIView (VGradientCircularProgress)
-
-/**
- *  为视图添加渐变环形进度指示器动画
- */
-- (void)addGradientCircularProgressAnimation;
-
-/**
- *  为视图添加渐变环形进度指示器动画
- *
- *  @param center 指示器动画中心位置
- */
-- (void)addGradientCircularProgressAnimationOnCenter:(CGPoint)center;
-
-/**
- *  移除渐变环形进度指示器动画
- */
-- (void)removeGradientCircularProgressAnimation;
+- (BOOL)v_isInActivityIndicatorAnimation;
 
 @end
 
@@ -316,7 +292,7 @@ typedef NS_ENUM(NSInteger, VAnimationOrientation) {
 /**
  *  让视图产生半透明毛玻璃效果(You should call this message at last when call messages for view)
  */
-- (void)blur;
+- (void)v_blur;
 
 @end
 
@@ -337,14 +313,14 @@ typedef NS_ENUM(NSInteger, VEdge) {
 /**
  *  设置边框
  */
-- (void)setBorderLine;
+- (void)v_setBorderLine;
 
 /**
  *  设置边框
  *
  *  @param aColor 边框颜色
  */
-- (void)setBorderLineColor:(UIColor *)aColor;
+- (void)v_setBorderLineColor:(UIColor *)aColor;
 
 /**
  *  设置边框
@@ -352,7 +328,7 @@ typedef NS_ENUM(NSInteger, VEdge) {
  *  @param aColor      边框颜色
  *  @param orientation 哪一条边框
  */
-- (void)setBorderLineColor:(UIColor *)aColor edge:(VEdge)edge;
+- (void)v_setBorderLineColor:(UIColor *)aColor edge:(VEdge)edge;
 
 /**
  *  添加边线约束
@@ -361,7 +337,7 @@ typedef NS_ENUM(NSInteger, VEdge) {
  *  @param edge       边缘方向
  *  @param multiplier 边线高度乘法器([0, 1])
  */
-- (void)addBorderLineConstraintsWithColor:(UIColor *)color edge:(VEdge)edge lineHeightMultiplier:(CGFloat)multiplier;
+- (void)v_addBorderLineConstraintsWithColor:(UIColor *)color edge:(VEdge)edge lineHeightMultiplier:(CGFloat)multiplier;
 
 @end
 
@@ -375,7 +351,7 @@ typedef NS_ENUM(NSInteger, VEdge) {
  *
  *  @return 该所属视图控制器
  */
-- (UIViewController *)viewController;
+- (UIViewController *)v_viewController;
 
 @end
 
@@ -389,7 +365,7 @@ typedef NS_ENUM(NSInteger, VEdge) {
  *
  *  @param radius 弧度
  */
-- (void)setCornerRadius:(CGFloat)radius;
+- (void)v_setCornerRadius:(CGFloat)radius;
 
 /**
  *  设置边线
@@ -397,7 +373,7 @@ typedef NS_ENUM(NSInteger, VEdge) {
  *  @param width       宽度
  *  @param borderColor 颜色
  */
-- (void)setBorderWidth:(CGFloat)width color:(UIColor *)borderColor;
+- (void)v_setBorderWidth:(CGFloat)width color:(UIColor *)borderColor;
 
 @end
 
@@ -408,41 +384,22 @@ typedef NS_ENUM(NSInteger, VEdge) {
 /**
  *  打印自动布局树
  */
-- (void)printAutoLayoutTrace;
+- (void)v_printAutoLayoutTrace;
 
 /**
  *  打印描述具有歧义的约束
  *
  *  @param recursive 是否递归
  */
-- (void)exerciseAmiguityInLayoutRepeatedly:(BOOL)recursive;
+- (void)v_exerciseAmiguityInLayoutRepeatedly:(BOOL)recursive;
 
 /**
  *  打印子视图层级关系
  */
-- (void)printSubviewsTrace;
+- (void)v_printSubviewsTrace;
 
 @end
 
-#pragma mark - 添加徽标
-
-@interface UIView (VBadge)
-
-/**
- *  设置徽标
- *
- *  @param badgeValue 徽标值
- */
-- (void)setBadgeValue:(NSString *)badgeValue;
-
-/**
- *  获取徽标
- *
- *  @return 徽标值
- */
-- (NSString *)badgeValue;
-
-@end
 
 
 

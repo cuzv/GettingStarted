@@ -56,7 +56,7 @@
     if (!_pickerView) {
         _pickerView = [UIPickerView new];
         _pickerView.backgroundColor = [UIColor whiteColor];
-        _pickerView.frame = CGRectMake(0, screenWidth() - 216, 0, 0);
+        _pickerView.frame = CGRectMake(0, v_screenWidth() - 216, 0, 0);
         _pickerView.backgroundColor = [UIColor whiteColor];
         _pickerView.dataSource = self;
         _pickerView.delegate = self;
@@ -71,12 +71,12 @@
 }
 
 - (void)appear {
-    self.frame = CGRectOffset(screenBounds(), 0, screenHeight());
+    self.frame = CGRectOffset(v_screenBounds(), 0, v_screenHeight());
     if ([_delegate respondsToSelector:@selector(locationPickerViewWillAppear:)]) {
         [_delegate locationPickerViewWillAppear:self];
     }
     [UIView animateWithDuration:0.3 animations:^{
-        self.transform = CGAffineTransformTranslate(self.transform, 0, -screenHeight());
+        self.transform = CGAffineTransformTranslate(self.transform, 0, -v_screenHeight());
     } completion:^(BOOL finished) {
         if ([_delegate respondsToSelector:@selector(locationPickerViewDidAppear:)]) {
             [_delegate locationPickerViewDidAppear:self];

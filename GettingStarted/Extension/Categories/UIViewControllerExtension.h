@@ -18,27 +18,27 @@
 /**
  *  添加导航栏中间部位进度指示器
  */
-- (void)addNavigationBarActivityIndicatorAnimation;
+- (void)v_addNavigationBarActivityIndicatorAnimation;
 
 /**
  *  移除导航栏中间部位进度指示器
  */
-- (void)removeNavigationBarActivityIndicatorAnimation;
+- (void)v_removeNavigationBarActivityIndicatorAnimation;
 
 
 /**
  *  添加导航栏右边部位进度指示器
  */
-- (void)addNavigationBarRightItemActivityIndicatorAnimation;
+- (void)v_addNavigationBarRightItemActivityIndicatorAnimation;
 
 /**
  *  移除导航栏右边部位进度指示器
  */
-- (void)removeNavigationBarRightItemActivityIndicatorAnimation;
+- (void)v_removeNavigationBarRightItemActivityIndicatorAnimation;
 
 /**
  *  是否正在动画中
  */
-- (BOOL)isNavigationActivityIndicatorViewInAnimation;
+- (BOOL)v_isNavigationActivityIndicatorViewInAnimation;
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Moch. All rights reserved.
 //
 
-#import "UIView+HUD.h"
+#import "UIView+VHUD.h"
 #import <objc/runtime.h>
 #import "JGProgressHUD.h"
 #import "JGProgressHUDFadeZoomAnimation.h"
@@ -45,19 +45,19 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
     return HUD;
 }
 
-- (void)showHUDWithMessage:(NSString *)message {
+- (void)v_showHUDWithMessage:(NSString *)message {
     JGProgressHUD *HUD = [self HUDWithMessage:message];
     HUD.indicatorView = nil;
     [HUD dismissAfterDelay:kDelayTimeInterval];
     [HUD showInView:self];
 }
 
-- (void)showLoadingHUD {
+- (void)v_showLoadingHUD {
     JGProgressHUD *HUD = [self HUDWithMessage:nil];
     [HUD showInView:self];
 }
 
-- (void)showLoadingHUDWithMessage:(NSString *)message {
+- (void)v_showLoadingHUDWithMessage:(NSString *)message {
     JGProgressHUD *HUD = [self HUDWithMessage:message];
     HUD.interactionType = JGProgressHUDInteractionTypeBlockAllTouches;
     JGProgressHUDFadeZoomAnimation *animation = [JGProgressHUDFadeZoomAnimation animation];
@@ -71,7 +71,7 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
     [HUD showInView:self];
 }
 
-- (void)showUploadingHUD {    
+- (void)v_showUploadingHUD {    
     JGProgressHUD *HUD = [self HUDWithMessage:nil];
     HUD.indicatorView = [[JGProgressHUDRingIndicatorView alloc] initWithHUDStyle:HUD.style];
     HUD.detailTextLabel.text = @"0% Complete";
@@ -80,7 +80,7 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
     [HUD showInView:self];
 }
 
-- (void)showDownloadingHUD {
+- (void)v_showDownloadingHUD {
     JGProgressHUD *HUD = [self HUDWithMessage:nil];
     HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] initWithHUDStyle:HUD.style];
     HUD.detailTextLabel.text = @"0% Complete";
@@ -89,7 +89,7 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
     [HUD showInView:self];
 }
 
-- (void)updateHUDProgress:(NSUInteger)progress {
+- (void)v_updateHUDProgress:(NSUInteger)progress {
     [self incrementHUD:self.HUD progress:progress];
 }
 
@@ -111,13 +111,13 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
     }
 }
 
-- (void)testUploadingHUD {
-    [self showUploadingHUD];
+- (void)v_testUploadingHUD {
+    [self v_showUploadingHUD];
     [self updateUI];
 }
 
-- (void)testDownloadingHUD {
-    [self showDownloadingHUD];
+- (void)v_testDownloadingHUD {
+    [self v_showDownloadingHUD];
     [self updateUI];
 }
 
@@ -129,7 +129,7 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
     dispatch_source_set_event_handler(timer, ^{
         if (completeness != 100) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self updateHUDProgress:completeness];
+                [self v_updateHUDProgress:completeness];
             });
             completeness++;
         } else {
@@ -142,7 +142,7 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
     dispatch_resume(timer);
 }
 
-- (void)showSuccessHUDWithMessage:(NSString *)message {
+- (void)v_showSuccessHUDWithMessage:(NSString *)message {
     JGProgressHUD *HUD = [self HUDWithMessage:message];
     HUD.square = YES;
     HUD.indicatorView = [JGProgressHUDSuccessIndicatorView new];
@@ -151,7 +151,7 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
     [HUD showInView:self];
 }
 
-- (void)showFailureHUDWithMessage:(NSString *)message {
+- (void)v_showFailureHUDWithMessage:(NSString *)message {
     JGProgressHUD *HUD = [self HUDWithMessage:message];
     HUD.square = YES;
     HUD.indicatorView = [JGProgressHUDErrorIndicatorView new];
@@ -160,7 +160,7 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
     [HUD showInView:self];
 }
 
-- (void)showCancelableHUDWithMessage:(NSString *)message cancelConfirmMessage:(NSString *)confirmMessage {
+- (void)v_showCancelableHUDWithMessage:(NSString *)message cancelConfirmMessage:(NSString *)confirmMessage {
     JGProgressHUD *HUD = [self HUDWithMessage:nil];
     HUD.interactionType = JGProgressHUDInteractionTypeBlockAllTouches;
     HUD.textLabel.text = message ? : @"Loading very long...";
@@ -213,7 +213,7 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
 
 
 
-- (void)dismissHUD {
+- (void)v_dismissHUD {
     [self.HUD dismiss];
     self.HUD = nil;
 }

@@ -17,9 +17,9 @@
 
 @interface UINavigationBar (VIndicatorAnimation)
 
-- (void)addIndicatorAnimation;
-- (void)removeIndicatorAnimation;
+- (void)v_addIndicatorAnimation;
+- (void)v_removeIndicatorAnimation;
 
-- (BOOL)isInAnimation;
+- (BOOL)v_isInAnimation;
 
 @end

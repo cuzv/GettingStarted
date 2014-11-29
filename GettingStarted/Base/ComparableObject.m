@@ -18,7 +18,7 @@
         return NO;
     }
     
-    NSMutableArray *propertyArray = [self properties].mutableCopy;
+    NSMutableArray *propertyArray = [self v_properties].mutableCopy;
     __block BOOL euqal = YES;
     [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         id selfObject = [self valueForKey:obj];
@@ -36,7 +36,7 @@
 }
 
 - (NSUInteger)hash {
-    NSMutableArray *propertyArray = [[self properties] mutableCopy];
+    NSMutableArray *propertyArray = [[self v_properties] mutableCopy];
     __block NSUInteger hashCode = [self hash];
     [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         hashCode ^= [[self valueForKey:obj] hash];

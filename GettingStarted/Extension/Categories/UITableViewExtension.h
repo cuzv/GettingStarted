@@ -27,10 +27,10 @@
  *
  *  @return 表视图
  */
-+ (instancetype)tableViewWithFrame:(CGRect)frame
-                             style:(UITableViewStyle)style
-                         dataSouce:(id <UITableViewDataSource>)dataSource
-                          delegate:(id <UITableViewDelegate>) delegate;
++ (instancetype)v_tableViewWithFrame:(CGRect)frame
+							   style:(UITableViewStyle)style
+						   dataSouce:(id <UITableViewDataSource>)dataSource
+							delegate:(id <UITableViewDelegate>) delegate;
 
 
 /**
@@ -44,9 +44,9 @@
  *
  *  @return 表视图
  */
-+ (instancetype)tableViewWithSize:(CGSize)size
-                           center:(CGPoint)center
-                            style:(UITableViewStyle)style
-                        dataSouce:(id <UITableViewDataSource>)dataSource
-                         delegate:(id <UITableViewDelegate>) delegate;
++ (instancetype)v_tableViewWithSize:(CGSize)size
+							 center:(CGPoint)center
+							  style:(UITableViewStyle)style
+						  dataSouce:(id <UITableViewDataSource>)dataSource
+						   delegate:(id <UITableViewDelegate>) delegate;
 @end

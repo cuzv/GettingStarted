@@ -19,10 +19,37 @@
 @end
 
 @interface UITextView (TextConfigure)
-@property (nonatomic, strong) VTextEditConfigure *textConfigure;
+
+/**
+ *  设置文本编辑监控
+ *
+ *  @param textConfigure 编辑监控代理
+ */
+- (void)v_setTextConfigure:(VTextEditConfigure *)textConfigure;
+
+/**
+ *  获取文本编辑监控代理
+ *
+ *  @return 文本编辑监控代理
+ */
+- (VTextEditConfigure *)v_textConfigure;
+
 @end
 
 @interface UITextField (TextConfigure)
-@property (nonatomic, strong) VTextEditConfigure *textConfigure;
+
+/**
+ *  设置文本编辑监控
+ *
+ *  @param textConfigure 编辑监控代理
+ */
+- (void)v_setTextConfigure:(VTextEditConfigure *)textConfigure;
+
+/**
+ *  获取文本编辑监控代理
+ *
+ *  @return 文本编辑监控代理
+ */
+- (VTextEditConfigure *)v_textConfigure;
 
 @end

@@ -106,8 +106,8 @@
     // 创建 track 路径
     UIBezierPath *trackPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))
                                                              radius:(CGRectGetWidth(self.bounds) - circluarWidth) / 2
-                                                         startAngle:radianFromAngle(0)
-                                                           endAngle:radianFromAngle(360)
+                                                         startAngle:v_radianFromAngle(0)
+                                                           endAngle:v_radianFromAngle(360)
                                                           clockwise:YES];
     // 创建一个track shape layer
     CAShapeLayer *trackLayer = [CAShapeLayer layer];
@@ -128,8 +128,8 @@
     // 构建圆弧
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))
                                                         radius:(CGRectGetWidth(self.bounds) - circluarWidth) / 2
-                                                    startAngle:radianFromAngle(95)
-                                                      endAngle:radianFromAngle(445 + (_sevenColorRing ? 10 : 0))
+                                                    startAngle:v_radianFromAngle(95)
+                                                      endAngle:v_radianFromAngle(445 + (_sevenColorRing ? 10 : 0))
                                                      clockwise:YES];
     // 进度条
     _progressLayer = [CAShapeLayer layer];
@@ -269,3 +269,50 @@
 }
 
 @end
+
+
+#pragma mark - 为视图添加渐变环形进度指示器
+
+#import <objc/runtime.h>
+#import "VGradientCircularProgress.h"
+
+static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
+
+@implementation UIView (VGradientCircularProgress)
+
+- (void)v_setGradientCircularProgress:(VGradientCircularProgress *)gradientCircularProgress {
+	[self willChangeValueForKey:@"GradientCircularProgressKey"];
+	objc_setAssociatedObject(self, GradientCircularProgressKey, gradientCircularProgress, OBJC_ASSOCIATION_ASSIGN);
+	[self didChangeValueForKey:@"GradientCircularProgressKey"];
+}
+
+- (VGradientCircularProgress *)v_gradientCircularProgress {
+	return objc_getAssociatedObject(self, &GradientCircularProgressKey);
+}
+
+- (void)v_addGradientCircularProgressAnimation {
+	[self v_addGradientCircularProgressAnimationOnCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
+}
+
+- (void)v_addGradientCircularProgressAnimationOnCenter:(CGPoint)center {
+	if ([self v_gradientCircularProgress]) {
+		return;
+	}
+	
+	VGradientCircularProgress *gradientCircularProgress = [[VGradientCircularProgress alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+	gradientCircularProgress.center = center;
+	[self v_setGradientCircularProgress:gradientCircularProgress];
+	[self addSubview:gradientCircularProgress];
+	[gradientCircularProgress startAnimation];
+}
+
+
+- (void)v_removeGradientCircularProgressAnimation {
+	[[self v_gradientCircularProgress] stopAnimation];
+	[[self v_gradientCircularProgress] removeFromSuperview];
+	[self v_setGradientCircularProgress:nil];
+}
+
+@end
+
+

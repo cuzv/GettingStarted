@@ -20,7 +20,7 @@
  *
  *  @return Foundation object
  */
-- (id)JSONObject;
+- (id)v_JSONObject;
 
 /**
  *  Generate JSON data from a Foundation object
@@ -29,7 +29,7 @@
  *
  *  @return JSON data
  */
-+ (NSData *)dataWithJSONObject:(id)object;
++ (NSData *)v_dataWithJSONObject:(id)object;
 
 /**
  *  Generate an JSON data from a property list
@@ -38,7 +38,7 @@
  *
  *  @return JSON data
  */
-+ (NSData *)dataWithPropertyList:(id)plist;
++ (NSData *)v_dataWithPropertyList:(id)plist;
 
 
 
@@ -51,20 +51,20 @@
  *
  *  @return UTF-8 string
  */
-- (NSString *)UTF8String;
+- (NSString *)v_UTF8String;
 
 /**
  *  Generate ASCII string form data
  *
  *  @return ASCII string
  */
-- (NSString *)ASCIIString;
+- (NSString *)v_ASCIIString;
 
 /**
  *  Generate ISOLatin1 string form data
  *
  *  @return ISOLatin1 string
  */
-- (NSString *)ISOLatin1String;
+- (NSString *)v_ISOLatin1String;
 
 @end

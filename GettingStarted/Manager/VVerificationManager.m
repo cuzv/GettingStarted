@@ -26,11 +26,11 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 
 + (BOOL)verifyingPhone:(NSString *)phoneNumber {
     if (!phoneNumber.length) {
-        [UIAlertView showAlertWithMessage:CHPhoneNumberCanNotBeNull];
+        [UIAlertView v_showAlertWithMessage:CHPhoneNumberCanNotBeNull];
         return NO;
     }
     if (![self isValidPhoneNumber:phoneNumber]) {
-        [UIAlertView showAlertWithMessage:CHPhoneNumberInvalid];
+        [UIAlertView v_showAlertWithMessage:CHPhoneNumberInvalid];
         return NO;
     }
     return YES;
@@ -38,11 +38,11 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 
 + (BOOL)verifyingPassword:(NSString *)password {
     if (!password.length) {
-        [UIAlertView showAlertWithMessage:CHPasswordCanNotBeNull];
+        [UIAlertView v_showAlertWithMessage:CHPasswordCanNotBeNull];
         return NO;
     }
     if (![self isValidPassword:password]) {
-        [UIAlertView showAlertWithMessage:CHPasswordInvalid];
+        [UIAlertView v_showAlertWithMessage:CHPasswordInvalid];
         return NO;
     }
     return YES;
@@ -53,7 +53,7 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
         return NO;
     }
     if (![password isEqualToString:repeat]) {
-        [UIAlertView showAlertWithMessage:CHPasswordRepeatInvalid];
+        [UIAlertView v_showAlertWithMessage:CHPasswordRepeatInvalid];
         return NO;
     }
     return YES;
@@ -61,11 +61,11 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 
 + (BOOL)verifyingAuthCode:(NSString *)authCode {
     if (!authCode.length) {
-        [UIAlertView showAlertWithMessage:CHAuthCodeCanNotBeNull];
+        [UIAlertView v_showAlertWithMessage:CHAuthCodeCanNotBeNull];
         return NO;
     }
     if (![self isvalidAuthCode:authCode]) {
-        [UIAlertView showAlertWithMessage:CHAuthCodeInvalid];
+        [UIAlertView v_showAlertWithMessage:CHAuthCodeInvalid];
         return NO;
     }
     return YES;
@@ -77,23 +77,23 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 + (BOOL)isValidEmail:(NSString *)email {
     // @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
 //    NSString *emailRegex = @"^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
-	return [email isValidEmail];
+	return [email v_isValidEmail];
 }
 
 // check phone number
 + (BOOL)isValidPhoneNumber:(NSString *)phoneNumber {
-	return [phoneNumber isValidPhoneNumber];
+	return [phoneNumber v_isValidPhoneNumber];
 }
 
 // check password
 + (BOOL)isValidPassword:(NSString *)password {
-    return [password isValidPassword ];
+    return [password v_isValidPassword ];
 }
 
 // check auth code
 + (BOOL)isvalidAuthCode:(NSString *)authCode {
     // ^\d{n}$
-	return [authCode isvalidAuthCode];
+	return [authCode v_isvalidAuthCode];
 }
 
 @end

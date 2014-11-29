@@ -14,14 +14,14 @@
 @implementation CodingableAndComparableObject
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [self.properties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [[self v_properties] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [aCoder encodeObject:[self valueForKey:obj] forKey:obj];
     }];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super init]) {
-        [self.properties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[self v_properties] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [self setValue:[aDecoder decodeObjectForKey:obj] forKey:obj];
         }];
     }
@@ -33,7 +33,7 @@
         return NO;
     }
     
-    NSMutableArray *propertyArray = [self properties].mutableCopy;
+    NSMutableArray *propertyArray = [self v_properties].mutableCopy;
     __block BOOL euqal = YES;
     [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         id selfObject = [self valueForKey:obj];
@@ -51,7 +51,7 @@
 }
 
 - (NSUInteger)hash {
-    NSMutableArray *propertyArray = [[self properties] mutableCopy];
+    NSMutableArray *propertyArray = [[self v_properties] mutableCopy];
     __block NSUInteger hashCode = [self hash];
     [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         hashCode ^= [[self valueForKey:obj] hash];

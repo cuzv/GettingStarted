@@ -15,7 +15,7 @@
 
 @implementation UIColor (VRandomColor)
 
-+ (UIColor *)randomRGBColor {
++ (UIColor *)v_randomRGBColor {
     static BOOL seeded = NO;
     if (!seeded) {
         seeded = YES;
@@ -29,7 +29,7 @@
     return [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
 }
 
-+ (UIColor *)randomSHBColor {
++ (UIColor *)v_randomSHBColor {
     //  0.0 to 1.0
     CGFloat hue = arc4random() % 256 / 256.0 ;
     //  0.5 to 1.0, away from white
@@ -39,7 +39,7 @@
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
 }
 
-+ (UIColor *)colorWithRGBA:(NSArray *)rgba {
++ (UIColor *)v_colorWithRGBA:(NSArray *)rgba {
 	NSAssert(rgba.count == 4, @"Color array should have four parameters !");
     return [UIColor colorWithRed:[rgba[0] floatValue] / 255
                            green:[rgba[1] floatValue] / 255

@@ -23,7 +23,7 @@
  *
  *  @return 图片
  */
-+ (UIImage *)imageWithName:(NSString *)imageName;
++ (UIImage *)v_imageWithName:(NSString *)imageName;
 
 /**
  *  通过名字和后缀获取图片
@@ -33,7 +33,7 @@
  *
  *  @return 图片
  */
-+ (UIImage *)imageWithName:(NSString *)imageName suffix:(NSString *)aSuffix;
++ (UIImage *)v_imageWithName:(NSString *)imageName suffix:(NSString *)aSuffix;
 
 /**
  *  通过带后缀名字获取图片
@@ -42,7 +42,7 @@
  *
  *  @return 图片
  */
-+ (UIImage *)imageWithNameHasSuffix:(NSString *)aNameHasSuffix;
++ (UIImage *)v_imageWithNameHasSuffix:(NSString *)aNameHasSuffix;
 
 @end
 
@@ -58,7 +58,7 @@
  *
  *  @return 生成的图片
  */
-+ (UIImage *)imageWithColor:(UIColor *)aColor;
++ (UIImage *)v_imageWithColor:(UIColor *)aColor;
 
 /**
  *  根据颜色生成指定大小的图片
@@ -68,7 +68,7 @@
  *
  *  @return 生成的图片
  */
-+ (UIImage *)imageWithColor:(UIColor *)aColor size:(CGSize)aSize;
++ (UIImage *)v_imageWithColor:(UIColor *)aColor size:(CGSize)aSize;
 
 /**
  *  把视图转为图片
@@ -77,6 +77,6 @@
  *
  *  @return 图片
  */
-+ (UIImage *)imageWithView:(UIView *)view;
++ (UIImage *)v_imageWithView:(UIView *)view;
 
 @end

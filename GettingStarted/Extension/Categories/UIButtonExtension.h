@@ -29,11 +29,11 @@
  *
  *  @return 按钮
  */
-+ (instancetype)buttonWithFrame:(CGRect)frame
-                backgroundImage:(UIImage *)backgroundImage
-               highlightedImage:(UIImage *)highlightedImage
-                         target:(id)target
-                         action:(SEL)selector;
++ (instancetype)v_buttonWithFrame:(CGRect)frame
+				  backgroundImage:(UIImage *)backgroundImage
+				 highlightedImage:(UIImage *)highlightedImage
+						   target:(id)target
+						   action:(SEL)selector;
 
 /**
  *  快速生成按钮，适用于只提供图片的方式
@@ -47,12 +47,12 @@
  *
  *  @return 按钮
  */
-+ (instancetype)buttonWithSize:(CGSize)size
-                        center:(CGPoint)center
-               backgroundImage:(UIImage *)backgroundImage
-              highlightedImage:(UIImage *)highlightedImage
-                        target:(id)target
-                        action:(SEL)selector;
++ (instancetype)v_buttonWithSize:(CGSize)size
+						  center:(CGPoint)center
+				 backgroundImage:(UIImage *)backgroundImage
+				highlightedImage:(UIImage *)highlightedImage
+						  target:(id)target
+						  action:(SEL)selector;
 
 /**
  *  快速生成按钮，适用于提供文字和颜色的方式
@@ -67,13 +67,13 @@
  *
  *  @return 按钮
  */
-+ (instancetype)buttonWithFrame:(CGRect)frame
-                          title:(NSString *)title
-                     titleColor:(UIColor *)titleColor
-                backgroundColor:(UIColor *)backgroundColor
-     highlightedBackgroundColor:(UIColor *)highlightedColor
-                         target:(id)target
-                         action:(SEL)selector;
++ (instancetype)v_buttonWithFrame:(CGRect)frame
+							title:(NSString *)title
+					   titleColor:(UIColor *)titleColor
+				  backgroundColor:(UIColor *)backgroundColor
+	   highlightedBackgroundColor:(UIColor *)highlightedColor
+						   target:(id)target
+						   action:(SEL)selector;
 
 /**
  *  快速生成按钮，适用于提供文字和颜色的方式
@@ -89,14 +89,14 @@
  *
  *  @return 按钮
  */
-+ (instancetype)buttonWithSize:(CGSize)size
-                        center:(CGPoint)center
-                         title:(NSString *)title
-                    titleColor:(UIColor *)titleColor
-               backgroundColor:(UIColor *)backgroundColor
-    highlightedBackgroundColor:(UIColor *)highlightedColor
-                        target:(id)target
-                        action:(SEL)selector;
++ (instancetype)v_buttonWithSize:(CGSize)size
+						  center:(CGPoint)center
+						   title:(NSString *)title
+					  titleColor:(UIColor *)titleColor
+				 backgroundColor:(UIColor *)backgroundColor
+	  highlightedBackgroundColor:(UIColor *)highlightedColor
+						  target:(id)target
+						  action:(SEL)selector;
 
 @end
 
@@ -108,19 +108,19 @@
 /**
  *  添加等待动画
  */
-- (void)addWaitingAnimation;
+- (void)v_addWaitingAnimation;
 
 /**
  *  移除等待动画
  */
-- (void)removeWaitingAnimation;
+- (void)v_removeWaitingAnimation;
 
 /**
  *  是否正在进行动画中
  *
  *  @return 是否正在进行动画中
  */
-- (BOOL)isInAnimation;
+- (BOOL)v_isInAnimation;
 
 @end
 
@@ -131,7 +131,7 @@
 /**
  *  Button 图片右侧对齐
  */
-- (void)updateImageAlignmentToRight;
+- (void)v_updateImageAlignmentToRight;
 
 @end
 
