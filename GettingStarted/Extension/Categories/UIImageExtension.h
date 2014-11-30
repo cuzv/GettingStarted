@@ -2,8 +2,8 @@
 //  UIImageExtension.h
 //  GettingStarted
 //
-//  Created by Moch on 10/24/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/24/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,7 +14,7 @@
 
 #pragma mark - 获取 NSBundle 中的图片
 
-@interface UIImage (VFetch)
+@interface UIImage (CHXFetch)
 
 /**
  *  通过名字获取图片，不带后缀，png 格式图片
@@ -23,7 +23,7 @@
  *
  *  @return 图片
  */
-+ (UIImage *)v_imageWithName:(NSString *)imageName;
++ (UIImage *)chx_imageWithName:(NSString *)imageName;
 
 /**
  *  通过名字和后缀获取图片
@@ -33,7 +33,7 @@
  *
  *  @return 图片
  */
-+ (UIImage *)v_imageWithName:(NSString *)imageName suffix:(NSString *)aSuffix;
++ (UIImage *)chx_imageWithName:(NSString *)imageName suffix:(NSString *)aSuffix;
 
 /**
  *  通过带后缀名字获取图片
@@ -42,14 +42,14 @@
  *
  *  @return 图片
  */
-+ (UIImage *)v_imageWithNameHasSuffix:(NSString *)aNameHasSuffix;
++ (UIImage *)chx_imageWithNameHasSuffix:(NSString *)aNameHasSuffix;
 
 @end
 
 
 #pragma mark - 快速生成图片
 
-@interface UIImage (VGenerate)
+@interface UIImage (CHXGenerate)
 
 /**
  *  根据颜色快速生成图片
@@ -58,7 +58,7 @@
  *
  *  @return 生成的图片
  */
-+ (UIImage *)v_imageWithColor:(UIColor *)aColor;
++ (UIImage *)chx_imageWithColor:(UIColor *)aColor;
 
 /**
  *  根据颜色生成指定大小的图片
@@ -68,7 +68,7 @@
  *
  *  @return 生成的图片
  */
-+ (UIImage *)v_imageWithColor:(UIColor *)aColor size:(CGSize)aSize;
++ (UIImage *)chx_imageWithColor:(UIColor *)aColor size:(CGSize)aSize;
 
 /**
  *  把视图转为图片
@@ -77,6 +77,6 @@
  *
  *  @return 图片
  */
-+ (UIImage *)v_imageWithView:(UIView *)view;
++ (UIImage *)chx_imageWithView:(UIView *)view;
 
 @end

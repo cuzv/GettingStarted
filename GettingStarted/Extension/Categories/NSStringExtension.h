@@ -2,8 +2,8 @@
 //  NSStringExtension.h
 //  GettingStarted
 //
-//  Created by Moch on 10/24/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/24/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,7 +14,7 @@
 
 #pragma mark - 计算字符串所占空间尺寸大小
 
-@interface NSString (VTextSize)
+@interface NSString (CHXTextSize)
 
 /**
  *  根据字体获取所占空间尺寸大小
@@ -23,7 +23,7 @@
  *
  *  @return 尺寸大小
  */
-- (CGSize)v_sizeWithFont:(UIFont *)font;
+- (CGSize)chx_sizeWithFont:(UIFont *)font;
 
 /**
  *  根据字体获取所占空间尺寸大小
@@ -33,14 +33,14 @@
  *
  *  @return 尺寸大小
  */
-- (CGSize)v_sizeWithFont:(UIFont *)font width:(CGFloat)width;
+- (CGSize)chx_sizeWithFont:(UIFont *)font width:(CGFloat)width;
 
 @end
 
 
 #pragma mark - 正则验证
 
-@interface NSString (VVerification)
+@interface NSString (CHXVerification)
 
 /**
  *  匹配正则表达式
@@ -49,28 +49,28 @@
  *
  *  @return 是否匹配
  */
-- (BOOL)v_isMatchRegex:(NSString *)regex;
+- (BOOL)chx_isMatchRegex:(NSString *)regex;
 
 /**
  *  是否为合法邮箱地址
  *
  *  @return 是否合法
  */
-- (BOOL)v_isValidEmail;
+- (BOOL)chx_isValidEmail;
 
 /**
  *  是否为合法手机号码
  *
  *  @return 是否合法
  */
-- (BOOL)v_isValidPhoneNumber;
+- (BOOL)chx_isValidPhoneNumber;
 
 /**
  *  是否为合法密码
  *
  *  @return 是否合法
  */
-- (BOOL)v_isValidPassword;
+- (BOOL)chx_isValidPassword;
 
 /**
  *  是否为合法验证码
@@ -79,41 +79,41 @@
  *
  *  @return 是否合法
  */
-- (BOOL)v_isvalidAuthCode;
+- (BOOL)chx_isvalidAuthCode;
 
 /**
  *  是否为空
  *
  *  @return 是否为空
  */
-- (BOOL)v_isEmpty;
+- (BOOL)chx_isEmpty;
 
 /**
  *  去除两头空白
  *
  *  @return 两头无空白的字符串
  */
-- (NSString *)v_trim;
+- (NSString *)chx_trim;
 
 
 @end
 
 #pragma mark - 
 
-@interface NSString (VEncoding)
+@interface NSString (CHXEncoding)
 
 /**
  *  Create UTF-8 string by ISO string
  *
  *  @return UTF-8 string
  */
-- (NSString *)v_convertISOString2UTF8;
+- (NSString *)chx_convertISOString2UTF8;
 
 /**
  *  Create ISO string by UTF-8 string
  *
  *  @return ISO string
  */
-- (NSString *)v_convertUTF8String2ISO;
+- (NSString *)chx_convertUTF8String2ISO;
 
 @end

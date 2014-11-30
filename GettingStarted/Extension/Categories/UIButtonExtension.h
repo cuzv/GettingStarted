@@ -2,8 +2,8 @@
 //  UIButtonExtension.h
 //  GettingStarted
 //
-//  Created by Moch on 10/29/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/29/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,7 +16,7 @@
 
 #pragma mark - 快速生成按钮
 
-@interface UIButton (VGenerate)
+@interface UIButton (CHXGenerate)
 
 /**
  *  快速生成按钮，适用于只提供图片的方式
@@ -29,11 +29,11 @@
  *
  *  @return 按钮
  */
-+ (instancetype)v_buttonWithFrame:(CGRect)frame
-				  backgroundImage:(UIImage *)backgroundImage
-				 highlightedImage:(UIImage *)highlightedImage
-						   target:(id)target
-						   action:(SEL)selector;
++ (instancetype)chx_buttonWithFrame:(CGRect)frame
+					backgroundImage:(UIImage *)backgroundImage
+				   highlightedImage:(UIImage *)highlightedImage
+							 target:(id)target
+							 action:(SEL)selector;
 
 /**
  *  快速生成按钮，适用于只提供图片的方式
@@ -47,12 +47,12 @@
  *
  *  @return 按钮
  */
-+ (instancetype)v_buttonWithSize:(CGSize)size
-						  center:(CGPoint)center
-				 backgroundImage:(UIImage *)backgroundImage
-				highlightedImage:(UIImage *)highlightedImage
-						  target:(id)target
-						  action:(SEL)selector;
++ (instancetype)chx_buttonWithSize:(CGSize)size
+							center:(CGPoint)center
+				   backgroundImage:(UIImage *)backgroundImage
+				  highlightedImage:(UIImage *)highlightedImage
+							target:(id)target
+							action:(SEL)selector;
 
 /**
  *  快速生成按钮，适用于提供文字和颜色的方式
@@ -67,13 +67,13 @@
  *
  *  @return 按钮
  */
-+ (instancetype)v_buttonWithFrame:(CGRect)frame
-							title:(NSString *)title
-					   titleColor:(UIColor *)titleColor
-				  backgroundColor:(UIColor *)backgroundColor
-	   highlightedBackgroundColor:(UIColor *)highlightedColor
-						   target:(id)target
-						   action:(SEL)selector;
++ (instancetype)chx_buttonWithFrame:(CGRect)frame
+							  title:(NSString *)title
+						 titleColor:(UIColor *)titleColor
+					backgroundColor:(UIColor *)backgroundColor
+		 highlightedBackgroundColor:(UIColor *)highlightedColor
+							 target:(id)target
+							 action:(SEL)selector;
 
 /**
  *  快速生成按钮，适用于提供文字和颜色的方式
@@ -89,38 +89,38 @@
  *
  *  @return 按钮
  */
-+ (instancetype)v_buttonWithSize:(CGSize)size
-						  center:(CGPoint)center
-						   title:(NSString *)title
-					  titleColor:(UIColor *)titleColor
-				 backgroundColor:(UIColor *)backgroundColor
-	  highlightedBackgroundColor:(UIColor *)highlightedColor
-						  target:(id)target
-						  action:(SEL)selector;
++ (instancetype)chx_buttonWithSize:(CGSize)size
+							center:(CGPoint)center
+							 title:(NSString *)title
+						titleColor:(UIColor *)titleColor
+				   backgroundColor:(UIColor *)backgroundColor
+		highlightedBackgroundColor:(UIColor *)highlightedColor
+							target:(id)target
+							action:(SEL)selector;
 
 @end
 
 
 #pragma mark - 点击等待
 
-@interface UIButton (VIndicatorAnimation)
+@interface UIButton (CHXIndicatorAnimation)
 
 /**
  *  添加等待动画
  */
-- (void)v_addWaitingAnimation;
+- (void)chx_addWaitingAnimation;
 
 /**
  *  移除等待动画
  */
-- (void)v_removeWaitingAnimation;
+- (void)chx_removeWaitingAnimation;
 
 /**
  *  是否正在进行动画中
  *
  *  @return 是否正在进行动画中
  */
-- (BOOL)v_isInAnimation;
+- (BOOL)chx_isInAnimation;
 
 @end
 
@@ -131,7 +131,7 @@
 /**
  *  Button 图片右侧对齐
  */
-- (void)v_updateImageAlignmentToRight;
+- (void)chx_updateImageAlignmentToRight;
 
 @end
 

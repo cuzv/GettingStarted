@@ -2,8 +2,8 @@
 //  UIColorExtension.m
 //  GettingStarted
 //
-//  Created by Moch on 10/24/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/24/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import "UIColorExtension.h"
@@ -13,9 +13,9 @@
 
 #pragma mark - 生成颜色
 
-@implementation UIColor (VRandomColor)
+@implementation UIColor (CHXRandomColor)
 
-+ (UIColor *)v_randomRGBColor {
++ (UIColor *)chx_randomRGBColor {
     static BOOL seeded = NO;
     if (!seeded) {
         seeded = YES;
@@ -29,7 +29,7 @@
     return [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
 }
 
-+ (UIColor *)v_randomSHBColor {
++ (UIColor *)chx_randomSHBColor {
     //  0.0 to 1.0
     CGFloat hue = arc4random() % 256 / 256.0 ;
     //  0.5 to 1.0, away from white
@@ -39,7 +39,7 @@
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
 }
 
-+ (UIColor *)v_colorWithRGBA:(NSArray *)rgba {
++ (UIColor *)chx_colorWithRGBA:(NSArray *)rgba {
 	NSAssert(rgba.count == 4, @"Color array should have four parameters !");
     return [UIColor colorWithRed:[rgba[0] floatValue] / 255
                            green:[rgba[1] floatValue] / 255

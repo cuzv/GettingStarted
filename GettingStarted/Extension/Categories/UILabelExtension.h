@@ -2,8 +2,8 @@
 //  UILabelExtension.h
 //  GettingStarted
 //
-//  Created by Moch on 10/29/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/29/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,7 +16,7 @@
 
 #pragma mark - 快速生成标签
 
-@interface UILabel (VGenerate)
+@interface UILabel (CHXGenerate)
 
 /**
  *  快速创建标签
@@ -28,10 +28,10 @@
  *
  *  @return 标签
  */
-+ (instancetype)v_labelWithFrame:(CGRect)frame
-				   textAlignment:(NSTextAlignment)alignment
-							font:(UIFont *)font
-					   textColor:(UIColor *)color;
++ (instancetype)chx_labelWithFrame:(CGRect)frame
+					 textAlignment:(NSTextAlignment)alignment
+							  font:(UIFont *)font
+						 textColor:(UIColor *)color;
 
 /**
  *  快速创建标签
@@ -44,10 +44,10 @@
  *
  *  @return 标签
  */
-+ (instancetype)v_labelWithSize:(CGSize)size
-						 center:(CGPoint)center
-				  textAlignment:(NSTextAlignment)alignment
-						   font:(UIFont *)font
-					  textColor:(UIColor *)textColor;
++ (instancetype)chx_labelWithSize:(CGSize)size
+						   center:(CGPoint)center
+					textAlignment:(NSTextAlignment)alignment
+							 font:(UIFont *)font
+						textColor:(UIColor *)textColor;
 
 @end

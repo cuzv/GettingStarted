@@ -2,8 +2,8 @@
 //  Extension.h
 //  GettingStarted
 //
-//  Created by Moch on 11/18/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 11/18/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #ifndef GettingStarted_Extension_h
@@ -28,24 +28,24 @@
 #import "UINavigationBarExtension.h"
 
 // views
-#import "VBadgeView.h"
-#import "VGapRing.h"
-#import "VGradientCircularProgress.h"
-#import "VLocationPickerView.h"
-#import "VPaddingField.h"
-#import "VPaddingLabel.h"
-#import "VFlexibleTextView.h"
-#import "VTrackArcView.h"
+#import "CHXBadgeView.h"
+#import "CHXGapRing.h"
+#import "CHXGradientCircularProgress.h"
+#import "CHXLocationPickerView.h"
+#import "CHXPaddingField.h"
+#import "CHXPaddingLabel.h"
+#import "CHXFlexibleTextView.h"
+#import "CHXTrackArcView.h"
 
 // Helpers
-#import "VGlobalServices.h"
-#import "VArchiver.h"
-#import "VTextEditConfigure.h"
-#import "VArrayDataSource.h"
-#import "VUserDefaults.h"
+#import "CHXGlobalServices.h"
+#import "CHXArchiver.h"
+#import "CHXTextEditConfigure.h"
+#import "CHXArrayDataSource.h"
+#import "CHXUserDefaults.h"
 
 // Dependent
-#import "UIView+VHUD.h"
-#import "UIView+VPercentageIndicatorView.h"
+#import "UIView+CHXHUD.h"
+#import "UIView+CHXPercentageIndicatorView.h"
 
 #endif

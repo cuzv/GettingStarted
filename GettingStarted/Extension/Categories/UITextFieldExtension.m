@@ -2,8 +2,8 @@
 //  UITextFieldExtension.m
 //  GettingStarted
 //
-//  Created by Moch on 10/29/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/29/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import "UITextFieldExtension.h"
@@ -16,12 +16,12 @@
 
 #pragma mark - 快速创建文本域
 
-@implementation UITextField (VGenerate)
+@implementation UITextField (CHXGenerate)
 
-+ (instancetype)v_textFieldWithFrame:(CGRect)frame
-					   textAlignment:(NSTextAlignment)alignment
-								font:(UIFont *)font
-				  displayBorderLayer:(BOOL)display {
++ (instancetype)chx_textFieldWithFrame:(CGRect)frame
+						 textAlignment:(NSTextAlignment)alignment
+								  font:(UIFont *)font
+					displayBorderLayer:(BOOL)display {
     UITextField *textField = [[self alloc] initWithFrame:frame];
     textField.backgroundColor = [UIColor whiteColor];
     textField.textAlignment = alignment ? : NSTextAlignmentLeft;
@@ -37,8 +37,8 @@
     textField.rightView = view;
     
     if (display) {
-        [textField v_setCornerRadius:5];
-        [textField v_setBorderWidth:0.5 color:[UIColor lightGrayColor]];
+        [textField chx_setCornerRadius:5];
+        [textField chx_setBorderWidth:0.5 color:[UIColor lightGrayColor]];
     }
     
     textField.autocorrectionType = UITextAutocorrectionTypeDefault;
@@ -47,16 +47,16 @@
     return textField;
 }
 
-+ (instancetype)v_textFieldWithSize:(CGSize)size
-							 center:(CGPoint)center
-					  textAlignment:(NSTextAlignment)alignment
-							   font:(UIFont *)font
-				 displayBorderLayer:(BOOL)display {
++ (instancetype)chx_textFieldWithSize:(CGSize)size
+							   center:(CGPoint)center
+						textAlignment:(NSTextAlignment)alignment
+								 font:(UIFont *)font
+				   displayBorderLayer:(BOOL)display {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,
                               size.height);
-    return [self v_textFieldWithFrame:frame textAlignment:alignment font:font displayBorderLayer:display];
+    return [self chx_textFieldWithFrame:frame textAlignment:alignment font:font displayBorderLayer:display];
 }
 
 @end

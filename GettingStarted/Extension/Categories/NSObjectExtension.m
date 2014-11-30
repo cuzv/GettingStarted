@@ -2,8 +2,8 @@
 // NSObjectExtension.m
 //  GettingStarted
 //
-//  Created by Moch on 10/29/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/29/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import "NSObjectExtension.h"
@@ -16,9 +16,9 @@
 
 #pragma mark - 对象模型与原生类型间的转换
 
-@implementation NSObject (VConvert)
+@implementation NSObject (CHXConvert)
 
-- (instancetype)v_initWithProperties:(NSDictionary *)properties {
+- (instancetype)chx_initWithProperties:(NSDictionary *)properties {
     if (self = [self init]) {
         [self setValuesForKeysWithDictionary:properties];
     };
@@ -36,7 +36,7 @@
 }
 
 // Runtime
-- (NSArray *)v_properties {
+- (NSArray *)chx_properties {
     NSMutableArray *propertyArray = [[NSMutableArray alloc] init];
     u_int count;
     objc_property_t *propertyList = class_copyPropertyList([self class], &count);
@@ -52,7 +52,7 @@
     return [[NSArray alloc] initWithArray:propertyArray];
 }
 
-+ (NSArray *)v_properties {
++ (NSArray *)chx_properties {
     NSMutableArray *propertyArray = [[NSMutableArray alloc] init];
     u_int count;
     objc_property_t *propertyList = class_copyPropertyList([self class], &count);
@@ -68,10 +68,10 @@
     return [[NSArray alloc] initWithArray:propertyArray];
 }
 
-- (NSDictionary *)v_convertToDictionary {
+- (NSDictionary *)chx_convertToDictionary {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     // 获取本类属性列表字符串数组
-    NSMutableArray *propertyArray = [[self v_properties] mutableCopy];
+    NSMutableArray *propertyArray = [[self chx_properties] mutableCopy];
     
     [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [dict setObject:[self valueForKey:obj] forKey:obj];
@@ -80,13 +80,13 @@
     return dict;
 }
 
-- (NSString *)v_toString {
-    if (![[self v_properties] count]) {
+- (NSString *)chx_toString {
+    if (![[self chx_properties] count]) {
         return nil;
     }
 	
 	NSMutableDictionary *propertyDictionary = [NSMutableDictionary new];
-	NSMutableArray *propertyArray = [[self v_properties] mutableCopy];
+	NSMutableArray *propertyArray = [[self chx_properties] mutableCopy];
 	[propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		[propertyDictionary setObject:[self valueForKey:obj] forKey:obj];
 	}];

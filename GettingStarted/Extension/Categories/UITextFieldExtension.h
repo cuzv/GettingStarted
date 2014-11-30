@@ -2,8 +2,8 @@
 //  UITextFieldExtension.h
 //  GettingStarted
 //
-//  Created by Moch on 10/29/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/29/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,7 +16,7 @@
 
 #pragma mark - 快速创建文本域
 
-@interface UITextField (VGenerate)
+@interface UITextField (CHXGenerate)
 
 /**
  *  快速创建文本域
@@ -28,10 +28,10 @@
  *
  *  @return 文本域
  */
-+ (instancetype)v_textFieldWithFrame:(CGRect)frame
-					   textAlignment:(NSTextAlignment)alignment
-								font:(UIFont *)font
-				  displayBorderLayer:(BOOL)display;
++ (instancetype)chx_textFieldWithFrame:(CGRect)frame
+						 textAlignment:(NSTextAlignment)alignment
+								  font:(UIFont *)font
+					displayBorderLayer:(BOOL)display;
 
 /**
  *  快速创建文本域
@@ -44,9 +44,9 @@
  *
  *  @return 文本域
  */
-+ (instancetype)v_textFieldWithSize:(CGSize)size
-							 center:(CGPoint)center
-					  textAlignment:(NSTextAlignment)alignment
-							   font:(UIFont *)font
-				 displayBorderLayer:(BOOL)display;
++ (instancetype)chx_textFieldWithSize:(CGSize)size
+							   center:(CGPoint)center
+						textAlignment:(NSTextAlignment)alignment
+								 font:(UIFont *)font
+				   displayBorderLayer:(BOOL)display;
 @end

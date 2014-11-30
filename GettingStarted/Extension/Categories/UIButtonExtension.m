@@ -2,8 +2,8 @@
 //  UIButtonExtension.m
 //  GettingStarted
 //
-//  Created by Moch on 10/29/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/29/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import "UIButtonExtension.h"
@@ -16,13 +16,13 @@
 
 #pragma mark - 快速生成按钮
 
-@implementation UIButton (VGenerate)
+@implementation UIButton (CHXGenerate)
 
-+ (instancetype)v_buttonWithFrame:(CGRect)frame
-				  backgroundImage:(UIImage *)backgroundImage
-				 highlightedImage:(UIImage *)highlightedImage
-						   target:(id)target
-						   action:(SEL)selector {
++ (instancetype)chx_buttonWithFrame:(CGRect)frame
+					backgroundImage:(UIImage *)backgroundImage
+				   highlightedImage:(UIImage *)highlightedImage
+							 target:(id)target
+							 action:(SEL)selector {
     UIButton *button = [[self alloc] initWithFrame:frame];
     [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
@@ -31,30 +31,30 @@
     return button;
 }
 
-+ (instancetype)v_buttonWithSize:(CGSize)size
-                          center:(CGPoint)center
-                backgroundImage:(UIImage *)backgroundImage
-               highlightedImage:(UIImage *)highlightedImage
-                         target:(id)target
-                         action:(SEL)selector {
++ (instancetype)chx_buttonWithSize:(CGSize)size
+							center:(CGPoint)center
+				   backgroundImage:(UIImage *)backgroundImage
+				  highlightedImage:(UIImage *)highlightedImage
+							target:(id)target
+							action:(SEL)selector {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,
                               size.height);
-    return [self v_buttonWithFrame:frame
+    return [self chx_buttonWithFrame:frame
                  backgroundImage:backgroundImage
                 highlightedImage:highlightedImage
                           target:target
                           action:selector];;
 }
 
-+ (instancetype)v_buttonWithFrame:(CGRect)frame
-                          title:(NSString *)title
-                     titleColor:(UIColor *)titleColor
-                backgroundColor:(UIColor *)backgroundColor
-     highlightedBackgroundColor:(UIColor *)highlightedColor
-                         target:(id)target
-                         action:(SEL)selector {
++ (instancetype)chx_buttonWithFrame:(CGRect)frame
+							  title:(NSString *)title
+						 titleColor:(UIColor *)titleColor
+					backgroundColor:(UIColor *)backgroundColor
+		 highlightedBackgroundColor:(UIColor *)highlightedColor
+							 target:(id)target
+							 action:(SEL)selector {
     UIButton *button = [[self alloc] initWithFrame:frame];
     [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:title forState:UIControlStateNormal];
@@ -62,32 +62,32 @@
     button.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     
     if (backgroundColor) {
-        UIImage *backgroundImage = [UIImage v_imageWithColor:backgroundColor size:frame.size];
+        UIImage *backgroundImage = [UIImage chx_imageWithColor:backgroundColor size:frame.size];
         [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     }
     if (highlightedColor) {
-        UIImage *highlightedImage = [UIImage v_imageWithColor:highlightedColor size:frame.size];
+        UIImage *highlightedImage = [UIImage chx_imageWithColor:highlightedColor size:frame.size];
         [button setBackgroundImage:highlightedImage forState:UIControlStateHighlighted];
     }
     
-    [button v_setCornerRadius:5];
+    [button chx_setCornerRadius:5];
     
     return button;
 }
 
-+ (instancetype)v_buttonWithSize:(CGSize)size
-                        center:(CGPoint)center
-                         title:(NSString *)title
-                    titleColor:(UIColor *)titleColor
-               backgroundColor:(UIColor *)backgroundColor
-    highlightedBackgroundColor:(UIColor *)highlightedColor
-                        target:(id)target
-                        action:(SEL)selector {
++ (instancetype)chx_buttonWithSize:(CGSize)size
+							center:(CGPoint)center
+							 title:(NSString *)title
+						titleColor:(UIColor *)titleColor
+				   backgroundColor:(UIColor *)backgroundColor
+		highlightedBackgroundColor:(UIColor *)highlightedColor
+							target:(id)target
+							action:(SEL)selector {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,
                               size.height);
-    return [self v_buttonWithFrame:frame
+    return [self chx_buttonWithFrame:frame
                            title:title
                       titleColor:titleColor
                  backgroundColor:backgroundColor
@@ -102,45 +102,45 @@
 
 #pragma mark - 点击等待
 
-#import "VGapRing.h"
+#import "CHXGapRing.h"
 #import "UIImageExtension.h"
 #import <objc/runtime.h>
 #import "UIColorExtension.h"
 
-@implementation UIButton (VIndicatorAnimation)
+@implementation UIButton (CHXIndicatorAnimation)
 
 static const void *IndicatorAnimationKey = &IndicatorAnimationKey;
 static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
 
-- (void)v_setAnimating:(BOOL)animating {
+- (void)chx_setAnimating:(BOOL)animating {
     [self willChangeValueForKey:@"IndicatorAnimationKey"];
     objc_setAssociatedObject(self, IndicatorAnimationKey, @(animating), OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"IndicatorAnimationKey"];
 }
 
-- (BOOL)v_animating {
+- (BOOL)chx_animating {
     return [objc_getAssociatedObject(self, &IndicatorAnimationKey) boolValue];
 }
 
-- (void)v_setContext:(NSDictionary *)context {
+- (void)chx_setContext:(NSDictionary *)context {
     [self willChangeValueForKey:@"IndicatorAnimationContextKey"];
     objc_setAssociatedObject(self, IndicatorAnimationContextKey, context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"IndicatorAnimationContextKey"];
 }
 
-- (NSDictionary *)v_context {
+- (NSDictionary *)chx_context {
     return objc_getAssociatedObject(self, &IndicatorAnimationContextKey);
 }
 
 #pragma mark -
 
-- (void)v_addWaitingAnimation {
-    if ([self v_animating]) {
+- (void)chx_addWaitingAnimation {
+    if ([self chx_animating]) {
         return;
     }
     
     // 保存上下文数据
-	[self v_setContext:({
+	[self chx_setContext:({
 		NSMutableDictionary *context = [NSMutableDictionary new];
 		
 		id normalimage = [self imageForState:UIControlStateNormal] ? : [NSNull null];
@@ -185,26 +185,26 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     self.backgroundColor = [UIColor clearColor];
     
     // 添加动画
-    CGFloat lengthOfSide = [self v_height] * 0.8;
-    VGapRing *gapRing = [[VGapRing alloc] initWithFrame:CGRectMake(0, 0, lengthOfSide, lengthOfSide)];
-	[gapRing v_setMidX:[self v_width] / 2];
-	[gapRing v_setMidY:[self v_height] / 2];
-    gapRing.lineColor = [UIColor v_colorWithRGBA:@[@0, @122, @255, @1]];
+    CGFloat lengthOfSide = [self chx_height] * 0.8;
+    CHXGapRing *gapRing = [[CHXGapRing alloc] initWithFrame:CGRectMake(0, 0, lengthOfSide, lengthOfSide)];
+	[gapRing chx_setMidX:[self chx_width] / 2];
+	[gapRing chx_setMidY:[self chx_height] / 2];
+    gapRing.lineColor = [UIColor chx_colorWithRGBA:@[@0, @122, @255, @1]];
     [gapRing startAnimation];
     [self addSubview:gapRing];
 
-	[self v_setAnimating:YES];
+	[self chx_setAnimating:YES];
 }
 
-- (void)v_removeWaitingAnimation {
-    if (![self v_animating]) {
+- (void)chx_removeWaitingAnimation {
+    if (![self chx_animating]) {
         return;
     }
 
     // 移除动画
     for (UIView *subView in self.subviews) {
-        if ([subView isKindOfClass:[VGapRing class]]) {
-            VGapRing *gapRing = (VGapRing *)subView;
+        if ([subView isKindOfClass:[CHXGapRing class]]) {
+            CHXGapRing *gapRing = (CHXGapRing *)subView;
             [gapRing stopAnimation];
             [gapRing removeFromSuperview];
             gapRing = nil;
@@ -213,7 +213,7 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     }
     
     // 恢复上下文信息
-    id context = [self v_context];
+    id context = [self chx_context];
     
     Class imageClass = [UIImage class];
     
@@ -263,11 +263,11 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
         self.backgroundColor = backgroundColor;
     }
 
-    [self v_setAnimating:NO];
+    [self chx_setAnimating:NO];
 }
 
-- (BOOL)v_isInAnimation {
-	return [self v_animating];
+- (BOOL)chx_isInAnimation {
+	return [self chx_animating];
 }
 
 @end
@@ -277,7 +277,7 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
 
 @implementation UIButton (VImageAlignment)
 
-- (void)v_updateImageAlignmentToRight {
+- (void)chx_updateImageAlignmentToRight {
 	CGFloat imageWidth = self.currentImage.size.width;
 	[self setTitleEdgeInsets:UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth)];
 	

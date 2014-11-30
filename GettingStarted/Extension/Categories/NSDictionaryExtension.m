@@ -2,8 +2,8 @@
 //  NSDictionaryExtension.m
 //  GettingStarted
 //
-//  Created by Moch on 11/20/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 11/20/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import "NSDictionaryExtension.h"
@@ -12,10 +12,10 @@
 
 @end
 
-@implementation NSDictionary (VURLPath)
+@implementation NSDictionary (CHXURLPath)
 
 // Convert dictionary to url string
-- (NSString *)v_URLParameterString {
+- (NSString *)chx_URLParameterString {
 	NSAssert([self isKindOfClass:[NSDictionary class]],
 			 @"The input parameters is not dictionary type!");
 	

@@ -2,8 +2,8 @@
 //  UINavigationBarExtension.m
 //  GettingStarted
 //
-//  Created by Moch on 11/4/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 11/4/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import "UINavigationBarExtension.h"
@@ -24,38 +24,38 @@ static const void *IndicatorAnimationTimerKey = &IndicatorAnimationTimerKey;
 
 @implementation UINavigationBar (VIndicatorAnimation)
 
-- (void)v_setTitleLabel:(UILabel *)titleLabel {
+- (void)chx_setTitleLabel:(UILabel *)titleLabel {
 	[self willChangeValueForKey:@"IndicatorAnimationKey"];
 	objc_setAssociatedObject(self, IndicatorAnimationKey, titleLabel, OBJC_ASSOCIATION_ASSIGN);
 	[self didChangeValueForKey:@"IndicatorAnimationKey"];
 }
 
-- (UILabel *)v_titleLabel {
+- (UILabel *)chx_titleLabel {
 	return objc_getAssociatedObject(self, &IndicatorAnimationKey);
 }
 
-- (void)v_setInAnimation:(BOOL)inAnimation {
+- (void)chx_setInAnimation:(BOOL)inAnimation {
 	[self willChangeValueForKey:@"IndicatorInAnimationKey"];
 	objc_setAssociatedObject(self, IndicatorInAnimationKey, @(inAnimation), OBJC_ASSOCIATION_ASSIGN);
 	[self didChangeValueForKey:@"IndicatorInAnimationKey"];
 }
 
-- (BOOL)v_inAnimation {
+- (BOOL)chx_inAnimation {
 	return [objc_getAssociatedObject(self, &IndicatorInAnimationKey) boolValue];
 }
 
-- (void)v_setTimer:(dispatch_source_t)timer {
+- (void)chx_setTimer:(dispatch_source_t)timer {
 	[self willChangeValueForKey:@"IndicatorAnimationTimerKey"];
 	objc_setAssociatedObject(self, IndicatorAnimationTimerKey, timer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 	[self didChangeValueForKey:@"IndicatorAnimationTimerKey"];
 }
 
-- (dispatch_source_t)v_timer {
+- (dispatch_source_t)chx_timer {
 	return objc_getAssociatedObject(self, &IndicatorAnimationTimerKey);
 }
 
-- (void)v_addIndicatorAnimation {
-	if ([self v_inAnimation]) {
+- (void)chx_addIndicatorAnimation {
+	if ([self chx_inAnimation]) {
 		return;
 	}
 	
@@ -65,20 +65,20 @@ static const void *IndicatorAnimationTimerKey = &IndicatorAnimationTimerKey;
 	__weak typeof(self) weakSelf = self;
 
 	[self addSubview:({
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, [weakSelf v_height] - 20, [weakSelf v_width], 20)];
-		CGFloat width = [@"• • •" v_sizeWithFont:label.font width:[weakSelf v_width]].width;
-		[label v_setWidth:width];
-		[label v_setMidX:[weakSelf v_midX]];
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, [weakSelf chx_height] - 20, [weakSelf chx_width], 20)];
+		CGFloat width = [@"• • •" chx_sizeWithFont:label.font width:[weakSelf chx_width]].width;
+		[label chx_setWidth:width];
+		[label chx_setMidX:[weakSelf chx_midX]];
 		label.textColor = weakSelf.titleTextAttributes[NSForegroundColorAttributeName];
 		label.textAlignment = NSTextAlignmentLeft;
 		
 		NSArray *titles = @[@"•    ", @"• •  ", @"• • •", @"     "];
 		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-		[weakSelf v_setTimer:dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue)];
-		if ([weakSelf v_timer]) {
-			dispatch_source_set_timer([weakSelf v_timer], dispatch_walltime(NULL, 0), 0.5 * NSEC_PER_SEC , 0);
+		[weakSelf chx_setTimer:dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue)];
+		if ([weakSelf chx_timer]) {
+			dispatch_source_set_timer([weakSelf chx_timer], dispatch_walltime(NULL, 0), 0.5 * NSEC_PER_SEC , 0);
 			__block NSUInteger currentIndex = 0;
-			dispatch_source_set_event_handler([weakSelf v_timer], ^{
+			dispatch_source_set_event_handler([weakSelf chx_timer], ^{
 				dispatch_async(dispatch_get_main_queue(), ^{
 					label.text = titles[currentIndex];
 					if (currentIndex++ == titles.count - 1) {
@@ -86,30 +86,30 @@ static const void *IndicatorAnimationTimerKey = &IndicatorAnimationTimerKey;
 					}
 				});
 			});
-			dispatch_source_set_cancel_handler([weakSelf v_timer], ^{
+			dispatch_source_set_cancel_handler([weakSelf chx_timer], ^{
 				dispatch_async(dispatch_get_main_queue(), ^{
 					[weakSelf setTitleVerticalPositionAdjustment:0 forBarMetrics:UIBarMetricsDefault];
-					[weakSelf v_setInAnimation:NO];
-					[[weakSelf v_titleLabel] removeFromSuperview];
-					[weakSelf v_setTitleLabel:nil];
+					[weakSelf chx_setInAnimation:NO];
+					[[weakSelf chx_titleLabel] removeFromSuperview];
+					[weakSelf chx_setTitleLabel:nil];
 				});
 			});
-			dispatch_resume([weakSelf v_timer]);
+			dispatch_resume([weakSelf chx_timer]);
 		}
 
-		[weakSelf v_setTitleLabel:label];
+		[weakSelf chx_setTitleLabel:label];
 		label;
 	})];
 	
-	[self v_setInAnimation:YES];
+	[self chx_setInAnimation:YES];
 }
 
-- (void)v_removeIndicatorAnimation {
-	dispatch_source_cancel([self v_timer]);
+- (void)chx_removeIndicatorAnimation {
+	dispatch_source_cancel([self chx_timer]);
 }
 
-- (BOOL)v_isInAnimation {
-	return [self v_inAnimation];
+- (BOOL)chx_isInAnimation {
+	return [self chx_inAnimation];
 }
 
 @end

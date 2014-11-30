@@ -2,8 +2,8 @@
 //  UIColorExtension.h
 //  GettingStarted
 //
-//  Created by Moch on 10/24/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/24/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,21 +14,21 @@
 
 #pragma mark - 生成颜色
 
-@interface UIColor (VRandomColor)
+@interface UIColor (CHXRandomColor)
 
 /**
  *  随机生成 RGB 颜色
  *
  *  @return RGB 颜色
  */
-+ (UIColor *)v_randomRGBColor;
++ (UIColor *)chx_randomRGBColor;
 
 /**
  *  随机生成 SHB 颜色
  *
  *  @return SHB 颜色
  */
-+ (UIColor *)v_randomSHBColor;
++ (UIColor *)chx_randomSHBColor;
 
 /**
  *  根据 RGB 值生成颜色
@@ -37,7 +37,7 @@
  *
  *  @return RGB 颜色
  */
-+ (UIColor *)v_colorWithRGBA:(NSArray *)rgba;
++ (UIColor *)chx_colorWithRGBA:(NSArray *)rgba;
 
 @end
 

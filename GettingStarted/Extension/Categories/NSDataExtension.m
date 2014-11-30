@@ -2,8 +2,8 @@
 //  NSDataExtension.m
 //  GettingStarted
 //
-//  Created by Moch on 11/20/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 11/20/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import "NSDataExtension.h"
@@ -13,10 +13,10 @@
 @end
 
 
-@implementation NSData (VJSON)
+@implementation NSData (CHXJSON)
 
 // Create a Foundation object from JSON data
-- (id)v_JSONObject {
+- (id)chx_JSONObject {
 	if (!self) {
 		return nil;
 	}
@@ -33,7 +33,7 @@
 }
 
 // Generate JSON data from a Foundation object
-+ (NSData *)v_dataWithJSONObject:(id)object {
++ (NSData *)chx_dataWithJSONObject:(id)object {
 	if (!object) {
 		return nil;
 	}
@@ -49,7 +49,7 @@
 }
 
 // Generate an JSON data from a property list
-+ (NSData *)v_dataWithPropertyList:(id)plist {
++ (NSData *)chx_dataWithPropertyList:(id)plist {
 	NSError *error = nil;
 	NSData *data = [NSPropertyListSerialization dataWithPropertyList:plist
 															  format:NSPropertyListXMLFormat_v1_0
@@ -64,20 +64,20 @@
 
 @end
 
-@implementation NSData (VEncoding)
+@implementation NSData (CHXEncoding)
 
 // Generate UTF-8 string from data
-- (NSString *)v_UTF8String {
+- (NSString *)chx_UTF8String {
 	return [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
 }
 
 // Generate ASCII string form data
-- (NSString *)v_ASCIIString {
+- (NSString *)chx_ASCIIString {
 	return [[NSString alloc] initWithData:self encoding:NSASCIIStringEncoding];
 }
 
 // Generate ISOLatin1 string form data
-- (NSString *)v_ISOLatin1String {
+- (NSString *)chx_ISOLatin1String {
 	return [[NSString alloc] initWithData:self encoding:NSISOLatin1StringEncoding];
 }
 

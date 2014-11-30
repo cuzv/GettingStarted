@@ -2,8 +2,8 @@
 //  UINavigationBarExtension.h
 //  GettingStarted
 //
-//  Created by Moch on 11/4/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 11/4/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -17,9 +17,9 @@
 
 @interface UINavigationBar (VIndicatorAnimation)
 
-- (void)v_addIndicatorAnimation;
-- (void)v_removeIndicatorAnimation;
+- (void)chx_addIndicatorAnimation;
+- (void)chx_removeIndicatorAnimation;
 
-- (BOOL)v_isInAnimation;
+- (BOOL)chx_isInAnimation;
 
 @end

@@ -2,8 +2,8 @@
 //  UIViewControllerExtension.h
 //  GettingStarted
 //
-//  Created by Moch on 11/2/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 11/2/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -18,27 +18,27 @@
 /**
  *  添加导航栏中间部位进度指示器
  */
-- (void)v_addNavigationBarActivityIndicatorAnimation;
+- (void)chx_addNavigationBarActivityIndicatorAnimation;
 
 /**
  *  移除导航栏中间部位进度指示器
  */
-- (void)v_removeNavigationBarActivityIndicatorAnimation;
+- (void)chx_removeNavigationBarActivityIndicatorAnimation;
 
 
 /**
  *  添加导航栏右边部位进度指示器
  */
-- (void)v_addNavigationBarRightItemActivityIndicatorAnimation;
+- (void)chx_addNavigationBarRightItemActivityIndicatorAnimation;
 
 /**
  *  移除导航栏右边部位进度指示器
  */
-- (void)v_removeNavigationBarRightItemActivityIndicatorAnimation;
+- (void)chx_removeNavigationBarRightItemActivityIndicatorAnimation;
 
 /**
  *  是否正在动画中
  */
-- (BOOL)v_isNavigationActivityIndicatorViewInAnimation;
+- (BOOL)chx_isNavigationActivityIndicatorViewInAnimation;
 
 @end

@@ -2,8 +2,8 @@
 //  UIViewExtension.h
 //  GettingStarted
 //
-//  Created by Moch on 10/24/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/24/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,175 +14,168 @@
 
 #pragma mark - 视图框架访问器方法
 
-@interface UIView (VAccessor)
+@interface UIView (CHXAccessor)
 
 /**
  *  设置视图原点
  *
  *  @param point 原点坐标
  */
-- (void)v_setOrigin:(CGPoint)point;
+- (void)chx_setOrigin:(CGPoint)point;
 
 /**
  *  获取视图原点
  *
  *  @return 视图原点坐标
  */
-- (CGPoint)v_origin;
+- (CGPoint)chx_origin;
 
 /**
  *  设置视图尺寸大小
  *
  *  @param size 尺寸大小
  */
-- (void)v_setSize:(CGSize)size;
+- (void)chx_setSize:(CGSize)size;
 
 /**
  *  获取视图尺寸大小
  *
  *  @return 尺寸大小
  */
-- (CGSize)v_size;
+- (CGSize)chx_size;
 
 /**
  *  设置视图横坐标最小值
  *
  *  @param x 横坐标值
  */
-- (void)v_setMinX:(CGFloat)x;
+- (void)chx_setMinX:(CGFloat)x;
 
 /**
  *  获取视图横坐标最小值
  *
  *  @return 横坐标最小值
  */
-- (CGFloat)v_minX;
+- (CGFloat)chx_minX;
 
 /**
  *  设置视图横坐标中间值
  *
  *  @param x 横坐标中间值
  */
-- (void)v_setMidX:(CGFloat)x;
+- (void)chx_setMidX:(CGFloat)x;
 
 /**
  *  获取视图横坐标中间值
  *
  *  @return 横坐标中间值
  */
-- (CGFloat)v_midX;
+- (CGFloat)chx_midX;
 
 /**
  *  设置视图横坐标最大值
  *
  *  @param x 横坐标最大值
  */
-- (void)v_setMaxX:(CGFloat)x;
+- (void)chx_setMaxX:(CGFloat)x;
 
 /**
  *  获取视图横坐标最大值
  *
  *  @return 横坐标最大值
  */
-- (CGFloat)v_maxX;
+- (CGFloat)chx_maxX;
 
 /**
  *  设置视图纵坐标最小值
  *
  *  @param y 纵坐标最小值
  */
-- (void)v_setMinY:(CGFloat)y;
+- (void)chx_setMinY:(CGFloat)y;
 
 /**
  *  获取视图纵坐标最小值
  *
  *  @return 纵坐标最小值
  */
-- (CGFloat)v_minY;
+- (CGFloat)chx_minY;
 
 /**
  *  设置视图纵坐标中间值
  *
  *  @param y 纵坐标中间值
  */
-- (void)v_setMidY:(CGFloat)y;
+- (void)chx_setMidY:(CGFloat)y;
 
 /**
  *  获取视图纵坐标中间值
  *
  *  @return 纵坐标中间值
  */
-- (CGFloat)v_midY;
+- (CGFloat)chx_midY;
 
 /**
  *  设置视图纵坐标最大值
  *
  *  @param y 纵坐标最大值
  */
-- (void)v_setMaxY:(CGFloat)y;
+- (void)chx_setMaxY:(CGFloat)y;
 
 /**
  *  获取视图纵坐标最大值
  *
  *  @return 纵坐标最大值
  */
-- (CGFloat)v_maxY;
+- (CGFloat)chx_maxY;
 
 /**
  *  设置视图宽度
  *
  *  @param width 宽度
  */
-- (void)v_setWidth:(CGFloat)width;
+- (void)chx_setWidth:(CGFloat)width;
 
 /**
  *  获取视图宽度
  *
  *  @return 宽度
  */
-- (CGFloat)v_width;
+- (CGFloat)chx_width;
 
 /**
  *  设置视图高度
  *
  *  @param height 高度
  */
-- (void)v_setHeight:(CGFloat)height;
+- (void)chx_setHeight:(CGFloat)height;
 
 /**
  *  获取视图高度
  *
  *  @return 高度
  */
-- (CGFloat)v_height;
-
-@end
-
-
-#pragma mark - 为视图添加动画
-
-@interface UIView (VAnimation)
+- (CGFloat)chx_height;
 
 @end
 
 
 #pragma mark - 添加环形动画
 
-@interface UIView (VArcRotationAnimation)
+@interface UIView (CHXArcRotationAnimation)
 
 /**
  *  添加环形动画
  *
  *  @param strokeColor 环形颜色
  */
-- (void)v_addArcShapeLayerWithColor:(UIColor *)strokeColor;
+- (void)chx_addArcShapeLayerWithColor:(UIColor *)strokeColor;
 
 /**
  *  添加转圈圈动画
  *
  *  @param duration 动画时长
  */
-- (void)v_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration;
+- (void)chx_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration;
 
 /**
  *  添加转圈圈动画
@@ -190,73 +183,73 @@
  *  @param duration 动画时长
  *  @param color    环形颜色
  */
-- (void)v_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration lineColor:(UIColor *)color;
+- (void)chx_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration lineColor:(UIColor *)color;
 
 /**
  *  移除转圈圈动画
  */
-- (void)v_removeArcRotationAnimation;
+- (void)chx_removeArcRotationAnimation;
 
 @end
 
 
 #pragma mark - 为视图添加振动动画效果
 
-typedef NS_ENUM(NSInteger, VAnimationOrientation) {
-    VAnimationOrientationHorizontal,
-    VAnimationOrientationVertical
+typedef NS_ENUM(NSInteger, CHXAnimationOrientation) {
+    CHXAnimationOrientationHorizontal,
+    CHXAnimationOrientationVertical
 };
 
-@interface UIView (VShakeAnimation)
+@interface UIView (CHXShakeAnimation)
 
 /**
  *  振动效果
  */
-- (void)v_shake;
+- (void)chx_shake;
 
 /**
  *  振动效果
  *
  *  @param orientation 振动方向
  */
-- (void)v_shakeWithOrientation:(VAnimationOrientation)orientation;
+- (void)chx_shakeWithOrientation:(CHXAnimationOrientation)orientation;
 
 @end
 
 
 #pragma mark - 加载动画效果(打乒乓球效果)
 
-@interface UIView (VPingPang)
+@interface UIView (CHXPingPang)
 
 /**
  *  加载动画效果(打乒乓球效果)
  */
-- (void)v_addLoadingAnimation;
+- (void)chx_addLoadingAnimation;
 
 /**
  *  加载动画效果(打乒乓球效果)
  *
  *  @param color 球星颜色
  */
-- (void)v_addLoadingAnimationWitchColor:(UIColor *)color;
+- (void)chx_addLoadingAnimationWitchColor:(UIColor *)color;
 
 /**
  *  移除动画效果(打乒乓球效果)
  */
-- (void)v_removeLoadingAnimation;
+- (void)chx_removeLoadingAnimation;
 
 @end
 
 #pragma mark - 为视图添加进度指示器
 
-@interface UIView (VUIActivityIndicatorView)
+@interface UIView (CHXUIActivityIndicatorView)
 
 /**
  *  获取进度指示器
  *
  *  @return 进度指示器
  */
-- (UIActivityIndicatorView *)v_activityIndicatorView;
+- (UIActivityIndicatorView *)chx_activityIndicatorView;
 
 /**
  *  为视图添加进度指示器动画
@@ -268,31 +261,31 @@ typedef NS_ENUM(NSInteger, VAnimationOrientation) {
  *
  *  @param center 指示器动画中心位置
  */
-- (void)v_addActivityIndicatorAnimationOnCenter:(CGPoint)center;
+- (void)chx_addActivityIndicatorAnimationOnCenter:(CGPoint)center;
 
 /**
  *  移除进度指示器动画
  */
-- (void)v_removeActivityIndicatorAnimation;
+- (void)chx_removeActivityIndicatorAnimation;
 
 /**
  *  是否正在进行进度动画中
  *
  *  @return 是否正在进行进度动画中
  */
-- (BOOL)v_isInActivityIndicatorAnimation;
+- (BOOL)chx_isInActivityIndicatorAnimation;
 
 @end
 
 
 #pragma mark - 让视图产生半透明毛玻璃效果
 
-@interface UIView (VBlur)
+@interface UIView (CHXBlur)
 
 /**
  *  让视图产生半透明毛玻璃效果(You should call this message at last when call messages for view)
  */
-- (void)v_blur;
+- (void)chx_blur;
 
 @end
 
@@ -301,26 +294,26 @@ typedef NS_ENUM(NSInteger, VAnimationOrientation) {
 #define kColorDigit (213 / 255)
 #define kBorderLineGrayColor [UIColor colorWithRed:kColorDigit green:kColorDigit blue:kColorDigit alpha:kColorDigit]
 
-typedef NS_ENUM(NSInteger, VEdge) {
-    VEdgeTop,
-	VEdgeLeft,
-    VEdgeBottom,
-    VEdgeRight
+typedef NS_ENUM(NSInteger, CHXEdge) {
+    CHXEdgeTop,
+	CHXEdgeLeft,
+    CHXEdgeBottom,
+    CHXEdgeRight
 };
 
-@interface UIView (VBorderLine)
+@interface UIView (CHXBorderLine)
 
 /**
  *  设置边框
  */
-- (void)v_setBorderLine;
+- (void)chx_setBorderLine;
 
 /**
  *  设置边框
  *
  *  @param aColor 边框颜色
  */
-- (void)v_setBorderLineColor:(UIColor *)aColor;
+- (void)chx_setBorderLineColor:(UIColor *)aColor;
 
 /**
  *  设置边框
@@ -328,7 +321,7 @@ typedef NS_ENUM(NSInteger, VEdge) {
  *  @param aColor      边框颜色
  *  @param orientation 哪一条边框
  */
-- (void)v_setBorderLineColor:(UIColor *)aColor edge:(VEdge)edge;
+- (void)chx_setBorderLineColor:(UIColor *)aColor edge:(CHXEdge)edge;
 
 /**
  *  添加边线约束
@@ -337,35 +330,35 @@ typedef NS_ENUM(NSInteger, VEdge) {
  *  @param edge       边缘方向
  *  @param multiplier 边线高度乘法器([0, 1])
  */
-- (void)v_addBorderLineConstraintsWithColor:(UIColor *)color edge:(VEdge)edge lineHeightMultiplier:(CGFloat)multiplier;
+- (void)chx_addBorderLineConstraintsWithColor:(UIColor *)color edge:(CHXEdge)edge lineHeightMultiplier:(CGFloat)multiplier;
 
 @end
 
 
 #pragma mark - 通过视图查找它所属视图控制器
 
-@interface UIView (VUIViewController)
+@interface UIView (CHXUIViewController)
 
 /**
  *  通过视图查找它所属视图控制器
  *
  *  @return 该所属视图控制器
  */
-- (UIViewController *)v_viewController;
+- (UIViewController *)chx_viewController;
 
 @end
 
 
 #pragma mark - Layer 裁剪等操作
 
-@interface UIView (VLayer)
+@interface UIView (CHXLayer)
 
 /**
  *  边角裁剪
  *
  *  @param radius 弧度
  */
-- (void)v_setCornerRadius:(CGFloat)radius;
+- (void)chx_setCornerRadius:(CGFloat)radius;
 
 /**
  *  设置边线
@@ -373,30 +366,30 @@ typedef NS_ENUM(NSInteger, VEdge) {
  *  @param width       宽度
  *  @param borderColor 颜色
  */
-- (void)v_setBorderWidth:(CGFloat)width color:(UIColor *)borderColor;
+- (void)chx_setBorderWidth:(CGFloat)width color:(UIColor *)borderColor;
 
 @end
 
 #pragma mark - 打印视图层级
 
-@interface UIView (VLayoutDebugging)
+@interface UIView (CHXLayoutDebugging)
 
 /**
  *  打印自动布局树
  */
-- (void)v_printAutoLayoutTrace;
+- (void)chx_printAutoLayoutTrace;
 
 /**
  *  打印描述具有歧义的约束
  *
  *  @param recursive 是否递归
  */
-- (void)v_exerciseAmiguityInLayoutRepeatedly:(BOOL)recursive;
+- (void)chx_exerciseAmiguityInLayoutRepeatedly:(BOOL)recursive;
 
 /**
  *  打印子视图层级关系
  */
-- (void)v_printSubviewsTrace;
+- (void)chx_printSubviewsTrace;
 
 @end
 

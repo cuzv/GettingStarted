@@ -2,8 +2,8 @@
 //  UITextViewExtension.h
 //  GettingStarted
 //
-//  Created by Moch on 10/29/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/29/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,7 +16,7 @@
 
 #pragma mark - 快速创建文本框
 
-@interface UITextView (VGenerate)
+@interface UITextView (CHXGenerate)
 
 /**
  *  快速创建文本框
@@ -28,10 +28,10 @@
  *
  *  @return 文本域
  */
-+ (instancetype)v_textViewWithFrame:(CGRect)frame
-							   font:(UIFont *)font
-						   delegate:(id <UITextViewDelegate>)delegate
-				 displayBorderLayer:(BOOL)display;
++ (instancetype)chx_textViewWithFrame:(CGRect)frame
+								 font:(UIFont *)font
+							 delegate:(id<UITextViewDelegate>)delegate
+				   displayBorderLayer:(BOOL)display;
 
 /**
  *  快速创建文本框
@@ -44,9 +44,9 @@
  *
  *  @return 文本域
  */
-+ (instancetype)v_textViewWithSize:(CGSize)size
-							center:(CGPoint)center
-							  font:(UIFont *)font
-						  delegate:(id <UITextViewDelegate>)delegate
-				displayBorderLayer:(BOOL)display;
++ (instancetype)chx_textViewWithSize:(CGSize)size
+							  center:(CGPoint)center
+								font:(UIFont *)font
+							delegate:(id<UITextViewDelegate>)delegate
+				  displayBorderLayer:(BOOL)display;
 @end

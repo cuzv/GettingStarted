@@ -2,8 +2,8 @@
 //  UILabelExtension.m
 //  GettingStarted
 //
-//  Created by Moch on 10/29/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/29/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import "UILabelExtension.h"
@@ -15,12 +15,12 @@
 
 #pragma mark - 快速生成标签
 
-@implementation UILabel (VGenerate)
+@implementation UILabel (CHXGenerate)
 
-+ (instancetype)v_labelWithFrame:(CGRect)frame
-				   textAlignment:(NSTextAlignment)alignment
-							font:(UIFont *)font
-					   textColor:(UIColor *)color {
++ (instancetype)chx_labelWithFrame:(CGRect)frame
+					 textAlignment:(NSTextAlignment)alignment
+							  font:(UIFont *)font
+						 textColor:(UIColor *)color {
     UILabel *label = [[self alloc] initWithFrame:frame];
     label.textAlignment = alignment ? : NSTextAlignmentLeft;
     label.font = font ? : [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
@@ -30,16 +30,16 @@
     return label;
 }
 
-+ (instancetype)v_labelWithSize:(CGSize)size
-						 center:(CGPoint)center
-				  textAlignment:(NSTextAlignment)alignment
-						   font:(UIFont *)font
-					  textColor:(UIColor *)textColor {
++ (instancetype)chx_labelWithSize:(CGSize)size
+						   center:(CGPoint)center
+					textAlignment:(NSTextAlignment)alignment
+							 font:(UIFont *)font
+						textColor:(UIColor *)textColor {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,
                               size.height);
-    return [self v_labelWithFrame:frame textAlignment:alignment font:font textColor:textColor];
+    return [self chx_labelWithFrame:frame textAlignment:alignment font:font textColor:textColor];
 }
 
 @end

@@ -2,8 +2,8 @@
 //  UIAlertViewExtension.m
 //  GettingStarted
 //
-//  Created by Moch on 10/29/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/29/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import "UIAlertViewExtension.h"
@@ -14,9 +14,9 @@
 
 #pragma mark - 快速生成提示框
 
-@implementation UIAlertView (VGenerate)
+@implementation UIAlertView (CHXGenerate)
 
-+ (void)v_showAlertWithMessage:(NSString *)message {
++ (void)chx_showAlertWithMessage:(NSString *)message {
     UIAlertView *alertView = [[self alloc] initWithTitle:@""
                                                  message:message
                                                 delegate:nil
@@ -26,7 +26,7 @@
 }
 
 #define kAlertDelayTimeInterval 5
-+ (void)v_showAlertWithAutomaticDisappearMessage:(NSString *)message {
++ (void)chx_showAlertWithAutomaticDisappearMessage:(NSString *)message {
     UIAlertView *alertView = [[self alloc] initWithTitle:@""
 												 message:message
 												delegate:nil
@@ -47,7 +47,7 @@
     [invocation performSelector:@selector(invoke) withObject:nil afterDelay:kAlertDelayTimeInterval];
 }
 
-+ (void)v_showAlertWithAutomaticDisappearMessage:(NSString *)message delayTimeInterval:(NSTimeInterval)delay {
++ (void)chx_showAlertWithAutomaticDisappearMessage:(NSString *)message delayTimeInterval:(NSTimeInterval)delay {
     UIAlertView *alertView = [[self alloc] initWithTitle:@""
 												 message:message
 												delegate:nil

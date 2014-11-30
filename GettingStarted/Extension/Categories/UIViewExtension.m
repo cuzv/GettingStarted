@@ -2,12 +2,12 @@
 //  UIViewExtension.m
 //  GettingStarted
 //
-//  Created by Moch on 10/24/14.
-//  Copyright (c) 2014 Moch. All rights reserved.
+//  Created by Moch Xiao on 10/24/14.
+//  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
 #import "UIViewExtension.h"
-#import "VGlobalServices.h"
+#import "CHXGlobalServices.h"
 
 @implementation UIViewExtension
 @end
@@ -17,202 +17,119 @@
 
 #pragma mark - 视图框架访问器方法
 
-@implementation UIView (VAccessor)
+@implementation UIView (CHXAccessor)
 
-- (void)v_setOrigin:(CGPoint)point {
-    self.frame = CGRectMake(point.x, point.y, [self v_width], [self v_height]);
+- (void)chx_setOrigin:(CGPoint)point {
+    self.frame = CGRectMake(point.x, point.y, [self chx_width], [self chx_height]);
 }
 
-- (CGPoint)v_origin {
+- (CGPoint)chx_origin {
     return self.frame.origin;
 }
 
-- (void)v_setSize:(CGSize)size {
-    self.frame = CGRectMake([self v_minX], [self v_minY], size.width, size.height);
+- (void)chx_setSize:(CGSize)size {
+    self.frame = CGRectMake([self chx_minX], [self chx_minY], size.width, size.height);
 }
 
-- (CGSize)v_size {
+- (CGSize)chx_size {
     return self.frame.size;
 }
 
-- (void)v_setMinX:(CGFloat)x {
-    self.frame = CGRectMake(x, [self v_minY], [self v_width], [self v_height]);
+- (void)chx_setMinX:(CGFloat)x {
+    self.frame = CGRectMake(x, [self chx_minY], [self chx_width], [self chx_height]);
 }
 
-- (CGFloat)v_minX {
+- (CGFloat)chx_minX {
     return self.frame.origin.x;
 }
 
-- (void)v_setMidX:(CGFloat)x {
-    self.frame = CGRectMake(x - [self v_width] / 2, [self v_minY], [self v_width], [self v_height]);
+- (void)chx_setMidX:(CGFloat)x {
+    self.frame = CGRectMake(x - [self chx_width] / 2, [self chx_minY], [self chx_width], [self chx_height]);
 }
 
-- (CGFloat)v_midX {
+- (CGFloat)chx_midX {
     return CGRectGetMidX(self.frame);
 }
 
-- (void)v_setMaxX:(CGFloat)x {
-    self.frame = CGRectMake(x - [self v_width], [self v_minY], [self v_width], [self v_height]);
+- (void)chx_setMaxX:(CGFloat)x {
+    self.frame = CGRectMake(x - [self chx_width], [self chx_minY], [self chx_width], [self chx_height]);
 }
 
-- (CGFloat)v_maxX {
-    return [self v_minX] + [self v_width];
+- (CGFloat)chx_maxX {
+    return [self chx_minX] + [self chx_width];
 }
 
-- (void)v_setMinY:(CGFloat)y {
-    self.frame = CGRectMake([self v_minX], y, [self v_width], [self v_height]);
+- (void)chx_setMinY:(CGFloat)y {
+    self.frame = CGRectMake([self chx_minX], y, [self chx_width], [self chx_height]);
 }
 
-- (CGFloat)v_minY {
+- (CGFloat)chx_minY {
     return self.frame.origin.y;
 }
 
-- (void)v_setMidY:(CGFloat)y {
-    self.frame = CGRectMake([self v_minX], y - [self v_height] / 2, [self v_width], [self v_height]);
+- (void)chx_setMidY:(CGFloat)y {
+    self.frame = CGRectMake([self chx_minX], y - [self chx_height] / 2, [self chx_width], [self chx_height]);
 }
 
-- (CGFloat)v_midY {
+- (CGFloat)chx_midY {
     return CGRectGetMidY(self.frame);
 }
 
-- (void)v_setMaxY:(CGFloat)y {
-    self.frame = CGRectMake([self v_minX], y - [self v_height], [self v_width], [self v_height]);
+- (void)chx_setMaxY:(CGFloat)y {
+    self.frame = CGRectMake([self chx_minX], y - [self chx_height], [self chx_width], [self chx_height]);
 }
 
-- (CGFloat)v_maxY {
-    return [self v_minY] + [self v_height];
+- (CGFloat)chx_maxY {
+    return [self chx_minY] + [self chx_height];
 }
 
-- (void)v_setWidth:(CGFloat)width {
-    self.frame = CGRectMake([self v_minX], [self v_minY], width, [self v_height]);
+- (void)chx_setWidth:(CGFloat)width {
+    self.frame = CGRectMake([self chx_minX], [self chx_minY], width, [self chx_height]);
 }
 
-- (CGFloat)v_width {
+- (CGFloat)chx_width {
     return CGRectGetWidth(self.bounds);
 }
 
-- (void)v_setHeight:(CGFloat)height {
-    self.frame = CGRectMake([self v_minX], [self v_minY], [self v_width], height);
+- (void)chx_setHeight:(CGFloat)height {
+    self.frame = CGRectMake([self chx_minX], [self chx_minY], [self chx_width], height);
 }
 
-- (CGFloat)v_height {
+- (CGFloat)chx_height {
     return CGRectGetHeight(self.bounds);
 }
 
 @end
 
-#pragma mark - 为视图添加动画
-
-@implementation UIView (VAnimation)
-
-#define kLoadingAnimationDuration 3
-// for PingPang
-+ (CAAnimationGroup *)loadingAnimationGroup:(NSArray *)animations {
-    CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
-    animationGroup.duration = kLoadingAnimationDuration;
-    animationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    animationGroup.animations = animations;
-    animationGroup.repeatCount = HUGE_VAL;
-    return animationGroup;
-}
-
-// for PingPang
-+ (CAKeyframeAnimation *)loadingPositionXAnimation {
-    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-    animation.duration = kLoadingAnimationDuration;
-    animation.repeatCount = HUGE_VALF;
-    animation.keyPath = @"position.x";
-    animation.values = @[@0, @-30, @0, @30, @0, @-30];
-    animation.keyTimes = @[@0, @0, @(1 / 4.0f), @(2 / 4.0f), @(3 / 4.0f), @1];
-    // this is import!!!
-    animation.additive = YES;
-    return animation;
-}
-
-// for PingPang
-+ (CAKeyframeAnimation *)loadingPositionYAnimation {
-    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-    animation.duration = kLoadingAnimationDuration;
-    animation.repeatCount = HUGE_VALF;
-    animation.keyPath = @"position.y";
-    animation.values = @[@0, @0, @10, @0, @-10, @0];
-    animation.keyTimes = @[@0, @0, @(1 / 4.0f), @(2 / 4.0f), @(3 / 4.0f), @1];
-    // this is import!!!
-    animation.additive = YES;
-    return animation;
-}
-
-+ (CAKeyframeAnimation *)loadingScaleAnimation {
-    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-    animation.keyPath = @"transform.scale";
-    animation.values = @[@0.7, @0.7, @1.3, @0.7, @0.5, @0.7];
-    animation.keyTimes = @[@0, @0, @(1 / 4.0f), @(2 / 4.0f), @(3 / 4.0f), @1];
-    animation.duration = kLoadingAnimationDuration;
-    animation.repeatCount = HUGE_VALF;
-    return animation;
-}
-
-+ (CABasicAnimation *)opacityFromValue:(NSValue *)fromValue toValue:(NSValue *)toValue {
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    animation.duration = 0.5f;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    animation.fromValue = fromValue;
-    animation.toValue = toValue;
-    return animation;
-}
-
-+ (CABasicAnimation *)rotationFromValue:(NSValue *)fromValue toValue:(NSValue *)toValue {
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    animation.duration = 0.5f;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    animation.fromValue = fromValue;
-    animation.toValue = toValue;
-    return animation;
-}
-
-+ (CABasicAnimation *)translationFromValue:(NSValue *)fromValue toValue:(NSValue *)toValue {
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
-    animation.duration = 0.5f;
-    // 动画延迟时间
-//    animation.beginTime = 0.6;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    animation.fromValue = fromValue;
-    animation.toValue = toValue;
-    return animation;
-}
-
-@end
-
-
 #pragma mark - 添加环形动画
 
 #import <objc/runtime.h>
 
-@implementation UIView (VArcRotationAnimation)
+@implementation UIView (CHXArcRotationAnimation)
 
 static const void *ArcLayerKey = &ArcLayerKey;
-- (void)v_setArcLayer:(CAShapeLayer *)arcLayer {
+- (void)chx_setArcLayer:(CAShapeLayer *)arcLayer {
     [self willChangeValueForKey:@"ArcLayerKey"];
     objc_setAssociatedObject(self, ArcLayerKey, arcLayer, OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"ArcLayerKey"];
 }
 
-- (CAShapeLayer *)v_arcLayer {
+- (CAShapeLayer *)chx_arcLayer {
     return objc_getAssociatedObject(self, &ArcLayerKey);
 }
 
-- (void)v_addArcShapeLayerWithColor:(UIColor *)strokeColor {
-    [self.layer addSublayer:[self arcShapeLayerWithColor:strokeColor]];
+- (void)chx_addArcShapeLayerWithColor:(UIColor *)strokeColor {
+    [self.layer addSublayer:[self chx_arcShapeLayerWithColor:strokeColor]];
 }
 
-- (CAShapeLayer *)arcShapeLayerWithColor:(UIColor *)strokeColor {
+- (CAShapeLayer *)chx_arcShapeLayerWithColor:(UIColor *)strokeColor {
     UIBezierPath *path = [UIBezierPath bezierPath];
     CGRect rect = self.bounds;
     CGFloat half = MIN(CGRectGetMidX(rect), CGRectGetMidY(rect));
     [path addArcWithCenter:CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))
                     radius:half
-                startAngle:v_radianFromAngle(-90)
-                  endAngle:v_radianFromAngle(270)
+                startAngle:chx_radianFromAngle(-90)
+                  endAngle:chx_radianFromAngle(270)
                  clockwise:YES];
     CAShapeLayer *arcLayer = [CAShapeLayer layer];
     arcLayer.path = path.CGPath;
@@ -224,17 +141,17 @@ static const void *ArcLayerKey = &ArcLayerKey;
     return arcLayer;
 }
 
-- (void)v_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration {
-    [self v_addArcRotationAnimaionWithDuration:duration lineColor:[UIColor blueColor]];
+- (void)chx_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration {
+    [self chx_addArcRotationAnimaionWithDuration:duration lineColor:[UIColor blueColor]];
 }
 
-- (void)v_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration lineColor:(UIColor *)color {
-    if ([self v_arcLayer]) {
+- (void)chx_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration lineColor:(UIColor *)color {
+    if ([self chx_arcLayer]) {
         return;
     }
     // 添加 layer
-    CAShapeLayer *arcLayer = [self arcShapeLayerWithColor:color];
-	[self v_setArcLayer:arcLayer];
+    CAShapeLayer *arcLayer = [self chx_arcShapeLayerWithColor:color];
+	[self chx_setArcLayer:arcLayer];
     [self.layer addSublayer:arcLayer];
     
     CABasicAnimation *animation=[CABasicAnimation animationWithKeyPath:@"strokeEnd"];
@@ -246,11 +163,11 @@ static const void *ArcLayerKey = &ArcLayerKey;
     [arcLayer addAnimation:animation forKey:@"animation"];
 }
 
-- (void)v_removeArcRotationAnimation {
-	[[self v_arcLayer] removeAllAnimations];
-    [[self v_arcLayer] removeAllAnimations];
-    [[self v_arcLayer] removeFromSuperlayer];
-	[self v_setArcLayer:nil];
+- (void)chx_removeArcRotationAnimation {
+	[[self chx_arcLayer] removeAllAnimations];
+    [[self chx_arcLayer] removeAllAnimations];
+    [[self chx_arcLayer] removeFromSuperlayer];
+	[self chx_setArcLayer:nil];
 }
 
 @end
@@ -258,15 +175,15 @@ static const void *ArcLayerKey = &ArcLayerKey;
 
 #pragma mark - 为视图添加振动动画效果
 
-@implementation UIView (VShakeAnimation)
+@implementation UIView (CHXShakeAnimation)
 
-- (void)v_shake {
-    [self v_shakeWithOrientation:VAnimationOrientationHorizontal];
+- (void)chx_shake {
+    [self chx_shakeWithOrientation:CHXAnimationOrientationHorizontal];
 }
 
-- (void)v_shakeWithOrientation:(VAnimationOrientation)orientation {
+- (void)chx_shakeWithOrientation:(CHXAnimationOrientation)orientation {
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-    animation.keyPath = orientation == VAnimationOrientationHorizontal ? @"position.x" : @"position.y";
+    animation.keyPath = orientation == CHXAnimationOrientationHorizontal ? @"position.x" : @"position.y";
     animation.values = @[@0, @10, @-10, @10, @0];
     animation.keyTimes = @[@0, @(1 / 6.0f), @(3 / 6.0f), @(5 / 6.0f), @1];
     animation.duration = 0.4;
@@ -278,14 +195,16 @@ static const void *ArcLayerKey = &ArcLayerKey;
 
 #pragma mark - 加载动画效果(打乒乓球效果)
 
-@implementation UIView (VPingPang)
+#import "CAAnimationExtension.h"
 
-- (void)v_addLoadingAnimation {
-    [self v_addLoadingAnimationWitchColor:[UIColor whiteColor]];
+@implementation UIView (CHXPingPang)
+
+- (void)chx_addLoadingAnimation {
+    [self chx_addLoadingAnimationWitchColor:[UIColor whiteColor]];
 }
 
 #define kCircleTag 300
-- (void)v_addLoadingAnimationWitchColor:(UIColor *)color {
+- (void)chx_addLoadingAnimationWitchColor:(UIColor *)color {
     if (self.frame.size.width < 80) {
         NSLog(@"can not add this animation for view which width < 80");
         return;
@@ -302,10 +221,10 @@ static const void *ArcLayerKey = &ArcLayerKey;
         [circles addObject:circle];
     }
     
-    CAKeyframeAnimation *positionXAnimation = [UIView loadingPositionXAnimation];
-    CAKeyframeAnimation *positionYAnimation = [UIView loadingPositionYAnimation];
-    CAKeyframeAnimation *scaleAnimation = [UIView loadingScaleAnimation];
-    CAAnimationGroup *loadingAnimationGroup = [UIView loadingAnimationGroup:@[positionXAnimation, scaleAnimation, positionYAnimation]];
+    CAKeyframeAnimation *positionXAnimation = [CAAnimation chx_loadingPositionXAnimation];
+    CAKeyframeAnimation *positionYAnimation = [CAAnimation chx_loadingPositionYAnimation];
+    CAKeyframeAnimation *scaleAnimation = [CAAnimation chx_loadingScaleAnimation];
+    CAAnimationGroup *loadingAnimationGroup = [CAAnimation chx_loadingAnimationGroup:@[positionXAnimation, scaleAnimation, positionYAnimation]];
     
     [self addSubview:circles[0]];
     [[circles[0] layer] addAnimation:loadingAnimationGroup forKey:@"loadingAnimationGroup"];
@@ -322,7 +241,7 @@ static const void *ArcLayerKey = &ArcLayerKey;
     });
 }
 
-- (void)v_removeLoadingAnimation {
+- (void)chx_removeLoadingAnimation {
     [self.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIView *subView = obj;
         if (subView.tag == kCircleTag ||
@@ -343,57 +262,57 @@ static const void *ArcLayerKey = &ArcLayerKey;
 
 static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 
-@implementation UIView (VUIActivityIndicatorView)
+@implementation UIView (CHXUIActivityIndicatorView)
 
-- (void)v_setActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView {
+- (void)chx_setActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView {
     [self willChangeValueForKey:@"ActivityIndicatorViewKey"];
     objc_setAssociatedObject(self, ActivityIndicatorViewKey, activityIndicatorView, OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"ActivityIndicatorViewKey"];
 }
 
-- (UIActivityIndicatorView *)v_activityIndicatorView {
+- (UIActivityIndicatorView *)chx_activityIndicatorView {
     return objc_getAssociatedObject(self, &ActivityIndicatorViewKey);
 }
 
 - (void)addActivityIndicatorAnimation {
-    [self addActivityIndicatorAnimationWithStyle:UIActivityIndicatorViewStyleWhite
+    [self chx_addActivityIndicatorAnimationWithStyle:UIActivityIndicatorViewStyleWhite
                                           center:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
 }
 
-- (void)v_addActivityIndicatorAnimationOnCenter:(CGPoint)center {
-    [self addActivityIndicatorAnimationWithStyle:UIActivityIndicatorViewStyleWhite center:center];
+- (void)chx_addActivityIndicatorAnimationOnCenter:(CGPoint)center {
+    [self chx_addActivityIndicatorAnimationWithStyle:UIActivityIndicatorViewStyleWhite center:center];
 }
 
-- (void)addActivityIndicatorAnimationWithStyle:(UIActivityIndicatorViewStyle)style center:(CGPoint)center {
-    if ([self v_activityIndicatorView]) {
+- (void)chx_addActivityIndicatorAnimationWithStyle:(UIActivityIndicatorViewStyle)style center:(CGPoint)center {
+    if ([self chx_activityIndicatorView]) {
         return;
     }
     
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
     activityIndicatorView.color = [UIColor lightGrayColor];
     activityIndicatorView.center = center;
-	[self v_setActivityIndicatorView:activityIndicatorView];
+	[self chx_setActivityIndicatorView:activityIndicatorView];
     [self addSubview:activityIndicatorView];
     [activityIndicatorView startAnimating];
 }
 
-- (void)v_removeActivityIndicatorAnimation {
-    [[self v_activityIndicatorView] stopAnimating];
-    [[self v_activityIndicatorView] removeFromSuperview];
-	[self v_setActivityIndicatorView:nil];
+- (void)chx_removeActivityIndicatorAnimation {
+    [[self chx_activityIndicatorView] stopAnimating];
+    [[self chx_activityIndicatorView] removeFromSuperview];
+	[self chx_setActivityIndicatorView:nil];
 }
 
-- (BOOL)v_isInActivityIndicatorAnimation {
-	return [self v_activityIndicatorView] ? YES : NO;
+- (BOOL)chx_isInActivityIndicatorAnimation {
+	return [self chx_activityIndicatorView] ? YES : NO;
 }
 
 @end
 
 #pragma mark - 让视图产生半透明毛玻璃效果
 
-@implementation UIView (VBlur)
+@implementation UIView (CHXBlur)
 
-- (void)v_blur {
+- (void)chx_blur {
     self.backgroundColor = [UIColor clearColor];
     UIToolbar *backgroundToolbar = [[UIToolbar alloc] initWithFrame:self.bounds];
     backgroundToolbar.barStyle = UIBarStyleDefault;
@@ -407,41 +326,41 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 #pragma mark - 为视图添加边框
 
 #define kLineBorderWidth 0.5
-@implementation UIView (VBorderLine)
+@implementation UIView (CHXBorderLine)
 
-- (void)v_setBorderLine {
-    [self v_setBorderLineColor:kBorderLineGrayColor edge:VEdgeBottom];
-    [self v_setBorderLineColor:kBorderLineGrayColor edge:VEdgeTop];
-    [self v_setBorderLineColor:kBorderLineGrayColor edge:VEdgeLeft];
-    [self v_setBorderLineColor:kBorderLineGrayColor edge:VEdgeRight];
+- (void)chx_setBorderLine {
+    [self chx_setBorderLineColor:kBorderLineGrayColor edge:CHXEdgeBottom];
+    [self chx_setBorderLineColor:kBorderLineGrayColor edge:CHXEdgeTop];
+    [self chx_setBorderLineColor:kBorderLineGrayColor edge:CHXEdgeLeft];
+    [self chx_setBorderLineColor:kBorderLineGrayColor edge:CHXEdgeRight];
 }
 
-- (void)v_setBorderLineColor:(UIColor *)aColor {
-    [self v_setBorderLineColor:aColor edge:VEdgeBottom];
-    [self v_setBorderLineColor:aColor edge:VEdgeTop];
-    [self v_setBorderLineColor:aColor edge:VEdgeLeft];
-    [self v_setBorderLineColor:aColor edge:VEdgeRight];
+- (void)chx_setBorderLineColor:(UIColor *)aColor {
+    [self chx_setBorderLineColor:aColor edge:CHXEdgeBottom];
+    [self chx_setBorderLineColor:aColor edge:CHXEdgeTop];
+    [self chx_setBorderLineColor:aColor edge:CHXEdgeLeft];
+    [self chx_setBorderLineColor:aColor edge:CHXEdgeRight];
 }
 
-- (void)v_setBorderLineColor:(UIColor *)aColor
-           edge:(VEdge)edge {
+- (void)chx_setBorderLineColor:(UIColor *)aColor
+           edge:(CHXEdge)edge {
     CALayer *line = [[CALayer alloc] init];
     line.backgroundColor = aColor.CGColor;
     
     CGRect lineFrame = CGRectZero;
-    if (VEdgeTop == edge) {
+    if (CHXEdgeTop == edge) {
         // 上边加线
         lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
                                CGRectGetMinY(self.bounds),
                                CGRectGetWidth(self.bounds),
                                kLineBorderWidth);
-    } else if (VEdgeLeft == edge) {
+    } else if (CHXEdgeLeft == edge) {
         // 左边加线
         lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
                                CGRectGetMinY(self.bounds),
                                kLineBorderWidth,
                                CGRectGetHeight(self.bounds));
-    } else if (VEdgeBottom == edge) {
+    } else if (CHXEdgeBottom == edge) {
         // 底边加线
         lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
                                CGRectGetMaxY(self.bounds) + kLineBorderWidth,
@@ -460,7 +379,7 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 
 
 // Auto layout
-- (void)v_addBorderLineConstraintsWithColor:(UIColor *)color edge:(VEdge)edge lineHeightMultiplier:(CGFloat)multiplier {
+- (void)chx_addBorderLineConstraintsWithColor:(UIColor *)color edge:(CHXEdge)edge lineHeightMultiplier:(CGFloat)multiplier {
 	UIView *lineView = [UIView new];
 	lineView.backgroundColor = color ? color : kBorderLineGrayColor;
 	[lineView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -472,25 +391,25 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 	NSLayoutAttribute sizeLayoutAttribute = NSLayoutAttributeNotAnAttribute;
 	NSString *visualFormat = nil;
 	switch (edge) {
-		case VEdgeLeft:
+		case CHXEdgeLeft:
 			edgeLayoutAttribute = NSLayoutAttributeLeft;
 			centerLayoutAttribute = NSLayoutAttributeCenterY;
 			sizeLayoutAttribute = NSLayoutAttributeHeight;
 			visualFormat = @"[lineView(0.5)]";
 				break;
-		case VEdgeRight:
+		case CHXEdgeRight:
 			edgeLayoutAttribute = NSLayoutAttributeRight;
 			centerLayoutAttribute = NSLayoutAttributeCenterY;
 			sizeLayoutAttribute = NSLayoutAttributeHeight;
 			visualFormat = @"[lineView(0.5)]";
 			break;
-		case VEdgeTop:
+		case CHXEdgeTop:
 			edgeLayoutAttribute = NSLayoutAttributeTop;
 			centerLayoutAttribute = NSLayoutAttributeCenterX;
 			sizeLayoutAttribute = NSLayoutAttributeWidth;
 			visualFormat = @"V:[lineView(0.5)]";
 			break;
-		case VEdgeBottom:
+		case CHXEdgeBottom:
 			edgeLayoutAttribute = NSLayoutAttributeBottom;
 			centerLayoutAttribute = NSLayoutAttributeCenterX;
 			sizeLayoutAttribute = NSLayoutAttributeWidth;
@@ -534,9 +453,9 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 
 #pragma mark - 通过视图查找它所属视图控制器
 
-@implementation UIView (VUIViewController)
+@implementation UIView (CHXUIViewController)
 
-- (UIViewController *)v_viewController {
+- (UIViewController *)chx_viewController {
     /// Finds the view's view controller.
     
     // Traverse responder chain. Return first found view controller, which will be the view's view controller.
@@ -554,14 +473,14 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 
 #pragma mark - Layer 裁剪等操作
 
-@implementation UIView (VLayer)
+@implementation UIView (CHXLayer)
 
-- (void)v_setCornerRadius:(CGFloat)radius {
+- (void)chx_setCornerRadius:(CGFloat)radius {
     self.layer.masksToBounds = YES;
     self.layer.cornerRadius = radius;
 }
 
-- (void)v_setBorderWidth:(CGFloat)width color:(UIColor *)borderColor {
+- (void)chx_setBorderWidth:(CGFloat)width color:(UIColor *)borderColor {
     self.layer.borderWidth = width;
     self.layer.borderColor = [borderColor CGColor];
 }
@@ -570,8 +489,8 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 
 #pragma mark - 打印视图层级
 
-@implementation UIView (VLayoutDebugging)
-- (void)v_printAutoLayoutTrace {
+@implementation UIView (CHXLayoutDebugging)
+- (void)chx_printAutoLayoutTrace {
 #ifdef DEBUG
 	
 #pragma clang diagnostic push
@@ -582,7 +501,7 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 #endif
 }
 
-- (void)v_exerciseAmiguityInLayoutRepeatedly:(BOOL)recursive {
+- (void)chx_exerciseAmiguityInLayoutRepeatedly:(BOOL)recursive {
 #ifdef DEBUG
 	if (self.hasAmbiguousLayout) {
 		[NSTimer scheduledTimerWithTimeInterval:.5
@@ -593,13 +512,13 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 	}
 	if (recursive) {
 		for (UIView *subview in self.subviews) {
-			[subview v_exerciseAmiguityInLayoutRepeatedly:YES];
+			[subview chx_exerciseAmiguityInLayoutRepeatedly:YES];
 		}
 	}
 #endif
 }
 
-- (void)v_printSubviewsTrace {
+- (void)chx_printSubviewsTrace {
 #ifdef DEBUG
 	
 #pragma clang diagnostic push
