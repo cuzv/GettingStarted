@@ -108,21 +108,21 @@
 @implementation UIView (CHXArcRotationAnimation)
 
 static const void *ArcLayerKey = &ArcLayerKey;
-- (void)chx_setArcLayer:(CAShapeLayer *)arcLayer {
+- (void)__setArcLayer:(CAShapeLayer *)arcLayer {
     [self willChangeValueForKey:@"ArcLayerKey"];
     objc_setAssociatedObject(self, ArcLayerKey, arcLayer, OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"ArcLayerKey"];
 }
 
-- (CAShapeLayer *)chx_arcLayer {
+- (CAShapeLayer *)__arcLayer {
     return objc_getAssociatedObject(self, &ArcLayerKey);
 }
 
 - (void)chx_addArcShapeLayerWithColor:(UIColor *)strokeColor {
-    [self.layer addSublayer:[self chx_arcShapeLayerWithColor:strokeColor]];
+    [self.layer addSublayer:[self __arcShapeLayerWithColor:strokeColor]];
 }
 
-- (CAShapeLayer *)chx_arcShapeLayerWithColor:(UIColor *)strokeColor {
+- (CAShapeLayer *)__arcShapeLayerWithColor:(UIColor *)strokeColor {
     UIBezierPath *path = [UIBezierPath bezierPath];
     CGRect rect = self.bounds;
     CGFloat half = MIN(CGRectGetMidX(rect), CGRectGetMidY(rect));
@@ -146,12 +146,12 @@ static const void *ArcLayerKey = &ArcLayerKey;
 }
 
 - (void)chx_addArcRotationAnimaionWithDuration:(NSTimeInterval)duration lineColor:(UIColor *)color {
-    if ([self chx_arcLayer]) {
+    if ([self __arcLayer]) {
         return;
     }
     // 添加 layer
-    CAShapeLayer *arcLayer = [self chx_arcShapeLayerWithColor:color];
-	[self chx_setArcLayer:arcLayer];
+    CAShapeLayer *arcLayer = [self __arcShapeLayerWithColor:color];
+	[self __setArcLayer:arcLayer];
     [self.layer addSublayer:arcLayer];
     
     CABasicAnimation *animation=[CABasicAnimation animationWithKeyPath:@"strokeEnd"];
@@ -164,10 +164,10 @@ static const void *ArcLayerKey = &ArcLayerKey;
 }
 
 - (void)chx_removeArcRotationAnimation {
-	[[self chx_arcLayer] removeAllAnimations];
-    [[self chx_arcLayer] removeAllAnimations];
-    [[self chx_arcLayer] removeFromSuperlayer];
-	[self chx_setArcLayer:nil];
+	[[self __arcLayer] removeAllAnimations];
+    [[self __arcLayer] removeAllAnimations];
+    [[self __arcLayer] removeFromSuperlayer];
+	[self __setArcLayer:nil];
 }
 
 @end
@@ -264,7 +264,7 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 
 @implementation UIView (CHXUIActivityIndicatorView)
 
-- (void)chx_setActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView {
+- (void)__setActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView {
     [self willChangeValueForKey:@"ActivityIndicatorViewKey"];
     objc_setAssociatedObject(self, ActivityIndicatorViewKey, activityIndicatorView, OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"ActivityIndicatorViewKey"];
@@ -291,7 +291,7 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
     activityIndicatorView.color = [UIColor lightGrayColor];
     activityIndicatorView.center = center;
-	[self chx_setActivityIndicatorView:activityIndicatorView];
+	[self __setActivityIndicatorView:activityIndicatorView];
     [self addSubview:activityIndicatorView];
     [activityIndicatorView startAnimating];
 }
@@ -299,7 +299,7 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 - (void)chx_removeActivityIndicatorAnimation {
     [[self chx_activityIndicatorView] stopAnimating];
     [[self chx_activityIndicatorView] removeFromSuperview];
-	[self chx_setActivityIndicatorView:nil];
+	[self __setActivityIndicatorView:nil];
 }
 
 - (BOOL)chx_isInActivityIndicatorAnimation {
@@ -379,7 +379,7 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 
 
 // Auto layout
-- (void)chx_addBorderLineConstraintsWithColor:(UIColor *)color edge:(CHXEdge)edge lineHeightMultiplier:(CGFloat)multiplier {
+- (void)chx_addBorderLineConstraintsWithColor:(UIColor *)color edge:(CHXEdge)edge lineSizeMultiplier:(CGFloat)multiplier {
 	UIView *lineView = [UIView new];
 	lineView.backgroundColor = color ? color : kBorderLineGrayColor;
 	[lineView setTranslatesAutoresizingMaskIntoConstraints:NO];

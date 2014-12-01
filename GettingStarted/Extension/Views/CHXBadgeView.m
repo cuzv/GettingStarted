@@ -72,24 +72,24 @@ static const void *BadgeKey = &BadgeKey;
 
 @implementation UIView (CHXBadge)
 
-- (void)chx_setBadgeView:(CHXBadgeView *)badgeView {
+- (void)__setBadgeView:(CHXBadgeView *)badgeView {
 	[self willChangeValueForKey:@"BadgeKey"];
 	objc_setAssociatedObject(self, BadgeKey, badgeView, OBJC_ASSOCIATION_ASSIGN);
 	[self didChangeValueForKey:@"BadgeKey"];
 }
 
-- (CHXBadgeView *)chx_badgeView {
+- (CHXBadgeView *)__badgeView {
 	return objc_getAssociatedObject(self, &BadgeKey);
 }
 
 - (void)chx_setBadgeValue:(NSString *)badgeValue {
-	if (![self chx_badgeView]) {
+	if (![self __badgeView]) {
 		CHXBadgeView *badeView = [CHXBadgeView new];
 		[self addSubview:badeView];
-		[self chx_setBadgeView:badeView];
+		[self __setBadgeView:badeView];
 	}
 	
-	CHXBadgeView *badgeView = [self chx_badgeView];
+	CHXBadgeView *badgeView = [self __badgeView];
 	badgeView.badgeValue = badgeValue;
 	
 	// Base on Frame
@@ -117,7 +117,7 @@ static const void *BadgeKey = &BadgeKey;
 }
 
 - (NSString *)chx_badgeValue {
-	return [self chx_badgeView].badgeValue;
+	return [self __badgeView].badgeValue;
 }
 
 @end

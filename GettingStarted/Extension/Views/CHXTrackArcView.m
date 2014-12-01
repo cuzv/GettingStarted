@@ -46,7 +46,7 @@
     }
     self.stokeColor = aColor;
     self.recorder = aRecorder;
-    [self initialize];
+    [self __initialize];
     
     return self;
 }
@@ -57,7 +57,7 @@
         return nil;
     }
     
-    [self initialize];
+    [self __initialize];
     
     return self;
 }
@@ -65,7 +65,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self initialize];
+        [self __initialize];
     }
     return self;
 }
@@ -76,12 +76,12 @@
         return nil;
     }
     
-    [self initialize];
+    [self __initialize];
     
     return self;
 }
 
-- (void)initialize {
+- (void)__initialize {
     for(int i = 0; i < kSoundMeterCount; i++) {
         soundMeters[i] = kSilenceVolume;
     }
@@ -91,21 +91,21 @@
     }
 }
 
-- (void)updateMeters {
+- (void)__updateMeters {
     [self.recorder updateMeters];
     if (self.recordTime > kMaxRecordDuration) {
         return;
     }
     self.recordTime += kWaveUpdateFrequency;
     if ([self.recorder averagePowerForChannel:0] < -kSilenceVolume) {
-        [self addSoundMeterItem:kSilenceVolume];
+        [self __addSoundMeterItem:kSilenceVolume];
         return;
     }
-    [self addSoundMeterItem:[self.recorder averagePowerForChannel:0]];
+    [self __addSoundMeterItem:[self.recorder averagePowerForChannel:0]];
     NSLog(@"volume:%f",[self.recorder averagePowerForChannel:0]);
 }
 
-- (void)addSoundMeterItem:(int)lastValue{
+- (void)__addSoundMeterItem:(int)lastValue{
     for(int i = 0; i < kSoundMeterCount - 1; i++) {
         soundMeters[i] = soundMeters[i + 1];
     }
@@ -133,19 +133,19 @@
         CGFloat y = ((maxValueOfMeter * (maxLengthOfWave - abs(soundMeters[(int)x]))) / maxLengthOfWave);
         yHeights[kSoundMeterCount - 1 - x] = multiplier_i * y * segement[kSoundMeterCount - 1 - x]  * multiplier+ baseLine;
     }
-    [self drawLinesWithContext:context BaseLine:baseLine HeightArray:yHeights lineWidth:1.0 alpha:0.8 percent:1.00 segementArray:segement];
-    [self drawLinesWithContext:context BaseLine:baseLine HeightArray:yHeights lineWidth:0.5 alpha:0.4 percent:0.66 segementArray:segement];
-    [self drawLinesWithContext:context BaseLine:baseLine HeightArray:yHeights lineWidth:0.5 alpha:0.2 percent:0.33 segementArray:segement];
+    [self __drawLinesWithContext:context BaseLine:baseLine HeightArray:yHeights lineWidth:1.0 alpha:0.8 percent:1.00 segementArray:segement];
+    [self __drawLinesWithContext:context BaseLine:baseLine HeightArray:yHeights lineWidth:0.5 alpha:0.4 percent:0.66 segementArray:segement];
+    [self __drawLinesWithContext:context BaseLine:baseLine HeightArray:yHeights lineWidth:0.5 alpha:0.2 percent:0.33 segementArray:segement];
     multiplier = -multiplier;
 }
 
-- (void)drawLinesWithContext:(CGContextRef)context
-                    BaseLine:(float)baseLine
-                 HeightArray:(int*)yHeights
-                   lineWidth:(CGFloat)width
-                       alpha:(CGFloat)alpha
-                     percent:(CGFloat)percent
-               segementArray:(float *)segement {
+- (void)__drawLinesWithContext:(CGContextRef)context
+					  BaseLine:(float)baseLine
+				   HeightArray:(int*)yHeights
+					 lineWidth:(CGFloat)width
+						 alpha:(CGFloat)alpha
+					   percent:(CGFloat)percent
+				 segementArray:(float *)segement {
     CGFloat start = 0;
     NSLog(@"%@", self.stokeColor);
     [self.stokeColor set];
@@ -172,7 +172,7 @@
 - (void)startAnimation {
     self.timer = [NSTimer scheduledTimerWithTimeInterval:kWaveUpdateFrequency
                                                   target:self
-                                                selector:@selector(updateMeters)
+                                                selector:@selector(__updateMeters)
                                                 userInfo:nil
                                                  repeats:YES];
     self.timer.fireDate = [NSDate date];

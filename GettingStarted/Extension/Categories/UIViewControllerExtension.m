@@ -21,27 +21,27 @@ static const void *ContextKey = &ContextKey;
 static const void *TitleInAnimationKey = &TitleInAnimationKey;
 static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 
-- (void)chx_setContext:(NSDictionary *)context {
+- (void)__setContext:(NSDictionary *)context {
     [self willChangeValueForKey:@"ContextKey"];
     objc_setAssociatedObject(self, ContextKey, context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"ContextKey"];
 }
 
-- (NSDictionary *)chx_context {
+- (NSDictionary *)__context {
     return objc_getAssociatedObject(self, &ContextKey);
 }
 
-- (void)chx_setTitleInAnimation:(BOOL)titleInAnimation {
+- (void)__setTitleInAnimation:(BOOL)titleInAnimation {
     [self willChangeValueForKey:@"TitleInAnimationKey"];
     objc_setAssociatedObject(self, TitleInAnimationKey, @(titleInAnimation), OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"TitleInAnimationKey"];
 }
 
-- (BOOL)chx_titleInAnimation {
+- (BOOL)__titleInAnimation {
     return [objc_getAssociatedObject(self, &TitleInAnimationKey) boolValue];
 }
 
-- (void)chx_setRightBarInAnimation:(BOOL)rightBarInAnimation {
+- (void)__setRightBarInAnimation:(BOOL)rightBarInAnimation {
     [self willChangeValueForKey:@"RightBarInAnimationKey"];
     objc_setAssociatedObject(self, RightBarInAnimationKey, @(rightBarInAnimation), OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"RightBarInAnimationKey"];
@@ -57,16 +57,16 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
     }
     
     // if add already, return
-    if ([self chx_titleInAnimation]) {
+    if ([self __titleInAnimation]) {
         return;
     }
     
     // save title or title view if have value
-	[self chx_setContext:({
+	[self __setContext:({
 		id title = self.navigationItem.title ? : [NSNull null];
 		id titleView = self.navigationItem.titleView ? : [NSNull null];
 		
-		NSMutableDictionary *context = [[NSMutableDictionary alloc] initWithDictionary:[self chx_context]];
+		NSMutableDictionary *context = [[NSMutableDictionary alloc] initWithDictionary:[self __context]];
 		[context setValue:title forKey:@"title"];
 		[context setValue:titleView forKey:@"titleView"];
 		[context setValue:@"YES" forKey:@"titleAnimation"];
@@ -76,14 +76,14 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 	
     // add activity indicator animation
     self.navigationItem.titleView = ({
-        [self chx_indicatorAnimationView];
+        [self __indicatorAnimationView];
     });
 	
-	[self chx_setTitleInAnimation:YES];
+	[self __setTitleInAnimation:YES];
 }
 
 - (void)chx_removeNavigationBarActivityIndicatorAnimation {
-    if (![self chx_titleInAnimation]) {
+    if (![self __titleInAnimation]) {
         return;
     }
     
@@ -93,7 +93,7 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
     self.navigationItem.titleView = nil;
     
     // recovery context
-    id context = [self chx_context];
+    id context = [self __context];
     
     id titleView = [context valueForKey:@"titleView"];
     if ([titleView isKindOfClass:[UIView class]]) {
@@ -105,7 +105,7 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
         self.navigationItem.title = title;
     }
 
-	[self chx_setTitleInAnimation:NO];
+	[self __setTitleInAnimation:NO];
 }
 
 
@@ -120,9 +120,9 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
     }
     
     // save right items
-	[self chx_setContext:({
+	[self __setContext:({
 		id rightBarButtonItems = self.navigationItem.rightBarButtonItems ? : [NSNull null];
-		NSMutableDictionary *context = [[NSMutableDictionary alloc] initWithDictionary:[self chx_context]];
+		NSMutableDictionary *context = [[NSMutableDictionary alloc] initWithDictionary:[self __context]];
 		[context setValue:rightBarButtonItems forKey:@"rightBarButtonItems"];
 		
 		[NSDictionary dictionaryWithDictionary:context];
@@ -130,12 +130,12 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 	
     // add indicator animation
     self.navigationItem.rightBarButtonItem = ({
-        UIView *indicatorAnimationView = [self chx_indicatorAnimationView];
+        UIView *indicatorAnimationView = [self __indicatorAnimationView];
         UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:indicatorAnimationView];
         rightItem;
     });
 	
-	[self chx_setRightBarInAnimation:YES];
+	[self __setRightBarInAnimation:YES];
 }
 
 - (void)chx_removeNavigationBarRightItemActivityIndicatorAnimation {
@@ -149,7 +149,7 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
     self.navigationItem.rightBarButtonItem.customView = nil;
     
     // recovery context
-    id context = [self chx_context];
+    id context = [self __context];
     
     id rightBarButtonItems = [context valueForKey:@"rightBarButtonItems"];
     if ([rightBarButtonItems isKindOfClass:[NSArray class]] &&
@@ -157,16 +157,16 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
         self.navigationItem.rightBarButtonItems = rightBarButtonItems;
     }
 	
-	[self chx_setRightBarInAnimation:NO];
+	[self __setRightBarInAnimation:NO];
 }
 
 - (BOOL)chx_isNavigationActivityIndicatorViewInAnimation {
-	return [self chx_rightBarInAnimation] || [self chx_titleInAnimation];
+	return [self chx_rightBarInAnimation] || [self __titleInAnimation];
 }
 
 #pragma mark -
 
-- (UIView *)chx_indicatorAnimationView {
+- (UIView *)__indicatorAnimationView {
     UIView *view = [UIView new];
     CGFloat height = [self.navigationController.navigationBar chx_height] / 2;
     view.bounds = CGRectMake(0, 0, height, height);

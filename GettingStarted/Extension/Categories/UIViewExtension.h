@@ -264,6 +264,14 @@ typedef NS_ENUM(NSInteger, CHXAnimationOrientation) {
 - (void)chx_addActivityIndicatorAnimationOnCenter:(CGPoint)center;
 
 /**
+ *  为视图添加进度指示器动画
+ *
+ *  @param style  进度指示器 类型
+ *  @param center 指示器动画中心位置
+ */
+- (void)chx_addActivityIndicatorAnimationWithStyle:(UIActivityIndicatorViewStyle)style center:(CGPoint)center;
+
+/**
  *  移除进度指示器动画
  */
 - (void)chx_removeActivityIndicatorAnimation;
@@ -330,7 +338,7 @@ typedef NS_ENUM(NSInteger, CHXEdge) {
  *  @param edge       边缘方向
  *  @param multiplier 边线高度乘法器([0, 1])
  */
-- (void)chx_addBorderLineConstraintsWithColor:(UIColor *)color edge:(CHXEdge)edge lineHeightMultiplier:(CGFloat)multiplier;
+- (void)chx_addBorderLineConstraintsWithColor:(UIColor *)color edge:(CHXEdge)edge lineSizeMultiplier:(CGFloat)multiplier;
 
 @end
 

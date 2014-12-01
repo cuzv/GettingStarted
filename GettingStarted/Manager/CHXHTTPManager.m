@@ -61,7 +61,7 @@ static CHXHTTPSessionManager *sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         // setting request base URL
-        NSURL *baseURL = [NSURL URLWithString:[self httpBaseURL]];
+        NSURL *baseURL = [NSURL URLWithString:[self __httpBaseURL]];
         // Configure Session Configuration
         NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
         sessionConfiguration.allowsCellularAccess       = YES;
@@ -85,13 +85,13 @@ static CHXHTTPSessionManager *sharedInstance;
         sharedInstance.responseSerializer = jsonResponseSerializer;
         
         // monitoring network status
-        [CHXHTTPSessionManager processNetworkMonitoring];
+        [CHXHTTPSessionManager __processNetworkMonitoring];
     });
 
     return sharedInstance;
 }
 
-+ (void)processNetworkMonitoring {
++ (void)__processNetworkMonitoring {
     AFNetworkReachabilityManager *afNetworkReachabilityManager =  sharedInstance.reachabilityManager;
     NSOperationQueue *operationQueue = sharedInstance.operationQueue;
     [afNetworkReachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
@@ -114,13 +114,13 @@ static CHXHTTPSessionManager *sharedInstance;
     return ![CHXHTTPSessionManager sharedInstance].operationQueue.isSuspended;
 }
 
-+ (NSString *)httpBaseURL {
++ (NSString *)__httpBaseURL {
     NSString *baseURL = nil;
-    if (DEBUG) {
-        baseURL = CHXHTTPDebugBaseURL;
-    } else {
-        baseURL = CHXHTTPRealseBaseURL;
-    }
+#ifdef DEBUG
+	baseURL = CHXHTTPDebugBaseURL;
+#else
+	baseURL = CHXHTTPRealseBaseURL;
+#endif
     return baseURL;
 }
 
@@ -170,7 +170,7 @@ const NSString *FileSuffixNameMapping[] = {
 
 static NSMutableArray *sessions;
 
-+ (BOOL)shouldContinue {
++ (BOOL)__shouldContinue {
     BOOL shouldContinue = YES;
     if (![CHXHTTPSessionManager isNetworkReachable]) {
 		[UIAlertView chx_showAlertWithMessage:CHXHTTPNetworkNotReachable];
@@ -226,7 +226,7 @@ static NSMutableArray *sessions;
 
 #pragma mark - encode messages
 
-+ (NSDictionary *)encodeParameters:(NSDictionary *)parameters {
++ (NSDictionary *)__encodeParameters:(NSDictionary *)parameters {
     NSString *encodeString = nil;
     /* flow methods is not encode `CHXHTTPParametersKey` */
     switch ([CHXHTTPSessionManager sharedInstance].requestSerializerType) {
@@ -317,13 +317,13 @@ static NSMutableArray *sessions;
 				parameters:(NSDictionary *)parameters
 				   success:(NetowrkPushResultFailureCompletionHandle)success
 				   failure:(NetowrkPushResultFailureCompletionHandle)failure {
-    if (![CHXHTTPManager shouldContinue]) {
+    if (![CHXHTTPManager __shouldContinue]) {
         return;
     }
     // remove same request
     [self removeRequestByMthodName:methodName];
     [self requestWillBegin];
-    NSDictionary *encodeParameters = [self encodeParameters:parameters];
+    NSDictionary *encodeParameters = [self __encodeParameters:parameters];
     [[CHXHTTPSessionManager sharedInstance] POST:methodName
                                      parameters:encodeParameters
                                         success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -358,7 +358,7 @@ static NSMutableArray *sessions;
 				  mineType:(HTTPMineType)mineType
 				   success:(NetowrkPushResultFailureCompletionHandle)success
 				   failure:(NetowrkPushResultFailureCompletionHandle)failure {
-    if (![CHXHTTPManager shouldContinue]) {
+    if (![CHXHTTPManager __shouldContinue]) {
         return;
     }
 	
@@ -366,7 +366,7 @@ static NSMutableArray *sessions;
     [self removeRequestByMthodName:methodName];
     
     [self requestWillBegin];
-    NSDictionary *encodeParameters = [self encodeParameters:parameters];
+    NSDictionary *encodeParameters = [self __encodeParameters:parameters];
 
     [[CHXHTTPSessionManager sharedInstance] POST:methodName
                                      parameters:encodeParameters

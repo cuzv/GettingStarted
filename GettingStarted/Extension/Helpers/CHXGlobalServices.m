@@ -75,32 +75,32 @@ CGFloat chx_angleFromRadian(CGFloat radian) {
 
 #pragma mark -
 
-NSString *chx_searchPathDirectory(NSSearchPathDirectory searchPathDirectory) {
+NSString *__searchPathDirectory(NSSearchPathDirectory searchPathDirectory) {
 	return [NSSearchPathForDirectoriesInDomains(searchPathDirectory, NSUserDomainMask, YES) firstObject];
 }
 
 NSString *chx_documentDirectory() {
-	return chx_searchPathDirectory(NSDocumentDirectory);
+	return __searchPathDirectory(NSDocumentDirectory);
 }
 
 NSString *chx_cachesDirectory() {
-	return chx_searchPathDirectory(NSCachesDirectory);
+	return __searchPathDirectory(NSCachesDirectory);
 }
 
 NSString *chx_downloadsDirectory() {
-	return chx_searchPathDirectory(NSDownloadsDirectory);
+	return __searchPathDirectory(NSDownloadsDirectory);
 }
 
 NSString *chx_moviesDirectory() {
-	return chx_searchPathDirectory(NSMoviesDirectory);
+	return __searchPathDirectory(NSMoviesDirectory);
 }
 
 NSString *chx_musicDirectory() {
-	return chx_searchPathDirectory(NSMusicDirectory);
+	return __searchPathDirectory(NSMusicDirectory);
 }
 
 NSString *chx_picturesDirectory() {
-	return chx_searchPathDirectory(NSPicturesDirectory);
+	return __searchPathDirectory(NSPicturesDirectory);
 }
 
 #pragma mark - 
@@ -111,7 +111,7 @@ NSString *chx_uniqueIdentifier() {
 
 #pragma mark - 
 
-void chx_performApplicatonEventByURL(NSURL *eventURL) {
+void __performApplicatonEventByURL(NSURL *eventURL) {
 	UIApplication *application = [UIApplication sharedApplication];
 	if ([application canOpenURL:eventURL]) {
 		[application openURL:eventURL];
@@ -122,25 +122,25 @@ void chx_performApplicatonEventByURL(NSURL *eventURL) {
 
 void chx_callPhoneNumber(NSString *phoneNumber) {
 	NSURL *destination = [NSURL URLWithString:[@"telprompt:" stringByAppendingString:phoneNumber]];
-	chx_performApplicatonEventByURL(destination);
+	__performApplicatonEventByURL(destination);
 }
 
 void chx_sendSMSTo(NSString *phoneNumber) {
 	NSURL *destination = [NSURL URLWithString:[@"sms:" stringByAppendingString:phoneNumber]];
-	chx_performApplicatonEventByURL(destination);
+	__performApplicatonEventByURL(destination);
 }
 
 void chx_openBrowser(NSURL *webURL) {
-	chx_performApplicatonEventByURL(webURL);
+	__performApplicatonEventByURL(webURL);
 }
 
 void chx_emailTo(NSString *receiverEmail) {
 	NSURL *destination = [NSURL URLWithString:[@"mailto:" stringByAppendingString:receiverEmail]];
-	chx_performApplicatonEventByURL(destination);
+	__performApplicatonEventByURL(destination);
 }
 
 void chx_openAppStoreByAppLink(NSURL *appLink) {
-	chx_performApplicatonEventByURL(appLink);
+	__performApplicatonEventByURL(appLink);
 }
 
 #pragma mark - 
@@ -210,22 +210,18 @@ void chx_imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloa
 
 #pragma mark -
 
-void chx_methodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector) {
+void chx_instanceMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector) {
 	Method originalMethod = class_getInstanceMethod(clazz, originalSelector);
 	Method overrideMethod = class_getInstanceMethod(clazz, overrideSelector);
 	
-	BOOL addMethodSuccess = class_addMethod(clazz,
-											originalSelector,
-											method_getImplementation(overrideMethod),
-											method_getTypeEncoding(overrideMethod));
-	if (addMethodSuccess) {
-		class_replaceMethod(clazz,
-							overrideSelector,
-							method_getImplementation(originalMethod),
-							method_getTypeEncoding(originalMethod));
-	} else {
-		method_exchangeImplementations(originalMethod, overrideMethod);
-	}
+	method_exchangeImplementations(originalMethod, overrideMethod);
+}
+
+void chx_classMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector) {
+	Method originalMethod = class_getClassMethod(clazz, originalSelector);
+	Method overrideMethod = class_getClassMethod(clazz, overrideSelector);
+	
+	method_exchangeImplementations(originalMethod, overrideMethod);
 }
 
 #pragma mark -

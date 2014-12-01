@@ -24,7 +24,7 @@
     
     if (!newSuperview) {
         self.resetAnimation = NO;
-        [self stopRotateAnimation];
+        [self __stopRotateAnimation];
     }
 }
 
@@ -106,12 +106,12 @@
         return;
     }
     
-    [self startRotateAnimation];
+    [self __startRotateAnimation];
     
     self.animating = YES;
 }
 
-- (void)startRotateAnimation {
+- (void)__startRotateAnimation {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     animation.fromValue = @(0);
     animation.toValue = @(2 * M_PI);
@@ -127,12 +127,12 @@
         return;
     }
 
-    [self stopRotateAnimation];
+    [self __stopRotateAnimation];
     
     self.animating = NO;
 }
 
-- (void)stopRotateAnimation {
+- (void)__stopRotateAnimation {
     [UIView animateWithDuration:0.3f animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {
@@ -148,7 +148,7 @@
     }
     
     if (!flag && self.resetAnimation) {
-        [self startRotateAnimation];
+        [self __startRotateAnimation];
     }
 }
 

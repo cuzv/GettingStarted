@@ -21,6 +21,24 @@
 
 @end
 
+
+@interface UIImage (Swizzle)
++ (instancetype)swzzle_imageNamed:(NSString *)imageName;
+@end
+
+@implementation UIImage (Swizzle)
+
++ (instancetype)swzzle_imageNamed:(NSString *)imageName {
+	NSLog(@"%@", imageName);
+	return [self swzzle_imageNamed:imageName];
+}
+
+- (void)swzzle_initWithData:(NSData *)data {
+	[self swzzle_initWithData:data];
+}
+
+@end
+
 @interface CHXIndexViewController () <UINavigationBarDelegate>
 
 @property (nonatomic, strong) CHXBadgeView *badgeView;
@@ -37,6 +55,8 @@
 	[self testBadgeView];
 	
 	[self testTextConfigure];
+	
+	[self testSwizzle];
 }
 
 - (void)testBadgeView {
@@ -57,6 +77,13 @@
 	CHXTextEditConfigure *textconfigure = [CHXTextEditConfigure new];
 	textconfigure.maximumLength = 5;
 	[self.textField chx_setTextConfigure:textconfigure];
+}
+
+- (void)testSwizzle {
+	chx_classMethodSwizzle([UIImage class], @selector(imageNamed:), @selector(swzzle_imageNamed:));
+
+//	UIImage *image = [[UIImage alloc] initWithData:[NSData data]];
+//	UIImage *image = [UIImage imageNamed:@"activity_gradient_gray"];
 }
 
 @end

@@ -19,16 +19,16 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self initial];
+        [self __initial];
     }
     return self;
 }
 
 - (void)awakeFromNib {
-    [self initial];
+    [self __initial];
 }
 
-- (void)initial {
+- (void)__initial {
     for (NSLayoutConstraint *constraint in self.constraints) {
         if (constraint.firstAttribute == NSLayoutAttributeHeight) {
             self.heightConstraint = constraint;
@@ -44,16 +44,16 @@
     [super layoutSubviews];
     
     BOOL autoLayoutEnabled = self.heightConstraint ? YES : NO;
-    [self handleLayoutUsingAutoLayout:autoLayoutEnabled];
+    [self __handleLayoutUsingAutoLayout:autoLayoutEnabled];
     
-    if ([self initialContentSizeHeight] <= self.bounds.size.height) {
+    if ([self __initialContentSizeHeight] <= self.bounds.size.height) {
         CGFloat topCorrect = (self.bounds.size.height - self.contentSize.height * [self zoomScale]) / 2.0f;
         topCorrect = (topCorrect < .0f ? .0f : topCorrect);
         self.contentOffset = CGPointMake(0, -topCorrect);
     }
 }
 
-- (CGFloat)initialContentSizeHeight {
+- (CGFloat)__initialContentSizeHeight {
     CGSize initialContentSize = self.contentSize;
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
@@ -64,7 +64,7 @@
     return initialContentSize.height;
 }
 
-- (void)handleLayoutUsingAutoLayout:(BOOL)autoLayoutsEnabled {
+- (void)__handleLayoutUsingAutoLayout:(BOOL)autoLayoutsEnabled {
     CGFloat currentHeight = self.contentSize.height;
     if (self.minimumHeight) {
         currentHeight = MAX(self.minimumHeight, currentHeight);

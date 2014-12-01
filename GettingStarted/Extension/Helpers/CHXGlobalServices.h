@@ -210,13 +210,22 @@ void chx_imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloa
 #pragma mark -
 
 /**
- *  Swizzle
+ *  Swizzle 实例方法
  *
  *  @param clazz            被替换的方法所属类
  *  @param originalSelector 原始方法
  *  @param overrideSelector 替换方法
  */
-void chx_methodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector);
+void chx_instanceMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector);
+
+/**
+ *  Swizzle 类方法
+ *
+ *  @param clazz            被替换的方法所属类
+ *  @param originalSelector 原始方法
+ *  @param overrideSelector 替换方法
+ */
+void chx_classMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector);
 
 #pragma mark - 
 
