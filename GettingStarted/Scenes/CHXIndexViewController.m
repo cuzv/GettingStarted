@@ -52,11 +52,13 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	[self testBadgeView];
+//	[self testBadgeView];
+//	
+//	[self testTextConfigure];
+//	
+//	[self testSwizzle];
 	
-	[self testTextConfigure];
-	
-	[self testSwizzle];
+	[self testBorder];
 }
 
 - (void)testBadgeView {
@@ -84,6 +86,15 @@
 
 //	UIImage *image = [[UIImage alloc] initWithData:[NSData data]];
 //	UIImage *image = [UIImage imageNamed:@"activity_gradient_gray"];
+}
+
+- (void)testBorder {
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(20, 80, 200, 80)];
+	view.backgroundColor = [UIColor redColor];
+	[self.view addSubview:view];
+
+	[view chx_setBorderLineColor:[UIColor greenColor] edge:UIRectEdgeLeft];
+//	[view chx_setBorderLineColor:[UIColor greenColor] edge:UIRectEdgeLeft | UIRectEdgeRight];
 }
 
 @end

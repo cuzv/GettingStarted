@@ -302,13 +302,6 @@ typedef NS_ENUM(NSInteger, CHXAnimationOrientation) {
 #define kColorDigit (213 / 255)
 #define kBorderLineGrayColor [UIColor colorWithRed:kColorDigit green:kColorDigit blue:kColorDigit alpha:kColorDigit]
 
-typedef NS_ENUM(NSInteger, CHXEdge) {
-    CHXEdgeTop,
-	CHXEdgeLeft,
-    CHXEdgeBottom,
-    CHXEdgeRight
-};
-
 @interface UIView (CHXBorderLine)
 
 /**
@@ -329,16 +322,30 @@ typedef NS_ENUM(NSInteger, CHXEdge) {
  *  @param aColor      边框颜色
  *  @param orientation 哪一条边框
  */
-- (void)chx_setBorderLineColor:(UIColor *)aColor edge:(CHXEdge)edge;
+- (void)chx_setBorderLineColor:(UIColor *)aColor edge:(UIRectEdge)edge;
 
 /**
  *  添加边线约束
  *
  *  @param color      边线颜色
  *  @param edge       边缘方向
- *  @param multiplier 边线高度乘法器([0, 1])
+ *  @param multiplier 边线高度、宽度乘法器([0, 1])
  */
-- (void)chx_addBorderLineConstraintsWithColor:(UIColor *)color edge:(CHXEdge)edge lineSizeMultiplier:(CGFloat)multiplier;
+- (void)chx_setBorderLineConstraintsWithColor:(UIColor *)color edge:(UIRectEdge)edge lineSizeMultiplier:(CGFloat)multiplier;
+
+@end
+
+#pragma mark - 边缘圆角
+
+@interface UIView (CHXCornerRadius)
+
+/**
+ *  设置圆角
+ *
+ *  @param corner 圆角方向
+ *  @param radius 圆角大小
+ */
+- (void)chx_setRoundingCorners:(UIRectCorner)corner radius:(CGFloat)radius;
 
 @end
 
