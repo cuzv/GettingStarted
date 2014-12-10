@@ -7,16 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46046C541A2E128900150636 /* CHXRequestProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46046C531A2E128900150636 /* CHXRequestProxy.m */; };
 		4608A3EF1A1CF75000AF5873 /* NSDictionaryExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608A3EE1A1CF75000AF5873 /* NSDictionaryExtension.m */; };
 		4608A3F21A1CF8EC00AF5873 /* NSDataExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */; };
 		46602C811A1C3E5800307EEC /* CHXGlobalServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C801A1C3E5800307EEC /* CHXGlobalServices.m */; };
 		46602C861A1C4DBF00307EEC /* CHXHTTPConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C851A1C4DBF00307EEC /* CHXHTTPConfigure.m */; };
+		466B16661A3893B100EA9EA0 /* CHXBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16651A3893B100EA9EA0 /* CHXBaseRequest.m */; };
+		466B16691A38952200EA9EA0 /* CHXBaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16681A38952200EA9EA0 /* CHXBaseHandler.m */; };
+		466B166C1A38954200EA9EA0 /* CHXBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B166B1A38954200EA9EA0 /* CHXBaseModel.m */; };
+		466B166F1A38956300EA9EA0 /* CHXRegistHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B166E1A38956300EA9EA0 /* CHXRegistHandler.m */; };
+		466B16741A3896C000EA9EA0 /* CHXBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16731A3896C000EA9EA0 /* CHXBaseNavigationController.m */; };
+		466B16771A38970800EA9EA0 /* CHXBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16761A38970800EA9EA0 /* CHXBaseTabBarController.m */; };
+		466B167A1A38971900EA9EA0 /* CHXBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16791A38971900EA9EA0 /* CHXBaseView.m */; };
+		466B167D1A38A46A00EA9EA0 /* CHXRequestConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B167C1A38A46A00EA9EA0 /* CHXRequestConfiguration.m */; };
 		4672AB3D1A2AFF6400876B74 /* CAAnimationExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB3C1A2AFF6400876B74 /* CAAnimationExtension.m */; };
 		4672AB801A2BFD4600876B74 /* CHXLoginHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB7F1A2BFD4600876B74 /* CHXLoginHandler.m */; };
 		4672AB881A2BFE2F00876B74 /* CHXRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB871A2BFE2F00876B74 /* CHXRequest.m */; };
-		4672AB8D1A2BFEFC00876B74 /* CHXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB8C1A2BFEFC00876B74 /* CHXUser.m */; };
 		4672AB901A2BFF1700876B74 /* CHXLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB8F1A2BFF1700876B74 /* CHXLoginRequest.m */; };
-		4672AB931A2C05B500876B74 /* CHXNetworkingConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB921A2C05B500876B74 /* CHXNetworkingConfiguration.m */; };
 		46F11DC11A1B7958009321A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F11DC01A1B7958009321A0 /* main.m */; };
 		46F11DCA1A1B7958009321A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46F11DC81A1B7958009321A0 /* Main.storyboard */; };
 		46F11DCC1A1B7958009321A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46F11DCB1A1B7958009321A0 /* Images.xcassets */; };
@@ -88,6 +95,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		46046C521A2E128900150636 /* CHXRequestProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXRequestProxy.h; sourceTree = "<group>"; };
+		46046C531A2E128900150636 /* CHXRequestProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXRequestProxy.m; sourceTree = "<group>"; };
 		4608A3ED1A1CF75000AF5873 /* NSDictionaryExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = NSDictionaryExtension.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4608A3EE1A1CF75000AF5873 /* NSDictionaryExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSDictionaryExtension.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4608A3F01A1CF8EC00AF5873 /* NSDataExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = NSDataExtension.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -98,18 +107,30 @@
 		46602C801A1C3E5800307EEC /* CHXGlobalServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXGlobalServices.m; sourceTree = "<group>"; };
 		46602C841A1C4DBF00307EEC /* CHXHTTPConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CHXHTTPConfigure.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		46602C851A1C4DBF00307EEC /* CHXHTTPConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CHXHTTPConfigure.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		466B16641A3893B100EA9EA0 /* CHXBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXBaseRequest.h; sourceTree = "<group>"; };
+		466B16651A3893B100EA9EA0 /* CHXBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXBaseRequest.m; sourceTree = "<group>"; };
+		466B16671A38952200EA9EA0 /* CHXBaseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXBaseHandler.h; sourceTree = "<group>"; };
+		466B16681A38952200EA9EA0 /* CHXBaseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXBaseHandler.m; sourceTree = "<group>"; };
+		466B166A1A38954200EA9EA0 /* CHXBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXBaseModel.h; sourceTree = "<group>"; };
+		466B166B1A38954200EA9EA0 /* CHXBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXBaseModel.m; sourceTree = "<group>"; };
+		466B166D1A38956300EA9EA0 /* CHXRegistHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXRegistHandler.h; sourceTree = "<group>"; };
+		466B166E1A38956300EA9EA0 /* CHXRegistHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXRegistHandler.m; sourceTree = "<group>"; };
+		466B16721A3896C000EA9EA0 /* CHXBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXBaseNavigationController.h; sourceTree = "<group>"; };
+		466B16731A3896C000EA9EA0 /* CHXBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXBaseNavigationController.m; sourceTree = "<group>"; };
+		466B16751A38970800EA9EA0 /* CHXBaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXBaseTabBarController.h; sourceTree = "<group>"; };
+		466B16761A38970800EA9EA0 /* CHXBaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXBaseTabBarController.m; sourceTree = "<group>"; };
+		466B16781A38971900EA9EA0 /* CHXBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXBaseView.h; sourceTree = "<group>"; };
+		466B16791A38971900EA9EA0 /* CHXBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXBaseView.m; sourceTree = "<group>"; };
+		466B167B1A38A46A00EA9EA0 /* CHXRequestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXRequestConfiguration.h; sourceTree = "<group>"; };
+		466B167C1A38A46A00EA9EA0 /* CHXRequestConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXRequestConfiguration.m; sourceTree = "<group>"; };
 		4672AB3B1A2AFF6400876B74 /* CAAnimationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAnimationExtension.h; sourceTree = "<group>"; };
 		4672AB3C1A2AFF6400876B74 /* CAAnimationExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAAnimationExtension.m; sourceTree = "<group>"; };
 		4672AB7E1A2BFD4600876B74 /* CHXLoginHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXLoginHandler.h; sourceTree = "<group>"; };
 		4672AB7F1A2BFD4600876B74 /* CHXLoginHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXLoginHandler.m; sourceTree = "<group>"; };
 		4672AB861A2BFE2F00876B74 /* CHXRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXRequest.h; sourceTree = "<group>"; };
 		4672AB871A2BFE2F00876B74 /* CHXRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXRequest.m; sourceTree = "<group>"; };
-		4672AB8B1A2BFEFC00876B74 /* CHXUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXUser.h; sourceTree = "<group>"; };
-		4672AB8C1A2BFEFC00876B74 /* CHXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXUser.m; sourceTree = "<group>"; };
 		4672AB8E1A2BFF1700876B74 /* CHXLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXLoginRequest.h; sourceTree = "<group>"; };
 		4672AB8F1A2BFF1700876B74 /* CHXLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXLoginRequest.m; sourceTree = "<group>"; };
-		4672AB911A2C05B500876B74 /* CHXNetworkingConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXNetworkingConfiguration.h; sourceTree = "<group>"; };
-		4672AB921A2C05B500876B74 /* CHXNetworkingConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXNetworkingConfiguration.m; sourceTree = "<group>"; };
 		46F11DBB1A1B7958009321A0 /* GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F11DBF1A1B7958009321A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46F11DC01A1B7958009321A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -244,11 +265,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4672AB7D1A2BFD3000876B74 /* Handler */ = {
+		466B16701A38959C00EA9EA0 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				4672AB7E1A2BFD4600876B74 /* CHXLoginHandler.h */,
 				4672AB7F1A2BFD4600876B74 /* CHXLoginHandler.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		466B16711A3895A600EA9EA0 /* Regist */ = {
+			isa = PBXGroup;
+			children = (
+				466B166D1A38956300EA9EA0 /* CHXRegistHandler.h */,
+				466B166E1A38956300EA9EA0 /* CHXRegistHandler.m */,
+			);
+			name = Regist;
+			sourceTree = "<group>";
+		};
+		4672AB7D1A2BFD3000876B74 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				466B16711A3895A600EA9EA0 /* Regist */,
+				466B16701A38959C00EA9EA0 /* Login */,
 			);
 			path = Handler;
 			sourceTree = "<group>";
@@ -258,8 +297,10 @@
 			children = (
 				4672AB861A2BFE2F00876B74 /* CHXRequest.h */,
 				4672AB871A2BFE2F00876B74 /* CHXRequest.m */,
-				4672AB911A2C05B500876B74 /* CHXNetworkingConfiguration.h */,
-				4672AB921A2C05B500876B74 /* CHXNetworkingConfiguration.m */,
+				46046C521A2E128900150636 /* CHXRequestProxy.h */,
+				46046C531A2E128900150636 /* CHXRequestProxy.m */,
+				466B167B1A38A46A00EA9EA0 /* CHXRequestConfiguration.h */,
+				466B167C1A38A46A00EA9EA0 /* CHXRequestConfiguration.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -276,8 +317,6 @@
 		4672AB8A1A2BFEDD00876B74 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4672AB8B1A2BFEFC00876B74 /* CHXUser.h */,
-				4672AB8C1A2BFEFC00876B74 /* CHXUser.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -448,6 +487,18 @@
 				46F11F241A1B8D49009321A0 /* CHXComparableObject.m */,
 				46F11F0C1A1B8234009321A0 /* CHXBaseViewController.h */,
 				46F11F0D1A1B8234009321A0 /* CHXBaseViewController.m */,
+				466B16721A3896C000EA9EA0 /* CHXBaseNavigationController.h */,
+				466B16731A3896C000EA9EA0 /* CHXBaseNavigationController.m */,
+				466B16751A38970800EA9EA0 /* CHXBaseTabBarController.h */,
+				466B16761A38970800EA9EA0 /* CHXBaseTabBarController.m */,
+				466B16781A38971900EA9EA0 /* CHXBaseView.h */,
+				466B16791A38971900EA9EA0 /* CHXBaseView.m */,
+				466B16641A3893B100EA9EA0 /* CHXBaseRequest.h */,
+				466B16651A3893B100EA9EA0 /* CHXBaseRequest.m */,
+				466B16671A38952200EA9EA0 /* CHXBaseHandler.h */,
+				466B16681A38952200EA9EA0 /* CHXBaseHandler.m */,
+				466B166A1A38954200EA9EA0 /* CHXBaseModel.h */,
+				466B166B1A38954200EA9EA0 /* CHXBaseModel.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -779,10 +830,11 @@
 				46F11F6A1A1B917E009321A0 /* NSString+Hashes.m in Sources */,
 				46F11F421A1B903A009321A0 /* CHXHTTPManager.m in Sources */,
 				46F11F1E1A1B8D2E009321A0 /* CHXArrayDataSource.m in Sources */,
-				4672AB8D1A2BFEFC00876B74 /* CHXUser.m in Sources */,
 				46F11EFF1A1B81A8009321A0 /* UIViewExtension.m in Sources */,
 				4672AB881A2BFE2F00876B74 /* CHXRequest.m in Sources */,
+				466B167D1A38A46A00EA9EA0 /* CHXRequestConfiguration.m in Sources */,
 				46F11F641A1B917E009321A0 /* AwesomeMenu.m in Sources */,
+				466B16741A3896C000EA9EA0 /* CHXBaseNavigationController.m in Sources */,
 				46F11F431A1B903A009321A0 /* CHXReachabilityManager.m in Sources */,
 				46F11EF61A1B81A8009321A0 /* UIColorExtension.m in Sources */,
 				46F11F651A1B917E009321A0 /* AwesomeMenuItem.m in Sources */,
@@ -800,12 +852,15 @@
 				46602C861A1C4DBF00307EEC /* CHXHTTPConfigure.m in Sources */,
 				46F11EFA1A1B81A8009321A0 /* UIScrollViewExtension.m in Sources */,
 				46F11F681A1B917E009321A0 /* MLEmojiLabel.m in Sources */,
+				466B166F1A38956300EA9EA0 /* CHXRegistHandler.m in Sources */,
 				46F11F001A1B81A8009321A0 /* CHXBadgeView.m in Sources */,
+				466B16691A38952200EA9EA0 /* CHXBaseHandler.m in Sources */,
 				46F11F041A1B81A8009321A0 /* CHXPaddingField.m in Sources */,
 				4672AB3D1A2AFF6400876B74 /* CAAnimationExtension.m in Sources */,
 				46F11F141A1B8251009321A0 /* CHXIndexViewController.m in Sources */,
 				46F11F101A1B8234009321A0 /* CHXBaseViewController.m in Sources */,
 				46F11F051A1B81A8009321A0 /* CHXPaddingLabel.m in Sources */,
+				46046C541A2E128900150636 /* CHXRequestProxy.m in Sources */,
 				46F11F011A1B81A8009321A0 /* CHXGapRing.m in Sources */,
 				46F11EF71A1B81A8009321A0 /* UIImageExtension.m in Sources */,
 				46F11EF41A1B81A8009321A0 /* UIAlertViewExtension.m in Sources */,
@@ -813,11 +868,12 @@
 				46F11F2E1A1B8E35009321A0 /* CHXArchiver.m in Sources */,
 				46F11F271A1B8D49009321A0 /* CHXComparableObject.m in Sources */,
 				46F11F691A1B917E009321A0 /* NSData+Hashes.m in Sources */,
-				4672AB931A2C05B500876B74 /* CHXNetworkingConfiguration.m in Sources */,
+				466B167A1A38971900EA9EA0 /* CHXBaseView.m in Sources */,
 				46F11F071A1B81A8009321A0 /* CHXTrackArcView.m in Sources */,
 				4672AB801A2BFD4600876B74 /* CHXLoginHandler.m in Sources */,
 				46F11F811A1B95A8009321A0 /* CHXAccountManager.m in Sources */,
 				46F11F1B1A1B8D1A009321A0 /* CHXUserDefaults.m in Sources */,
+				466B16771A38970800EA9EA0 /* CHXBaseTabBarController.m in Sources */,
 				46F11F251A1B8D49009321A0 /* CHXCodingableAndComparableObject.m in Sources */,
 				46F11F061A1B81A8009321A0 /* CHXFlexibleTextView.m in Sources */,
 				46602C811A1C3E5800307EEC /* CHXGlobalServices.m in Sources */,
@@ -829,7 +885,9 @@
 				46F11EF31A1B81A8009321A0 /* NSStringExtension.m in Sources */,
 				46F11F031A1B81A8009321A0 /* CHXLocationPickerView.m in Sources */,
 				46F11EFB1A1B81A8009321A0 /* UITableViewExtension.m in Sources */,
+				466B166C1A38954200EA9EA0 /* CHXBaseModel.m in Sources */,
 				46F11F671A1B917E009321A0 /* UIImage+ImageEffects.m in Sources */,
+				466B16661A3893B100EA9EA0 /* CHXBaseRequest.m in Sources */,
 				46F11EFE1A1B81A8009321A0 /* UIViewControllerExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

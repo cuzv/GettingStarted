@@ -7,13 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CHXUser.h"
+#import "CHXBaseHandler.h"
+#import "CHXLoginRequest.h"
 
-typedef void(^HandleSuccessBlock)(id model);
-typedef void(^HandleFailureBlock)(NSString *errorDescription);
-
-@interface CHXLoginHandler : NSObject
-
-- (void)hanldeParmaters:(CHXUser *)parmaters withSuccess:(HandleSuccessBlock)success failure:(HandleFailureBlock)failure;
+@interface CHXLoginHandler : CHXBaseHandler
 
 @end

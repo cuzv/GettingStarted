@@ -10,6 +10,9 @@
 #import "Extension.h"
 #import "UIImageView+AFNetworking.h"
 #import "CHXHTTPManager.h"
+#import "CHXLoginHandler.h"
+#import "AFNetworking.h"
+#import "CHXBaseModel.h"
 
 @interface Person : NSObject
 @property (nonatomic, strong) NSString *name;
@@ -58,7 +61,9 @@
 //	
 //	[self testSwizzle];
 	
-	[self testBorder];
+//	[self testBorder];
+	
+	[self testNetworking];
 }
 
 - (void)testBadgeView {
@@ -96,5 +101,30 @@
 	[view chx_setBorderLineColor:[UIColor greenColor] edge:UIRectEdgeLeft];
 //	[view chx_setBorderLineColor:[UIColor greenColor] edge:UIRectEdgeLeft | UIRectEdgeRight];
 }
+
+- (void)testNetworking {
+	[CHXLoginHandler handleRequest:({
+		CHXLoginRequest *request = [[CHXLoginRequest alloc] initWithUsername:@"18583221776" password:@"123456"];
+		request;
+	}) withSuccess:^(CHXBaseModel *model) {
+		
+	} failure:^(NSString *errorDescription) {
+		
+	}];
+	
+	
+//	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//	manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//	manager.requestSerializer.timeoutInterval = 10;
+//	[manager POST:@"http://10.128.8.250:8080/wfarm/customerLogin/json/1" parameters:@{@"uAccount":@"18583221776", @"uPass":@"123456"} success:^(NSURLSessionDataTask *task, id responseObject) {
+//		NSLog(@"%@", responseObject);
+//	} failure:^(NSURLSessionDataTask *task, NSError *error) {
+//		NSLog(@"%@", error.localizedDescription);
+//	}];
+}
+
+
+
+
 
 @end

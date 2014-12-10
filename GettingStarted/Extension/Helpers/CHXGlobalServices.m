@@ -13,7 +13,7 @@
 
 @implementation CHXGlobalServices
 
-#pragma mark -
+#pragma mark - System infos
 
 NSUInteger chx_deviceSystemMajorVersion() {
 	static NSUInteger _deviceSystemMajorVersion = -1;
@@ -44,7 +44,7 @@ float chx_appVersionNumber() {
 	return _appVersion;
 }
 
-#pragma mark -
+#pragma mark - Device Screen
 
 CGRect chx_screenBounds() {
 	static CGRect _screenBounds;
@@ -63,7 +63,7 @@ CGFloat chx_screenHeight() {
 	return chx_screenBounds().size.height;
 }
 
-#pragma mark -
+#pragma mark - Angle & Radian
 
 CGFloat chx_radianFromAngle(CGFloat angle) {
 	return M_PI * angle / 180.0f;
@@ -73,7 +73,7 @@ CGFloat chx_angleFromRadian(CGFloat radian) {
 	return M_PI * 180.0f / radian;
 }
 
-#pragma mark -
+#pragma mark - Sandbox directory
 
 NSString *__searchPathDirectory(NSSearchPathDirectory searchPathDirectory) {
 	return [NSSearchPathForDirectoriesInDomains(searchPathDirectory, NSUserDomainMask, YES) firstObject];
@@ -103,13 +103,13 @@ NSString *chx_picturesDirectory() {
 	return __searchPathDirectory(NSPicturesDirectory);
 }
 
-#pragma mark - 
+#pragma mark - UniqueIdentifier
 
 NSString *chx_uniqueIdentifier() {
 	return [[[NSUUID UUID] UUIDString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
 }
 
-#pragma mark - 
+#pragma mark - Perform external jump
 
 void __performApplicatonEventByURL(NSURL *eventURL) {
 	UIApplication *application = [UIApplication sharedApplication];
@@ -143,7 +143,7 @@ void chx_openAppStoreByAppLink(NSURL *appLink) {
 	__performApplicatonEventByURL(appLink);
 }
 
-#pragma mark - 
+#pragma mark - Clear badge
 
 void chx_clearApplicationIconBadge() {
 	UIApplication *application = [UIApplication sharedApplication];
@@ -154,7 +154,7 @@ void chx_clearApplicationIconBadge() {
 	application.applicationIconBadgeNumber = badgeNumber;
 }
 
-#pragma mark -
+#pragma mark - Hairline for bar
 
 UIView *chx_hairLineForTabBar(UITabBar *tabBar) {
 	Class imageViewClass = [UIImageView class];
@@ -185,7 +185,7 @@ UIView *chx_hairLineForNavigationBar(UINavigationBar *navigationBar) {
 	return nil;
 }
 
-#pragma mark -
+#pragma mark - Asynchronization get image
 
 void chx_imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloadedImage), void (^errorBlock)(NSError *error)) {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -208,7 +208,7 @@ void chx_imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloa
 	});
 }
 
-#pragma mark -
+#pragma mark - Swizzle
 
 void chx_instanceMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector) {
 	Method originalMethod = class_getInstanceMethod(clazz, originalSelector);
@@ -224,13 +224,42 @@ void chx_classMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelec
 	method_exchangeImplementations(originalMethod, overrideMethod);
 }
 
-#pragma mark -
+#pragma mark - Collection spacing
 
 CGFloat chx_minimumInteritemSpacingForCollection(CGFloat collectionViewWidth, CGFloat cellWidth, CGFloat horizontalCount) {
 	return (collectionViewWidth - cellWidth * horizontalCount) / (horizontalCount + 1);
 }
 
-#pragma mark -
+#pragma mark - Autolayout helpers
+
+void chx_leftAlignAndVerticallySpaceOutViews(NSArray *views, CGFloat distance) {
+	for (NSUInteger i = 1; i < views.count; i++) {
+		UIView *firstView = views[i - 1];
+		UIView *secondView = views[i];
+		
+		[firstView setTranslatesAutoresizingMaskIntoConstraints:NO];
+		[secondView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+		NSLayoutConstraint *verticalConstraint = [NSLayoutConstraint constraintWithItem:firstView
+																			  attribute:NSLayoutAttributeBottom
+																			  relatedBy:NSLayoutRelationEqual
+																				 toItem:secondView
+																			  attribute:NSLayoutAttributeTop
+																			 multiplier:1
+																			   constant:distance];
+		
+		NSLayoutConstraint *leadingConstraint =  [NSLayoutConstraint constraintWithItem:firstView
+																			  attribute:NSLayoutAttributeLeading
+																			  relatedBy:NSLayoutRelationEqual
+																				 toItem:secondView
+																			  attribute:NSLayoutAttributeLeading
+																			 multiplier:1
+																			   constant:0];
+		
+		[firstView.superview addConstraints:@[verticalConstraint, leadingConstraint]];
+	}
+}
+
 
 @end
 

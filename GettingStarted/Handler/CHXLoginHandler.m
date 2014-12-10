@@ -7,7 +7,16 @@
 //
 
 #import "CHXLoginHandler.h"
+#import "CHXLoginRequest.h"
 
 @implementation CHXLoginHandler
-- (void)hanldeParmaters:(CHXUser *)parmaters withSuccess:(HandleSuccessBlock)success failure:(HandleFailureBlock)failure {}
+
++ (void)handleRequest:(CHXBaseRequest *)request withSuccess:(HandlerSuccessCompletionBlock)success failure:(HandlerFailureCompletionBlock)failure {
+	[request startRequestWithSuccess:^(id echoplexData) {
+		success(echoplexData);
+	} failue:^(id errorMessage) {
+		failure(errorMessage);
+	}];
+}
+
 @end

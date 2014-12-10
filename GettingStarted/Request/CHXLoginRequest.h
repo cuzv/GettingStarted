@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
-#import "CHXRequest.h"
+#import "CHXBaseRequest.h"
 
-@interface CHXLoginRequest : CHXRequest
+@interface CHXLoginRequest : CHXBaseRequest
+
+- (instancetype)initWithUsername:(NSString *)userName password:(NSString *)password;
 
 @end

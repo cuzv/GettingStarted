@@ -7,7 +7,67 @@
 //
 
 #import "CHXRequest.h"
+#import "CHXRequestProxy.h"
+
+@interface CHXRequest ()
+@end
 
 @implementation CHXRequest
+
+#pragma mark - subclass override
+
+- (NSDictionary *)requestParameters {
+	return nil;
+}
+
+- (NSString *)baseURLString {
+	return @"";
+}
+
+- (NSString *)specificURLString {
+	return @"";
+}
+
+- (CHXRequestMethod)requestMehtod {
+	return CHXRequestMethodPost;
+}
+
+- (CHXRequestSerializerType)requestSerializerType {
+	return CHXRequestSerializerTypeJSON;
+}
+
+- (CHXResponseSerializerType)responseSerializerType {
+	return CHXResponseSerializerTypeJSON;
+}
+
+- (AFConstructingBlock)constructingBodyBlock {
+	return nil;
+}
+
+- (BOOL)needCache {
+	return YES;
+}
+
+- (NSTimeInterval)cacheDuration {
+	return 60 * 3;
+}
+
+#pragma mark - Request
+
+- (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {
+	[self __setCompletionBlockWithSuccess:success failue:failure];
+	[self __startRequest];
+}
+
+#pragma mark - Private
+
+- (void)__setCompletionBlockWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {
+	self.requestSuccessCompletionBlock = success;
+	self.requestFailureCompletionBlock = failure;
+}
+
+- (void)__startRequest {
+	[[CHXRequestProxy sharedInstance] addRequest:self];
+}
 
 @end

@@ -7,32 +7,122 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AFNetworking.h"
 
-#pragma mark - 
-
+// HTTP Method
 typedef NS_ENUM(NSInteger, CHXRequestMethod) {
-	CHXRequestMethodGet = 0,
-	CHXRequestMethodPost,
-	CHXRequestMethodHead
+	CHXRequestMethodPost = 0,
+	CHXRequestMethodGet,
+	CHXRequestMethodPut,
+	CHXRequestMethodDelete,
+	CHXRequestMethodPatch
 };
 
-#pragma mark - 
+typedef NS_ENUM(NSInteger, CHXRequestSerializerType) {
+	CHXRequestSerializerTypeJSON         = 0,
+	CHXRequestSerializerTypePropertyList,
+	CHXRequestSerializerTypeXML          = CHXRequestSerializerTypePropertyList,
+	CHXRequestSerializerTypeBase64,
+	CHXRequestSerializerTypeMd5,
+	CHXRequestSerializerTypeSha1,
+	CHXRequestSerializerTypeNone
+};
 
-@protocol CHXGeneralPublicField <NSObject>
-
-@required
-- (NSString *)baseUrl;
-- (NSString *)requestUrl;
-- (id)requestParameters;
-- (CHXRequestMethod)requestMethod;
-
-@optional
-- (NSString *)cdnUrl;
-
-@end
+typedef NS_ENUM(NSInteger, CHXResponseSerializerType) {
+	CHXResponseSerializerTypeJSON = 0,
+	CHXResponseSerializerTypePropertyList,
+	CHXResponseSerializerTypeXMLParser,
+	CHXResponseSerializerTypeXMLDocument,
+	CHXResponseSerializerTypeImage,
+	CHXResponseSerializerTypeCompound,
+	CHXResponseSerializerTypeNone
+};
 
 #pragma mark -
 
+typedef void(^RequestSuccessCompletionBlock)(id echoplexData);
+typedef void(^RequestFailureCompletionBlock)(id errorMessage);
+typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
+
+#pragma mark -
+
+// This class collection a request infos what needed, by subclass and override methods
 @interface CHXRequest : NSObject
 
+
+#pragma mark - Subclass should overwrite thoese methods
+#pragma mark Collect request API infos
+
+/**
+ *  组装请求参数
+ *
+ *  @return AF 请求参数
+ */
+- (NSDictionary *)requestParameters;
+
+/**
+ *  请求公共 URL 字符串
+ *
+ *  @return 请求公共 URL 字符串
+ */
+- (NSString *)baseURLString;
+
+/**
+ *  请求特有 URL 字符串
+ *
+ *  @return 请求特有 URL 字符串
+ */
+- (NSString *)specificURLString;
+
+/**
+ *  请求方式
+ *
+ *  @return 请求方式
+ */
+- (CHXRequestMethod)requestMehtod;
+
+/**
+ *  请求参数序列化类型
+ *
+ *  @return 序列化类型
+ */
+- (CHXRequestSerializerType)requestSerializerType;
+
+/**
+ *  Default value is CHXResponseSerializerTypeJSON
+ *
+ *  @return 相应参数序列化类型
+ */
+- (CHXResponseSerializerType)responseSerializerType;
+
+/**
+ *  POST 数据提交 Block
+ *
+ *  @return POST 数据提交 Block
+ */
+- (AFConstructingBlock)constructingBodyBlock;
+
+/**
+ *  是否需要缓存
+ *
+ *  @return Default value is YES
+ */
+- (BOOL)needCache;
+
+/**
+ *  缓存时长
+ *
+ *  @return 缓存时长
+ */
+- (NSTimeInterval)cacheDuration;
+
+#pragma mark - Request
+
+- (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure;
+
+@property (nonatomic, copy) RequestSuccessCompletionBlock requestSuccessCompletionBlock;
+@property (nonatomic, copy) RequestFailureCompletionBlock requestFailureCompletionBlock;
+
+
 @end
+

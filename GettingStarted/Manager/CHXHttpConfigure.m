@@ -13,7 +13,8 @@
 NSTimeInterval const CHXTimeoutInterval = 10.0f;
 
 //NSString *const CHXHTTPDebugBaseURL = @"http://www.raywenderlich.com/demos/weather_sample/";
-NSString *const CHXHTTPDebugBaseURL = @"http://www.team168.com/servlet/ci/3/";
+//NSString *const CHXHTTPDebugBaseURL = @"http://www.team168.com/servlet/ci/3/";
+NSString *const CHXHTTPDebugBaseURL = @"http://10.128.8.250:8080/wfarm/";
 //NSString *const CHXHTTPDebugBaseURL = @"http://192.243.119.92/";
 NSString *const CHXHTTPRealseBaseURL = @"";
 

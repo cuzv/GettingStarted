@@ -13,7 +13,7 @@
 
 @interface CHXGlobalServices : NSObject
 
-#pragma mark -
+#pragma mark - System infos
 
 /**
  *  获取设备系统版本号，Apple code
@@ -36,7 +36,7 @@ float chx_appBuildNumber();
  */
 float chx_appVersionNumber();
 
-#pragma mark -
+#pragma mark - Device Screen
 
 /**
  *  获取设备屏幕dounds
@@ -59,7 +59,7 @@ CGFloat chx_screenWidth();
  */
 CGFloat chx_screenHeight();
 
-#pragma mark -
+#pragma mark - Angle & Radian
 
 /**
  *  角度转弧度
@@ -79,7 +79,7 @@ CGFloat chx_radianFromAngle(CGFloat angle);
  */
 CGFloat chx_angleFromRadian(CGFloat radian);
 
-#pragma mark - 
+#pragma mark - Sandbox directory
 
 /**
  *  获取沙盒文档目录
@@ -123,7 +123,7 @@ NSString *chx_musicDirectory();
  */
 NSString *chx_picturesDirectory();
 
-#pragma mark -
+#pragma mark - UniqueIdentifier
 
 /**
  *  生成唯一字符串
@@ -132,7 +132,7 @@ NSString *chx_picturesDirectory();
  */
 NSString *chx_uniqueIdentifier();
 
-#pragma mark - 
+#pragma mark - Perform external jump
 
 /**
  *  拨打电话
@@ -169,14 +169,14 @@ void chx_emailTo(NSString *receiverEmail);
  */
 void chx_openAppStoreByAppLink(NSURL *appLink);
 
-#pragma mark - 
+#pragma mark - Clear badge
 
 /**
  *  清除徽标
  */
 void chx_clearApplicationIconBadge();
 
-#pragma mark -
+#pragma mark - Hairline for bar
 
 /**
  *  获取 TabBar 顶部那一条灰线
@@ -196,7 +196,7 @@ UIView *chx_hairLineForTabBar(UITabBar *tabBar);
  */
 UIView *chx_hairLineForNavigationBar(UINavigationBar *navigationBar);
 
-#pragma mark -
+#pragma mark - Asynchronization get image
 
 /**
  *  异步获取图片
@@ -207,7 +207,7 @@ UIView *chx_hairLineForNavigationBar(UINavigationBar *navigationBar);
  */
 void chx_imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloadedImage), void (^errorBlock)(NSError *error));
 
-#pragma mark -
+#pragma mark - Swizzle
 
 /**
  *  Swizzle 实例方法
@@ -227,10 +227,19 @@ void chx_instanceMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSe
  */
 void chx_classMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector);
 
-#pragma mark - 
+#pragma mark - Collection spacing
 
 CGFloat chx_minimumInteritemSpacingForCollection(CGFloat collectionViewWidth, CGFloat cellWidth, CGFloat horizontalCount);
 
+#pragma mark - Autolayout helpers
+
+/**
+ *  添加左对齐约束
+ *
+ *  @param views    需要左对齐的视图
+ *  @param distance 垂直距离
+ */
+void chx_leftAlignAndVerticallySpaceOutViews(NSArray *views, CGFloat distance);
 
 @end
 
