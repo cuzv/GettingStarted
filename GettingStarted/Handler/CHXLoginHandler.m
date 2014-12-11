@@ -12,8 +12,8 @@
 @implementation CHXLoginHandler
 
 + (void)handleRequest:(CHXBaseRequest *)request withSuccess:(HandlerSuccessCompletionBlock)success failure:(HandlerFailureCompletionBlock)failure {
-	[request startRequestWithSuccess:^(id echoplexData) {
-		success(echoplexData);
+	[request startRequestWithSuccess:^(id responseData) {
+		success(responseData);
 	} failue:^(id errorMessage) {
 		failure(errorMessage);
 	}];

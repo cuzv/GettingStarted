@@ -19,7 +19,6 @@
 		466B16741A3896C000EA9EA0 /* CHXBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16731A3896C000EA9EA0 /* CHXBaseNavigationController.m */; };
 		466B16771A38970800EA9EA0 /* CHXBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16761A38970800EA9EA0 /* CHXBaseTabBarController.m */; };
 		466B167A1A38971900EA9EA0 /* CHXBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16791A38971900EA9EA0 /* CHXBaseView.m */; };
-		466B167D1A38A46A00EA9EA0 /* CHXRequestConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B167C1A38A46A00EA9EA0 /* CHXRequestConfiguration.m */; };
 		4672AB3D1A2AFF6400876B74 /* CAAnimationExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB3C1A2AFF6400876B74 /* CAAnimationExtension.m */; };
 		4672AB801A2BFD4600876B74 /* CHXLoginHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB7F1A2BFD4600876B74 /* CHXLoginHandler.m */; };
 		4672AB881A2BFE2F00876B74 /* CHXRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB871A2BFE2F00876B74 /* CHXRequest.m */; };
@@ -121,8 +120,6 @@
 		466B16761A38970800EA9EA0 /* CHXBaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXBaseTabBarController.m; sourceTree = "<group>"; };
 		466B16781A38971900EA9EA0 /* CHXBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXBaseView.h; sourceTree = "<group>"; };
 		466B16791A38971900EA9EA0 /* CHXBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXBaseView.m; sourceTree = "<group>"; };
-		466B167B1A38A46A00EA9EA0 /* CHXRequestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXRequestConfiguration.h; sourceTree = "<group>"; };
-		466B167C1A38A46A00EA9EA0 /* CHXRequestConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXRequestConfiguration.m; sourceTree = "<group>"; };
 		4672AB3B1A2AFF6400876B74 /* CAAnimationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAnimationExtension.h; sourceTree = "<group>"; };
 		4672AB3C1A2AFF6400876B74 /* CAAnimationExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAAnimationExtension.m; sourceTree = "<group>"; };
 		4672AB7E1A2BFD4600876B74 /* CHXLoginHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXLoginHandler.h; sourceTree = "<group>"; };
@@ -299,8 +296,6 @@
 				4672AB871A2BFE2F00876B74 /* CHXRequest.m */,
 				46046C521A2E128900150636 /* CHXRequestProxy.h */,
 				46046C531A2E128900150636 /* CHXRequestProxy.m */,
-				466B167B1A38A46A00EA9EA0 /* CHXRequestConfiguration.h */,
-				466B167C1A38A46A00EA9EA0 /* CHXRequestConfiguration.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -832,7 +827,6 @@
 				46F11F1E1A1B8D2E009321A0 /* CHXArrayDataSource.m in Sources */,
 				46F11EFF1A1B81A8009321A0 /* UIViewExtension.m in Sources */,
 				4672AB881A2BFE2F00876B74 /* CHXRequest.m in Sources */,
-				466B167D1A38A46A00EA9EA0 /* CHXRequestConfiguration.m in Sources */,
 				46F11F641A1B917E009321A0 /* AwesomeMenu.m in Sources */,
 				466B16741A3896C000EA9EA0 /* CHXBaseNavigationController.m in Sources */,
 				46F11F431A1B903A009321A0 /* CHXReachabilityManager.m in Sources */,

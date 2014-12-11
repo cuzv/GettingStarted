@@ -14,30 +14,26 @@
 
 @implementation CHXRequest
 
-#pragma mark - subclass override
+#pragma mark - Subclass should overwrite
 
 - (NSDictionary *)requestParameters {
 	return nil;
 }
 
 - (NSString *)baseURLString {
-	return @"";
+	return nil;
 }
 
 - (NSString *)specificURLString {
-	return @"";
+	return nil;;
 }
 
 - (CHXRequestMethod)requestMehtod {
-	return CHXRequestMethodPost;
+	return CHXRequestMethodNone;
 }
 
 - (CHXRequestSerializerType)requestSerializerType {
-	return CHXRequestSerializerTypeJSON;
-}
-
-- (CHXResponseSerializerType)responseSerializerType {
-	return CHXResponseSerializerTypeJSON;
+	return CHXRequestSerializerTypeNone;
 }
 
 - (AFConstructingBlock)constructingBodyBlock {
@@ -52,14 +48,34 @@
 	return 60 * 3;
 }
 
+#pragma mark - Collect response infos
+
+- (CHXResponseSerializerType)responseSerializerType {
+	return CHXResponseSerializerTypeNone;
+}
+
+- (NSString *)responseApiVersionFieldName {
+	return nil;
+}
+
+- (NSString *)responseDataFieldName {
+	return nil;
+}
+
+- (NSString *)responseCodeFieldName {
+	return nil;
+}
+
+- (NSString *)responseMessageFieldName {
+	return nil;
+}
+
 #pragma mark - Request
 
 - (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {
 	[self __setCompletionBlockWithSuccess:success failue:failure];
 	[self __startRequest];
 }
-
-#pragma mark - Private
 
 - (void)__setCompletionBlockWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {
 	self.requestSuccessCompletionBlock = success;

@@ -15,7 +15,9 @@ typedef NS_ENUM(NSInteger, CHXRequestMethod) {
 	CHXRequestMethodGet,
 	CHXRequestMethodPut,
 	CHXRequestMethodDelete,
-	CHXRequestMethodPatch
+	CHXRequestMethodPatch,
+	CHXRequestMethodHead,
+	CHXRequestMethodNone
 };
 
 typedef NS_ENUM(NSInteger, CHXRequestSerializerType) {
@@ -40,7 +42,7 @@ typedef NS_ENUM(NSInteger, CHXResponseSerializerType) {
 
 #pragma mark -
 
-typedef void(^RequestSuccessCompletionBlock)(id echoplexData);
+typedef void(^RequestSuccessCompletionBlock)(id responseData);
 typedef void(^RequestFailureCompletionBlock)(id errorMessage);
 typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 
@@ -51,7 +53,8 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 
 
 #pragma mark - Subclass should overwrite thoese methods
-#pragma mark Collect request API infos
+
+#pragma mark - Collect request infos
 
 /**
  *  组装请求参数
@@ -84,16 +87,9 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 /**
  *  请求参数序列化类型
  *
- *  @return 序列化类型
+ *  @return 序列化器类型
  */
 - (CHXRequestSerializerType)requestSerializerType;
-
-/**
- *  Default value is CHXResponseSerializerTypeJSON
- *
- *  @return 相应参数序列化类型
- */
-- (CHXResponseSerializerType)responseSerializerType;
 
 /**
  *  POST 数据提交 Block
@@ -116,6 +112,43 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
  */
 - (NSTimeInterval)cacheDuration;
 
+#pragma mark - Collect response infos
+
+/**
+ *  请求回送数据反序列化器类型
+ *
+ *  @return 请求回送数据反序列化器类型
+ */
+- (CHXResponseSerializerType)responseSerializerType;
+
+/**
+ *  回送数据接口 API 字段名称
+ *
+ *  @return 回送数据接口 API 字段名称
+ */
+- (NSString *)responseApiVersionFieldName;
+
+/**
+ *  回送数据接口 回送主要数据 字段名称
+ *
+ *  @return 回送数据接口 回送主要数据 字段名称
+ */
+- (NSString *)responseDataFieldName;
+
+/**
+ *  回送数据接口 响应编码 字段名称
+ *
+ *  @return 回送数据接口 响应编码 字段名称
+ */
+- (NSString *)responseCodeFieldName;
+
+/**
+ *  回送数据接口 响应消息 字段名称
+ *
+ *  @return 回送数据接口 响应消息 字段名称
+ */
+- (NSString *)responseMessageFieldName;
+
 #pragma mark - Request
 
 - (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure;
@@ -123,6 +156,7 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 @property (nonatomic, copy) RequestSuccessCompletionBlock requestSuccessCompletionBlock;
 @property (nonatomic, copy) RequestFailureCompletionBlock requestFailureCompletionBlock;
 
+@property (nonatomic, weak) NSURLSessionTask *requestSessionTask;
 
 @end
 

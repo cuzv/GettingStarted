@@ -10,12 +10,10 @@
 
 @implementation CHXBaseRequest
 
-- (NSString *)baseURLString {
-	return @"http://www.foobar.com/demo/json/3/";
-}
+#pragma mark - 
 
-- (NSString *)specificURLString {
-	return nil;
+- (NSString *)baseURLString {
+	return @"http://10.128.8.250:8080/wfarm/";
 }
 
 - (CHXRequestMethod)requestMehtod {
@@ -24,6 +22,28 @@
 
 - (CHXRequestSerializerType)requestSerializerType {
 	return CHXRequestSerializerTypeJSON;
+}
+
+#pragma mark -
+
+- (CHXResponseSerializerType)responseSerializerType {
+	return CHXResponseSerializerTypeJSON;
+}
+
+- (NSString *)responseApiVersionFieldName {
+	return @"api";
+}
+
+- (NSString *)responseCodeFieldName {
+	return @"rspCode";
+}
+
+- (NSString *)responseDataFieldName {
+	return @"rspData";
+}
+
+- (NSString *)responseMessageFieldName {
+	return @"rspMsg";
 }
 
 

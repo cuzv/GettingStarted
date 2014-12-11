@@ -34,11 +34,11 @@
 }
 
 - (NSString *)baseURLString {
-	return  @"http://10.128.8.250:8080/wfarm/customerLogin/json/1";
+	return  @"http://10.128.8.250:8080/wfarm/";
 }
 
 - (NSString *)specificURLString {
-	return @"";
+	return @"customerLogin/json/1";
 }
 
 - (AFConstructingBlock)constructingBodyBlock {
