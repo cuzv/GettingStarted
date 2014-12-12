@@ -9,10 +9,7 @@
 #import "CHXRequestProxy.h"
 #import "AFNetworking.h"
 #import "CHXRequest.h"
-
-#ifndef DEBUG
-#define NSLog(format, ...) NSLog(@"")
-#endif
+#import "CHXMacro.h"
 
 const NSInteger kMaxConcurrentOperationCount = 4;
 
@@ -23,8 +20,8 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 
 @implementation CHXRequestProxy
 
-static CHXRequestProxy *_sharedInstance;
 + (instancetype)sharedInstance {
+	static CHXRequestProxy *_sharedInstance;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		_sharedInstance = [self new];
@@ -55,10 +52,6 @@ static CHXRequestProxy *_sharedInstance;
 	[[CHXRequestProxy sharedInstance] addRequest:[CHXRequest new]];
 }
 
-- (BOOL)__isNetworkReachable {
-	return [_sessionManager.reachabilityManager isReachable];
-}
-
 #pragma mark -
 
 - (void)addRequest:(CHXRequest *)request {
@@ -69,6 +62,7 @@ static CHXRequestProxy *_sharedInstance;
 		if (request.requestFailureCompletionBlock) {
 			request.requestFailureCompletionBlock(errorDescription);
 		}
+		[self __clearCompletionBlockForRequest:request];
 		NSLog(@"%@", errorDescription);
 		return;
 	}
@@ -160,6 +154,18 @@ static CHXRequestProxy *_sharedInstance;
 
 	// Record the request task
 	_dataTaskContainer[@(dataTask.taskIdentifier)] = request;
+	
+	// For debug
+	NSLog(@"\n");
+	NSLog(@"Request Start!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+	NSLog(@"Request API URL: %@\n", dataTask.currentRequest.URL);
+	NSLog(@"Request parameters: %@\n", requestParameters);
+	NSLog(@"Reuquest Header: %@\n", dataTask.currentRequest.allHTTPHeaderFields);
+	NSLog(@"Request Log End!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+}
+
+- (BOOL)__isNetworkReachable {
+	return [_sessionManager.reachabilityManager isReachable];
 }
 
 - (NSString *)__requestAbsoluteURLStringWithRequest:(CHXRequest *)request {
@@ -217,23 +223,66 @@ static CHXRequestProxy *_sharedInstance;
 // TODO
 - (void)__handleRequestSuccessWithSessionDataTask:(NSURLSessionTask *)task responseObject:(id)responseObject {
 	CHXRequest *request = [_dataTaskContainer objectForKey:@(task.taskIdentifier)];
+	NSParameterAssert(request);
+	
 	if (request.requestSuccessCompletionBlock) {
+		NSString *responseCodeFieldName = [request responseCodeFieldName];
+		NSParameterAssert(responseCodeFieldName);
+		NSParameterAssert(responseCodeFieldName.length);
+		
+		NSString *responseCode = [responseObject objectForKey:responseCodeFieldName];
+		if ([responseCode isEqualToString:@"0"]) {
+			NSString *responseDataFieldName = [request responseDataFieldName];
+			NSParameterAssert(responseDataFieldName);
+			NSParameterAssert(responseDataFieldName.length);
+			
+			id responseData = [responseObject objectForKey:responseDataFieldName];
+			request.requestSuccessCompletionBlock(responseData);
+		} else {
+			if (request.requestFailureCompletionBlock) {
+				NSString *responseMessageFieldName = [request responseMessageFieldName];
+				NSParameterAssert(responseMessageFieldName);
+				NSParameterAssert(responseMessageFieldName.length);
+
+				id responseMessage = [responseObject objectForKey:responseMessageFieldName];
+				request.requestFailureCompletionBlock(responseMessage);
+			}
+		}
 		request.requestSuccessCompletionBlock(responseObject);
 	}
-	[self __removeContainForRequest:request];
+	[self __prepareDeallocRequest:request];
 }
 
 // TODO
 - (void)__handleRequestFailureWithSessionDataTask:(NSURLSessionTask *)task error:(NSError *)error {
+	NSLog(@"Request error: %@", error);
 	CHXRequest *request = [_dataTaskContainer objectForKey:@(task.taskIdentifier)];
+	NSParameterAssert(request);
+	
 	if (request.requestFailureCompletionBlock) {
 		request.requestFailureCompletionBlock([error localizedDescription]);
 	}
+	[self __prepareDeallocRequest:request];
+}
+
+- (void)__prepareDeallocRequest:(CHXRequest *)request {
+	// Remove contain from data task container
 	[self __removeContainForRequest:request];
+
+	// Clear callback block
+	[self __clearCompletionBlockForRequest:request];
+	
+	// Break retain data task
+	request.requestSessionTask = nil;
 }
 
 - (void)__removeContainForRequest:(CHXRequest *)request {
 	[_dataTaskContainer removeObjectForKey:@(request.requestSessionTask.taskIdentifier)];
+}
+
+- (void)__clearCompletionBlockForRequest:(CHXRequest *)request {
+	request.requestSuccessCompletionBlock = nil;
+	request.requestFailureCompletionBlock = nil;
 }
 
 #pragma mark -

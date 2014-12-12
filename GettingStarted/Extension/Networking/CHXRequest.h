@@ -181,7 +181,9 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
  */
 - (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure;
 
-
-@property (nonatomic, strong) NSURLSessionTask *requestSessionTask;
+/**
+ *  持有请求句柄，子类不要调用或者覆写
+ */
+@property (nonatomic, strong, readwrite) NSURLSessionTask *requestSessionTask;
 
 @end

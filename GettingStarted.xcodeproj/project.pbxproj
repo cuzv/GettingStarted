@@ -100,6 +100,7 @@
 		4608A3EE1A1CF75000AF5873 /* NSDictionaryExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSDictionaryExtension.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4608A3F01A1CF8EC00AF5873 /* NSDataExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = NSDataExtension.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSDataExtension.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		461820DC1A3B47000087B602 /* CHXMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHXMacro.h; sourceTree = "<group>"; };
 		465C07A51A24A5DE00ABE213 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		465C07A61A24A5DE00ABE213 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		46602C7F1A1C3E5800307EEC /* CHXGlobalServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXGlobalServices.h; sourceTree = "<group>"; };
@@ -296,6 +297,7 @@
 				4672AB871A2BFE2F00876B74 /* CHXRequest.m */,
 				46046C521A2E128900150636 /* CHXRequestProxy.h */,
 				46046C531A2E128900150636 /* CHXRequestProxy.m */,
+				461820DC1A3B47000087B602 /* CHXMacro.h */,
 			);
 			path = Networking;
 			sourceTree = "<group>";

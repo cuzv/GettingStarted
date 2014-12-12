@@ -8,10 +8,7 @@
 
 #import "CHXRequest.h"
 #import "CHXRequestProxy.h"
-
-#ifndef DEBUG
-#define NSLog(format, ...) NSLog(@"")
-#endif
+#import "CHXMacro.h"
 
 @interface CHXRequest ()
 @end

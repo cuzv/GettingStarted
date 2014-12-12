@@ -274,18 +274,17 @@ void chx_leftAlignAndVerticallySpaceOutViews(NSArray *views, CGFloat distance);
 #define kFontCaption1 [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1]
 #define kFontCaption2 [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2]
 
-// A better version of NSLog
+//  A better version of NSLog
 #if DEBUG
-#define NSLog(format, ...)                                                      \
-do {                                                                            \
-fprintf(stderr, "<%s : %d> %s\n",                                           \
-[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
-__LINE__, __func__);                                                        \
-(NSLog)((format), ##__VA_ARGS__);                                           \
-} while (0)
+#define NSLog(FORMAT, ...) \
+do { \
+fprintf(stderr,"%s: %d: %s\n", \
+[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], \
+__LINE__, \
+[[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]); \
+} while(0)
 #else
-#define NSLog(format, ...) NSLog(@"")
+#define NSLog(FORMAT, ...) NSLog(@"")
 #endif
-
 
 #endif
