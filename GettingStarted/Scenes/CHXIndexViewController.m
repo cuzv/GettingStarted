@@ -47,7 +47,6 @@
 @property (nonatomic, strong) CHXBadgeView *badgeView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
-
 @end
 
 @implementation CHXIndexViewController
@@ -63,7 +62,7 @@
 	
 //	[self testBorder];
 	
-	[self testNetworking];
+	
 }
 
 - (void)testBadgeView {
@@ -102,16 +101,19 @@
 //	[view chx_setBorderLineColor:[UIColor greenColor] edge:UIRectEdgeLeft | UIRectEdgeRight];
 }
 
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	[self testNetworking];
+}
+
 - (void)testNetworking {
-	[CHXLoginHandler handleRequest:({
-		CHXLoginRequest *request = [[CHXLoginRequest alloc] initWithUsername:@"18583221776" password:@"123456"];
-		request;
-	}) withSuccess:^(CHXBaseModel *model) {
-		
-	} failure:^(NSString *errorDescription) {
-		
+	CHXLoginRequest *request = [[CHXLoginRequest alloc] initWithUsername:@"18583221776" password:@"123456"];
+	[CHXLoginHandler handleRequest:request withSuccess:^(id modelObject) {
+		NSLog(@"OK");
+	} failure:^(id errorMessage) {
+		NSLog(@"%@", errorMessage);
+		NSLog(@"ERROR");
 	}];
-	
 	
 //	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //	manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -122,9 +124,5 @@
 //		NSLog(@"%@", error.localizedDescription);
 //	}];
 }
-
-
-
-
 
 @end

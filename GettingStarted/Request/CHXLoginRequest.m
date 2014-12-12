@@ -26,18 +26,17 @@
 	return self;
 }
 
-
 - (NSDictionary *)requestParameters {
 	return @{@"uAccount":_username,
 			 @"uPass":_password
 			 };
 }
 
-- (NSString *)baseURLString {
+- (NSString *)requestBaseURLString {
 	return  @"http://10.128.8.250:8080/wfarm/";
 }
 
-- (NSString *)specificURLString {
+- (NSString *)requestSpecificURLString {
 	return @"customerLogin/json/1";
 }
 
@@ -48,6 +47,10 @@
 	return ^(id<AFMultipartFormData> formData) {
 		
 	};
+}
+
+- (NSTimeInterval)requestTimeoutInterval {
+	return 2;
 }
 
 

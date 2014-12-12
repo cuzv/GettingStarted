@@ -12,7 +12,7 @@
 
 #pragma mark - 
 
-- (NSString *)baseURLString {
+- (NSString *)requestBaseURLString {
 	return @"http://10.128.8.250:8080/wfarm/";
 }
 

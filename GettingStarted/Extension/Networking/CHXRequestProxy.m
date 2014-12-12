@@ -10,8 +10,11 @@
 #import "AFNetworking.h"
 #import "CHXRequest.h"
 
+#ifndef DEBUG
+#define NSLog(format, ...) NSLog(@"")
+#endif
+
 const NSInteger kMaxConcurrentOperationCount = 4;
-const NSTimeInterval kTimeoutInterval = 3.0f; // FIXME
 
 @interface CHXRequestProxy ()
 @property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
@@ -20,8 +23,8 @@ const NSTimeInterval kTimeoutInterval = 3.0f; // FIXME
 
 @implementation CHXRequestProxy
 
+static CHXRequestProxy *_sharedInstance;
 + (instancetype)sharedInstance {
-	static CHXRequestProxy *_sharedInstance;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		_sharedInstance = [self new];
@@ -34,18 +37,46 @@ const NSTimeInterval kTimeoutInterval = 3.0f; // FIXME
 	if (self = [super init]) {
 		_sessionManager = [AFHTTPSessionManager manager];
 		_sessionManager.operationQueue.maxConcurrentOperationCount = kMaxConcurrentOperationCount;
+		[_sessionManager.reachabilityManager startMonitoring];
+		[_sessionManager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+			NSLog(@"AFNetworkReachabilityStatus: %@", AFStringFromNetworkReachabilityStatus(status));
+		}];
 		_dataTaskContainer = [NSMutableDictionary new];
 	}
 	
 	return self;
 }
 
+/**
+ *  `AFNetworkReachabilityManager` first request network status is always `AFNetworkReachabilityStatusUnknown`
+ *  So, let it checking before formal request by start a invalid request.
+ */
++ (void)load {
+	[[CHXRequestProxy sharedInstance] addRequest:[CHXRequest new]];
+}
+
+- (BOOL)__isNetworkReachable {
+	return [_sessionManager.reachabilityManager isReachable];
+}
+
 #pragma mark -
 
 - (void)addRequest:(CHXRequest *)request {
+	// Checking Networking status
+	if (![self __isNetworkReachable]) {
+		// The first time description is not correct !
+		NSString *errorDescription = @"The network is currently unreachable.";
+		if (request.requestFailureCompletionBlock) {
+			request.requestFailureCompletionBlock(errorDescription);
+		}
+		NSLog(@"%@", errorDescription);
+		return;
+	}
+	
 	// HTTP Method
 	CHXRequestMethod requestMethod = [request requestMehtod];
-	NSParameterAssert(requestMethod != CHXRequestMethodNone);
+	NSAssert(requestMethod < CHXRequestMethodNone, @"Unsupport Request Method");
+	NSAssert(requestMethod >= CHXRequestMethodPost, @"Unsupport Request Method");
 	
 	// HTTP API absolute URL
 	NSString *requestAbsoluteURLString = [self __requestAbsoluteURLStringWithRequest:request];
@@ -62,35 +93,62 @@ const NSTimeInterval kTimeoutInterval = 3.0f; // FIXME
 	NSParameterAssert(requestParameters);
 	
 	// Start request
-	NSURLSessionDataTask *dataTask = nil;
+	NSURLSessionTask *dataTask = nil;
 	switch (requestMethod) {
 		case CHXRequestMethodPost: {
-			dataTask = [_sessionManager POST:requestAbsoluteURLString parameters:requestParameters success:^(NSURLSessionDataTask *task, id responseObject) {
+			if (constructingBodyBlock) {
+				dataTask = [_sessionManager POST:requestAbsoluteURLString parameters:requestParameters constructingBodyWithBlock:constructingBodyBlock success:^(NSURLSessionDataTask *task, id responseObject) {
+					[self __handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
+				} failure:^(NSURLSessionDataTask *task, NSError *error) {
+					[self __handleRequestFailureWithSessionDataTask:task error:error];
+				}];
+			} else {
+				dataTask = [_sessionManager POST:requestAbsoluteURLString parameters:requestParameters success:^(NSURLSessionDataTask *task, id responseObject) {
+					[self __handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
+				} failure:^(NSURLSessionDataTask *task, NSError *error) {
+					[self __handleRequestFailureWithSessionDataTask:task error:error];
+				}];
+			}
+		}
+			break;
+		case CHXRequestMethodGet: {
+			dataTask = [_sessionManager GET:requestAbsoluteURLString parameters:requestParameters success:^(NSURLSessionDataTask *task, id responseObject) {
 				[self __handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
 			} failure:^(NSURLSessionDataTask *task, NSError *error) {
 				[self __handleRequestFailureWithSessionDataTask:task error:error];
 			}];
 		}
 			break;
-			
-		case CHXRequestMethodGet: {
-			
-		}
-			break;
 		case CHXRequestMethodPut: {
-			
+			dataTask = [_sessionManager PUT:requestAbsoluteURLString parameters:requestParameters success:^(NSURLSessionDataTask *task, id responseObject) {
+				[self __handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
+			} failure:^(NSURLSessionDataTask *task, NSError *error) {
+				[self __handleRequestFailureWithSessionDataTask:task error:error];
+			}];
 		}
 			break;
 		case CHXRequestMethodDelete: {
-			
+			dataTask = [_sessionManager DELETE:requestAbsoluteURLString parameters:requestParameters success:^(NSURLSessionDataTask *task, id responseObject) {
+				[self __handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
+			} failure:^(NSURLSessionDataTask *task, NSError *error) {
+				[self __handleRequestFailureWithSessionDataTask:task error:error];
+			}];
 		}
 			break;
 		case CHXRequestMethodPatch: {
-			
+			dataTask = [_sessionManager PATCH:requestAbsoluteURLString parameters:requestParameters success:^(NSURLSessionDataTask *task, id responseObject) {
+				[self __handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
+			} failure:^(NSURLSessionDataTask *task, NSError *error) {
+				[self __handleRequestFailureWithSessionDataTask:task error:error];
+			}];
 		}
 			break;
 		case CHXRequestMethodHead: {
-			
+			dataTask = [_sessionManager HEAD:requestAbsoluteURLString parameters:requestAbsoluteURLString success:^(NSURLSessionDataTask *task) {
+				[self __handleRequestSuccessWithSessionDataTask:task responseObject:nil];
+			} failure:^(NSURLSessionDataTask *task, NSError *error) {
+				[self __handleRequestFailureWithSessionDataTask:task error:error];
+			}];
 		}
 			break;
 		default:
@@ -106,12 +164,12 @@ const NSTimeInterval kTimeoutInterval = 3.0f; // FIXME
 
 - (NSString *)__requestAbsoluteURLStringWithRequest:(CHXRequest *)request {
 	// HTTP API BaseURLString
-	NSString *baseRULString = [request baseURLString];
+	NSString *baseRULString = [request requestBaseURLString];
 	NSParameterAssert(baseRULString);
 	NSParameterAssert(baseRULString.length);
 	
 	// HTTP API specificURLString
-	NSString *specificURLString = [request specificURLString];
+	NSString *specificURLString = [request requestSpecificURLString];
 	NSParameterAssert(specificURLString);
 	NSParameterAssert(specificURLString.length);
 
@@ -138,7 +196,7 @@ const NSTimeInterval kTimeoutInterval = 3.0f; // FIXME
 			break;
 	}
 	
-	_sessionManager.requestSerializer.timeoutInterval = kTimeoutInterval;
+	_sessionManager.requestSerializer.timeoutInterval = [request requestTimeoutInterval];
 }
 
 - (void)__settingupResponseSerializerTypeByRequest:(CHXRequest *)request {
@@ -157,21 +215,32 @@ const NSTimeInterval kTimeoutInterval = 3.0f; // FIXME
 }
 
 // TODO
-- (void)__handleRequestSuccessWithSessionDataTask:(NSURLSessionDataTask *)task responseObject:(id)responseObject {
+- (void)__handleRequestSuccessWithSessionDataTask:(NSURLSessionTask *)task responseObject:(id)responseObject {
 	CHXRequest *request = [_dataTaskContainer objectForKey:@(task.taskIdentifier)];
+	if (request.requestSuccessCompletionBlock) {
+		request.requestSuccessCompletionBlock(responseObject);
+	}
+	[self __removeContainForRequest:request];
 }
 
 // TODO
-- (void)__handleRequestFailureWithSessionDataTask:(NSURLSessionDataTask *)task error:(NSError *)error {
+- (void)__handleRequestFailureWithSessionDataTask:(NSURLSessionTask *)task error:(NSError *)error {
 	CHXRequest *request = [_dataTaskContainer objectForKey:@(task.taskIdentifier)];
+	if (request.requestFailureCompletionBlock) {
+		request.requestFailureCompletionBlock([error localizedDescription]);
+	}
+	[self __removeContainForRequest:request];
 }
 
+- (void)__removeContainForRequest:(CHXRequest *)request {
+	[_dataTaskContainer removeObjectForKey:@(request.requestSessionTask.taskIdentifier)];
+}
 
 #pragma mark -
 
 - (void)cancelRequest:(CHXRequest *)request {
 	[request.requestSessionTask cancel];
-	[_dataTaskContainer removeObjectForKey:@(request.requestSessionTask.taskIdentifier)];
+	[self __removeContainForRequest:request];
 }
 
 #pragma mark -
@@ -183,7 +252,7 @@ const NSTimeInterval kTimeoutInterval = 3.0f; // FIXME
 	
 	[_sessionManager.operationQueue cancelAllOperations];
 	
-	[_dataTaskContainer removeAllObjects];
+	[self.dataTaskContainer removeAllObjects];
 }
 
 @end

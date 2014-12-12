@@ -68,14 +68,14 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
  *
  *  @return 请求公共 URL 字符串
  */
-- (NSString *)baseURLString;
+- (NSString *)requestBaseURLString;
 
 /**
  *  请求特有 URL 字符串
  *
  *  @return 请求特有 URL 字符串
  */
-- (NSString *)specificURLString;
+- (NSString *)requestSpecificURLString;
 
 /**
  *  请求方式
@@ -99,18 +99,25 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 - (AFConstructingBlock)constructingBodyBlock;
 
 /**
+ *  请求超时时长
+ *
+ *  @return 请求超时时长
+ */
+- (NSTimeInterval)requestTimeoutInterval;
+
+/**
  *  是否需要缓存
  *
  *  @return Default value is YES
  */
-- (BOOL)needCache;
+- (BOOL)requestNeedCache;
 
 /**
  *  缓存时长
  *
  *  @return 缓存时长
  */
-- (NSTimeInterval)cacheDuration;
+- (NSTimeInterval)requestCacheDuration;
 
 #pragma mark - Collect response infos
 
@@ -151,12 +158,30 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 
 #pragma mark - Request
 
-- (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure;
-
+/**
+ *  请求成功回调
+ */
 @property (nonatomic, copy) RequestSuccessCompletionBlock requestSuccessCompletionBlock;
+
+/**
+ *  请求失败回调
+ */
 @property (nonatomic, copy) RequestFailureCompletionBlock requestFailureCompletionBlock;
 
-@property (nonatomic, weak) NSURLSessionTask *requestSessionTask;
+/**
+ *  开始发起请求
+ */
+- (void)startRequest;
+
+/**
+ *  开始发起请求
+ *
+ *  @param success 请求成功回调
+ *  @param failure 请求失败回调
+ */
+- (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure;
+
+
+@property (nonatomic, strong) NSURLSessionTask *requestSessionTask;
 
 @end
-

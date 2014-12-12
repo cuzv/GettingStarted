@@ -9,10 +9,18 @@
 #import "CHXRequest.h"
 #import "CHXRequestProxy.h"
 
+#ifndef DEBUG
+#define NSLog(format, ...) NSLog(@"")
+#endif
+
 @interface CHXRequest ()
 @end
 
 @implementation CHXRequest
+
+- (void)dealloc {
+	NSLog(@"%s", __FUNCTION__);
+}
 
 #pragma mark - Subclass should overwrite
 
@@ -20,11 +28,11 @@
 	return nil;
 }
 
-- (NSString *)baseURLString {
+- (NSString *)requestBaseURLString {
 	return nil;
 }
 
-- (NSString *)specificURLString {
+- (NSString *)requestSpecificURLString {
 	return nil;;
 }
 
@@ -40,11 +48,15 @@
 	return nil;
 }
 
-- (BOOL)needCache {
+- (NSTimeInterval)requestTimeoutInterval {
+	return 10;
+}
+
+- (BOOL)requestNeedCache {
 	return YES;
 }
 
-- (NSTimeInterval)cacheDuration {
+- (NSTimeInterval)requestCacheDuration {
 	return 60 * 3;
 }
 
@@ -74,7 +86,7 @@
 
 - (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {
 	[self __setCompletionBlockWithSuccess:success failue:failure];
-	[self __startRequest];
+	[self startRequest];
 }
 
 - (void)__setCompletionBlockWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {
@@ -82,7 +94,7 @@
 	self.requestFailureCompletionBlock = failure;
 }
 
-- (void)__startRequest {
+- (void)startRequest {
 	[[CHXRequestProxy sharedInstance] addRequest:self];
 }
 
