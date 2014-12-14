@@ -1,5 +1,5 @@
 //
-//  BadgeView.h
+//  CHXBadgeView.m
 //  GettingStarted
 //
 //  Created by Moch Xiao on 10/29/14.
@@ -12,7 +12,7 @@
 
 @interface CHXBadgeView : UIView
 
-@property (nonatomic, assign) NSString *badgeValue;
+@property (nonatomic, strong) NSString *badgeValue;
 
 @end
 

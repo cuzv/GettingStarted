@@ -3,7 +3,25 @@
 //  GettingStarted
 //
 //  Created by Moch Xiao on 11/30/14.
-//  Copyright (c) 2014 Foobar. All rights reserved.
+//	Copyright (c) 2014 Moch Xiao (http://www.github.com/atcuan)
+//
+//	Permission is hereby granted, free of charge, to any person obtaining a copy
+//	of this software and associated documentation files (the "Software"), to deal
+//	in the Software without restriction, including without limitation the rights
+//	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//	copies of the Software, and to permit persons to whom the Software is
+//	furnished to do so, subject to the following conditions:
+//
+//	The above copyright notice and this permission notice shall be included in
+//	all copies or substantial portions of the Software.
+//
+//	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//	THE SOFTWARE.
 //
 
 #import "CHXRequest.h"
@@ -33,15 +51,27 @@
 	return nil;;
 }
 
+- (NSString *)requestSuffixURLString {
+	return nil;
+}
+
 - (CHXRequestMethod)requestMehtod {
-	return CHXRequestMethodNone;
+	return CHXRequestMethodPost;
 }
 
 - (CHXRequestSerializerType)requestSerializerType {
-	return CHXRequestSerializerTypeNone;
+	return CHXRequestSerializerTypeHTTP;
 }
 
 - (AFConstructingBlock)constructingBodyBlock {
+	return nil;
+}
+
+- (NSURLRequest *)customURLRequest {
+	return nil;
+}
+
+- (NSString *)downloadTargetPathString {
 	return nil;
 }
 
@@ -60,7 +90,7 @@
 #pragma mark - Collect response infos
 
 - (CHXResponseSerializerType)responseSerializerType {
-	return CHXResponseSerializerTypeNone;
+	return CHXResponseSerializerTypeJSON;
 }
 
 - (NSString *)responseApiVersionFieldName {
@@ -84,6 +114,10 @@
 - (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {
 	[self __setCompletionBlockWithSuccess:success failue:failure];
 	[self startRequest];
+}
+
+- (void)stopRequest {
+	[[CHXRequestProxy sharedInstance] cancelRequest:self];
 }
 
 - (void)__setCompletionBlockWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {

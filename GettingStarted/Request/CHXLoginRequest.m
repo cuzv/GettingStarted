@@ -33,21 +33,21 @@
 }
 
 - (NSString *)requestBaseURLString {
-	return  @"http://10.128.8.250:8080/wfarm/";
+	return  @"http://10.128.8.250:8081/wfarm/";
 }
 
 - (NSString *)requestSpecificURLString {
 	return @"customerLogin/json/1";
 }
 
-- (AFConstructingBlock)constructingBodyBlock {
-//	AFConstructingBlock block = ^(id<AFMultipartFormData> formData) {
+//- (AFConstructingBlock)constructingBodyBlock {
+////	AFConstructingBlock block = ^(id<AFMultipartFormData> formData) {
+////	};
+////	return block;
+//	return ^(id<AFMultipartFormData> formData) {
+//		
 //	};
-//	return block;
-	return ^(id<AFMultipartFormData> formData) {
-		
-	};
-}
+//}
 
 - (NSTimeInterval)requestTimeoutInterval {
 	return 2;

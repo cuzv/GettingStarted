@@ -12,6 +12,7 @@
 		4608A3F21A1CF8EC00AF5873 /* NSDataExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */; };
 		46602C811A1C3E5800307EEC /* CHXGlobalServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C801A1C3E5800307EEC /* CHXGlobalServices.m */; };
 		46602C861A1C4DBF00307EEC /* CHXHTTPConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C851A1C4DBF00307EEC /* CHXHTTPConfigure.m */; };
+		4666B0531A3D7A8A00CF3AB3 /* CHXCodeLicenser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4666B0521A3D7A8A00CF3AB3 /* CHXCodeLicenser.m */; };
 		466B16661A3893B100EA9EA0 /* CHXBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16651A3893B100EA9EA0 /* CHXBaseRequest.m */; };
 		466B16691A38952200EA9EA0 /* CHXBaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16681A38952200EA9EA0 /* CHXBaseHandler.m */; };
 		466B166C1A38954200EA9EA0 /* CHXBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B166B1A38954200EA9EA0 /* CHXBaseModel.m */; };
@@ -107,6 +108,8 @@
 		46602C801A1C3E5800307EEC /* CHXGlobalServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXGlobalServices.m; sourceTree = "<group>"; };
 		46602C841A1C4DBF00307EEC /* CHXHTTPConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CHXHTTPConfigure.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		46602C851A1C4DBF00307EEC /* CHXHTTPConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CHXHTTPConfigure.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4666B0511A3D7A8A00CF3AB3 /* CHXCodeLicenser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXCodeLicenser.h; sourceTree = "<group>"; };
+		4666B0521A3D7A8A00CF3AB3 /* CHXCodeLicenser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXCodeLicenser.m; sourceTree = "<group>"; };
 		466B16641A3893B100EA9EA0 /* CHXBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXBaseRequest.h; sourceTree = "<group>"; };
 		466B16651A3893B100EA9EA0 /* CHXBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXBaseRequest.m; sourceTree = "<group>"; };
 		466B16671A38952200EA9EA0 /* CHXBaseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXBaseHandler.h; sourceTree = "<group>"; };
@@ -536,6 +539,8 @@
 				46F11F1D1A1B8D2E009321A0 /* CHXArrayDataSource.m */,
 				46F11F191A1B8D1A009321A0 /* CHXUserDefaults.h */,
 				46F11F1A1A1B8D1A009321A0 /* CHXUserDefaults.m */,
+				4666B0511A3D7A8A00CF3AB3 /* CHXCodeLicenser.h */,
+				4666B0521A3D7A8A00CF3AB3 /* CHXCodeLicenser.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -833,6 +838,7 @@
 				466B16741A3896C000EA9EA0 /* CHXBaseNavigationController.m in Sources */,
 				46F11F431A1B903A009321A0 /* CHXReachabilityManager.m in Sources */,
 				46F11EF61A1B81A8009321A0 /* UIColorExtension.m in Sources */,
+				4666B0531A3D7A8A00CF3AB3 /* CHXCodeLicenser.m in Sources */,
 				46F11F651A1B917E009321A0 /* AwesomeMenuItem.m in Sources */,
 				46F11EFD1A1B81A8009321A0 /* UITextViewExtension.m in Sources */,
 				46F11F6F1A1B917E009321A0 /* WDActivityIndicator.m in Sources */,

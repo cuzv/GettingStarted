@@ -1,5 +1,5 @@
 //
-//  BadgeView.m
+//  CHXBadgeView.m
 //  GettingStarted
 //
 //  Created by Moch Xiao on 10/29/14.
@@ -35,6 +35,7 @@ static CGFloat kBadgeViewHeight = 18.0f;
 
 - (void)setBadgeValue:(NSString *)badgeValue {
 	_badgeValue = badgeValue;
+	
 	CGFloat calculateWidth = [badgeValue sizeWithAttributes:@{NSFontAttributeName:_badgeLabel.font}].width + kBadgeViewHeight / 2;
 	[self chx_setWidth:calculateWidth < kBadgeViewHeight ? kBadgeViewHeight : calculateWidth];
 	[self chx_setHeight:kBadgeViewHeight];
@@ -60,9 +61,6 @@ static CGFloat kBadgeViewHeight = 18.0f;
 @end
 
 
-
-
-
 #pragma mark - 添加徽标
 
 #import "CHXBadgeView.h"
@@ -83,37 +81,38 @@ static const void *BadgeKey = &BadgeKey;
 }
 
 - (void)chx_setBadgeValue:(NSString *)badgeValue {
-	if (![self __badgeView]) {
-		CHXBadgeView *badeView = [CHXBadgeView new];
-		[self addSubview:badeView];
-		[self __setBadgeView:badeView];
+	CHXBadgeView *badgeView = [self __badgeView];
+	if (!badgeView) {
+		badgeView = [CHXBadgeView new];
+		[self addSubview:badgeView];
+		[self __setBadgeView:badgeView];
+		
+		// Base on auto layout
+		UIView *superView = self;
+		[badgeView setTranslatesAutoresizingMaskIntoConstraints:NO];
+		[superView addConstraints:@[[NSLayoutConstraint constraintWithItem:badgeView
+																 attribute:NSLayoutAttributeCenterX
+																 relatedBy:NSLayoutRelationEqual
+																	toItem:superView
+																 attribute:NSLayoutAttributeRight
+																multiplier:1
+																  constant:0],
+									[NSLayoutConstraint constraintWithItem:badgeView
+																 attribute:NSLayoutAttributeCenterY
+																 relatedBy:NSLayoutRelationEqual
+																	toItem:superView
+																 attribute:NSLayoutAttributeTop
+																multiplier:1
+																  constant:0]
+									]];
+		
 	}
 	
-	CHXBadgeView *badgeView = [self __badgeView];
 	badgeView.badgeValue = badgeValue;
 	
 	// Base on Frame
 	[badgeView chx_setMidX:[self chx_width]];
 	[badgeView chx_setMidY:0];
-	
-	// Base on auto layout
-	UIView *superView = self;
-	[badgeView setTranslatesAutoresizingMaskIntoConstraints:NO];
-	[superView addConstraints:@[[NSLayoutConstraint constraintWithItem:badgeView
-															 attribute:NSLayoutAttributeCenterX
-															 relatedBy:NSLayoutRelationEqual
-																toItem:superView
-															 attribute:NSLayoutAttributeRight
-															multiplier:1
-															  constant:0],
-								[NSLayoutConstraint constraintWithItem:badgeView
-															 attribute:NSLayoutAttributeCenterY
-															 relatedBy:NSLayoutRelationEqual
-																toItem:superView
-															 attribute:NSLayoutAttributeTop
-															multiplier:1
-															  constant:0]
-								]];
 }
 
 - (NSString *)chx_badgeValue {

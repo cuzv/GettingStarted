@@ -1,8 +1,8 @@
 //
-//  UIView+CHXHUD.h
+//  CHXCodeLicenser.h
 //  GettingStarted
 //
-//  Created by Moch Xiao on 9/3/14.
+//  Created by Moch Xiao on 12/14/14.
 //	Copyright (c) 2014 Moch Xiao (http://www.github.com/atcuan)
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,28 +24,16 @@
 //	THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
-#import "JGProgressHUD.h"
+#import <Foundation/Foundation.h>
 
-@interface UIView (CHXHUD)
+typedef NS_ENUM(NSInteger, CHXLicenseType) {
+	CHXLicenseTypeMIT
+};
 
-- (void)chx_showHUDWithMessage:(NSString *)message;
-- (void)chx_showLoadingHUD;
-- (void)chx_showLoadingHUDWithMessage:(NSString *)message;
+@interface CHXCodeLicenser : NSObject
 
-- (void)chx_showUploadingHUD;
-- (void)chx_showDownloadingHUD;
-- (void)chx_updateHUDProgress:(NSUInteger)progress;
++ (instancetype)sharedInstance;
 
-// Flow two messages are just for test, you should not call these messages directly
-- (void)chx_testUploadingHUD;
-- (void)chx_testDownloadingHUD;
-
-- (void)chx_showSuccessHUDWithMessage:(NSString *)message;
-- (void)chx_showFailureHUDWithMessage:(NSString *)message;
-
-- (void)chx_showCancelableHUDWithMessage:(NSString *)message cancelConfirmMessage:(NSString *)confirmMessage;
-
-- (void)chx_dismissHUD;
+- (void)licenseCodeWithCreater:(NSString *)creater organization:(NSString *)organizationName projectName:(NSString *)projectName filePath:(NSString *)filePath toLicenseType:(CHXLicenseType)licenseType;
 
 @end

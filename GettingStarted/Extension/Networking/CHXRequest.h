@@ -3,8 +3,25 @@
 //  GettingStarted
 //
 //  Created by Moch Xiao on 11/30/14.
-//  Copyright (c) 2014 Foobar. All rights reserved.
+//	Copyright (c) 2014 Moch Xiao (http://www.github.com/atcuan)
 //
+//	Permission is hereby granted, free of charge, to any person obtaining a copy
+//	of this software and associated documentation files (the "Software"), to deal
+//	in the Software without restriction, including without limitation the rights
+//	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//	copies of the Software, and to permit persons to whom the Software is
+//	furnished to do so, subject to the following conditions:
+//
+//	The above copyright notice and this permission notice shall be included in
+//	all copies or substantial portions of the Software.
+//
+//	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//	THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
@@ -16,28 +33,18 @@ typedef NS_ENUM(NSInteger, CHXRequestMethod) {
 	CHXRequestMethodPut,
 	CHXRequestMethodDelete,
 	CHXRequestMethodPatch,
-	CHXRequestMethodHead,
-	CHXRequestMethodNone
+	CHXRequestMethodHead
 };
 
 typedef NS_ENUM(NSInteger, CHXRequestSerializerType) {
-	CHXRequestSerializerTypeJSON         = 0,
-	CHXRequestSerializerTypePropertyList,
-	CHXRequestSerializerTypeXML          = CHXRequestSerializerTypePropertyList,
-	CHXRequestSerializerTypeBase64,
-	CHXRequestSerializerTypeMd5,
-	CHXRequestSerializerTypeSha1,
-	CHXRequestSerializerTypeNone
+	CHXRequestSerializerTypeHTTP = 0,
+	CHXRequestSerializerTypeJSON
 };
 
 typedef NS_ENUM(NSInteger, CHXResponseSerializerType) {
-	CHXResponseSerializerTypeJSON = 0,
-	CHXResponseSerializerTypePropertyList,
-	CHXResponseSerializerTypeXMLParser,
-	CHXResponseSerializerTypeXMLDocument,
-	CHXResponseSerializerTypeImage,
-	CHXResponseSerializerTypeCompound,
-	CHXResponseSerializerTypeNone
+	CHXResponseSerializerTypeHTTP = 0,
+	CHXResponseSerializerTypeJSON,
+	CHXResponseSerializerTypeImage
 };
 
 #pragma mark -
@@ -64,18 +71,25 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 - (NSDictionary *)requestParameters;
 
 /**
- *  请求公共 URL 字符串
+ *  请求公共 URL 参数字符串前缀
  *
- *  @return 请求公共 URL 字符串
+ *  @return 请求公共 URL 参数字符串前缀
  */
 - (NSString *)requestBaseURLString;
 
 /**
- *  请求特有 URL 字符串
+ *  请求特有 URL 参数字符串接口名称
  *
- *  @return 请求特有 URL 字符串
+ *  @return 请求特有 URL 参数字符串接口名称
  */
 - (NSString *)requestSpecificURLString;
+
+/**
+ *  请求 URL 参数字符串后缀
+ *
+ *  @return 请求 URL 参数字符串后缀
+ */
+- (NSString *)requestSuffixURLString;
 
 /**
  *  请求方式
@@ -104,6 +118,22 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
  *  @return 请求超时时长
  */
 - (NSTimeInterval)requestTimeoutInterval;
+
+/**
+ *  构建自定义的 URLRequest
+ *  若这个方法返回非 nil 对象，会忽略 requestParameters, requestBaseURLString, 
+ *	requestSpecificURLString, requestSuffixURLString, requestMehtod 等参数
+ *
+ *	@return 自定义的 URLRequest
+ */
+- (NSURLRequest *)customURLRequest;
+
+/**
+ *  下载文件保存目录，应该设置 requestMehtod 为 GET
+ *
+ *  @return 文件保存目录
+ */
+- (NSString *)downloadTargetPathString;
 
 /**
  *  是否需要缓存
@@ -180,6 +210,11 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
  *  @param failure 请求失败回调
  */
 - (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure;
+
+/**
+ *  停止网络请求
+ */
+- (void)stopRequest;
 
 /**
  *  持有请求句柄，子类不要调用或者覆写

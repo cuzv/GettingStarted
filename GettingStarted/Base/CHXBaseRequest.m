@@ -31,7 +31,7 @@
 }
 
 - (NSString *)responseApiVersionFieldName {
-	return @"api";
+	return @"apiVersion";
 }
 
 - (NSString *)responseCodeFieldName {
@@ -39,7 +39,7 @@
 }
 
 - (NSString *)responseDataFieldName {
-	return @"rspData";
+	return @"data";
 }
 
 - (NSString *)responseMessageFieldName {

@@ -13,11 +13,14 @@
 #import "CHXLoginHandler.h"
 #import "AFNetworking.h"
 #import "CHXBaseModel.h"
+#import "NSStringExtension.h"
+#import "CHXCodingableObject.h"
 
-@interface Person : NSObject
+@interface Person : CHXCodingableObject
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) NSUInteger age;
 @property (nonatomic, assign) BOOL sex;
+
 @end
 
 @implementation Person
@@ -46,6 +49,7 @@
 
 @property (nonatomic, strong) CHXBadgeView *badgeView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (nonatomic, strong) UIView *view1;
 
 @end
 
@@ -55,14 +59,18 @@
 	[super viewDidLoad];
 	
 //	[self testBadgeView];
-//	
+//
 //	[self testTextConfigure];
 //	
 //	[self testSwizzle];
 	
 //	[self testBorder];
+		
+//	[self testURLString];
 	
+//	[self testCoding];
 	
+	[self testCodeLicenser];
 }
 
 - (void)testBadgeView {
@@ -76,7 +84,10 @@
 	[superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[view1]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view1)]];
 	[superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-100-[view1]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view1)]];
 
-	[view1 chx_setBadgeValue:@"22"];
+	[view1 chx_setBadgeValue:@"222"];
+	self.view1 = view1;
+	
+	NSLog(@"self.view1 = %p", self.view1);
 }
 
 - (void)testTextConfigure {
@@ -108,21 +119,61 @@
 
 - (void)testNetworking {
 	CHXLoginRequest *request = [[CHXLoginRequest alloc] initWithUsername:@"18583221776" password:@"123456"];
+
+	NSLog(@"request = %p", request);
+	
 	[CHXLoginHandler handleRequest:request withSuccess:^(id modelObject) {
-		NSLog(@"OK");
+		NSLog(@"%@", modelObject);
 	} failure:^(id errorMessage) {
 		NSLog(@"%@", errorMessage);
-		NSLog(@"ERROR");
+//		NSURLErrorDomain
+		NSString *badge = [NSString stringWithFormat:@"%zd", arc4random() % 100];
+		NSLog(@"badge = %p", badge);
+		[self.view1 chx_setBadgeValue:badge];
 	}];
-	
+//
 //	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //	manager.requestSerializer = [AFJSONRequestSerializer serializer];
 //	manager.requestSerializer.timeoutInterval = 10;
-//	[manager POST:@"http://10.128.8.250:8080/wfarm/customerLogin/json/1" parameters:@{@"uAccount":@"18583221776", @"uPass":@"123456"} success:^(NSURLSessionDataTask *task, id responseObject) {
+//	[manager POST:@"http://10.128.8.250:8081/wfarm/customerLogin/json/1" parameters:@{@"uAccount":@"18583221776", @"uPass":@"123456"} success:^(NSURLSessionDataTask *task, id responseObject) {
 //		NSLog(@"%@", responseObject);
+//		NSLog(@"%@", [responseObject objectForKey:@"rspMsg"]);
 //	} failure:^(NSURLSessionDataTask *task, NSError *error) {
 //		NSLog(@"%@", error.localizedDescription);
 //	}];
+}
+
+- (void)testURLString {
+	NSString *suffix = nil;
+
+	NSString *baseString = @"http://www.baidu.com";
+	baseString = [baseString stringByAppendingString:suffix];
+	NSLog(@"%@", baseString);
+}
+
+- (void)testCoding {
+	Person *person = [Person new];
+	person.name = @"Lucy";
+	person.age = 22;
+	person.sex = NO;
+	
+	NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:person];
+	NSLog(@"%@", encodedObject);
+	[CHXUserDefaults setValue:encodedObject forKey:@"Person"];
+
+	NSData *decodeObject = [CHXUserDefaults valueForKey:@"Person"];
+	NSLog(@"%@", decodeObject);
+	
+	Person *newPerson = [NSKeyedUnarchiver unarchiveObjectWithData:decodeObject];
+	NSLog(@"%@", [newPerson chx_toString]);
+//
+//	NSLog(@"%@", [CHXArchiver archivedValueForKey:@"Person"]);
+}
+
+- (void)testCodeLicenser {
+	CHXCodeLicenser *licenser = [CHXCodeLicenser sharedInstance];
+	NSString *filePath = @"/Users/Moch/Desktop/RefreshControl";
+	[licenser licenseCodeWithCreater:@"Moch Xiao" organization:@"Moch Xiao (htt://github.com)" projectName:@"RefreshControl" filePath:filePath toLicenseType:CHXLicenseTypeMIT];
 }
 
 @end
