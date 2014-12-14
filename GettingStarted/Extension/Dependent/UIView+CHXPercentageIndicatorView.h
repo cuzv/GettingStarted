@@ -2,8 +2,8 @@
 //  UIView+CHXPercentageIndicatorView.h
 //  GettingStarted
 //
-//  Created by Moch Xiao on 10/1/14.
-//	Copyright (c) 2014 Moch Xiao (http://www.github.com/atcuan)
+//  Created by Moch Xiao on 2014-11-18.
+//	Copyright (c) 2014 Moch Xiao (htt://github.com/atcuan).
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal

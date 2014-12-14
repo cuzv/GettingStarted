@@ -2,8 +2,8 @@
 //  CHXCodeLicenser.m
 //  GettingStarted
 //
-//  Created by Moch Xiao on 12/14/14.
-//	Copyright (c) 2014 Moch Xiao (http://www.github.com/atcuan)
+//  Created by Moch Xiao on 2014-12-14.
+//	Copyright (c) 2014 Moch Xiao (htt://github.com/atcuan).
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -66,10 +66,10 @@ extern NSString *const MITLicense;
 	if (isDirectory) {
 		// 获取当前目录下的所有内容
 		NSArray *directoryContent = [fileManger contentsOfDirectoryAtPath:filePath error:nil];
-
+		
 		// 遍历数组中的所有子文件(夹)
 		[directoryContent enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			if ([obj characterAtIndex:0] != '.') {
+			if ([obj characterAtIndex:0] != '.' && ![[obj lowercaseString] containsString:@"vendor"]) {
 				NSString *currentFilePath = [filePath stringByAppendingPathComponent:obj];
 				[self licenseCodeWithCreater:creater organization:organizationName projectName:projectName filePath:currentFilePath toLicenseType:licenseType];
 			}
@@ -81,6 +81,7 @@ extern NSString *const MITLicense;
 		if (![self.fileExtensionNames containsObject:fileExtensionName]) {
 			return;
 		};
+		
 		
 		// 读取文件内容
 		NSError *error;
@@ -109,7 +110,7 @@ extern NSString *const MITLicense;
 		
 		// 格式化日期显示
 		NSDateFormatter *dateFormatter = [NSDateFormatter new];
-		[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+		[dateFormatter setDateFormat:@"yyyy-MM-dd"];
 		NSString *fileCreationDateString = [dateFormatter stringFromDate:retrieveDate];
 		
 		// 替换许可声明文本
@@ -117,13 +118,19 @@ extern NSString *const MITLicense;
 									fileName, projectName, creater, fileCreationDateString, organizationName];
 		NSString *newContent = [content stringByReplacingCharactersInRange:NSMakeRange(0, minLocation) withString:licesneContent];
 		
-		[newContent writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-		if (error) {
-			NSLog(@"%@", [error localizedDescription]);
-		} else {
-			NSString *doneMission = [NSString stringWithFormat:@"file: %@: licensed done!", filePath];
-			NSLog(@"%@", doneMission);
-		}
+		NSData *newContentData = [newContent dataUsingEncoding:NSUTF8StringEncoding];
+		
+		// 写入新文本
+		NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
+		// 清空数据
+		[fileHandle truncateFileAtOffset:0];
+		// 重新写入数据
+		[fileHandle writeData:newContentData];
+		// 同步数据
+		[fileHandle synchronizeFile];
+		
+		NSString *doneMission = [NSString stringWithFormat:@"file: %@: licensed done!", filePath];
+		NSLog(@"%@", doneMission);
 	}
 }
 
