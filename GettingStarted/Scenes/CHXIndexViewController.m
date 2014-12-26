@@ -89,6 +89,9 @@
 //	[self testCoding];
 	
 //	[self testCodeLicenser];
+	
+	[self testMethods];
+
 }
 
 - (void)testBadgeView {
@@ -190,8 +193,14 @@
 
 - (void)testCodeLicenser {
 	CHXCodeLicenser *licenser = [CHXCodeLicenser sharedInstance];
-	NSString *filePath = @"/Users/Moch/Github/GettingStarted/GettingStarted";
-	[licenser licenseCodeWithCreater:@"Moch Xiao" organization:@"Moch Xiao (htt://github.com/atcuan)" projectName:@"GettingStarted" filePath:filePath toLicenseType:CHXLicenseTypeMIT];
+	NSString *filePath = @"/Users/Moch/Github/RefreshControl/RefreshControl";
+	[licenser licenseCodeWithCreater:@"Moch Xiao" organization:@"Moch Xiao (htt://github.com/atcuan)" projectName:@"RefreshControl" filePath:filePath toLicenseType:CHXLicenseTypeMIT];
+}
+
+- (void)testMethods {
+	for (NSString *name in [UIViewController chx_methods]) {
+		NSLog(@"mthod: %@", name);
+	}
 }
 
 @end

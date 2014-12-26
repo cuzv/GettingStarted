@@ -88,22 +88,22 @@ static const void *BadgeKey = &BadgeKey;
 
 @implementation UIView (CHXBadge)
 
-- (void)__setBadgeView:(CHXBadgeView *)badgeView {
+- (void)pr_setBadgeView:(CHXBadgeView *)badgeView {
 	[self willChangeValueForKey:@"BadgeKey"];
 	objc_setAssociatedObject(self, BadgeKey, badgeView, OBJC_ASSOCIATION_ASSIGN);
 	[self didChangeValueForKey:@"BadgeKey"];
 }
 
-- (CHXBadgeView *)__badgeView {
+- (CHXBadgeView *)pr_badgeView {
 	return objc_getAssociatedObject(self, &BadgeKey);
 }
 
 - (void)chx_setBadgeValue:(NSString *)badgeValue {
-	CHXBadgeView *badgeView = [self __badgeView];
+	CHXBadgeView *badgeView = [self pr_badgeView];
 	if (!badgeView) {
 		badgeView = [CHXBadgeView new];
 		[self addSubview:badgeView];
-		[self __setBadgeView:badgeView];
+		[self pr_setBadgeView:badgeView];
 		
 		// Base on auto layout
 		UIView *superView = self;
@@ -134,7 +134,7 @@ static const void *BadgeKey = &BadgeKey;
 }
 
 - (NSString *)chx_badgeValue {
-	return [self __badgeView].badgeValue;
+	return [self pr_badgeView].badgeValue;
 }
 
 @end

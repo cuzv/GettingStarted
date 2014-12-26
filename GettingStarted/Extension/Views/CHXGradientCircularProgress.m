@@ -53,7 +53,7 @@
     
     if (!newSuperview) {
         self.resetAnimation = NO;
-        [self __stopRotateAnimation];
+        [self pr_stopRotateAnimation];
     }
 }
 
@@ -87,7 +87,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        [self __drewViewWithTrackColor:nil
+        [self pr_drewViewWithTrackColor:nil
                        progressColor:[UIColor lightGrayColor]
                        circluarWidth:kDefaultCircluarWidth];
     }
@@ -104,7 +104,7 @@
                                  MIN(CGRectGetWidth(frame), CGRectGetHeight(frame)),
                                  MIN(CGRectGetWidth(frame), CGRectGetHeight(frame)));
     if (self = [super initWithFrame:newFrame]) {
-        [self __drewViewWithTrackColor:trackColor
+        [self pr_drewViewWithTrackColor:trackColor
                        progressColor:progressColor
                        circluarWidth:circluarWidth];
     }
@@ -112,7 +112,7 @@
     return self;
 }
 
-- (void)__drewViewWithTrackColor:(UIColor *)trackColor
+- (void)pr_drewViewWithTrackColor:(UIColor *)trackColor
 				   progressColor:(UIColor *)progressColor
 				   circluarWidth:(CGFloat)circluarWidth {
     self.resetAnimation = YES;
@@ -163,7 +163,7 @@
     // left gradient layer
     CAGradientLayer *leftGradientLayer =  [CAGradientLayer layer];
     leftGradientLayer.frame = CGRectMake(0, 0, CGRectGetMidX(self.bounds), CGRectGetHeight(self.bounds));
-    leftGradientLayer.colors = _sevenColorRing ? [self __gradientColorRefs] : [self __leftGradientColorRefs:progressColor];
+    leftGradientLayer.colors = _sevenColorRing ? [self pr_gradientColorRefs] : [self pr_leftGradientColorRefs:progressColor];
     leftGradientLayer.startPoint = CGPointMake(0.5, 1);
     leftGradientLayer.endPoint = CGPointMake(0.5, 0);
     
@@ -171,7 +171,7 @@
     CAGradientLayer *rightGradientLayer =  [CAGradientLayer layer];
     // right GradientLayer.locations = @[@0.1, @0.5, @1];
     rightGradientLayer.frame = CGRectMake(CGRectGetMidX(self.bounds), 0, CGRectGetMidX(self.bounds), CGRectGetHeight(self.bounds));
-    rightGradientLayer.colors = _sevenColorRing ? [[[self __gradientColorRefs] reverseObjectEnumerator] allObjects] : [self __rightGradientColorRefs:progressColor];
+    rightGradientLayer.colors = _sevenColorRing ? [[[self pr_gradientColorRefs] reverseObjectEnumerator] allObjects] : [self pr_rightGradientColorRefs:progressColor];
     rightGradientLayer.startPoint = CGPointMake(0.5, 0);
     rightGradientLayer.endPoint = CGPointMake(0.5, 1);
     
@@ -187,7 +187,7 @@
     [self updatePercent:100 animated:NO];
 }
 
-- (NSArray *)__gradientColorRefs {
+- (NSArray *)pr_gradientColorRefs {
     NSMutableArray *colorRefs = [NSMutableArray new];
     
     CGColorRef red = [[UIColor redColor] CGColor];
@@ -208,13 +208,13 @@
     return [NSArray arrayWithArray:colorRefs];
 }
 
-- (NSArray *)__leftGradientColorRefs:(UIColor *)aColor {
+- (NSArray *)pr_leftGradientColorRefs:(UIColor *)aColor {
     CGColorRef transparentColor = [[aColor colorWithAlphaComponent:0] CGColor];
     CGColorRef shadowColor = [[aColor colorWithAlphaComponent:0.5] CGColor];
     return @[(__bridge id)transparentColor, (__bridge id)shadowColor];
 }
 
-- (NSArray *)__rightGradientColorRefs:(UIColor *)aColor {
+- (NSArray *)pr_rightGradientColorRefs:(UIColor *)aColor {
     CGColorRef shadowColor = [[aColor colorWithAlphaComponent:0.5] CGColor];
     CGColorRef originColor = [aColor CGColor];
     return @[(__bridge id)shadowColor, (__bridge id)originColor];
@@ -236,12 +236,12 @@
         return;
     }
     
-    [self __startRotateAnimation];
+    [self pr_startRotateAnimation];
     
     self.animating = YES;
 }
 
-- (void)__startRotateAnimation {
+- (void)pr_startRotateAnimation {
     CABasicAnimation *basicAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     basicAnimation.duration = kGradientCircularProgressAnimationDuration;
     basicAnimation.repeatCount = HUGE_VAL;
@@ -257,12 +257,12 @@
         return;
     }
     
-    [self __stopRotateAnimation];
+    [self pr_stopRotateAnimation];
     
     self.animating = NO;
 }
 
-- (void)__stopRotateAnimation {
+- (void)pr_stopRotateAnimation {
     [UIView animateWithDuration:0.3f animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {
@@ -298,13 +298,13 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 @implementation UIView (CHXGradientCircularProgress)
 
-- (void)__setGradientCircularProgress:(CHXGradientCircularProgress *)gradientCircularProgress {
+- (void)pr_setGradientCircularProgress:(CHXGradientCircularProgress *)gradientCircularProgress {
 	[self willChangeValueForKey:@"GradientCircularProgressKey"];
 	objc_setAssociatedObject(self, GradientCircularProgressKey, gradientCircularProgress, OBJC_ASSOCIATION_ASSIGN);
 	[self didChangeValueForKey:@"GradientCircularProgressKey"];
 }
 
-- (CHXGradientCircularProgress *)__gradientCircularProgress {
+- (CHXGradientCircularProgress *)pr_gradientCircularProgress {
 	return objc_getAssociatedObject(self, &GradientCircularProgressKey);
 }
 
@@ -313,22 +313,22 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 }
 
 - (void)chx_addGradientCircularProgressAnimationOnCenter:(CGPoint)center {
-	if ([self __gradientCircularProgress]) {
+	if ([self pr_gradientCircularProgress]) {
 		return;
 	}
 	
 	CHXGradientCircularProgress *gradientCircularProgress = [[CHXGradientCircularProgress alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
 	gradientCircularProgress.center = center;
-	[self __setGradientCircularProgress:gradientCircularProgress];
+	[self pr_setGradientCircularProgress:gradientCircularProgress];
 	[self addSubview:gradientCircularProgress];
 	[gradientCircularProgress startAnimation];
 }
 
 
 - (void)chx_removeGradientCircularProgressAnimation {
-	[[self __gradientCircularProgress] stopAnimation];
-	[[self __gradientCircularProgress] removeFromSuperview];
-	[self __setGradientCircularProgress:nil];
+	[[self pr_gradientCircularProgress] stopAnimation];
+	[[self pr_gradientCircularProgress] removeFromSuperview];
+	[self pr_setGradientCircularProgress:nil];
 }
 
 @end

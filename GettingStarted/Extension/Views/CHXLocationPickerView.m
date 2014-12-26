@@ -53,7 +53,7 @@
         self.locationPickerType = locationPickerType;
         self.didSelectItem = didSelectItem;
         self.backgroundColor = [UIColor clearColor];
-        [self __initialPickerView];
+        [self pr_initialPickerView];
         [self provinces];
     }
     return self;
@@ -70,7 +70,7 @@
     return _provinces;
 }
 
-- (void)__initialPickerView {
+- (void)pr_initialPickerView {
     if (!_pickerView) {
         _pickerView = [UIPickerView new];
         _pickerView.backgroundColor = [UIColor whiteColor];
@@ -85,10 +85,10 @@
 - (void)showInView:(UIView *)view {
     [view endEditing:YES];
     [view addSubview:self];
-    [self __appear];
+    [self pr_appear];
 }
 
-- (void)__appear {
+- (void)pr_appear {
     self.frame = CGRectOffset(chx_screenBounds(), 0, chx_screenHeight());
     if ([_delegate respondsToSelector:@selector(locationPickerViewWillAppear:)]) {
         [_delegate locationPickerViewWillAppear:self];
@@ -104,10 +104,10 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
-    [self __disAppear];
+    [self pr_disAppear];
 }
 
-- (void)__disAppear {
+- (void)pr_disAppear {
     if ([_delegate respondsToSelector:@selector(locationPickerViewWillDisAppear:)]) {
         [_delegate locationPickerViewWillDisAppear:self];
     }
@@ -159,7 +159,7 @@
 }
 
 // delegate will call messages
-- (NSString *)__callbackItemWithFirstComponetDidSelectedRow:(NSInteger)row {
+- (NSString *)pr_callbackItemWithFirstComponetDidSelectedRow:(NSInteger)row {
     NSString *callbackitem = nil;
     switch (self.locationPickerType) {
         case CHXLocationPickerTypeProvinces:
@@ -199,7 +199,7 @@
     return callbackitem;
 }
 
-- (NSString *)__callbackItemWithSecondComponetDidSelectedRow:(NSInteger)row {
+- (NSString *)pr_callbackItemWithSecondComponetDidSelectedRow:(NSInteger)row {
     NSString *callbackitem = nil;
     switch (self.locationPickerType) {
         case CHXLocationPickerTypeCites:
@@ -224,7 +224,7 @@
     return callbackitem;
 }
 
-- (NSString *)__callbackItemWithThirdComponetDidSelectedRow:(NSInteger)row {
+- (NSString *)pr_callbackItemWithThirdComponetDidSelectedRow:(NSInteger)row {
     return [NSString stringWithFormat:@"%@%@%@",
             _provinces[[_pickerView selectedRowInComponent:0]][@"state"],
             _cites[[_pickerView selectedRowInComponent:1]][@"city"],
@@ -264,15 +264,15 @@
     switch (component) {
             // 第一个分组拖动完成
         case 0:
-            callbackitem = [self __callbackItemWithFirstComponetDidSelectedRow:row];
+            callbackitem = [self pr_callbackItemWithFirstComponetDidSelectedRow:row];
             break;
         case 1:
             // 第二分组拖动完成
-            callbackitem = [self __callbackItemWithSecondComponetDidSelectedRow:row];
+            callbackitem = [self pr_callbackItemWithSecondComponetDidSelectedRow:row];
             break;
         case 2: {
             // 第三个分组拖动完成
-            callbackitem = [self __callbackItemWithThirdComponetDidSelectedRow:row];
+            callbackitem = [self pr_callbackItemWithThirdComponetDidSelectedRow:row];
         }
             break;
         default:

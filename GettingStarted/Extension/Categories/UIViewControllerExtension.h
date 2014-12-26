@@ -31,6 +31,8 @@
 
 @end
 
+#pragma mark -
+
 @interface UIViewController (VNavigationActivityIndicatorView)
 
 /**
@@ -58,5 +60,12 @@
  *  是否正在动画中
  */
 - (BOOL)chx_isNavigationActivityIndicatorViewInAnimation;
+
+#pragma mark - 
+
+/**
+ *  检查视图控制器
+ */
+- (void)chx_printHierarchy;
 
 @end

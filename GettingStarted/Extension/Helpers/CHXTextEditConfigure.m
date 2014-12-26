@@ -85,7 +85,7 @@
     }
 }
 
-- (void)__initialNotificationForObject:(id)object {
+- (void)pr_initialNotificationForObject:(id)object {
     if ([object isKindOfClass:[UITextView class]]) {
         UITextView *textView = (UITextView *)object;
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -153,7 +153,7 @@ static const void *UITextFieldKey = &UITextFieldKey;
     objc_setAssociatedObject(self, UITextFieldKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
     [self didChangeValueForKey:@"UITextFieldKey"];
     
-    [textConfigure __initialNotificationForObject:self];
+    [textConfigure pr_initialNotificationForObject:self];
 }
 
 - (CHXTextEditConfigure *)chx_textConfigure {
@@ -173,7 +173,7 @@ static const void *UITextViewKey = &UITextViewKey;
 	objc_setAssociatedObject(self, UITextViewKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
 	[self didChangeValueForKey:@"UITextViewKey"];
 	
-	[textConfigure __initialNotificationForObject:self];
+	[textConfigure pr_initialNotificationForObject:self];
 }
 
 - (CHXTextEditConfigure *)chx_textConfigure {

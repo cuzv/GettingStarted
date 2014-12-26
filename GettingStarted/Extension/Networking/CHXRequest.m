@@ -112,7 +112,7 @@
 #pragma mark - Request
 
 - (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {
-	[self __setCompletionBlockWithSuccess:success failue:failure];
+	[self pr_setCompletionBlockWithSuccess:success failue:failure];
 	[self startRequest];
 }
 
@@ -120,7 +120,7 @@
 	[[CHXRequestProxy sharedInstance] cancelRequest:self];
 }
 
-- (void)__setCompletionBlockWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {
+- (void)pr_setCompletionBlockWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {
 	self.requestSuccessCompletionBlock = success;
 	self.requestFailureCompletionBlock = failure;
 }

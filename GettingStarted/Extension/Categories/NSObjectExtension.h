@@ -59,6 +59,20 @@
 + (NSArray *)chx_properties;
 
 /**
+ *  获取方法列表
+ *
+ *  @return 方法列表
+ */
+- (NSArray *)chx_methods;
+
+/**
+ *  获取方法列表
+ *
+ *  @return 方法列表
+ */
++ (NSArray *)chx_methods;
+
+/**
  *  自身对象转为字典
  *
  *  @return 自身属性打包的字典

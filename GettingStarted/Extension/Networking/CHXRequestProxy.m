@@ -78,13 +78,13 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 
 - (void)addRequest:(CHXRequest *)request {
 	// Checking Networking status
-	if (![self __isNetworkReachable]) {
+	if (![self pr_isNetworkReachable]) {
 		// The first time description is not correct !
 		NSString *errorDescription = @"The network is currently unreachable.";
 		if (request.requestFailureCompletionBlock) {
 			request.requestFailureCompletionBlock(errorDescription);
 		}
-		[self __clearCompletionBlockForRequest:request];
+		[self pr_clearCompletionBlockForRequest:request];
 		NSLog(@"%@", errorDescription);
 		return;
 	}
@@ -99,9 +99,9 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 		AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:sessionConfiguration];
 		dataTask = [sessionManager dataTaskWithRequest:customRULRequest completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
 			if (error) {
-				[self __handleRequestFailureWithSessionDataTask:dataTask error:error];
+				[self pr_handleRequestFailureWithSessionDataTask:dataTask error:error];
 			} else {
-				[self __handleRequestSuccessWithSessionDataTask:dataTask responseObject:responseObject];
+				[self pr_handleRequestSuccessWithSessionDataTask:dataTask responseObject:responseObject];
 			}
 		}];
 		[dataTask resume];
@@ -112,14 +112,14 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 		NSAssert(requestMethod >= CHXRequestMethodPost, @"Unsupport Request Method");
 		
 		// HTTP API absolute URL
-		NSString *requestAbsoluteURLString = [self __requestAbsoluteURLStringWithRequest:request];
+		NSString *requestAbsoluteURLString = [self pr_requestAbsoluteURLStringWithRequest:request];
 		
 		// HTTP POST value block
 		AFConstructingBlock constructingBodyBlock = [request constructingBodyBlock];
 		
 		// SerializerType
-		[self __settingupRequestSerializerTypeByRequest:request];
-		[self __settingupResponseSerializerTypeByRequest:request];
+		[self pr_settingupRequestSerializerTypeByRequest:request];
+		[self pr_settingupResponseSerializerTypeByRequest:request];
 		
 		// HTTP Request parameters
 		requestParameters = [request requestParameters];
@@ -129,15 +129,15 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 			case CHXRequestMethodPost: {
 				if (constructingBodyBlock) {
 					dataTask = [_sessionManager POST:requestAbsoluteURLString parameters:requestParameters constructingBodyWithBlock:constructingBodyBlock success:^(NSURLSessionDataTask *task, id responseObject) {
-						[self __handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
+						[self pr_handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
 					} failure:^(NSURLSessionDataTask *task, NSError *error) {
-						[self __handleRequestFailureWithSessionDataTask:task error:error];
+						[self pr_handleRequestFailureWithSessionDataTask:task error:error];
 					}];
 				} else {
 					dataTask = [_sessionManager POST:requestAbsoluteURLString parameters:requestParameters success:^(NSURLSessionDataTask *task, id responseObject) {
-						[self __handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
+						[self pr_handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
 					} failure:^(NSURLSessionDataTask *task, NSError *error) {
-						[self __handleRequestFailureWithSessionDataTask:task error:error];
+						[self pr_handleRequestFailureWithSessionDataTask:task error:error];
 					}];
 				}
 			}
@@ -156,9 +156,9 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 						return [NSURL URLWithString:downloadTargetPath];
 					} completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
 						if (error) {
-							[self __handleRequestFailureWithSessionDataTask:dataTask error:error];
+							[self pr_handleRequestFailureWithSessionDataTask:dataTask error:error];
 						} else {
-							[self __handleRequestSuccessWithSessionDataTask:dataTask responseObject:nil];
+							[self pr_handleRequestSuccessWithSessionDataTask:dataTask responseObject:nil];
 						}
 					}];
 					// If download on background
@@ -169,42 +169,42 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 
 				} else {
 					dataTask = [_sessionManager GET:requestAbsoluteURLString parameters:requestParameters success:^(NSURLSessionDataTask *task, id responseObject) {
-						[self __handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
+						[self pr_handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
 					} failure:^(NSURLSessionDataTask *task, NSError *error) {
-						[self __handleRequestFailureWithSessionDataTask:task error:error];
+						[self pr_handleRequestFailureWithSessionDataTask:task error:error];
 					}];
 				}
 			}
 				break;
 			case CHXRequestMethodPut: {
 				dataTask = [_sessionManager PUT:requestAbsoluteURLString parameters:requestParameters success:^(NSURLSessionDataTask *task, id responseObject) {
-					[self __handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
+					[self pr_handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
 				} failure:^(NSURLSessionDataTask *task, NSError *error) {
-					[self __handleRequestFailureWithSessionDataTask:task error:error];
+					[self pr_handleRequestFailureWithSessionDataTask:task error:error];
 				}];
 			}
 				break;
 			case CHXRequestMethodDelete: {
 				dataTask = [_sessionManager DELETE:requestAbsoluteURLString parameters:requestParameters success:^(NSURLSessionDataTask *task, id responseObject) {
-					[self __handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
+					[self pr_handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
 				} failure:^(NSURLSessionDataTask *task, NSError *error) {
-					[self __handleRequestFailureWithSessionDataTask:task error:error];
+					[self pr_handleRequestFailureWithSessionDataTask:task error:error];
 				}];
 			}
 				break;
 			case CHXRequestMethodPatch: {
 				dataTask = [_sessionManager PATCH:requestAbsoluteURLString parameters:requestParameters success:^(NSURLSessionDataTask *task, id responseObject) {
-					[self __handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
+					[self pr_handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
 				} failure:^(NSURLSessionDataTask *task, NSError *error) {
-					[self __handleRequestFailureWithSessionDataTask:task error:error];
+					[self pr_handleRequestFailureWithSessionDataTask:task error:error];
 				}];
 			}
 				break;
 			case CHXRequestMethodHead: {
 				dataTask = [_sessionManager HEAD:requestAbsoluteURLString parameters:requestAbsoluteURLString success:^(NSURLSessionDataTask *task) {
-					[self __handleRequestSuccessWithSessionDataTask:task responseObject:nil];
+					[self pr_handleRequestSuccessWithSessionDataTask:task responseObject:nil];
 				} failure:^(NSURLSessionDataTask *task, NSError *error) {
-					[self __handleRequestFailureWithSessionDataTask:task error:error];
+					[self pr_handleRequestFailureWithSessionDataTask:task error:error];
 				}];
 			}
 				break;
@@ -228,11 +228,11 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 	NSLog(@"Request Log End!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
 }
 
-- (BOOL)__isNetworkReachable {
+- (BOOL)pr_isNetworkReachable {
 	return [_sessionManager.reachabilityManager isReachable];
 }
 
-- (NSString *)__requestAbsoluteURLStringWithRequest:(CHXRequest *)request {
+- (NSString *)pr_requestAbsoluteURLStringWithRequest:(CHXRequest *)request {
 	// HTTP API BaseURLString
 	NSString *baseRULString = [request requestBaseURLString];
 	NSParameterAssert(baseRULString);
@@ -260,7 +260,7 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 	return [NSString stringWithFormat:@"%@%@", baseRULString, specificURLString];
 }
 
-- (void)__settingupRequestSerializerTypeByRequest:(CHXRequest *)request {
+- (void)pr_settingupRequestSerializerTypeByRequest:(CHXRequest *)request {
 	CHXRequestSerializerType requestSerializerType = [request requestSerializerType];
 	NSParameterAssert(requestSerializerType >= CHXRequestSerializerTypeHTTP);
 	NSParameterAssert(requestSerializerType <= CHXRequestSerializerTypeJSON);
@@ -277,7 +277,7 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 	_sessionManager.requestSerializer.timeoutInterval = [request requestTimeoutInterval];
 }
 
-- (void)__settingupResponseSerializerTypeByRequest:(CHXRequest *)request {
+- (void)pr_settingupResponseSerializerTypeByRequest:(CHXRequest *)request {
 	CHXResponseSerializerType responseSerializerType = [request responseSerializerType];
 	NSParameterAssert(responseSerializerType >= CHXResponseSerializerTypeHTTP);
 	NSParameterAssert(responseSerializerType <= CHXResponseSerializerTypeImage);
@@ -296,7 +296,7 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 }
 
 // TODO
-- (void)__handleRequestSuccessWithSessionDataTask:(NSURLSessionTask *)task responseObject:(id)responseObject {
+- (void)pr_handleRequestSuccessWithSessionDataTask:(NSURLSessionTask *)task responseObject:(id)responseObject {
 	CHXRequest *request = [_dataTaskContainer objectForKey:@(task.taskIdentifier)];
 	NSParameterAssert(request);
 	
@@ -325,11 +325,11 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 		}
 		request.requestSuccessCompletionBlock(responseObject);
 	}
-	[self __prepareDeallocRequest:request];
+	[self pr_prepareDeallocRequest:request];
 }
 
 // TODO
-- (void)__handleRequestFailureWithSessionDataTask:(NSURLSessionTask *)task error:(NSError *)error {
+- (void)pr_handleRequestFailureWithSessionDataTask:(NSURLSessionTask *)task error:(NSError *)error {
 	NSLog(@"Request error: %@", error);
 	CHXRequest *request = [_dataTaskContainer objectForKey:@(task.taskIdentifier)];
 	NSParameterAssert(request);
@@ -337,25 +337,25 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 	if (request.requestFailureCompletionBlock) {
 		request.requestFailureCompletionBlock([error localizedDescription]);
 	}
-	[self __prepareDeallocRequest:request];
+	[self pr_prepareDeallocRequest:request];
 }
 
-- (void)__prepareDeallocRequest:(CHXRequest *)request {
+- (void)pr_prepareDeallocRequest:(CHXRequest *)request {
 	// Remove contain from data task container
-	[self __removeContainForRequest:request];
+	[self pr_removeContainForRequest:request];
 
 	// Clear callback block
-	[self __clearCompletionBlockForRequest:request];
+	[self pr_clearCompletionBlockForRequest:request];
 	
 	// Break retain data task
 	request.requestSessionTask = nil;
 }
 
-- (void)__removeContainForRequest:(CHXRequest *)request {
+- (void)pr_removeContainForRequest:(CHXRequest *)request {
 	[_dataTaskContainer removeObjectForKey:@(request.requestSessionTask.taskIdentifier)];
 }
 
-- (void)__clearCompletionBlockForRequest:(CHXRequest *)request {
+- (void)pr_clearCompletionBlockForRequest:(CHXRequest *)request {
 	request.requestSuccessCompletionBlock = nil;
 	request.requestFailureCompletionBlock = nil;
 }
@@ -364,7 +364,7 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 
 - (void)cancelRequest:(CHXRequest *)request {
 	[request.requestSessionTask cancel];
-	[self __prepareDeallocRequest:request];
+	[self pr_prepareDeallocRequest:request];
 }
 
 #pragma mark -

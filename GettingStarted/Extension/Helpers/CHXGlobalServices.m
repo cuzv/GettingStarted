@@ -93,32 +93,32 @@ CGFloat chx_angleFromRadian(CGFloat radian) {
 
 #pragma mark - Sandbox directory
 
-NSString *__searchPathDirectory(NSSearchPathDirectory searchPathDirectory) {
+NSString *pr_searchPathDirectory(NSSearchPathDirectory searchPathDirectory) {
 	return [NSSearchPathForDirectoriesInDomains(searchPathDirectory, NSUserDomainMask, YES) firstObject];
 }
 
 NSString *chx_documentDirectory() {
-	return __searchPathDirectory(NSDocumentDirectory);
+	return pr_searchPathDirectory(NSDocumentDirectory);
 }
 
 NSString *chx_cachesDirectory() {
-	return __searchPathDirectory(NSCachesDirectory);
+	return pr_searchPathDirectory(NSCachesDirectory);
 }
 
 NSString *chx_downloadsDirectory() {
-	return __searchPathDirectory(NSDownloadsDirectory);
+	return pr_searchPathDirectory(NSDownloadsDirectory);
 }
 
 NSString *chx_moviesDirectory() {
-	return __searchPathDirectory(NSMoviesDirectory);
+	return pr_searchPathDirectory(NSMoviesDirectory);
 }
 
 NSString *chx_musicDirectory() {
-	return __searchPathDirectory(NSMusicDirectory);
+	return pr_searchPathDirectory(NSMusicDirectory);
 }
 
 NSString *chx_picturesDirectory() {
-	return __searchPathDirectory(NSPicturesDirectory);
+	return pr_searchPathDirectory(NSPicturesDirectory);
 }
 
 #pragma mark - UniqueIdentifier
@@ -129,7 +129,7 @@ NSString *chx_uniqueIdentifier() {
 
 #pragma mark - Perform external jump
 
-void __performApplicatonEventByURL(NSURL *eventURL) {
+void pr_performApplicatonEventByURL(NSURL *eventURL) {
 	UIApplication *application = [UIApplication sharedApplication];
 	if ([application canOpenURL:eventURL]) {
 		[application openURL:eventURL];
@@ -140,25 +140,25 @@ void __performApplicatonEventByURL(NSURL *eventURL) {
 
 void chx_callPhoneNumber(NSString *phoneNumber) {
 	NSURL *destination = [NSURL URLWithString:[@"telprompt:" stringByAppendingString:phoneNumber]];
-	__performApplicatonEventByURL(destination);
+	pr_performApplicatonEventByURL(destination);
 }
 
 void chx_sendSMSTo(NSString *phoneNumber) {
 	NSURL *destination = [NSURL URLWithString:[@"sms:" stringByAppendingString:phoneNumber]];
-	__performApplicatonEventByURL(destination);
+	pr_performApplicatonEventByURL(destination);
 }
 
 void chx_openBrowser(NSURL *webURL) {
-	__performApplicatonEventByURL(webURL);
+	pr_performApplicatonEventByURL(webURL);
 }
 
 void chx_emailTo(NSString *receiverEmail) {
 	NSURL *destination = [NSURL URLWithString:[@"mailto:" stringByAppendingString:receiverEmail]];
-	__performApplicatonEventByURL(destination);
+	pr_performApplicatonEventByURL(destination);
 }
 
 void chx_openAppStoreByAppLink(NSURL *appLink) {
-	__performApplicatonEventByURL(appLink);
+	pr_performApplicatonEventByURL(appLink);
 }
 
 #pragma mark - Clear badge
@@ -277,6 +277,7 @@ void chx_leftAlignAndVerticallySpaceOutViews(NSArray *views, CGFloat distance) {
 		[firstView.superview addConstraints:@[verticalConstraint, leadingConstraint]];
 	}
 }
+
 
 
 @end

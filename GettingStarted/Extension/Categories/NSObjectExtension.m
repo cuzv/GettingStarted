@@ -86,6 +86,32 @@
     return [[NSArray alloc] initWithArray:propertyArray];
 }
 
+- (NSArray *)chx_methods {
+	NSMutableArray *methodsArray = [NSMutableArray new];
+	u_int count;
+	Method *methodsList = class_copyMethodList([self class], &count);
+	for (int i = 0; i < count; i++) {
+		SEL methodSelector = method_getName(methodsList[i]);
+		NSString *stringName = NSStringFromSelector(methodSelector);
+		[methodsArray addObject:stringName];
+	}
+	
+	return [NSArray arrayWithArray:methodsArray];
+}
+
++ (NSArray *)chx_methods {
+	NSMutableArray *methodsArray = [NSMutableArray new];
+	u_int count;
+	Method *methodsList = class_copyMethodList([self class], &count);
+	for (int i = 0; i < count; i++) {
+		SEL methodSelector = method_getName(methodsList[i]);
+		NSString *stringName = NSStringFromSelector(methodSelector);
+		[methodsArray addObject:stringName];
+	}
+	
+	return [NSArray arrayWithArray:methodsArray];
+}
+
 - (NSDictionary *)chx_convertToDictionary {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     // 获取本类属性列表字符串数组

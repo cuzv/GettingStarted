@@ -130,35 +130,35 @@
 static const void *IndicatorAnimationKey = &IndicatorAnimationKey;
 static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
 
-- (void)__setAnimating:(BOOL)animating {
+- (void)pr_setAnimating:(BOOL)animating {
     [self willChangeValueForKey:@"IndicatorAnimationKey"];
     objc_setAssociatedObject(self, IndicatorAnimationKey, @(animating), OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"IndicatorAnimationKey"];
 }
 
-- (BOOL)__animating {
+- (BOOL)pr_animating {
     return [objc_getAssociatedObject(self, &IndicatorAnimationKey) boolValue];
 }
 
-- (void)__setContext:(NSDictionary *)context {
+- (void)pr_setContext:(NSDictionary *)context {
     [self willChangeValueForKey:@"IndicatorAnimationContextKey"];
     objc_setAssociatedObject(self, IndicatorAnimationContextKey, context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"IndicatorAnimationContextKey"];
 }
 
-- (NSDictionary *)__context {
+- (NSDictionary *)pr_context {
     return objc_getAssociatedObject(self, &IndicatorAnimationContextKey);
 }
 
 #pragma mark -
 
 - (void)chx_addWaitingAnimation {
-    if ([self __animating]) {
+    if ([self pr_animating]) {
         return;
     }
     
     // 保存上下文数据
-	[self __setContext:({
+	[self pr_setContext:({
 		NSMutableDictionary *context = [NSMutableDictionary new];
 		
 		id normalimage = [self imageForState:UIControlStateNormal] ? : [NSNull null];
@@ -211,11 +211,11 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     [gapRing startAnimation];
     [self addSubview:gapRing];
 
-	[self __setAnimating:YES];
+	[self pr_setAnimating:YES];
 }
 
 - (void)chx_removeWaitingAnimation {
-    if (![self __animating]) {
+    if (![self pr_animating]) {
         return;
     }
 
@@ -231,7 +231,7 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     }
     
     // 恢复上下文信息
-    id context = [self __context];
+    id context = [self pr_context];
     
     Class imageClass = [UIImage class];
     
@@ -281,11 +281,11 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
         self.backgroundColor = backgroundColor;
     }
 
-    [self __setAnimating:NO];
+    [self pr_setAnimating:NO];
 }
 
 - (BOOL)chx_isInAnimation {
-	return [self __animating];
+	return [self pr_animating];
 }
 
 @end

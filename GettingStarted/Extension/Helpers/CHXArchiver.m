@@ -31,7 +31,7 @@
 + (BOOL)archiveValue:(id)value forKey:(NSString *)key {
     if (!value) {
         // Remove value for key
-        return [self __cleanPersistenceValueForKey:key];
+        return [self pr_cleanPersistenceValueForKey:key];
     }
     // Add value for key
     // Create data container
@@ -46,18 +46,18 @@
     NSString *base64String = [archiverMutableData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
     
     NSError *error = nil;
-    NSString *filePath = [self __persistencePathWithKey:key];
+    NSString *filePath = [self pr_persistencePathWithKey:key];
     if (!filePath) {
         return NO;
     }
     return [base64String writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
 }
 
-+ (NSString *)__persistencePathWithKey:(NSString *)key {
-    return [[self __persistencePath] stringByAppendingPathComponent:key];
++ (NSString *)pr_persistencePathWithKey:(NSString *)key {
+    return [[self pr_persistencePath] stringByAppendingPathComponent:key];
 }
 
-+ (NSString *)__persistencePath {
++ (NSString *)pr_persistencePath {
 	// TODO
 	NSString *userFolder = nil;// [[AccountManager sharedInstance] uniqueIdentifier];
     if (!userFolder) {
@@ -65,7 +65,7 @@
         userFolder = @"CommonDatas";
     }
     
-    NSString *path = [[self __applicationDocumentDirectory] stringByAppendingPathComponent:userFolder];
+    NSString *path = [[self pr_applicationDocumentDirectory] stringByAppendingPathComponent:userFolder];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:path]) {
         [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
@@ -73,14 +73,14 @@
     return path;
 }
 
-+ (NSString *)__applicationDocumentDirectory {
++ (NSString *)pr_applicationDocumentDirectory {
     // NSCachesDirectory will not pushed on iClound
     return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
 }
 
 + (id)archivedValueForKey:(NSString *)key {
     NSError *error = nil;
-    NSString *unarchiverString = [[NSString alloc] initWithContentsOfFile:[self __persistencePathWithKey:key] encoding:NSUTF8StringEncoding error:&error];
+    NSString *unarchiverString = [[NSString alloc] initWithContentsOfFile:[self pr_persistencePathWithKey:key] encoding:NSUTF8StringEncoding error:&error];
     if (!unarchiverString) {
         NSLog(@"Persistence datas Not Found!");
         return nil;
@@ -94,15 +94,15 @@
     return [unarchiver decodeObjectForKey:key];
 }
 
-+ (BOOL)__cleanPersistenceValueForKey:(NSString *)key {
-    return [self __cleanupForPath:[self __persistencePathWithKey:key]];
++ (BOOL)pr_cleanPersistenceValueForKey:(NSString *)key {
+    return [self pr_cleanupForPath:[self pr_persistencePathWithKey:key]];
 }
 
 + (BOOL)cleanup {
-    return [self __cleanupForPath:[self __persistencePath]];
+    return [self pr_cleanupForPath:[self pr_persistencePath]];
 }
 
-+ (BOOL)__cleanupForPath:(NSString *)path {
++ (BOOL)pr_cleanupForPath:(NSString *)path {
     if (!path) {
         NSLog(@"Persistence datas Not Found!");
         return NO;

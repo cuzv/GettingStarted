@@ -32,6 +32,7 @@
 
 @end
 
+#pragma mark -
 
 @implementation UIViewController (VNavigationActivityIndicatorView)
 
@@ -39,27 +40,27 @@ static const void *ContextKey = &ContextKey;
 static const void *TitleInAnimationKey = &TitleInAnimationKey;
 static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 
-- (void)__setContext:(NSDictionary *)context {
+- (void)pr_setContext:(NSDictionary *)context {
     [self willChangeValueForKey:@"ContextKey"];
     objc_setAssociatedObject(self, ContextKey, context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"ContextKey"];
 }
 
-- (NSDictionary *)__context {
+- (NSDictionary *)pr_context {
     return objc_getAssociatedObject(self, &ContextKey);
 }
 
-- (void)__setTitleInAnimation:(BOOL)titleInAnimation {
+- (void)pr_setTitleInAnimation:(BOOL)titleInAnimation {
     [self willChangeValueForKey:@"TitleInAnimationKey"];
     objc_setAssociatedObject(self, TitleInAnimationKey, @(titleInAnimation), OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"TitleInAnimationKey"];
 }
 
-- (BOOL)__titleInAnimation {
+- (BOOL)pr_titleInAnimation {
     return [objc_getAssociatedObject(self, &TitleInAnimationKey) boolValue];
 }
 
-- (void)__setRightBarInAnimation:(BOOL)rightBarInAnimation {
+- (void)pr_setRightBarInAnimation:(BOOL)rightBarInAnimation {
     [self willChangeValueForKey:@"RightBarInAnimationKey"];
     objc_setAssociatedObject(self, RightBarInAnimationKey, @(rightBarInAnimation), OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"RightBarInAnimationKey"];
@@ -75,16 +76,16 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
     }
     
     // if add already, return
-    if ([self __titleInAnimation]) {
+    if ([self pr_titleInAnimation]) {
         return;
     }
     
     // save title or title view if have value
-	[self __setContext:({
+	[self pr_setContext:({
 		id title = self.navigationItem.title ? : [NSNull null];
 		id titleView = self.navigationItem.titleView ? : [NSNull null];
 		
-		NSMutableDictionary *context = [[NSMutableDictionary alloc] initWithDictionary:[self __context]];
+		NSMutableDictionary *context = [[NSMutableDictionary alloc] initWithDictionary:[self pr_context]];
 		[context setValue:title forKey:@"title"];
 		[context setValue:titleView forKey:@"titleView"];
 		[context setValue:@"YES" forKey:@"titleAnimation"];
@@ -94,14 +95,14 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 	
     // add activity indicator animation
     self.navigationItem.titleView = ({
-        [self __indicatorAnimationView];
+        [self pr_indicatorAnimationView];
     });
 	
-	[self __setTitleInAnimation:YES];
+	[self pr_setTitleInAnimation:YES];
 }
 
 - (void)chx_removeNavigationBarActivityIndicatorAnimation {
-    if (![self __titleInAnimation]) {
+    if (![self pr_titleInAnimation]) {
         return;
     }
     
@@ -111,7 +112,7 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
     self.navigationItem.titleView = nil;
     
     // recovery context
-    id context = [self __context];
+    id context = [self pr_context];
     
     id titleView = [context valueForKey:@"titleView"];
     if ([titleView isKindOfClass:[UIView class]]) {
@@ -123,7 +124,7 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
         self.navigationItem.title = title;
     }
 
-	[self __setTitleInAnimation:NO];
+	[self pr_setTitleInAnimation:NO];
 }
 
 
@@ -138,9 +139,9 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
     }
     
     // save right items
-	[self __setContext:({
+	[self pr_setContext:({
 		id rightBarButtonItems = self.navigationItem.rightBarButtonItems ? : [NSNull null];
-		NSMutableDictionary *context = [[NSMutableDictionary alloc] initWithDictionary:[self __context]];
+		NSMutableDictionary *context = [[NSMutableDictionary alloc] initWithDictionary:[self pr_context]];
 		[context setValue:rightBarButtonItems forKey:@"rightBarButtonItems"];
 		
 		[NSDictionary dictionaryWithDictionary:context];
@@ -148,12 +149,12 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 	
     // add indicator animation
     self.navigationItem.rightBarButtonItem = ({
-        UIView *indicatorAnimationView = [self __indicatorAnimationView];
+        UIView *indicatorAnimationView = [self pr_indicatorAnimationView];
         UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:indicatorAnimationView];
         rightItem;
     });
 	
-	[self __setRightBarInAnimation:YES];
+	[self pr_setRightBarInAnimation:YES];
 }
 
 - (void)chx_removeNavigationBarRightItemActivityIndicatorAnimation {
@@ -167,7 +168,7 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
     self.navigationItem.rightBarButtonItem.customView = nil;
     
     // recovery context
-    id context = [self __context];
+    id context = [self pr_context];
     
     id rightBarButtonItems = [context valueForKey:@"rightBarButtonItems"];
     if ([rightBarButtonItems isKindOfClass:[NSArray class]] &&
@@ -175,16 +176,16 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
         self.navigationItem.rightBarButtonItems = rightBarButtonItems;
     }
 	
-	[self __setRightBarInAnimation:NO];
+	[self pr_setRightBarInAnimation:NO];
 }
 
 - (BOOL)chx_isNavigationActivityIndicatorViewInAnimation {
-	return [self chx_rightBarInAnimation] || [self __titleInAnimation];
+	return [self chx_rightBarInAnimation] || [self pr_titleInAnimation];
 }
 
 #pragma mark -
 
-- (UIView *)__indicatorAnimationView {
+- (UIView *)pr_indicatorAnimationView {
     UIView *view = [UIView new];
     CGFloat height = [self.navigationController.navigationBar chx_height] / 2;
     view.bounds = CGRectMake(0, 0, height, height);
@@ -194,6 +195,15 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
     indicator.color = self.navigationController.navigationBar.tintColor;
 
     return view;
+}
+
+#pragma mark - 
+
+- (void)chx_printHierarchy {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+	NSLog(@"%@", [self performSelector:@selector(_printHierarchy)]);
+#pragma clang diagnostic pop
 }
 
 
