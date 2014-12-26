@@ -1,5 +1,5 @@
 //
-//  NSDictionaryExtension.h
+//  NSArrayExtension.m
 //  GettingStarted
 //
 //  Created by Moch Xiao on 2014-12-26.
@@ -24,27 +24,30 @@
 //	THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "NSArrayExtension.h"
+#import "NSStringExtension.h"
+#import "CHXGlobalServices.h"
 
-@interface NSDictionaryExtension : NSObject
-
-@end
-
-
-@interface NSDictionary (CHXURLPath)
-
-/**
- *  将字典转为链接参数形式
- *
- *  @return 链接字符串
- */
-- (NSString *)chx_URLParameterString;
+@implementation NSArrayExtension
 
 @end
 
+#pragma mark - Override NSArray Description
 
-#pragma mark - Override NSDictionary Description
+static NSString *format = @"";
 
-@interface NSDictionary (CHXDescription)
+@implementation NSArray (CHXDescription)
+
+- (NSString *)chx_descriptionWithLocale:(id)locale indent:(NSUInteger)level {
+	NSString *desc = [self chx_descriptionWithLocale:locale indent:level];
+
+	return [desc chx_UTF8StringCharacterEscape];
+}
+
+#ifdef DEBUG
++ (void)load {
+	chx_instanceMethodSwizzle([self class], @selector(descriptionWithLocale:indent:), @selector(chx_descriptionWithLocale:indent:));
+}
+#endif
 
 @end

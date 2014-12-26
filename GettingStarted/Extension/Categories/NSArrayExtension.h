@@ -1,5 +1,5 @@
 //
-//  NSDictionaryExtension.h
+//  NSArrayExtension.h
 //  GettingStarted
 //
 //  Created by Moch Xiao on 2014-12-26.
@@ -26,25 +26,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDictionaryExtension : NSObject
+@interface NSArrayExtension : NSObject
 
 @end
 
 
-@interface NSDictionary (CHXURLPath)
+#pragma mark - Override NSArray Description
 
-/**
- *  将字典转为链接参数形式
- *
- *  @return 链接字符串
- */
-- (NSString *)chx_URLParameterString;
-
-@end
-
-
-#pragma mark - Override NSDictionary Description
-
-@interface NSDictionary (CHXDescription)
-
+@interface NSArray (CHXDescription)
 @end

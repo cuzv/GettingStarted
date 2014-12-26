@@ -125,6 +125,17 @@
 
 @implementation NSString (CHXEncoding)
 
+- (NSString *)chx_convertAsciiString2UTF8 {
+	NSAssert([self isKindOfClass:[NSString class]],
+			 @"The input parameters is not string type!");
+	
+	NSStringEncoding UTF8Encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
+	NSStringEncoding ASCIIEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingASCII);
+	NSData *ISOData = [self dataUsingEncoding:ASCIIEncoding];
+	NSString *UTF8String = [[NSString alloc] initWithData:ISOData encoding:UTF8Encoding];
+	return UTF8String;
+}
+
 // Create UTF8 string by ISO string
 - (NSString *)chx_convertISOString2UTF8 {
 	NSAssert([self isKindOfClass:[NSString class]],
@@ -147,6 +158,20 @@
 	NSData *UTF8Data = [self dataUsingEncoding:UTF8Encoding];
 	NSString *ISOString = [[NSString alloc] initWithData:UTF8Data encoding:ISOEncoding];
 	return ISOString;
+}
+
+- (NSString *)chx_UTF8StringCharacterEscape {
+	NSAssert([self isKindOfClass:[NSString class]],
+			 @"The input parameters is not string type!");
+	
+	NSString *description = [self stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];
+	description = [description stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+	description = [[@"\"" stringByAppendingString:description] stringByAppendingString:@"\""];
+	NSData *descriptionData = [description dataUsingEncoding:NSUTF8StringEncoding];
+	
+	description = [NSPropertyListSerialization propertyListWithData:descriptionData options:NSPropertyListImmutable format:NULL error:nil];
+	
+	return description;
 }
 
 @end

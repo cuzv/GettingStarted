@@ -31,6 +31,7 @@
 #import "NSObjectExtension.h"
 #import "NSStringExtension.h"
 #import "NSDictionaryExtension.h"
+#import "NSArrayExtension.h"
 #import "NSDataExtension.h"
 #import "UIAlertViewExtension.h"
 #import "UIButtonExtension.h"

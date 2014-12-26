@@ -20,6 +20,7 @@
 		466B16741A3896C000EA9EA0 /* CHXBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16731A3896C000EA9EA0 /* CHXBaseNavigationController.m */; };
 		466B16771A38970800EA9EA0 /* CHXBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16761A38970800EA9EA0 /* CHXBaseTabBarController.m */; };
 		466B167A1A38971900EA9EA0 /* CHXBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 466B16791A38971900EA9EA0 /* CHXBaseView.m */; };
+		466F02AC1A4D633D00505BEF /* NSArrayExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 466F02AB1A4D633D00505BEF /* NSArrayExtension.m */; };
 		4672AB3D1A2AFF6400876B74 /* CAAnimationExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB3C1A2AFF6400876B74 /* CAAnimationExtension.m */; };
 		4672AB801A2BFD4600876B74 /* CHXLoginHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB7F1A2BFD4600876B74 /* CHXLoginHandler.m */; };
 		4672AB881A2BFE2F00876B74 /* CHXRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB871A2BFE2F00876B74 /* CHXRequest.m */; };
@@ -124,6 +125,8 @@
 		466B16761A38970800EA9EA0 /* CHXBaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXBaseTabBarController.m; sourceTree = "<group>"; };
 		466B16781A38971900EA9EA0 /* CHXBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXBaseView.h; sourceTree = "<group>"; };
 		466B16791A38971900EA9EA0 /* CHXBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXBaseView.m; sourceTree = "<group>"; };
+		466F02AA1A4D633D00505BEF /* NSArrayExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayExtension.h; sourceTree = "<group>"; };
+		466F02AB1A4D633D00505BEF /* NSArrayExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayExtension.m; sourceTree = "<group>"; };
 		4672AB3B1A2AFF6400876B74 /* CAAnimationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAnimationExtension.h; sourceTree = "<group>"; };
 		4672AB3C1A2AFF6400876B74 /* CAAnimationExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAAnimationExtension.m; sourceTree = "<group>"; };
 		4672AB7E1A2BFD4600876B74 /* CHXLoginHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXLoginHandler.h; sourceTree = "<group>"; };
@@ -417,10 +420,12 @@
 			children = (
 				46F11EC41A1B81A8009321A0 /* NSObjectExtension.h */,
 				46F11EC51A1B81A8009321A0 /* NSObjectExtension.m */,
-				46F11EC61A1B81A8009321A0 /* NSStringExtension.h */,
-				46F11EC71A1B81A8009321A0 /* NSStringExtension.m */,
 				4608A3ED1A1CF75000AF5873 /* NSDictionaryExtension.h */,
 				4608A3EE1A1CF75000AF5873 /* NSDictionaryExtension.m */,
+				466F02AA1A4D633D00505BEF /* NSArrayExtension.h */,
+				466F02AB1A4D633D00505BEF /* NSArrayExtension.m */,
+				46F11EC61A1B81A8009321A0 /* NSStringExtension.h */,
+				46F11EC71A1B81A8009321A0 /* NSStringExtension.m */,
 				4608A3F01A1CF8EC00AF5873 /* NSDataExtension.h */,
 				4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */,
 				46F11EC81A1B81A8009321A0 /* UIAlertViewExtension.h */,
@@ -856,6 +861,7 @@
 				46F11F681A1B917E009321A0 /* MLEmojiLabel.m in Sources */,
 				466B166F1A38956300EA9EA0 /* CHXRegistHandler.m in Sources */,
 				46F11F001A1B81A8009321A0 /* CHXBadgeView.m in Sources */,
+				466F02AC1A4D633D00505BEF /* NSArrayExtension.m in Sources */,
 				466B16691A38952200EA9EA0 /* CHXBaseHandler.m in Sources */,
 				46F11F041A1B81A8009321A0 /* CHXPaddingField.m in Sources */,
 				4672AB3D1A2AFF6400876B74 /* CAAnimationExtension.m in Sources */,

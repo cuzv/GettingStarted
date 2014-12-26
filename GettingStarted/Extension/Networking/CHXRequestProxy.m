@@ -323,7 +323,6 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 				request.requestFailureCompletionBlock(responseMessage);
 			}
 		}
-		request.requestSuccessCompletionBlock(responseObject);
 	}
 	[self pr_prepareDeallocRequest:request];
 }

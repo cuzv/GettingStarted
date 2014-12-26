@@ -121,6 +121,13 @@
 @interface NSString (CHXEncoding)
 
 /**
+ *  Create UTF-8 string by ASCII string
+ *
+ *  @return ASCII string
+ */
+- (NSString *)chx_convertAsciiString2UTF8;
+
+/**
  *  Create UTF-8 string by ISO string
  *
  *  @return UTF-8 string
@@ -133,5 +140,12 @@
  *  @return ISO string
  */
 - (NSString *)chx_convertUTF8String2ISO;
+
+/**
+ *  转义 UTF-8 字符串字符，让其适合在终端输出中文
+ *
+ *  @return UTF-8 转义字符串
+ */
+- (NSString *)chx_UTF8StringCharacterEscape;
 
 @end

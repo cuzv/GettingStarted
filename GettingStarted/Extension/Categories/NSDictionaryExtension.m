@@ -2,7 +2,7 @@
 //  NSDictionaryExtension.m
 //  GettingStarted
 //
-//  Created by Moch Xiao on 2014-11-20.
+//  Created by Moch Xiao on 2014-12-26.
 //	Copyright (c) 2014 Moch Xiao (htt://github.com/atcuan).
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,6 +25,8 @@
 //
 
 #import "NSDictionaryExtension.h"
+#import "NSStringExtension.h"
+#import "CHXGlobalServices.h"
 
 @implementation NSDictionaryExtension
 
@@ -47,5 +49,23 @@
 	
 	return URLParamString;
 }
+
+@end
+
+#pragma mark - Override NSDictionary Description
+
+@implementation NSDictionary (CHXDescription)
+
+- (NSString *)chx_descriptionWithLocale:(id)locale indent:(NSUInteger)level {
+	NSString *desc = [self chx_descriptionWithLocale:locale indent:level];
+	
+	return [desc chx_UTF8StringCharacterEscape];
+}
+
+#ifdef DEBUG
++ (void)load {
+	chx_instanceMethodSwizzle([self class], @selector(descriptionWithLocale:indent:), @selector(chx_descriptionWithLocale:indent:));
+}
+#endif
 
 @end

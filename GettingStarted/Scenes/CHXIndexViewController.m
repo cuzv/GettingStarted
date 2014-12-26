@@ -33,6 +33,7 @@
 #import "CHXBaseModel.h"
 #import "NSStringExtension.h"
 #import "CHXCodingableObject.h"
+#import "CHXMacro.h"
 
 @interface Person : CHXCodingableObject
 @property (nonatomic, strong) NSString *name;
@@ -47,19 +48,19 @@
 
 
 @interface UIImage (Swizzle)
-+ (instancetype)swzzle_imageNamed:(NSString *)imageName;
+//+ (instancetype)swzzle_imageNamed:(NSString *)imageName;
 @end
 
 @implementation UIImage (Swizzle)
 
-+ (instancetype)swzzle_imageNamed:(NSString *)imageName {
-	NSLog(@"%@", imageName);
-	return [self swzzle_imageNamed:imageName];
-}
-
-- (void)swzzle_initWithData:(NSData *)data {
-	[self swzzle_initWithData:data];
-}
+//+ (instancetype)swzzle_imageNamed:(NSString *)imageName {
+//	NSLog(@"%@", imageName);
+//	return [self swzzle_imageNamed:imageName];
+//}
+//
+//- (void)swzzle_initWithData:(NSData *)data {
+//	[self swzzle_initWithData:data];
+//}
 
 @end
 
@@ -90,7 +91,9 @@
 	
 //	[self testCodeLicenser];
 	
-	[self testMethods];
+//	[self testMethods];
+	
+//	[self testPrint];
 
 }
 
@@ -118,7 +121,7 @@
 }
 
 - (void)testSwizzle {
-	chx_classMethodSwizzle([UIImage class], @selector(imageNamed:), @selector(swzzle_imageNamed:));
+//	chx_classMethodSwizzle([UIImage class], @selector(imageNamed:), @selector(swzzle_imageNamed:));
 
 //	UIImage *image = [[UIImage alloc] initWithData:[NSData data]];
 //	UIImage *image = [UIImage imageNamed:@"activity_gradient_gray"];
@@ -144,13 +147,13 @@
 	NSLog(@"request = %p", request);
 	
 	[CHXLoginHandler handleRequest:request withSuccess:^(id modelObject) {
-		NSLog(@"%@", modelObject);
+		NSLog(@"modelObject = %@", modelObject);
 	} failure:^(id errorMessage) {
-		NSLog(@"%@", errorMessage);
+		NSLog(@"errorMessage = %@", errorMessage);
 //		NSURLErrorDomain
-		NSString *badge = [NSString stringWithFormat:@"%zd", arc4random() % 100];
-		NSLog(@"badge = %p", badge);
-		[self.view1 chx_setBadgeValue:badge];
+//		NSString *badge = [NSString stringWithFormat:@"%zd", arc4random() % 100];
+//		NSLog(@"badge = %p", badge);
+//		[self.view1 chx_setBadgeValue:badge];
 	}];
 //
 //	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -193,14 +196,38 @@
 
 - (void)testCodeLicenser {
 	CHXCodeLicenser *licenser = [CHXCodeLicenser sharedInstance];
-	NSString *filePath = @"/Users/Moch/Github/RefreshControl/RefreshControl";
-	[licenser licenseCodeWithCreater:@"Moch Xiao" organization:@"Moch Xiao (htt://github.com/atcuan)" projectName:@"RefreshControl" filePath:filePath toLicenseType:CHXLicenseTypeMIT];
+	NSString *filePath = @"/Users/Moch/Github/GettingStarted/GettingStarted";
+	[licenser licenseCodeWithCreater:@"Moch Xiao" organization:@"Moch Xiao (htt://github.com/atcuan)" projectName:@"GettingStarted" filePath:filePath toLicenseType:CHXLicenseTypeMIT];
 }
 
 - (void)testMethods {
 	for (NSString *name in [UIViewController chx_methods]) {
 		NSLog(@"mthod: %@", name);
 	}
+}
+
+- (void)testPrint {
+	NSArray *array1 = @[@{@"小星星":@"都比"}, @{@"小星星":@"不做不会死"}];
+//	NSLog(@"%@", array.description);
+	NSDictionary *dict = @{@"key":@"哈哈", @"明知":@"罗霸道就跪了", @"dict":@{@"key":@"哈哈", @"明知":@"罗霸道就跪了"}};
+	NSArray *array = @[
+					   @"小米",
+					   @"小花",
+					   dict,
+					   @[@"啦啦", @"哈哈"],
+					   @"熊熊",
+					   @[@"经历", @"哦额外", @"搭噶"],
+					   array1
+					   ];
+	NSLog(@"%@", array);
+
+	
+
+//	NSLog(@"%@", dict);
+	
+//	NSArray *a1 = @[@"小米", @"吓死", @[@"啦啦", @"纠结"], @[@"技术", @"欧文", @"熬到"], @"奥迪"];
+//	NSLog(@"%@", a1);
+	
 }
 
 @end
