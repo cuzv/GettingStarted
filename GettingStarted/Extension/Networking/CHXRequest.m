@@ -27,11 +27,48 @@
 #import "CHXRequest.h"
 #import "CHXRequestProxy.h"
 #import "CHXMacro.h"
+#import "NSObjectExtension.h"
 
 @interface CHXRequest ()
 @end
 
 @implementation CHXRequest
+
+#pragma mark - Hash
+
+- (BOOL)isEqual:(id)object {
+	if (![object isKindOfClass:[self class]]) {
+		return NO;
+	}
+	
+	NSArray *propertyArray = [self chx_properties];
+	__block BOOL euqal = YES;
+	[propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		id selfObject = [self valueForKey:obj];
+		id compareObject = [object valueForKey:obj];
+		euqal = [selfObject isEqual:compareObject];
+		
+		if (!euqal && selfObject && compareObject) {
+			*stop = YES;
+		} else {
+			euqal = YES;
+		}
+	}];
+	
+	return euqal;
+}
+
+- (NSUInteger)hash {
+	NSArray *propertyArray = [self chx_properties];
+	__block NSUInteger hashCode = 0;
+	[propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		hashCode ^= [[self valueForKey:obj] hash];
+	}];
+	
+	return hashCode;
+}
+
+#pragma mark -
 
 - (void)dealloc {
 	NSLog(@"%s", __FUNCTION__);
@@ -67,11 +104,11 @@
 	return nil;
 }
 
-- (NSURLRequest *)customURLRequest {
+- (NSString *)downloadTargetFilePathString {
 	return nil;
 }
 
-- (NSString *)downloadTargetPathString {
+- (NSURLRequest *)customURLRequest {
 	return nil;
 }
 

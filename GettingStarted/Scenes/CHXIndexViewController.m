@@ -34,6 +34,7 @@
 #import "NSStringExtension.h"
 #import "CHXCodingableObject.h"
 #import "CHXMacro.h"
+#import "CHXDownloadRequest.h"
 
 @interface Person : CHXCodingableObject
 @property (nonatomic, strong) NSString *name;
@@ -70,6 +71,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic, strong) UIView *view1;
 
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @end
 
 @implementation CHXIndexViewController
@@ -94,7 +98,7 @@
 //	[self testMethods];
 	
 //	[self testPrint];
-
+	
 }
 
 - (void)testBadgeView {
@@ -137,14 +141,8 @@
 }
 
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	[self testNetworking];
-}
-
 - (void)testNetworking {
 	CHXLoginRequest *request = [[CHXLoginRequest alloc] initWithUsername:@"18583221776" password:@"123456"];
-
-	NSLog(@"request = %p", request);
 	
 	[CHXLoginHandler handleRequest:request withSuccess:^(id modelObject) {
 		NSLog(@"modelObject = %@", modelObject);
@@ -220,7 +218,6 @@
 					   array1
 					   ];
 	NSLog(@"%@", array);
-
 	
 
 //	NSLog(@"%@", dict);
@@ -229,5 +226,40 @@
 //	NSLog(@"%@", a1);
 	
 }
+
+- (void)testDownload {
+	CHXDownloadRequest *reuest = [CHXDownloadRequest new];
+	[reuest startRequestWithSuccess:^(id responseData) {
+		NSLog(@"Ok");
+		UIImage *image = [[UIImage alloc] initWithContentsOfFile:reuest.downloadTargetFilePathString];
+		self.imageView.image = image;
+	} failue:^(id errorMessage) {
+		NSLog(@"%@", errorMessage);
+	}];
+	
+//	NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//	AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:sessionConfiguration];
+//	// fileRemoteURL
+//	NSString *fileRemoteURLString = @"http://ww3.sinaimg.cn/large/62580dd9gw1ennijqvvghj21300n5jts.jpg";
+//	NSString *targetPathString = [chx_documentDirectory() stringByAppendingString:@"/sam.jpg"];
+//	targetPathString = @"file:///Users/Moch/Desktop/sam.jpg";
+//	NSURL *fileRemoteURL = [NSURL URLWithString:fileRemoteURLString];
+//	NSURLRequest *downURLRequest = [NSURLRequest requestWithURL:fileRemoteURL];
+//	NSURLSessionTask *dataTask = [sessionManager downloadTaskWithRequest:downURLRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+//		return [NSURL URLWithString:targetPathString];
+//	} completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+//		
+//	}];
+//	
+//	[dataTask resume];
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	[self testNetworking];
+//	[self testDownload];
+}
+
+
 
 @end

@@ -10,6 +10,7 @@
 		46046C541A2E128900150636 /* CHXRequestProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46046C531A2E128900150636 /* CHXRequestProxy.m */; };
 		4608A3EF1A1CF75000AF5873 /* NSDictionaryExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608A3EE1A1CF75000AF5873 /* NSDictionaryExtension.m */; };
 		4608A3F21A1CF8EC00AF5873 /* NSDataExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */; };
+		4610548F1A4E7E1F001FCF43 /* CHXDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4610548E1A4E7E1F001FCF43 /* CHXDownloadRequest.m */; };
 		46602C811A1C3E5800307EEC /* CHXGlobalServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C801A1C3E5800307EEC /* CHXGlobalServices.m */; };
 		46602C861A1C4DBF00307EEC /* CHXHTTPConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C851A1C4DBF00307EEC /* CHXHTTPConfigure.m */; };
 		4666B0531A3D7A8A00CF3AB3 /* CHXCodeLicenser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4666B0521A3D7A8A00CF3AB3 /* CHXCodeLicenser.m */; };
@@ -102,6 +103,8 @@
 		4608A3EE1A1CF75000AF5873 /* NSDictionaryExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSDictionaryExtension.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4608A3F01A1CF8EC00AF5873 /* NSDataExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = NSDataExtension.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSDataExtension.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4610548D1A4E7E1F001FCF43 /* CHXDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXDownloadRequest.h; sourceTree = "<group>"; };
+		4610548E1A4E7E1F001FCF43 /* CHXDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXDownloadRequest.m; sourceTree = "<group>"; };
 		461820DC1A3B47000087B602 /* CHXMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CHXMacro.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		465C07A51A24A5DE00ABE213 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		465C07A61A24A5DE00ABE213 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
@@ -313,6 +316,8 @@
 			children = (
 				4672AB8E1A2BFF1700876B74 /* CHXLoginRequest.h */,
 				4672AB8F1A2BFF1700876B74 /* CHXLoginRequest.m */,
+				4610548D1A4E7E1F001FCF43 /* CHXDownloadRequest.h */,
+				4610548E1A4E7E1F001FCF43 /* CHXDownloadRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -858,6 +863,7 @@
 				46F11F661A1B917E009321A0 /* Base64.m in Sources */,
 				46602C861A1C4DBF00307EEC /* CHXHTTPConfigure.m in Sources */,
 				46F11EFA1A1B81A8009321A0 /* UIScrollViewExtension.m in Sources */,
+				4610548F1A4E7E1F001FCF43 /* CHXDownloadRequest.m in Sources */,
 				46F11F681A1B917E009321A0 /* MLEmojiLabel.m in Sources */,
 				466B166F1A38956300EA9EA0 /* CHXRegistHandler.m in Sources */,
 				46F11F001A1B81A8009321A0 /* CHXBadgeView.m in Sources */,

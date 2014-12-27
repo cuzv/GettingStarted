@@ -28,6 +28,35 @@
 #import "AFNetworking.h"
 #import "CHXRequest.h"
 #import "CHXMacro.h"
+#import "NSObjectExtension.h"
+
+#pragma mark -
+
+@interface CHXResponseCache : NSObject <NSCoding>
+@property (nonatomic, strong) id cahceResponseObject;
+@property (nonatomic, strong) NSDate *cacheDate;
+@end
+
+@implementation CHXResponseCache
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+	[[self chx_properties] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		[aCoder encodeObject:[self valueForKey:obj] forKey:obj];
+	}];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	if (self = [super init]) {
+		[[self chx_properties] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			[self setValue:[aDecoder decodeObjectForKey:obj] forKey:obj];
+		}];
+	}
+	return self;
+}
+
+@end
+
+#pragma mark -
 
 const NSInteger kMaxConcurrentOperationCount = 4;
 
@@ -59,7 +88,7 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 		_dataTaskContainer = [NSMutableDictionary new];
 		// When background download file complete, but move to target path failure, will post this notification
 		[[NSNotificationCenter defaultCenter] addObserverForName:AFURLSessionDownloadTaskDidFailToMoveFileNotification object:nil queue:[NSOperationQueue currentQueue] usingBlock:^(NSNotification *note) {
-			// TODO
+			NSLog(@"AFURLSessionDownloadTaskDidFailToMoveFileNotification = %@", note);
 		}];
 	}
 	
@@ -105,7 +134,15 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 			}
 		}];
 		[dataTask resume];
+		
+		// Open networking activity indicator
+		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 	} else {
+		// If cache exist, return cache data
+		if (![self pr_shouldContinueRequest:request]) {
+			return;
+		}
+		
 		// HTTP Method
 		CHXRequestMethod requestMethod = [request requestMehtod];
 		NSAssert(requestMethod <= CHXRequestMethodHead, @"Unsupport Request Method");
@@ -125,6 +162,9 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 		requestParameters = [request requestParameters];
 		NSParameterAssert(requestParameters);
 
+		// Open networking activity indicator
+		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+		
 		switch (requestMethod) {
 			case CHXRequestMethodPost: {
 				if (constructingBodyBlock) {
@@ -143,30 +183,34 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 			}
 				break;
 			case CHXRequestMethodGet: {
-				NSString *downloadTargetPath = [request downloadTargetPathString];
-				if (downloadTargetPath) {
-					NSParameterAssert(downloadTargetPath.length);
+				NSString *downloadTargetFilePath = [request downloadTargetFilePathString];
+				if (![downloadTargetFilePath hasPrefix:@"file://"]) {
+					downloadTargetFilePath = [@"file://" stringByAppendingString:downloadTargetFilePath];
+				}
+				if (downloadTargetFilePath) {
+					NSParameterAssert(downloadTargetFilePath.length);
 					
 					NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
 					AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:sessionConfiguration];
-					// TODO fileRemoteURL
-					NSURL *fileRemoteURL = [NSURL URLWithString:nil];
+					// fileRemoteURL
+					NSString *fileRemoteURLString = [self pr_requestFileRemoteURLStringWithRequest:request];
+					NSURL *fileRemoteURL = [NSURL URLWithString:fileRemoteURLString];
 					NSURLRequest *downURLRequest = [NSURLRequest requestWithURL:fileRemoteURL];
-					NSURLSessionTask *dataTask = [sessionManager downloadTaskWithRequest:downURLRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-						return [NSURL URLWithString:downloadTargetPath];
+					dataTask = [sessionManager downloadTaskWithRequest:downURLRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+						return [NSURL URLWithString:downloadTargetFilePath];
 					} completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
 						if (error) {
-							[self pr_handleRequestFailureWithSessionDataTask:dataTask error:error];
+							[self pr_handleRequestFailureWithSessionDataTask:request.requestSessionTask error:error];
 						} else {
-							[self pr_handleRequestSuccessWithSessionDataTask:dataTask responseObject:nil];
+							id object = [self pr_buildResponseObject:filePath forRequest:request];
+							[self pr_handleRequestSuccessWithSessionDataTask:request.requestSessionTask responseObject:object];
 						}
 					}];
 					// If download on background
 					[sessionManager setDownloadTaskDidFinishDownloadingBlock:^NSURL *(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, NSURL *location) {
-						return [NSURL URLWithString:downloadTargetPath];
+						return [NSURL URLWithString:downloadTargetFilePath];
 					}];
 					[dataTask resume];
-
 				} else {
 					dataTask = [_sessionManager GET:requestAbsoluteURLString parameters:requestParameters success:^(NSURLSessionDataTask *task, id responseObject) {
 						[self pr_handleRequestSuccessWithSessionDataTask:task responseObject:responseObject];
@@ -220,16 +264,91 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 	_dataTaskContainer[@(dataTask.taskIdentifier)] = request;
 	
 	// For debug
-	NSLog(@"\n");
-	NSLog(@"Request Start!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-	NSLog(@"Request API URL: %@\n", dataTask.currentRequest.URL);
-	NSLog(@"Request parameters: %@\n", requestParameters);
-	NSLog(@"Reuquest Header: %@\n", dataTask.currentRequest.allHTTPHeaderFields);
-	NSLog(@"Request Log End!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+	NSLog(@"\n%@\n%@\n%@\n", dataTask.currentRequest.URL, requestParameters, dataTask.currentRequest.allHTTPHeaderFields);
 }
+
+- (void)cancelRequest:(CHXRequest *)request {
+	[request.requestSessionTask cancel];
+	[self pr_prepareDeallocRequest:request];
+}
+
+- (void)cancelAllRequest {
+	[_sessionManager.operationQueue cancelAllOperations];
+	
+	__weak typeof(self) weakSelf = self;
+	[self.dataTaskContainer enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id key, id obj, BOOL *stop) {
+		if ([obj isKindOfClass:[CHXRequest class]]) {
+			CHXRequest *request = (CHXRequest *)obj;
+			[weakSelf cancelRequest:request];
+		}
+	}];
+}
+
+#pragma mark -
 
 - (BOOL)pr_isNetworkReachable {
 	return [_sessionManager.reachabilityManager isReachable];
+}
+
+- (BOOL)pr_shouldContinueRequest:(CHXRequest *)request {
+	// Need cache ?
+	if (![request requestNeedCache]) {
+		return YES;
+	}
+	
+	// If cache data not exist, should continure request
+	CHXResponseCache *cacheResponse = [self pr_cacheForRequest:request];
+	if (!cacheResponse.cahceResponseObject || !cacheResponse.cacheDate) {
+		return YES;
+	}
+	
+	NSTimeInterval interval = -[cacheResponse.cacheDate timeIntervalSinceNow];
+	NSTimeInterval duration = request.requestCacheDuration;
+	if (interval > duration) {
+		return YES;
+	}
+	// handle request success
+	[self pr_handleRequestSuccessWithRequest:request responseObject:cacheResponse.cahceResponseObject];
+	
+	// dealloc request
+	[self pr_prepareDeallocRequest:request];
+	
+	return NO;
+}
+
+- (CHXResponseCache *)pr_cacheForRequest:(CHXRequest *)request {
+	// Retrieve cache data
+	NSString *filePath = [self pr_cacheFilePathStringForReqeust:request];
+	CHXResponseCache *cache = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+
+	return cache;
+}
+
+- (void)pr_cacheIfNeededWithRequest:(CHXRequest *)request responseObject:(id)responseObject {
+	if (![request requestNeedCache]) {
+		return;
+	}
+	
+	// Cache file path
+	NSString *filePath = [self pr_cacheFilePathStringForReqeust:request];
+
+	// Cache data
+	CHXResponseCache *cache = [CHXResponseCache new];
+	cache.cacheDate = [NSDate date];
+	cache.cahceResponseObject = responseObject;
+	[NSKeyedArchiver archiveRootObject:cache toFile:filePath];
+}
+
+- (NSString *)pr_cacheFilePathStringForReqeust:(CHXRequest *)request {
+	NSString *fileName = nil;
+	if (request.chx_properties.count) {
+		fileName = [NSString stringWithFormat:@"%zd", [request hash]];
+	} else {
+		fileName = NSStringFromClass([request class]);
+	}
+	
+	NSString *filePath = [NSTemporaryDirectory() stringByAppendingString:fileName];
+	return filePath;
 }
 
 - (NSString *)pr_requestAbsoluteURLStringWithRequest:(CHXRequest *)request {
@@ -258,6 +377,50 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 	}
 	
 	return [NSString stringWithFormat:@"%@%@", baseRULString, specificURLString];
+}
+
+- (NSString *)pr_requestFileRemoteURLStringWithRequest:(CHXRequest *)request {
+	NSString *originalURLString = [self pr_requestAbsoluteURLStringWithRequest:request];
+	NSString *parametersURLString = [self pr_buildParametersToURLStringWithRequest:request];
+	NSString *resultURLString = [NSString stringWithString:originalURLString];
+	
+	if (parametersURLString && parametersURLString.length) {
+		if ([originalURLString rangeOfString:@"?"].location != NSNotFound) {
+			resultURLString = [resultURLString stringByAppendingString:parametersURLString];
+		} else {
+			resultURLString = [resultURLString stringByAppendingFormat:@"?%@", [parametersURLString substringFromIndex:1]];
+		}
+		return resultURLString;
+	} else {
+		return originalURLString;
+	}
+}
+
+- (NSString *)pr_buildParametersToURLStringWithRequest:(CHXRequest *)request {
+	NSDictionary *parameters = request.requestParameters;
+	
+	NSMutableString *parametersURLString = [@"" mutableCopy];
+	if (parameters && parameters.count) {
+		for (NSString *key in parameters) {
+			NSString *value = parameters[key];
+			value = [NSString stringWithFormat:@"%@", value];
+			value = [self pr_URLEncode:value];
+			[parametersURLString appendFormat:@"&%@=%@", key, value];
+		}
+	}
+	
+	return [NSString stringWithString:parametersURLString];
+}
+
+
+- (NSString *)pr_URLEncode:(NSString *)string {
+	// https://github.com/AFNetworking/AFNetworking/pull/555
+	NSString *result = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+																							 (__bridge CFStringRef)string,
+																							 CFSTR("."),
+																							 CFSTR(":/?#[]@!$&'()*+,;="),
+																							 kCFStringEncodingUTF8);
+	return result;
 }
 
 - (void)pr_settingupRequestSerializerTypeByRequest:(CHXRequest *)request {
@@ -295,11 +458,33 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 	}
 }
 
-// TODO
 - (void)pr_handleRequestSuccessWithSessionDataTask:(NSURLSessionTask *)task responseObject:(id)responseObject {
+	if (!responseObject) {
+		return;
+	}
 	CHXRequest *request = [_dataTaskContainer objectForKey:@(task.taskIdentifier)];
 	NSParameterAssert(request);
+
+	[self pr_cacheIfNeededWithRequest:request responseObject:responseObject];
+	[self pr_handleRequestSuccessWithRequest:request responseObject:responseObject];
+	[self pr_prepareDeallocRequest:request];
+}
+
+- (id)pr_buildResponseObject:(id)responseObject forRequest:(CHXRequest *)request {
+	NSString *responseCodeFieldName = [request responseCodeFieldName];
+	NSParameterAssert(responseCodeFieldName);
+	NSParameterAssert(responseCodeFieldName.length);
 	
+	NSString *responseDataFieldName = [request responseDataFieldName];
+	NSParameterAssert(responseDataFieldName);
+	NSParameterAssert(responseDataFieldName.length);
+
+	NSDictionary *returnObject = @{responseCodeFieldName:@"0", responseDataFieldName:responseObject};
+	
+	return returnObject;
+}
+
+- (void)pr_handleRequestSuccessWithRequest:(CHXRequest *)request responseObject:(id)responseObject {
 	if (request.requestSuccessCompletionBlock) {
 		NSString *responseCodeFieldName = [request responseCodeFieldName];
 		NSParameterAssert(responseCodeFieldName);
@@ -318,18 +503,16 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 				NSString *responseMessageFieldName = [request responseMessageFieldName];
 				NSParameterAssert(responseMessageFieldName);
 				NSParameterAssert(responseMessageFieldName.length);
-
+				
 				id responseMessage = [responseObject objectForKey:responseMessageFieldName];
 				request.requestFailureCompletionBlock(responseMessage);
 			}
 		}
 	}
-	[self pr_prepareDeallocRequest:request];
 }
 
-// TODO
 - (void)pr_handleRequestFailureWithSessionDataTask:(NSURLSessionTask *)task error:(NSError *)error {
-	NSLog(@"Request error: %@", error);
+	NSLog(@"Request error: %@", CHXStringFromCFNetworkErrorCode(error.code));
 	CHXRequest *request = [_dataTaskContainer objectForKey:@(task.taskIdentifier)];
 	NSParameterAssert(request);
 	
@@ -348,6 +531,9 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 	
 	// Break retain data task
 	request.requestSessionTask = nil;
+	
+	// Close networking activity indicator
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void)pr_removeContainForRequest:(CHXRequest *)request {
@@ -359,25 +545,262 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 	request.requestFailureCompletionBlock = nil;
 }
 
-#pragma mark -
+#pragma mark - Utils
 
-- (void)cancelRequest:(CHXRequest *)request {
-	[request.requestSessionTask cancel];
-	[self pr_prepareDeallocRequest:request];
-}
-
-#pragma mark -
-
-- (void)cancelAllRequest {
-	[_sessionManager.operationQueue cancelAllOperations];
+NSString *CHXStringFromCFNetworkErrorCode(NSInteger code) {
+	NSString *resultString = nil;
+	switch (code) {
+		case kCFHostErrorHostNotFound:
+			resultString = @"kCFHostErrorHostNotFound";
+			break;
+		case kCFHostErrorUnknown:
+			resultString = @"kCFHostErrorUnknown";
+			break;
+		case kCFSOCKSErrorUnknownClientVersion:
+			resultString = @"kCFSOCKSErrorUnknownClientVersion";
+			break;
+		case kCFSOCKSErrorUnsupportedServerVersion:
+			resultString = @"kCFSOCKSErrorUnsupportedServerVersion";
+			break;
+		case kCFSOCKS4ErrorRequestFailed:
+			resultString = @"kCFSOCKS4ErrorRequestFailed";
+			break;
+		case kCFSOCKS4ErrorIdentdFailed:
+			resultString = @"kCFSOCKS4ErrorIdentdFailed";
+			break;
+		case kCFSOCKS4ErrorIdConflict:
+			resultString = @"kCFSOCKS4ErrorIdConflict";
+			break;
+		case kCFSOCKS5ErrorBadState:
+			resultString = @"kCFSOCKS5ErrorBadState";
+			break;
+		case kCFSOCKS5ErrorBadResponseAddr:
+			resultString = @"kCFSOCkCFSOCKS5ErrorBadResponseAddrKS5ErrorBadState";
+			break;
+		case kCFSOCKS5ErrorBadCredentials:
+			resultString = @"kCFSOCKS5ErrorBadCredentials";
+			break;
+		case kCFSOCKS5ErrorUnsupportedNegotiationMethod:
+			resultString = @"kCFSOCKS5ErrorUnsupportedNegotiationMethod";
+			break;
+		case kCFSOCKS5ErrorNoAcceptableMethod:
+			resultString = @"kCFSOCKS5ErrorNoAcceptableMethod";
+			break;
+		case kCFFTPErrorUnexpectedStatusCode:
+			resultString = @"kCFFTPErrorUnexpectedStatusCode";
+			break;
+		case kCFErrorHTTPAuthenticationTypeUnsupported:
+			resultString = @"kCFErrorHTTPAuthenticationTypeUnsupported";
+			break;
+		case kCFErrorHTTPBadCredentials:
+			resultString = @"kCFErrorHTTPBadCredentials";
+			break;
+		case kCFErrorHTTPConnectionLost:
+			resultString = @"kCFErrorHTTPConnectionLost";
+			break;
+		case kCFErrorHTTPParseFailure:
+			resultString = @"kCFErrorHTTPParseFailure";
+			break;
+		case kCFErrorHTTPRedirectionLoopDetected:
+			resultString = @"kCFErrorHTTPRedirectionLoopDetected";
+			break;
+		case kCFErrorHTTPBadURL:
+			resultString = @"kCFErrorHTTPBadURL";
+			break;
+		case kCFErrorHTTPProxyConnectionFailure:
+			resultString = @"kCFErrorHTTPProxyConnectionFailure";
+			break;
+		case kCFErrorHTTPBadProxyCredentials:
+			resultString = @"kCFErrorHTTPBadProxyCredentials";
+			break;
+		case kCFErrorPACFileError:
+			resultString = @"kCFErrorPACFileError";
+			break;
+		case kCFErrorPACFileAuth:
+			resultString = @"kCFErrorPACFileAuth";
+			break;
+		case kCFErrorHTTPSProxyConnectionFailure:
+			resultString = @"kCFErrorHTTPSProxyConnectionFailure";
+			break;
+		case kCFStreamErrorHTTPSProxyFailureUnexpectedResponseToCONNECTMethod:
+			resultString = @"kCFStreamErrorHTTPSProxyFailureUnexpectedResponseToCONNECTMethod";
+			break;
+		case kCFURLErrorBackgroundSessionInUseByAnotherProcess:
+			resultString = @"kCFURLErrorBackgroundSessionInUseByAnotherProcess";
+			break;
+		case kCFURLErrorBackgroundSessionWasDisconnected:
+			resultString = @"kCFURLErrorBackgroundSessionWasDisconnected";
+			break;
+		case kCFURLErrorUnknown:
+			resultString = @"kCFURLErrorUnknown";
+			break;
+		case kCFURLErrorCancelled:
+			resultString = @"kCFURLErrorCancelled";
+			break;
+		case kCFURLErrorBadURL:
+			resultString = @"kCFURLErrorBadURL";
+			break;
+		case kCFURLErrorTimedOut:
+			resultString = @"kCFURLErrorTimedOut";
+			break;
+		case kCFURLErrorUnsupportedURL:
+			resultString = @"kCFURLErrorUnsupportedURL";
+			break;
+		case kCFURLErrorCannotFindHost:
+			resultString = @"kCFURLErrorCannotFindHost";
+			break;
+		case kCFURLErrorCannotConnectToHost:
+			resultString = @"kCFURLErrorCannotConnectToHost";
+			break;
+		case kCFURLErrorNetworkConnectionLost:
+			resultString = @"kCFURLErrorNetworkConnectionLost";
+			break;
+		case kCFURLErrorDNSLookupFailed:
+			resultString = @"kCFURLErrorDNSLookupFailed";
+			break;
+		case kCFURLErrorHTTPTooManyRedirects:
+			resultString = @"kCFURLErrorHTTPTooManyRedirects";
+			break;
+		case kCFURLErrorResourceUnavailable:
+			resultString = @"kCFURLErrorResourceUnavailable";
+			break;
+		case kCFURLErrorNotConnectedToInternet:
+			resultString = @"kCFURLErrorNotConnectedToInternet";
+			break;
+		case kCFURLErrorRedirectToNonExistentLocation:
+			resultString = @"kCFURLErrorRedirectToNonExistentLocation";
+			break;
+		case kCFURLErrorBadServerResponse:
+			resultString = @"kCFURLErrorBadServerResponse";
+			break;
+		case kCFURLErrorUserCancelledAuthentication:
+			resultString = @"kCFURLErrorUserCancelledAuthentication";
+			break;
+		case kCFURLErrorUserAuthenticationRequired:
+			resultString = @"kCFURLErrorUserAuthenticationRequired";
+			break;
+		case kCFURLErrorZeroByteResource:
+			resultString = @"kCFURLErrorZeroByteResource";
+			break;
+		case kCFURLErrorCannotDecodeRawData:
+			resultString = @"kCFURLErrorCannotDecodeRawData";
+			break;
+		case kCFURLErrorCannotDecodeContentData:
+			resultString = @"kCFURLErrorCannotDecodeContentData";
+			break;
+		case kCFURLErrorCannotParseResponse:
+			resultString = @"kCFURLErrorCannotParseResponse";
+			break;
+		case kCFURLErrorInternationalRoamingOff:
+			resultString = @"kCFURLErrorInternationalRoamingOff";
+			break;
+		case kCFURLErrorCallIsActive:
+			resultString = @"kCFURLErrorCallIsActive";
+			break;
+		case kCFURLErrorDataNotAllowed:
+			resultString = @"kCFURLErrorDataNotAllowed";
+			break;
+		case kCFURLErrorRequestBodyStreamExhausted:
+			resultString = @"kCFURLErrorRequestBodyStreamExhausted";
+			break;
+		case kCFURLErrorFileDoesNotExist:
+			resultString = @"kCFURLErrorFileDoesNotExist";
+			break;
+		case kCFURLErrorFileIsDirectory:
+			resultString = @"kCFURLErrorFileIsDirectory";
+			break;
+		case kCFURLErrorNoPermissionsToReadFile:
+			resultString = @"kCFURLErrorNoPermissionsToReadFile";
+			break;
+		case kCFURLErrorDataLengthExceedsMaximum:
+			resultString = @"kCFURLErrorDataLengthExceedsMaximum";
+			break;
+		case kCFURLErrorSecureConnectionFailed:
+			resultString = @"kCFURLErrorSecureConnectionFailed";
+			break;
+		case kCFURLErrorServerCertificateHasBadDate:
+			resultString = @"kCFURLErrorServerCertificateHasBadDate";
+			break;
+		case kCFURLErrorServerCertificateUntrusted:
+			resultString = @"kCFURLErrorServerCertificateUntrusted";
+			break;
+		case kCFURLErrorServerCertificateHasUnknownRoot:
+			resultString = @"kCFURLErrorServerCertificateHasUnknownRoot";
+			break;
+		case kCFURLErrorServerCertificateNotYetValid:
+			resultString = @"kCFURLErrorServerCertificateNotYetValid";
+			break;
+		case kCFURLErrorClientCertificateRejected:
+			resultString = @"kCFURLErrorClientCertificateRejected";
+			break;
+		case kCFURLErrorClientCertificateRequired:
+			resultString = @"kCFURLErrorClientCertificateRequired";
+			break;
+		case kCFURLErrorCannotLoadFromNetwork:
+			resultString = @"kCFURLErrorCannotLoadFromNetwork";
+			break;
+		case kCFURLErrorCannotCreateFile:
+			resultString = @"kCFURLErrorCannotCreateFile";
+			break;
+		case kCFURLErrorCannotOpenFile:
+			resultString = @"kCFURLErrorCannotOpenFile";
+			break;
+		case kCFURLErrorCannotCloseFile:
+			resultString = @"kCFURLErrorCannotCloseFile";
+			break;
+		case kCFURLErrorCannotWriteToFile:
+			resultString = @"kCFURLErrorCannotWriteToFile";
+			break;
+		case kCFURLErrorCannotRemoveFile:
+			resultString = @"kCFURLErrorCannotRemoveFile";
+			break;
+		case kCFURLErrorCannotMoveFile:
+			resultString = @"kCFURLErrorCannotMoveFile";
+			break;
+		case kCFURLErrorDownloadDecodingFailedMidStream:
+			resultString = @"kCFURLErrorDownloadDecodingFailedMidStream";
+			break;
+		case kCFURLErrorDownloadDecodingFailedToComplete:
+			resultString = @"kCFURLErrorDownloadDecodingFailedToComplete";
+			break;
+		case kCFHTTPCookieCannotParseCookieFile:
+			resultString = @"kCFHTTPCookieCannotParseCookieFile";
+			break;
+		case kCFNetServiceErrorUnknown:
+			resultString = @"kCFNetServiceErrorUnknown";
+			break;
+		case kCFNetServiceErrorCollision:
+			resultString = @"kCFNetServiceErrorCollision";
+			break;
+		case kCFNetServiceErrorNotFound:
+			resultString = @"kCFNetServiceErrorNotFound";
+			break;
+		case kCFNetServiceErrorInProgress:
+			resultString = @"kCFNetServiceErrorInProgress";
+			break;
+		case kCFNetServiceErrorBadArgument:
+			resultString = @"kCFNetServiceErrorBadArgument";
+			break;
+		case kCFNetServiceErrorCancel:
+			resultString = @"kCFNetServiceErrorCancel";
+			break;
+		case kCFNetServiceErrorInvalid:
+			resultString = @"kCFNetServiceErrorInvalid";
+			break;
+		case kCFNetServiceErrorTimeout:
+			resultString = @"kCFNetServiceErrorTimeout";
+			break;
+		case kCFNetServiceErrorDNSServiceFailure:
+			resultString = @"kCFNetServiceErrorDNSServiceFailure";
+			break;
+		default:
+			resultString = @"Unrecognized Error";
+			break;
+	}
 	
-	__weak typeof(self) weakSelf = self;
-	[self.dataTaskContainer enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id key, id obj, BOOL *stop) {
-		if ([obj isKindOfClass:[CHXRequest class]]) {
-			CHXRequest *request = (CHXRequest *)obj;
-			[weakSelf cancelRequest:request];
-		}
-	}];
+	return resultString;
 }
+
 
 @end
+

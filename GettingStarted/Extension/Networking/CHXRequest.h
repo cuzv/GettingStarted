@@ -114,6 +114,13 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 - (AFConstructingBlock)constructingBodyBlock;
 
 /**
+ *  下载文件保存目录，应该设置 requestMehtod 为 GET
+ *
+ *  @return 文件保存目录
+ */
+- (NSString *)downloadTargetFilePathString;
+
+/**
  *  请求超时时长
  *
  *  @return 请求超时时长
@@ -128,13 +135,6 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
  *	@return 自定义的 URLRequest
  */
 - (NSURLRequest *)customURLRequest;
-
-/**
- *  下载文件保存目录，应该设置 requestMehtod 为 GET
- *
- *  @return 文件保存目录
- */
-- (NSString *)downloadTargetPathString;
 
 /**
  *  是否需要缓存

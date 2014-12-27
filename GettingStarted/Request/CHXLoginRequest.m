@@ -68,8 +68,16 @@
 //}
 
 - (NSTimeInterval)requestTimeoutInterval {
-	return 2;
+	return 10;
 }
+
+- (NSTimeInterval)requestCacheDuration {
+	return 20;
+}
+
+//- (BOOL)requestNeedCache {
+//	return NO;
+//}
 
 
 

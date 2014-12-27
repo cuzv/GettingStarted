@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Foobar. All rights reserved.
 //
 
-#import "CHXRequest.h"
+#import "CHXBaseRequest.h"
 
-@interface CHXDownloadRequest : CHXRequest
+@interface CHXDownloadRequest : CHXBaseRequest
 
 @end
