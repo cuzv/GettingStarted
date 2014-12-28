@@ -50,8 +50,9 @@ typedef NS_ENUM(NSInteger, CHXResponseSerializerType) {
 
 #pragma mark -
 
-typedef void(^RequestSuccessCompletionBlock)(id responseData);
+typedef void(^RequestSuccessCompletionBlock)(id responseObject);
 typedef void(^RequestFailureCompletionBlock)(id errorMessage);
+typedef void(^RequestCompletionBlock)(id responseObject, id errorMessage);
 typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 
 #pragma mark -
@@ -222,6 +223,7 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 
 - (CHXRequest *)successCompletionResponse:(RequestSuccessCompletionBlock)requestSuccessCompletionBlock;
 - (CHXRequest *)failureCompletionResponse:(RequestFailureCompletionBlock)requestFailureCompletionBlock;
+- (CHXRequest *)completionResponse:(RequestCompletionBlock)requestCompletionBlock;
 
 @end
 

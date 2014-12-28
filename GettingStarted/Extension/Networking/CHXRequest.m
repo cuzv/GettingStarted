@@ -214,6 +214,14 @@
 	return self;
 }
 
+- (CHXRequest *)completionResponse:(RequestCompletionBlock)requestCompletionBlock {
+	dispatch_async(self.queue, ^{
+		requestCompletionBlock(self.responseObject, self.errorMessage);
+	});
+	
+	return self;
+}
+
 @end
 
 #pragma mark - Convenience
