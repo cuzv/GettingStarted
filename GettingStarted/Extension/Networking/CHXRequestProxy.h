@@ -45,12 +45,12 @@
  *
  *  @param request 需要被取消的请求任务
  */
-- (void)cancelRequest:(CHXRequest *)request;
+- (void)removeRequest:(CHXRequest *)request;
 
 /**
  *  取消所有请求任务
  */
-- (void)cancelAllRequest;
+- (void)removeAllRequest;
 
 @end
 

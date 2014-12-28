@@ -72,7 +72,7 @@
 }
 
 - (NSTimeInterval)requestCacheDuration {
-	return 20;
+	return 20 * 60;
 }
 
 //- (BOOL)requestNeedCache {

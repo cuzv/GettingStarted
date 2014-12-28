@@ -228,14 +228,14 @@
 }
 
 - (void)testDownload {
-	CHXDownloadRequest *reuest = [CHXDownloadRequest new];
-	[reuest startRequestWithSuccess:^(id responseData) {
-		NSLog(@"Ok");
-		UIImage *image = [[UIImage alloc] initWithContentsOfFile:reuest.downloadTargetFilePathString];
-		self.imageView.image = image;
-	} failue:^(id errorMessage) {
-		NSLog(@"%@", errorMessage);
-	}];
+//	CHXDownloadRequest *reuest = [CHXDownloadRequest new];
+//	[reuest startRequestWithSuccess:^(id responseData) {
+//		NSLog(@"Ok");
+//		UIImage *image = [[UIImage alloc] initWithContentsOfFile:reuest.downloadTargetFilePathString];
+//		self.imageView.image = image;
+//	} failue:^(id errorMessage) {
+//		NSLog(@"%@", errorMessage);
+//	}];
 	
 //	NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
 //	AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:sessionConfiguration];
@@ -254,10 +254,42 @@
 //	[dataTask resume];
 }
 
+- (void)testAsynchronized {
+	CHXLoginRequest *request = [[CHXLoginRequest alloc] initWithUsername:@"18583221776" password:@"123456"];
+//	CHXLoginRequest *request2 = [[CHXLoginRequest alloc] initWithUsername:@"18583221776" password:@"123456"];
+	
+//	if ([request isEqual:request2]) {
+//		NSLog(@"ok");
+//	}
+	
+	[request startRequest];
+	[request successCompletionResponse:^(id responseData) {
+		NSLog(@"11111%@", responseData);
+	}];
+	
+	
+//
+//	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//		[request successCompletionResponse:^(id responseData) {
+//			NSLog(@"2222%@", responseData);
+//		}];
+//	});
+	
+	
+//	[request startRequestWithSuccess:^(id responseData) {
+//		NSLog(@"ddd");
+//	} failue:^(id errorMessage) {
+//		NSLog(@"jjjj");
+//	}];
+
+}
+
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	[self testNetworking];
+//	[self testNetworking];
 //	[self testDownload];
+	
+	[self testAsynchronized];
 }
 
 

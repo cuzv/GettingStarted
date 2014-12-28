@@ -110,11 +110,11 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 	if (![self pr_isNetworkReachable]) {
 		// The first time description is not correct !
 		NSString *errorDescription = @"The network is currently unreachable.";
-		if (request.requestFailureCompletionBlock) {
-			request.requestFailureCompletionBlock(errorDescription);
-		}
-		[self pr_clearCompletionBlockForRequest:request];
 		NSLog(@"%@", errorDescription);
+
+		// Notify request complete
+		[request notifyComplete];
+		
 		return;
 	}
 	
@@ -267,19 +267,20 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 	NSLog(@"\n%@\n%@\n%@\n", dataTask.currentRequest.URL, requestParameters, dataTask.currentRequest.allHTTPHeaderFields);
 }
 
-- (void)cancelRequest:(CHXRequest *)request {
+- (void)removeRequest:(CHXRequest *)request {
 	[request.requestSessionTask cancel];
+	[request notifyComplete];
 	[self pr_prepareDeallocRequest:request];
 }
 
-- (void)cancelAllRequest {
+- (void)removeAllRequest {
 	[_sessionManager.operationQueue cancelAllOperations];
 	
 	__weak typeof(self) weakSelf = self;
 	[self.dataTaskContainer enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id key, id obj, BOOL *stop) {
 		if ([obj isKindOfClass:[CHXRequest class]]) {
 			CHXRequest *request = (CHXRequest *)obj;
-			[weakSelf cancelRequest:request];
+			[weakSelf removeRequest:request];
 		}
 	}];
 }
@@ -313,6 +314,8 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 	// dealloc request
 	[self pr_prepareDeallocRequest:request];
 	
+	NSLog(@"Retrieve data from cache.");
+	
 	return NO;
 }
 
@@ -329,14 +332,16 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 		return;
 	}
 	
-	// Cache file path
-	NSString *filePath = [self pr_cacheFilePathStringForReqeust:request];
-
-	// Cache data
-	CHXResponseCache *cache = [CHXResponseCache new];
-	cache.cacheDate = [NSDate date];
-	cache.cahceResponseObject = responseObject;
-	[NSKeyedArchiver archiveRootObject:cache toFile:filePath];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		// Cache file path
+		NSString *filePath = [self pr_cacheFilePathStringForReqeust:request];
+		
+		// Cache data
+		CHXResponseCache *cache = [CHXResponseCache new];
+		cache.cacheDate = [NSDate date];
+		cache.cahceResponseObject = responseObject;
+		[NSKeyedArchiver archiveRootObject:cache toFile:filePath];
+	});
 }
 
 - (NSString *)pr_cacheFilePathStringForReqeust:(CHXRequest *)request {
@@ -459,12 +464,9 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 }
 
 - (void)pr_handleRequestSuccessWithSessionDataTask:(NSURLSessionTask *)task responseObject:(id)responseObject {
-	if (!responseObject) {
-		return;
-	}
 	CHXRequest *request = [_dataTaskContainer objectForKey:@(task.taskIdentifier)];
 	NSParameterAssert(request);
-
+	
 	[self pr_cacheIfNeededWithRequest:request responseObject:responseObject];
 	[self pr_handleRequestSuccessWithRequest:request responseObject:responseObject];
 	[self pr_prepareDeallocRequest:request];
@@ -485,49 +487,46 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 }
 
 - (void)pr_handleRequestSuccessWithRequest:(CHXRequest *)request responseObject:(id)responseObject {
-	if (request.requestSuccessCompletionBlock) {
-		NSString *responseCodeFieldName = [request responseCodeFieldName];
-		NSParameterAssert(responseCodeFieldName);
-		NSParameterAssert(responseCodeFieldName.length);
+	NSString *responseCodeFieldName = [request responseCodeFieldName];
+	NSParameterAssert(responseCodeFieldName);
+	NSParameterAssert(responseCodeFieldName.length);
+	
+	id responseCode = [responseObject objectForKey:responseCodeFieldName];
+	if ([responseCode integerValue] == 0) {
+		NSString *responseDataFieldName = [request responseDataFieldName];
+		NSParameterAssert(responseDataFieldName);
+		NSParameterAssert(responseDataFieldName.length);
 		
-		id responseCode = [responseObject objectForKey:responseCodeFieldName];
-		if ([responseCode integerValue] == 0) {
-			NSString *responseDataFieldName = [request responseDataFieldName];
-			NSParameterAssert(responseDataFieldName);
-			NSParameterAssert(responseDataFieldName.length);
-			
-			id responseData = [responseObject objectForKey:responseDataFieldName];
-			request.requestSuccessCompletionBlock(responseData);
-		} else {
-			if (request.requestFailureCompletionBlock) {
-				NSString *responseMessageFieldName = [request responseMessageFieldName];
-				NSParameterAssert(responseMessageFieldName);
-				NSParameterAssert(responseMessageFieldName.length);
-				
-				id responseMessage = [responseObject objectForKey:responseMessageFieldName];
-				request.requestFailureCompletionBlock(responseMessage);
-			}
-		}
+		id responseData = [responseObject objectForKey:responseDataFieldName];
+		request.responseObject = responseData;
+	} else {
+		NSString *responseMessageFieldName = [request responseMessageFieldName];
+		NSParameterAssert(responseMessageFieldName);
+		NSParameterAssert(responseMessageFieldName.length);
+		
+		id responseMessage = [responseObject objectForKey:responseMessageFieldName];
+		request.errorMessage = responseMessage;
 	}
+	
+	// Notify request complete
+	[request notifyComplete];
 }
 
 - (void)pr_handleRequestFailureWithSessionDataTask:(NSURLSessionTask *)task error:(NSError *)error {
 	NSLog(@"Request error: %@", CHXStringFromCFNetworkErrorCode(error.code));
 	CHXRequest *request = [_dataTaskContainer objectForKey:@(task.taskIdentifier)];
 	NSParameterAssert(request);
+
+	request.errorMessage = [error localizedDescription];
 	
-	if (request.requestFailureCompletionBlock) {
-		request.requestFailureCompletionBlock([error localizedDescription]);
-	}
+	[request notifyComplete];
+	
 	[self pr_prepareDeallocRequest:request];
 }
 
 - (void)pr_prepareDeallocRequest:(CHXRequest *)request {
 	// Remove contain from data task container
 	[self pr_removeContainForRequest:request];
-
-	// Clear callback block
-	[self pr_clearCompletionBlockForRequest:request];
 	
 	// Break retain data task
 	request.requestSessionTask = nil;
@@ -538,11 +537,6 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 
 - (void)pr_removeContainForRequest:(CHXRequest *)request {
 	[_dataTaskContainer removeObjectForKey:@(request.requestSessionTask.taskIdentifier)];
-}
-
-- (void)pr_clearCompletionBlockForRequest:(CHXRequest *)request {
-	request.requestSuccessCompletionBlock = nil;
-	request.requestFailureCompletionBlock = nil;
 }
 
 #pragma mark - Utils

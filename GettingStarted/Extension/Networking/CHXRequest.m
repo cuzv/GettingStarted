@@ -30,6 +30,7 @@
 #import "NSObjectExtension.h"
 
 @interface CHXRequest ()
+@property (nonatomic, strong) dispatch_queue_t queue;
 @end
 
 @implementation CHXRequest
@@ -68,13 +69,13 @@
 	return hashCode;
 }
 
-#pragma mark -
-
-- (void)dealloc {
-	NSLog(@"%s", __FUNCTION__);
-}
+@end
 
 #pragma mark - Subclass should overwrite
+
+#pragma mark - Request Construct data
+
+@implementation CHXRequest (CHXConstruct)
 
 - (NSDictionary *)requestParameters {
 	return nil;
@@ -124,7 +125,11 @@
 	return 60 * 3;
 }
 
-#pragma mark - Collect response infos
+@end
+
+#pragma mark - Retrieve response data
+
+@implementation CHXRequest (CHXRetrieve)
 
 - (CHXResponseSerializerType)responseSerializerType {
 	return CHXResponseSerializerTypeJSON;
@@ -146,24 +151,87 @@
 	return nil;
 }
 
-#pragma mark - Request
+@end
 
-- (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {
-	[self pr_setCompletionBlockWithSuccess:success failue:failure];
-	[self startRequest];
+#pragma mark - Perform
+
+@implementation CHXRequest (CHXPerform)
+
+- (CHXRequest *)stopRequest {
+	[[CHXRequestProxy sharedInstance] removeRequest:self];
+
+	return self;
 }
 
-- (void)stopRequest {
-	[[CHXRequestProxy sharedInstance] cancelRequest:self];
-}
+- (CHXRequest *)startRequest {
+	[self initializeQueueIfNeeded];
 
-- (void)pr_setCompletionBlockWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure {
-	self.requestSuccessCompletionBlock = success;
-	self.requestFailureCompletionBlock = failure;
-}
-
-- (void)startRequest {
 	[[CHXRequestProxy sharedInstance] addRequest:self];
+	
+	return self;
+}
+
+- (void)initializeQueueIfNeeded {
+	if (self.queue) {
+		return;
+	}
+	
+	self.queue = ({
+		NSString *queueLabel = [NSString stringWithFormat:@"xiao.moch.queueidentifier.%zd", [self hash]];
+		dispatch_queue_t queue = dispatch_queue_create([queueLabel UTF8String], DISPATCH_QUEUE_SERIAL);
+		dispatch_suspend(queue);
+		queue;
+	});
+}
+
+- (CHXRequest *)notifyComplete {
+	if (self.queue) {
+		dispatch_resume(self.queue);
+	}
+
+	return self;
+}
+
+@end
+
+#pragma mark - Done asynchronously
+
+@implementation CHXRequest (CHXAsynchronously)
+
+- (CHXRequest *)successCompletionResponse:(RequestSuccessCompletionBlock)requestSuccessCompletionBlock {
+	dispatch_async(self.queue, ^{
+		requestSuccessCompletionBlock(self.responseObject);
+	});
+
+	return self;
+}
+
+- (CHXRequest *)failureCompletionResponse:(RequestFailureCompletionBlock)requestFailureCompletionBlock {
+	dispatch_async(self.queue, ^{
+		requestFailureCompletionBlock(self.errorMessage);
+	});
+	
+	return self;
+}
+
+@end
+
+#pragma mark - Convenience
+
+@implementation CHXRequest (CHXConvenience)
+
+- (CHXRequest *)startRequestWithSuccess:(RequestSuccessCompletionBlock)requestSuccessCompletionBlock failue:(RequestFailureCompletionBlock)requestFailureCompletionBlock {
+	[self startRequest];
+	
+	dispatch_async(self.queue, ^{
+		requestSuccessCompletionBlock(self.responseObject);
+	});
+	
+	dispatch_async(self.queue, ^{
+		requestFailureCompletionBlock(self.errorMessage);
+	});
+	
+	return self;
 }
 
 @end

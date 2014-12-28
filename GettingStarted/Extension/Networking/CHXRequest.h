@@ -58,11 +58,13 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 
 // This class collection a request infos what needed, by subclass and override methods
 @interface CHXRequest : NSObject
-
+@end
 
 #pragma mark - Subclass should overwrite thoese methods
 
-#pragma mark - Collect request infos
+#pragma mark - Request Construct data
+
+@interface CHXRequest (CHXConstruct)
 
 /**
  *  组装请求参数
@@ -149,8 +151,12 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
  *  @return 缓存时长
  */
 - (NSTimeInterval)requestCacheDuration;
+@end
 
-#pragma mark - Collect response infos
+
+#pragma mark - Retrieve response data
+
+@interface CHXRequest (CHXRetrieve)
 
 /**
  *  请求回送数据反序列化器类型
@@ -187,39 +193,61 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
  */
 - (NSString *)responseMessageFieldName;
 
-#pragma mark - Request
+@end
 
-/**
- *  请求成功回调
- */
-@property (nonatomic, copy) RequestSuccessCompletionBlock requestSuccessCompletionBlock;
+#pragma mark - Perform
 
-/**
- *  请求失败回调
- */
-@property (nonatomic, copy) RequestFailureCompletionBlock requestFailureCompletionBlock;
+@interface CHXRequest (CHXPerform)
 
 /**
  *  开始发起请求
  */
-- (void)startRequest;
-
-/**
- *  开始发起请求
- *
- *  @param success 请求成功回调
- *  @param failure 请求失败回调
- */
-- (void)startRequestWithSuccess:(RequestSuccessCompletionBlock)success failue:(RequestFailureCompletionBlock)failure;
+- (CHXRequest *)startRequest;
 
 /**
  *  停止网络请求
  */
-- (void)stopRequest;
+- (CHXRequest *)stopRequest;
 
 /**
- *  持有请求句柄，子类不要调用或者覆写
+ *  通知请求完成，CHXRequestProxy 调用，自身或者子类不要调用，不管请求成功还是失败，这个方法一定需要调用
  */
-@property (nonatomic, strong, readwrite) NSURLSessionTask *requestSessionTask;
+- (CHXRequest *)notifyComplete;
+
+@end
+
+#pragma mark - Done asynchronously
+
+@interface CHXRequest (CHXAsynchronously)
+
+- (CHXRequest *)successCompletionResponse:(RequestSuccessCompletionBlock)requestSuccessCompletionBlock;
+- (CHXRequest *)failureCompletionResponse:(RequestFailureCompletionBlock)requestFailureCompletionBlock;
+
+@end
+
+#pragma mark - Convenience
+
+@interface CHXRequest (CHXConvenience)
+- (CHXRequest *)startRequestWithSuccess:(RequestSuccessCompletionBlock)requestSuccessCompletionBlock failue:(RequestFailureCompletionBlock)requestFailureCompletionBlock;
+@end
+
+#pragma mark - CHXRequestProxy use
+
+@interface CHXRequest ()
+
+/**
+ *  持有请求任务，CHXRequestProxy 调用，自身或者子类不要调用
+ */
+@property (nonatomic, strong) NSURLSessionTask *requestSessionTask;
+
+/**
+ *  回送数据，请求未完成可能为空
+ */
+@property (nonatomic, strong) id responseObject;
+
+/**
+ *  回送错误信息，请求未完成可能为空
+ */
+@property (nonatomic, strong) id errorMessage;
 
 @end
