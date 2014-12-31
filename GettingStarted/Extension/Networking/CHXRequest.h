@@ -2,7 +2,7 @@
 //  CHXRequest.h
 //  GettingStarted
 //
-//  Created by Moch Xiao on 2014-12-11.
+//  Created by Moch Xiao on 2014-12-28.
 //	Copyright (c) 2014 Moch Xiao (htt://github.com/atcuan).
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy

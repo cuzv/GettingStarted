@@ -1,8 +1,8 @@
 //
-//  CHXDownloadRequest.m
+//  CHXTableController.h
 //  GettingStarted
 //
-//  Created by Moch Xiao on 2014-12-27.
+//  Created by Moch Xiao on 2014-12-31.
 //	Copyright (c) 2014 Moch Xiao (htt://github.com/atcuan).
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,36 +24,8 @@
 //	THE SOFTWARE.
 //
 
-#import "CHXDownloadRequest.h"
-#import "CHXGlobalServices.h"
+#import "CHXBaseViewController.h"
 
-@implementation CHXDownloadRequest
-
-- (NSDictionary *)requestParameters {
-	return @{};
-}
-
-- (CHXRequestMethod)requestMehtod {
-	return CHXRequestMethodGet;
-}
-
-- (NSString *)requestBaseURLString {
-	return @"http://ww3.sinaimg.cn/large/";
-}
-
-- (NSString *)requestSpecificURLString {
-	return @"62580dd9gw1ennijqvvghj21300n5jts.jpg";
-}
-
-
-- (NSString *)downloadTargetFilePathString {
-	NSString *path = [chx_documentDirectory() stringByAppendingString:@"/sam.jpg"];
-	return path;
-}
-
-- (NSTimeInterval)requestCacheDuration {
-	return 60 * 10;
-}
-
+@interface CHXTableController : CHXBaseViewController
 
 @end
