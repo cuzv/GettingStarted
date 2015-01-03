@@ -150,7 +150,7 @@ static const void *UITextFieldKey = &UITextFieldKey;
 
 - (void)chx_setTextConfigure:(CHXTextEditConfigure *)textConfigure {
     [self willChangeValueForKey:@"UITextFieldKey"];
-    objc_setAssociatedObject(self, UITextFieldKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, &UITextFieldKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
     [self didChangeValueForKey:@"UITextFieldKey"];
     
     [textConfigure pr_initialNotificationForObject:self];
@@ -170,7 +170,7 @@ static const void *UITextViewKey = &UITextViewKey;
 
 - (void)chx_setTextConfigure:(CHXTextEditConfigure *)textConfigure {
 	[self willChangeValueForKey:@"UITextViewKey"];
-	objc_setAssociatedObject(self, UITextViewKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
+	objc_setAssociatedObject(self, &UITextViewKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
 	[self didChangeValueForKey:@"UITextViewKey"];
 	
 	[textConfigure pr_initialNotificationForObject:self];

@@ -44,7 +44,7 @@ static const void *IndicatorAnimationTimerKey = &IndicatorAnimationTimerKey;
 
 - (void)pr_setTitleLabel:(UILabel *)titleLabel {
 	[self willChangeValueForKey:@"IndicatorAnimationKey"];
-	objc_setAssociatedObject(self, IndicatorAnimationKey, titleLabel, OBJC_ASSOCIATION_ASSIGN);
+	objc_setAssociatedObject(self, &IndicatorAnimationKey, titleLabel, OBJC_ASSOCIATION_ASSIGN);
 	[self didChangeValueForKey:@"IndicatorAnimationKey"];
 }
 
@@ -54,7 +54,7 @@ static const void *IndicatorAnimationTimerKey = &IndicatorAnimationTimerKey;
 
 - (void)pr_setInAnimation:(BOOL)inAnimation {
 	[self willChangeValueForKey:@"IndicatorInAnimationKey"];
-	objc_setAssociatedObject(self, IndicatorInAnimationKey, @(inAnimation), OBJC_ASSOCIATION_ASSIGN);
+	objc_setAssociatedObject(self, &IndicatorInAnimationKey, @(inAnimation), OBJC_ASSOCIATION_ASSIGN);
 	[self didChangeValueForKey:@"IndicatorInAnimationKey"];
 }
 
@@ -64,7 +64,7 @@ static const void *IndicatorAnimationTimerKey = &IndicatorAnimationTimerKey;
 
 - (void)pr_setTimer:(dispatch_source_t)timer {
 	[self willChangeValueForKey:@"IndicatorAnimationTimerKey"];
-	objc_setAssociatedObject(self, IndicatorAnimationTimerKey, timer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	objc_setAssociatedObject(self, &IndicatorAnimationTimerKey, timer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 	[self didChangeValueForKey:@"IndicatorAnimationTimerKey"];
 }
 

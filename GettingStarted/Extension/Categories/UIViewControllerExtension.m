@@ -42,7 +42,7 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 
 - (void)pr_setContext:(NSDictionary *)context {
     [self willChangeValueForKey:@"ContextKey"];
-    objc_setAssociatedObject(self, ContextKey, context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &ContextKey, context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"ContextKey"];
 }
 
@@ -52,7 +52,7 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 
 - (void)pr_setTitleInAnimation:(BOOL)titleInAnimation {
     [self willChangeValueForKey:@"TitleInAnimationKey"];
-    objc_setAssociatedObject(self, TitleInAnimationKey, @(titleInAnimation), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, &TitleInAnimationKey, @(titleInAnimation), OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"TitleInAnimationKey"];
 }
 
@@ -62,7 +62,7 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
 
 - (void)pr_setRightBarInAnimation:(BOOL)rightBarInAnimation {
     [self willChangeValueForKey:@"RightBarInAnimationKey"];
-    objc_setAssociatedObject(self, RightBarInAnimationKey, @(rightBarInAnimation), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, &RightBarInAnimationKey, @(rightBarInAnimation), OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"RightBarInAnimationKey"];
 }
 

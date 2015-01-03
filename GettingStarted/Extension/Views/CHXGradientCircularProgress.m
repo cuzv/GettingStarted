@@ -300,7 +300,7 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 
 - (void)pr_setGradientCircularProgress:(CHXGradientCircularProgress *)gradientCircularProgress {
 	[self willChangeValueForKey:@"GradientCircularProgressKey"];
-	objc_setAssociatedObject(self, GradientCircularProgressKey, gradientCircularProgress, OBJC_ASSOCIATION_ASSIGN);
+	objc_setAssociatedObject(self, &GradientCircularProgressKey, gradientCircularProgress, OBJC_ASSOCIATION_ASSIGN);
 	[self didChangeValueForKey:@"GradientCircularProgressKey"];
 }
 

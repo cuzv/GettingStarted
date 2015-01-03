@@ -90,7 +90,7 @@ static const void *BadgeKey = &BadgeKey;
 
 - (void)pr_setBadgeView:(CHXBadgeView *)badgeView {
 	[self willChangeValueForKey:@"BadgeKey"];
-	objc_setAssociatedObject(self, BadgeKey, badgeView, OBJC_ASSOCIATION_ASSIGN);
+	objc_setAssociatedObject(self, &BadgeKey, badgeView, OBJC_ASSOCIATION_ASSIGN);
 	[self didChangeValueForKey:@"BadgeKey"];
 }
 

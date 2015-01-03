@@ -46,7 +46,7 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
 
 - (void)setHUD:(JGProgressHUD *)HUD {
     [self willChangeValueForKey:@"UIViewHUDKey"];
-    objc_setAssociatedObject(self, UIViewHUDKey, HUD, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, &UIViewHUDKey, HUD, OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"UIViewHUDKey"];
 }
 

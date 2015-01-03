@@ -132,7 +132,7 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
 
 - (void)pr_setAnimating:(BOOL)animating {
     [self willChangeValueForKey:@"IndicatorAnimationKey"];
-    objc_setAssociatedObject(self, IndicatorAnimationKey, @(animating), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, &IndicatorAnimationKey, @(animating), OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"IndicatorAnimationKey"];
 }
 
@@ -142,7 +142,7 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
 
 - (void)pr_setContext:(NSDictionary *)context {
     [self willChangeValueForKey:@"IndicatorAnimationContextKey"];
-    objc_setAssociatedObject(self, IndicatorAnimationContextKey, context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &IndicatorAnimationContextKey, context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"IndicatorAnimationContextKey"];
 }
 

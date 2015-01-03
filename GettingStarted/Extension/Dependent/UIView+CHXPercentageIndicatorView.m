@@ -38,7 +38,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
 
 - (void)setPercentageIndicatorView:(MDRadialProgressView *)percentageIndicatorView {
     [self willChangeValueForKey:@"PercentageIndicatorViewKey"];
-    objc_setAssociatedObject(self, PercentageIndicatorViewKey, percentageIndicatorView, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, &PercentageIndicatorViewKey, percentageIndicatorView, OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"PercentageIndicatorViewKey"];
 }
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "CHXTextEditConfigure.h"
 
 @interface GettingStartedTests : XCTestCase
 
@@ -35,6 +36,11 @@
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
     }];
+}
+
+- (void)testTextConfigure {
+//	CHXTextEditConfigure *configure = [[CHXTextEditConfigure alloc] init];
+//	configure.countingLabel =
 }
 
 @end

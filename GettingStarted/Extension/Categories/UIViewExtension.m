@@ -128,7 +128,7 @@
 static const void *ArcLayerKey = &ArcLayerKey;
 - (void)pr_setArcLayer:(CAShapeLayer *)arcLayer {
     [self willChangeValueForKey:@"ArcLayerKey"];
-    objc_setAssociatedObject(self, ArcLayerKey, arcLayer, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, &ArcLayerKey, arcLayer, OBJC_ASSOCIATION_ASSIGN);
     [self didChangeValueForKey:@"ArcLayerKey"];
 }
 
