@@ -64,7 +64,7 @@
 
 #ifdef DEBUG
 + (void)load {
-	chx_instanceMethodSwizzle([self class], @selector(descriptionWithLocale:indent:), @selector(chx_descriptionWithLocale:indent:));
+	chx_swizzleInstanceMethod([self class], @selector(descriptionWithLocale:indent:), @selector(chx_descriptionWithLocale:indent:));
 }
 #endif
 

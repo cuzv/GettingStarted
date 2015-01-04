@@ -234,7 +234,7 @@ void chx_imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloa
  *  @param originalSelector 原始方法
  *  @param overrideSelector 替换方法
  */
-void chx_instanceMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector);
+void chx_swizzleInstanceMethod(Class clazz, SEL originalSelector, SEL overrideSelector);
 
 /**
  *  Swizzle 类方法
@@ -243,7 +243,7 @@ void chx_instanceMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSe
  *  @param originalSelector 原始方法
  *  @param overrideSelector 替换方法
  */
-void chx_classMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector);
+void chx_swizzleClassMethod(Class clazz, SEL originalSelector, SEL overrideSelector);
 
 #pragma mark - Collection spacing
 

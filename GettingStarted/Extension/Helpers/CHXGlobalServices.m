@@ -228,18 +228,26 @@ void chx_imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloa
 
 #pragma mark - Swizzle
 
-void chx_instanceMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector) {
+void chx_swizzleInstanceMethod(Class clazz, SEL originalSelector, SEL overrideSelector) {
 	Method originalMethod = class_getInstanceMethod(clazz, originalSelector);
 	Method overrideMethod = class_getInstanceMethod(clazz, overrideSelector);
 	
-	method_exchangeImplementations(originalMethod, overrideMethod);
+	if (class_addMethod(clazz, originalSelector, method_getImplementation(overrideMethod), method_getTypeEncoding(overrideMethod))) {
+		class_replaceMethod(clazz, overrideSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+	} else {
+		method_exchangeImplementations(originalMethod, overrideMethod);
+	}
 }
 
-void chx_classMethodSwizzle(Class clazz, SEL originalSelector, SEL overrideSelector) {
+void chx_swizzleClassMethod(Class clazz, SEL originalSelector, SEL overrideSelector) {
 	Method originalMethod = class_getClassMethod(clazz, originalSelector);
 	Method overrideMethod = class_getClassMethod(clazz, overrideSelector);
 	
-	method_exchangeImplementations(originalMethod, overrideMethod);
+	if (class_addMethod(clazz, originalSelector, method_getImplementation(overrideMethod), method_getTypeEncoding(overrideMethod))) {
+		class_replaceMethod(clazz, overrideSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+	} else {
+		method_exchangeImplementations(originalMethod, overrideMethod);
+	}
 }
 
 #pragma mark - Collection spacing
