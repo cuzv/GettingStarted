@@ -27,7 +27,7 @@
 #import "CHXSingleSectionTableController.h"
 #import "CHXArrayDataSource.h"
 
-@interface CHXSingleSectionTableController ()
+@interface CHXSingleSectionTableController () <UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) CHXArrayDataSource *arrayDataSource;
@@ -58,6 +58,8 @@
 		return @"SingleCell";
 	} cellConfigureBlock:^(UITableViewCell *cell, id item) {
 		cell.textLabel.text = item;
+		cell.layoutMargins = UIEdgeInsetsZero;
+		cell.separatorInset = UIEdgeInsetsZero;
 	}];
 	
 	self.arrayDataSource.canEditRowAtIndexPath = ^BOOL (NSIndexPath *indexPath) {
@@ -68,7 +70,26 @@
 	};
 
 	self.tableView.dataSource = self.arrayDataSource;
-	self.tableView.editing = YES;
+//	self.tableView.editing = YES;
+	self.tableView.delegate = self;
+	
+	self.tableView.separatorInset = UIEdgeInsetsZero;
+	self.tableView.layoutMargins = UIEdgeInsetsZero;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+	
+	if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+		[tableView setSeparatorInset:UIEdgeInsetsZero];
+	}
+	
+	if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+		[tableView setLayoutMargins:UIEdgeInsetsZero];
+	}
+	
+	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+		[cell setLayoutMargins:UIEdgeInsetsZero];
+	}
 }
 
 

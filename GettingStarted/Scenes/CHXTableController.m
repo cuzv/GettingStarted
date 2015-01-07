@@ -53,7 +53,7 @@
 		CHXArrayDataSourceSectionItem *item1 = [[CHXArrayDataSourceTableViewSectionItem alloc] initWithContent:@[@"11", @"12"] titleForHeader:@"Section 1 header" titleForFooter:@"Section 1 footer" indexTitle:@"1"];
 		CHXArrayDataSourceSectionItem *item2 = [[CHXArrayDataSourceTableViewSectionItem alloc] initWithContent:@[@"21", @"22", @"23"] titleForHeader:@"Section 1 header" titleForFooter:@"Section 1 footer" indexTitle:@"2"];
 		CHXArrayDataSourceSectionItem *item3 = [[CHXArrayDataSourceTableViewSectionItem alloc] initWithContent:@[@"31"] titleForHeader:@"Section 1 header" titleForFooter:@"Section 1 footer" indexTitle:@"3"];
-		_dataArray = [@[item1, item2, item3] mutableCopy];
+		_dataArray = [@[item1, item2, item3, item1, item2, item3, item1, item2, item3, item1, item2, item3] mutableCopy];
 	}
 	
 	return _dataArray;	
@@ -84,13 +84,21 @@
 	
 	self.tableView.dataSource = self.arrayDataSource;
 	self.tableView.delegate = self;
-	self.tableView.editing = YES;
+//	self.tableView.editing = YES;
 }
 
 #pragma mark -
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return UITableViewCellEditingStyleInsert;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+	NSLog(@"cell frame = %@", NSStringFromCGRect(cell.frame));
+	
+	CGRect convertFrame = [cell convertRect:cell.contentView.frame toView:self.view];
+	NSLog(@"convertFrame = %@", NSStringFromCGRect(convertFrame));
 }
 
 @end

@@ -53,6 +53,16 @@
  */
 - (CGSize)chx_sizeWithFont:(UIFont *)font width:(CGFloat)width;
 
+/**
+ *  根据字体属性获取所占空间尺寸大小
+ *
+ *  @param attributes 属性
+ *  @param width      最大宽度
+ *
+ *  @return 尺寸大小
+ */
+- (CGSize)chx_sizeWithAttributes:(NSDictionary *)attributes width:(CGFloat)width;
+
 @end
 
 

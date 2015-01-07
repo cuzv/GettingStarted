@@ -80,6 +80,8 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
+	[self testCorner];
 	
 //	[self testBadgeView];
 //
@@ -99,6 +101,16 @@
 	
 //	[self testPrint];
 	
+}
+
+- (void)testCorner {
+	[self.view addSubview:({
+		UIView *cornerView = [UIView new];
+		cornerView.frame = CGRectMake(20, 84, 80, 80);
+		cornerView.backgroundColor = [UIColor redColor];
+		[cornerView chx_setRoundingCorners:UIRectCornerTopRight | UIRectCornerTopLeft radius:5];
+		cornerView;
+	})];
 }
 
 - (void)testBadgeView {

@@ -53,13 +53,13 @@
  *  @return 空间尺寸
  */
 - (CGSize)chx_sizeWithFont:(UIFont *)font width:(CGFloat)width {
-    NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine |
-                                     NSStringDrawingUsesFontLeading |
-                                     NSStringDrawingUsesLineFragmentOrigin;
-    return[self boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                             options:options
-                          attributes:@{NSFontAttributeName:font}
-                             context:nil].size;
+	NSDictionary *attributes = @{NSFontAttributeName:font};
+	return [self chx_sizeWithAttributes:attributes width:width];
+}
+
+- (CGSize)chx_sizeWithAttributes:(NSDictionary *)attributes width:(CGFloat)width {
+	NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
+	return [self boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:options attributes:attributes context:nil].size;
 }
 
 @end
