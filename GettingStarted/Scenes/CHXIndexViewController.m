@@ -81,7 +81,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	[self testCorner];
+//	[self testCorner];
 	
 //	[self testBadgeView];
 //
@@ -100,6 +100,12 @@
 //	[self testMethods];
 	
 //	[self testPrint];
+	
+//	[self testArchive];
+	
+//	[self testGetPathSize];
+	
+	[self testExpendClick];
 	
 }
 
@@ -295,6 +301,15 @@
 
 }
 
+- (void)testArchive {
+	[CHXArchiver archiveValue:@"aaslgjsla" forKey:@"Demo"];
+}
+
+- (void)testGetPathSize {
+	long long size = chx_folderSizeAtPath(@"/Users/Moch/Desktop/1");
+	NSLog(@"%lld", size);
+}
+
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 //	[self testNetworking];
@@ -303,6 +318,21 @@
 	[self testAsynchronized];
 }
 
+
+- (void)testExpendClick {
+	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 100, 80, 40)];
+	[button setTitle:@"Click" forState:UIControlStateNormal];
+	[button addTarget:self action:@selector(handleAction:) forControlEvents:UIControlEventTouchUpInside];
+	UIImage *image = [UIImage chx_imageWithColor:[UIColor greenColor] size:button.bounds.size];
+	[button setBackgroundImage:image forState:UIControlStateNormal];
+	[self.view addSubview:button];
+	
+	[button chx_setExpandRegion:UIEdgeInsetsMake(10, 10, 10, 10)];
+}
+
+- (void)handleAction:(UIButton *)sender {
+	NSLog(@"%s", __FUNCTION__);
+}
 
 
 @end

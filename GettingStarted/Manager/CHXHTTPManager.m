@@ -210,7 +210,7 @@ static NSMutableArray *sessions;
 // setting http response serializer type
 + (void)setHTTPResponseSerializerType:(HTTPResponseSerializerType)responseSerializerType {
     AFHTTPResponseSerializer <AFURLResponseSerialization> *responseSerializer = nil;
-    
+	
     switch (responseSerializerType) {
         case HTTPResponseSerializerTypeJSON:
             responseSerializer = [AFJSONResponseSerializer serializer];

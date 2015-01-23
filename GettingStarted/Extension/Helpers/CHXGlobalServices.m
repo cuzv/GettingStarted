@@ -28,6 +28,8 @@
 #import <UIKit/UIKit.h>
 #import "UIAlertViewExtension.h"
 #import <objc/runtime.h>
+#include <sys/dirent.h>
+#include <sys/stat.h>
 
 @implementation CHXGlobalServices
 
@@ -91,7 +93,7 @@ CGFloat chx_angleFromRadian(CGFloat radian) {
 	return M_PI * 180.0f / radian;
 }
 
-#pragma mark - Sandbox directory
+#pragma mark - Sandbox
 
 NSString *pr_searchPathDirectory(NSSearchPathDirectory searchPathDirectory) {
 	return [NSSearchPathForDirectoriesInDomains(searchPathDirectory, NSUserDomainMask, YES) firstObject];
@@ -119,6 +121,57 @@ NSString *chx_musicDirectory() {
 
 NSString *chx_picturesDirectory() {
 	return pr_searchPathDirectory(NSPicturesDirectory);
+}
+
+long long pr_folderSizeAtPath(const char *folderPath) {
+	long long folderSize = 0;
+	DIR *dir = opendir(folderPath);
+	if (dir == NULL) return 0;
+	struct dirent* child;
+	
+	while (NULL != (child = readdir(dir))) {
+//		bool hidden = (child->d_name[0] == '.' && child->d_name[1] == 0); // 忽略目录 .
+//		bool uplevel = (child->d_name[0] == '.' && child->d_name[1] == '.' && child->d_name[2] == 0); // 忽略目录 ..
+//		if (child->d_type == DT_DIR && (hidden || uplevel)) {
+//			continue;
+//		}
+		if (child->d_type == DT_DIR) {
+			continue;
+		}
+		
+		UInt8 folderPathLength = strlen(folderPath);
+		// 子文件的路径地址
+		char childPath[1024];
+		stpcpy(childPath, folderPath);
+		if (folderPath[folderPathLength - 1] != '/') {
+			childPath[folderPathLength] = '/';
+			folderPathLength++;
+		}
+		stpcpy(childPath+folderPathLength, child->d_name);
+		childPath[folderPathLength + child->d_namlen] = 0;
+		if (child->d_type == DT_DIR) {
+			// directory
+			// 递归调用子目录
+			folderSize += pr_folderSizeAtPath(childPath);
+			// 把目录本身所占的空间也加上
+			struct stat st;
+			if (0 == lstat(childPath, &st)) {
+				folderSize += st.st_size;
+			}
+		} else if (child->d_type == DT_REG || child->d_type == DT_LNK) {
+			// file or link
+			struct stat st;
+			if (0 == lstat(childPath, &st)) {
+				folderSize += st.st_size;
+			}
+		}
+	}
+	
+	return folderSize;
+}
+
+long long chx_folderSizeAtPath(NSString *folderPath) {
+	return pr_folderSizeAtPath([folderPath cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 #pragma mark - UniqueIdentifier
@@ -287,7 +340,13 @@ void chx_leftAlignAndVerticallySpaceOutViews(NSArray *views, CGFloat distance) {
 }
 
 
-
 @end
 
+#pragma mark - 斜切变换
 
+CGAffineTransform CGAffineTransformMakeShear(CGFloat x, CGFloat y) {
+	CGAffineTransform transform = CGAffineTransformIdentity;
+	transform.c = -x;
+	transform.b = y;
+	return transform;
+}

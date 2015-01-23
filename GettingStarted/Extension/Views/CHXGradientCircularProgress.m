@@ -27,7 +27,7 @@
 #import "CHXGradientCircularProgress.h"
 #import "CHXGlobalServices.h"
 
-#define kGradientCircularProgressAnimationDuration 1.0f
+#define kGradientCircularProgressAnimationDuration 0.6f
 #define kDefaultCircluarWidth 2.0f
 
 @interface CHXGradientCircularProgress ()

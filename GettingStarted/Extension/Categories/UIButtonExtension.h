@@ -153,3 +153,14 @@
 
 @end
 
+#pragma mark - 扩大点击范围
+
+@interface UIButton (CHXExpandRegion)
+/**
+ *  扩大点击区域
+ *
+ *  @param inset 区域
+ */
+- (void)chx_setExpandRegion:(UIEdgeInsets)inset;
+@end
+

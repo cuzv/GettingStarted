@@ -89,12 +89,12 @@
 + (UIImage *)chx_imageWithColor:(UIColor *)aColor size:(CGSize)aSize;
 
 /**
- *  把视图转为图片
+ *  截屏，iOS 7 以前
  *
- *  @param view 需要被转换的视图
+ *  @param view 需要被截屏的视图
  *
  *  @return 图片
  */
-+ (UIImage *)chx_imageWithView:(UIView *)view;
++ (UIImage *)chx_captureImageFromView:(UIView *)view;
 
 @end

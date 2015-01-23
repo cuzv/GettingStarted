@@ -71,7 +71,7 @@
     return image;
 }
 
-+ (UIImage *)chx_imageWithView:(UIView *)view {
++ (UIImage *)chx_captureImageFromView:(UIView *)view {
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();

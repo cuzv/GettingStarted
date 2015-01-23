@@ -97,7 +97,7 @@ CGFloat chx_radianFromAngle(CGFloat angle);
  */
 CGFloat chx_angleFromRadian(CGFloat radian);
 
-#pragma mark - Sandbox directory
+#pragma mark - Sandbox
 
 /**
  *  获取沙盒文档目录
@@ -140,6 +140,15 @@ NSString *chx_musicDirectory();
  *  @return 沙盒图片目录
  */
 NSString *chx_picturesDirectory();
+
+/**
+ *  目录下所有文件所占空间大小
+ *
+ *  @param folderPath 目录路径
+ *
+ *  @return 空间大小值
+ */
+long long chx_folderSizeAtPath(NSString *folderPath);
 
 #pragma mark - UniqueIdentifier
 
@@ -260,6 +269,11 @@ CGFloat chx_minimumInteritemSpacingForCollection(CGFloat collectionViewWidth, CG
 void chx_leftAlignAndVerticallySpaceOutViews(NSArray *views, CGFloat distance);
 
 @end
+
+#pragma mark - 斜切变换
+
+struct CGAffineTransform CGAffineTransformMakeShear(CGFloat x, CGFloat y);
+
 
 
 #pragma mark - Macros

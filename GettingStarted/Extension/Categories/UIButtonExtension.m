@@ -27,6 +27,7 @@
 #import "UIButtonExtension.h"
 #import "UIImageExtension.h"
 #import "UIViewExtension.h"
+#import <objc/runtime.h>
 
 @implementation UIButtonExtension
 
@@ -305,3 +306,48 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
 
 @end
 
+
+#pragma mark - 扩大点击范围
+
+static char *RegionalKey;
+
+@implementation UIButton (CHXExpandRegion)
+
+- (void)chx_setExpandRegion:(UIEdgeInsets)inset {
+	[self willChangeValueForKey:@"RegionalKey"];
+	objc_setAssociatedObject(self, &RegionalKey, [NSValue valueWithUIEdgeInsets:inset], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	[self didChangeValueForKey:@"RegionalKey"];
+}
+
+- (UIEdgeInsets)chx_expandRegion {
+	return [objc_getAssociatedObject(self, &RegionalKey) UIEdgeInsetsValue];
+}
+
+- (CGRect)clickRegional {
+	UIEdgeInsets inset = [self chx_expandRegion];
+	CGFloat top = inset.top;
+	CGFloat bottom = inset.bottom;
+	CGFloat left = inset.left;
+	CGFloat right = inset.right;
+	BOOL regional = top || bottom || left || right;
+	if (regional) {
+		return CGRectMake(self.bounds.origin.x - left,
+						  self.bounds.origin.y - top,
+						  self.bounds.size.width + left + right,
+						  self.bounds.size.height + top + bottom);
+	} else {
+		return self.bounds;
+	}
+}
+
+// Override
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+	CGRect rect = [self clickRegional];
+	if (CGRectEqualToRect(rect, self.bounds)) {
+		return [super pointInside:point withEvent:event];
+	}
+	return CGRectContainsPoint(rect, point) ? YES : NO;
+}
+
+
+@end
