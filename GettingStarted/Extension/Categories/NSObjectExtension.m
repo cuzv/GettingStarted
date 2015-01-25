@@ -87,29 +87,29 @@
 }
 
 - (NSArray *)chx_methods {
-	NSMutableArray *methodsArray = [NSMutableArray new];
-	u_int count;
-	Method *methodsList = class_copyMethodList([self class], &count);
-	for (int i = 0; i < count; i++) {
-		SEL methodSelector = method_getName(methodsList[i]);
-		NSString *stringName = NSStringFromSelector(methodSelector);
-		[methodsArray addObject:stringName];
-	}
-	
-	return [NSArray arrayWithArray:methodsArray];
+    NSMutableArray *methodsArray = [NSMutableArray new];
+    u_int count;
+    Method *methodsList = class_copyMethodList([self class], &count);
+    for (int i = 0; i < count; i++) {
+        SEL methodSelector = method_getName(methodsList[i]);
+        NSString *stringName = NSStringFromSelector(methodSelector);
+        [methodsArray addObject:stringName];
+    }
+    
+    return [NSArray arrayWithArray:methodsArray];
 }
 
 + (NSArray *)chx_methods {
-	NSMutableArray *methodsArray = [NSMutableArray new];
-	u_int count;
-	Method *methodsList = class_copyMethodList([self class], &count);
-	for (int i = 0; i < count; i++) {
-		SEL methodSelector = method_getName(methodsList[i]);
-		NSString *stringName = NSStringFromSelector(methodSelector);
-		[methodsArray addObject:stringName];
-	}
-	
-	return [NSArray arrayWithArray:methodsArray];
+    NSMutableArray *methodsArray = [NSMutableArray new];
+    u_int count;
+    Method *methodsList = class_copyMethodList([self class], &count);
+    for (int i = 0; i < count; i++) {
+        SEL methodSelector = method_getName(methodsList[i]);
+        NSString *stringName = NSStringFromSelector(methodSelector);
+        [methodsArray addObject:stringName];
+    }
+    
+    return [NSArray arrayWithArray:methodsArray];
 }
 
 - (NSDictionary *)chx_convertToDictionary {
@@ -128,16 +128,16 @@
     if (![[self chx_properties] count]) {
         return nil;
     }
-	
-	NSMutableDictionary *propertyDictionary = [NSMutableDictionary new];
-	NSMutableArray *propertyArray = [[self chx_properties] mutableCopy];
-	[propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		[propertyDictionary setObject:[self valueForKey:obj] forKey:obj];
-	}];
-	
-	NSString *description = [NSString stringWithFormat:@"<%@: %p, %@>", [self class], self, propertyDictionary];
-	
-	return description;
+    
+    NSMutableDictionary *propertyDictionary = [NSMutableDictionary new];
+    NSMutableArray *propertyArray = [[self chx_properties] mutableCopy];
+    [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [propertyDictionary setObject:[self valueForKey:obj] forKey:obj];
+    }];
+    
+    NSString *description = [NSString stringWithFormat:@"<%@: %p, %@>", [self class], self, propertyDictionary];
+    
+    return description;
 }
 
 @end

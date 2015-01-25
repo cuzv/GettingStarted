@@ -36,9 +36,9 @@
 @implementation UILabel (CHXGenerate)
 
 + (instancetype)chx_labelWithFrame:(CGRect)frame
-					 textAlignment:(NSTextAlignment)alignment
-							  font:(UIFont *)font
-						 textColor:(UIColor *)color {
+                     textAlignment:(NSTextAlignment)alignment
+                              font:(UIFont *)font
+                         textColor:(UIColor *)color {
     UILabel *label = [[self alloc] initWithFrame:frame];
     label.textAlignment = alignment ? : NSTextAlignmentLeft;
     label.font = font ? : [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
@@ -49,10 +49,10 @@
 }
 
 + (instancetype)chx_labelWithSize:(CGSize)size
-						   center:(CGPoint)center
-					textAlignment:(NSTextAlignment)alignment
-							 font:(UIFont *)font
-						textColor:(UIColor *)textColor {
+                           center:(CGPoint)center
+                    textAlignment:(NSTextAlignment)alignment
+                             font:(UIFont *)font
+                        textColor:(UIColor *)textColor {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,

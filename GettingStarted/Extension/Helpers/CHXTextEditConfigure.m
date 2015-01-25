@@ -169,15 +169,15 @@ static const void *UITextViewKey = &UITextViewKey;
 @implementation UITextView (TextConfigure)
 
 - (void)chx_setTextConfigure:(CHXTextEditConfigure *)textConfigure {
-	[self willChangeValueForKey:@"UITextViewKey"];
-	objc_setAssociatedObject(self, &UITextViewKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
-	[self didChangeValueForKey:@"UITextViewKey"];
-	
-	[textConfigure pr_initialNotificationForObject:self];
+    [self willChangeValueForKey:@"UITextViewKey"];
+    objc_setAssociatedObject(self, &UITextViewKey, textConfigure, OBJC_ASSOCIATION_RETAIN);
+    [self didChangeValueForKey:@"UITextViewKey"];
+    
+    [textConfigure pr_initialNotificationForObject:self];
 }
 
 - (CHXTextEditConfigure *)chx_textConfigure {
-	return objc_getAssociatedObject(self, &UITextViewKey);
+    return objc_getAssociatedObject(self, &UITextViewKey);
 }
 
 

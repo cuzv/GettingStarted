@@ -41,59 +41,59 @@
 #pragma mark -
 
 - (NSMutableArray *)dataArray {
-	if (!_dataArray) {
-		NSArray *content = @[@"1", @"2", @"3", @"4"];
-		CHXArrayDataSourceCollecionViewSectionItem *item1 = [[CHXArrayDataSourceCollecionViewSectionItem alloc] initWithContent:content supplementaryElementForHeader:@"header one" supplementaryElementForFooter:@"footer one"];
-		CHXArrayDataSourceCollecionViewSectionItem *item2 = [[CHXArrayDataSourceCollecionViewSectionItem alloc] initWithContent:content supplementaryElementForHeader:@"Feader Two" supplementaryElementForFooter:@"Footer Two"];
-		_dataArray = [@[item1, item2] mutableCopy];
-	}
-	
-	return _dataArray;
+    if (!_dataArray) {
+        NSArray *content = @[@"1", @"2", @"3", @"4"];
+        CHXArrayDataSourceCollecionViewSectionItem *item1 = [[CHXArrayDataSourceCollecionViewSectionItem alloc] initWithContent:content supplementaryElementForHeader:@"header one" supplementaryElementForFooter:@"footer one"];
+        CHXArrayDataSourceCollecionViewSectionItem *item2 = [[CHXArrayDataSourceCollecionViewSectionItem alloc] initWithContent:content supplementaryElementForHeader:@"Feader Two" supplementaryElementForFooter:@"Footer Two"];
+        _dataArray = [@[item1, item2] mutableCopy];
+    }
+    
+    return _dataArray;
 }
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
-	
-	[self customUserInterface];
+    [super viewDidLoad];
+    
+    [self customUserInterface];
 }
 
 - (void)customUserInterface {
-	self.arrayDataSource = [[CHXArrayDataSource alloc] initWithDataSourceType:CHXDataSourceTypeMultipleSection dataArray:self.dataArray cellReuseIdentifierForIndexPath:^NSString *(NSIndexPath *indexPath) {
-		return @"CollectionCell";
-	} cellConfigureBlock:^(UICollectionViewCell *cell, id item) {
-		cell.backgroundColor = [UIColor orangeColor];
-	}];
-
-	self.arrayDataSource.collectionSupplementaryElementReuseIdentifierForIndexPath = ^NSString *((NSIndexPath *indexPath, NSString *kind)) {
-		if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
-			return @"CollectionReuseFooterView";
-		}
-		
-		return @"CollectionReuseHeaderView";
-	};
-	self.arrayDataSource.configureSupplementaryElementBlock = ^(UICollectionReusableView *view, id item) {
-		NSLog(@"%@", item);
-	};
-
-	self.collectionView.dataSource = self.arrayDataSource;
+    self.arrayDataSource = [[CHXArrayDataSource alloc] initWithDataSourceType:CHXDataSourceTypeMultipleSection dataArray:self.dataArray cellReuseIdentifierForIndexPath:^NSString *(NSIndexPath *indexPath) {
+        return @"CollectionCell";
+    } cellConfigureBlock:^(UICollectionViewCell *cell, id item) {
+        cell.backgroundColor = [UIColor orangeColor];
+    }];
+    
+    self.arrayDataSource.collectionSupplementaryElementReuseIdentifierForIndexPath = ^NSString *((NSIndexPath *indexPath, NSString *kind)) {
+        if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+            return @"CollectionReuseFooterView";
+        }
+        
+        return @"CollectionReuseHeaderView";
+    };
+    self.arrayDataSource.configureSupplementaryElementBlock = ^(UICollectionReusableView *view, id item) {
+        NSLog(@"%@", item);
+    };
+    
+    self.collectionView.dataSource = self.arrayDataSource;
 }
 
 #pragma mark -
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return CGSizeMake((collectionView.bounds.size.width - 30) / 2, collectionView.bounds.size.width / 2);
+    return CGSizeMake((collectionView.bounds.size.width - 30) / 2, collectionView.bounds.size.width / 2);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-	return UIEdgeInsetsMake(25, 10, 20, 10);
+    return UIEdgeInsetsMake(25, 10, 20, 10);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-	return 10;
+    return 10;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-	return 10;
+    return 10;
 }
 
 @end

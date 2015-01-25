@@ -61,7 +61,7 @@
  */
 - (BOOL)chx_isNavigationActivityIndicatorViewInAnimation;
 
-#pragma mark - 
+#pragma mark -
 
 /**
  *  检查视图控制器

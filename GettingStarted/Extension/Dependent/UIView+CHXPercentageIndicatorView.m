@@ -82,7 +82,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
     theme.sliceDividerHidden = YES;
     theme.labelColor = [UIColor blackColor];
     theme.labelShadowColor = [UIColor whiteColor];
-
+    
     return theme;
 }
 
@@ -92,7 +92,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
     theme.incompletedColor = [UIColor clearColor];
     theme.completedColor = [UIColor orangeColor];
     theme.sliceDividerHidden = YES;
-
+    
     return theme;
 }
 
@@ -126,7 +126,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
     // theme update works both changing the theme or the theme attributes
     theme.labelColor = [UIColor blueColor];
     theme.labelShadowColor = [UIColor clearColor];
-
+    
     return theme;
 }
 
@@ -135,7 +135,7 @@ static const void *PercentageIndicatorViewKey = &PercentageIndicatorViewKey;
     theme.thickness = 70;
     theme.completedColor = [UIColor brownColor];
     theme.sliceDividerThickness = 0;
-
+    
     return theme;
 }
 

@@ -29,7 +29,7 @@
 @implementation CHXBaseHandler
 
 + (void)handleRequest:(CHXBaseRequest *)request withSuccess:(HandlerSuccessCompletionBlock)success failure:(HandlerFailureCompletionBlock)failure {
-	
+    
 }
 
 @end

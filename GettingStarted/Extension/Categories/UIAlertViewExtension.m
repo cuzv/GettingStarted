@@ -46,10 +46,10 @@
 #define kAlertDelayTimeInterval 5
 + (void)chx_showAlertWithAutomaticDisappearMessage:(NSString *)message {
     UIAlertView *alertView = [[self alloc] initWithTitle:@""
-												 message:message
-												delegate:nil
-									   cancelButtonTitle:nil
-									   otherButtonTitles:@"好", nil];
+                                                 message:message
+                                                delegate:nil
+                                       cancelButtonTitle:nil
+                                       otherButtonTitles:@"好", nil];
     [alertView show];
     
     NSMethodSignature *signature = [self instanceMethodSignatureForSelector:
@@ -67,10 +67,10 @@
 
 + (void)chx_showAlertWithAutomaticDisappearMessage:(NSString *)message delayTimeInterval:(NSTimeInterval)delay {
     UIAlertView *alertView = [[self alloc] initWithTitle:@""
-												 message:message
-												delegate:nil
-									   cancelButtonTitle:nil
-									   otherButtonTitles:@"好", nil];
+                                                 message:message
+                                                delegate:nil
+                                       cancelButtonTitle:nil
+                                       otherButtonTitles:@"好", nil];
     [alertView show];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [alertView dismissWithClickedButtonIndex:0 animated:YES];

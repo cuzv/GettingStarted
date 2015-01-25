@@ -46,9 +46,9 @@
  *  @return 表视图
  */
 + (instancetype)chx_tableViewWithFrame:(CGRect)frame
-								 style:(UITableViewStyle)style
-							 dataSouce:(id<UITableViewDataSource>)dataSource
-							  delegate:(id<UITableViewDelegate>) delegate;
+                                 style:(UITableViewStyle)style
+                             dataSouce:(id<UITableViewDataSource>)dataSource
+                              delegate:(id<UITableViewDelegate>) delegate;
 
 
 /**
@@ -63,8 +63,8 @@
  *  @return 表视图
  */
 + (instancetype)chx_tableViewWithSize:(CGSize)size
-							   center:(CGPoint)center
-								style:(UITableViewStyle)style
-							dataSouce:(id<UITableViewDataSource>)dataSource
-							 delegate:(id<UITableViewDelegate>) delegate;
+                               center:(CGPoint)center
+                                style:(UITableViewStyle)style
+                            dataSouce:(id<UITableViewDataSource>)dataSource
+                             delegate:(id<UITableViewDelegate>) delegate;
 @end

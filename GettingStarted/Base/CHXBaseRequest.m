@@ -28,40 +28,40 @@
 
 @implementation CHXBaseRequest
 
-#pragma mark - 
+#pragma mark -
 
 - (NSString *)requestBaseURLString {
-	return @"http://10.128.8.250:8080/wfarm/";
+    return @"http://10.128.8.250:8080/wfarm/";
 }
 
 - (CHXRequestMethod)requestMehtod {
-	return CHXRequestMethodPost;
+    return CHXRequestMethodPost;
 }
 
 - (CHXRequestSerializerType)requestSerializerType {
-	return CHXRequestSerializerTypeJSON;
+    return CHXRequestSerializerTypeJSON;
 }
 
 #pragma mark -
 
 - (CHXResponseSerializerType)responseSerializerType {
-	return CHXResponseSerializerTypeJSON;
+    return CHXResponseSerializerTypeJSON;
 }
 
 - (NSString *)responseApiVersionFieldName {
-	return @"apiVersion";
+    return @"apiVersion";
 }
 
 - (NSString *)responseCodeFieldName {
-	return @"rspCode";
+    return @"rspCode";
 }
 
 - (NSString *)responseDataFieldName {
-	return @"data";
+    return @"data";
 }
 
 - (NSString *)responseMessageFieldName {
-	return @"rspMsg";
+    return @"rspMsg";
 }
 
 

@@ -272,7 +272,7 @@ typedef NS_ENUM(NSInteger, CHXAnimationOrientation) {
 /**
  *  为视图添加进度指示器动画
  */
-- (void)addActivityIndicatorAnimation;
+- (void)chx_addActivityIndicatorAnimation;
 
 /**
  *  为视图添加进度指示器动画

@@ -58,7 +58,7 @@
 }
 
 + (UIColor *)chx_colorWithRGBA:(NSArray *)rgba {
-	NSAssert(rgba.count == 4, @"Color array should have four parameters !");
+    NSAssert(rgba.count == 4, @"Color array should have four parameters !");
     return [UIColor colorWithRed:[rgba[0] floatValue] / 255
                            green:[rgba[1] floatValue] / 255
                             blue:[rgba[2] floatValue] / 255

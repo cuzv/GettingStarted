@@ -189,7 +189,7 @@ static const void *RightBarInAnimationKey = &RightBarInAnimationKey;
     UIView *view = [UIView new];
     CGFloat height = [self.navigationController.navigationBar chx_height] / 2;
     view.bounds = CGRectMake(0, 0, height, height);
-    [view addActivityIndicatorAnimation];
+    [view chx_addActivityIndicatorAnimation];
     
     UIActivityIndicatorView *indicator = [view chx_activityIndicatorView];
     indicator.color = self.navigationController.navigationBar.tintColor;

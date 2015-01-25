@@ -37,9 +37,9 @@
 @implementation UITextView (CHXGenerate)
 
 + (instancetype)chx_textViewWithFrame:(CGRect)frame
-								 font:(UIFont *)font
-							 delegate:(id<UITextViewDelegate>)delegate
-				   displayBorderLayer:(BOOL)display {
+                                 font:(UIFont *)font
+                             delegate:(id<UITextViewDelegate>)delegate
+                   displayBorderLayer:(BOOL)display {
     UITextView *textView = [[self alloc] initWithFrame:frame];
     textView.font = font ? : [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     textView.textContainerInset = UIEdgeInsetsMake(5, 5, 5, 5);
@@ -56,10 +56,10 @@
 }
 
 + (instancetype)chx_textViewWithSize:(CGSize)size
-							  center:(CGPoint)center
-								font:(UIFont *)font
-							delegate:(id<UITextViewDelegate>)delegate
-				  displayBorderLayer:(BOOL)display {
+                              center:(CGPoint)center
+                                font:(UIFont *)font
+                            delegate:(id<UITextViewDelegate>)delegate
+                  displayBorderLayer:(BOOL)display {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,

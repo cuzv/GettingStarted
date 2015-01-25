@@ -47,9 +47,9 @@
  *  @return 文本域
  */
 + (instancetype)chx_textFieldWithFrame:(CGRect)frame
-						 textAlignment:(NSTextAlignment)alignment
-								  font:(UIFont *)font
-					displayBorderLayer:(BOOL)display;
+                         textAlignment:(NSTextAlignment)alignment
+                                  font:(UIFont *)font
+                    displayBorderLayer:(BOOL)display;
 
 /**
  *  快速创建文本域
@@ -58,13 +58,13 @@
  *  @param center    中心点
  *  @param alignment 对齐方式
  *  @param font      子图
-*  @param display    是否显示边框
+ *  @param display    是否显示边框
  *
  *  @return 文本域
  */
 + (instancetype)chx_textFieldWithSize:(CGSize)size
-							   center:(CGPoint)center
-						textAlignment:(NSTextAlignment)alignment
-								 font:(UIFont *)font
-				   displayBorderLayer:(BOOL)display;
+                               center:(CGPoint)center
+                        textAlignment:(NSTextAlignment)alignment
+                                 font:(UIFont *)font
+                   displayBorderLayer:(BOOL)display;
 @end

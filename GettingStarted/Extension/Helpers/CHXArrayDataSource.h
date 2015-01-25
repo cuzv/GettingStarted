@@ -88,11 +88,11 @@
 
 @end
 
-#pragma mark - 
+#pragma mark -
 
 typedef NS_ENUM(NSInteger, CHXDataSourceType) {
-	CHXDataSourceTypeSingleSection,
-	CHXDataSourceTypeMultipleSection
+    CHXDataSourceTypeSingleSection,
+    CHXDataSourceTypeMultipleSection
 };
 
 // 配置 Cell 数据
@@ -128,9 +128,9 @@ typedef NSString *(^CollectionSupplementaryElementReuseIdentifierForIndexPath)(N
  *  @return CHXArrayDataSource 实例对象
  */
 - (instancetype)initWithDataSourceType:(CHXDataSourceType)dataSourceType
-							 dataArray:(NSMutableArray *)dataArray
-	   cellReuseIdentifierForIndexPath:(CellReuseIdentifierForRowAtIndexPath)cellReuseIdentifierForIndexPath
-					cellConfigureBlock:(CellConfigureBlock)configureBlock;
+                             dataArray:(NSMutableArray *)dataArray
+       cellReuseIdentifierForIndexPath:(CellReuseIdentifierForRowAtIndexPath)cellReuseIdentifierForIndexPath
+                    cellConfigureBlock:(CellConfigureBlock)configureBlock;
 
 #pragma mark - 以下 Block 为可选配置
 

@@ -43,91 +43,91 @@ static const void *IndicatorAnimationTimerKey = &IndicatorAnimationTimerKey;
 @implementation UINavigationBar (VIndicatorAnimation)
 
 - (void)pr_setTitleLabel:(UILabel *)titleLabel {
-	[self willChangeValueForKey:@"IndicatorAnimationKey"];
-	objc_setAssociatedObject(self, &IndicatorAnimationKey, titleLabel, OBJC_ASSOCIATION_ASSIGN);
-	[self didChangeValueForKey:@"IndicatorAnimationKey"];
+    [self willChangeValueForKey:@"IndicatorAnimationKey"];
+    objc_setAssociatedObject(self, &IndicatorAnimationKey, titleLabel, OBJC_ASSOCIATION_ASSIGN);
+    [self didChangeValueForKey:@"IndicatorAnimationKey"];
 }
 
 - (UILabel *)pr_titleLabel {
-	return objc_getAssociatedObject(self, &IndicatorAnimationKey);
+    return objc_getAssociatedObject(self, &IndicatorAnimationKey);
 }
 
 - (void)pr_setInAnimation:(BOOL)inAnimation {
-	[self willChangeValueForKey:@"IndicatorInAnimationKey"];
-	objc_setAssociatedObject(self, &IndicatorInAnimationKey, @(inAnimation), OBJC_ASSOCIATION_ASSIGN);
-	[self didChangeValueForKey:@"IndicatorInAnimationKey"];
+    [self willChangeValueForKey:@"IndicatorInAnimationKey"];
+    objc_setAssociatedObject(self, &IndicatorInAnimationKey, @(inAnimation), OBJC_ASSOCIATION_ASSIGN);
+    [self didChangeValueForKey:@"IndicatorInAnimationKey"];
 }
 
 - (BOOL)pr_inAnimation {
-	return [objc_getAssociatedObject(self, &IndicatorInAnimationKey) boolValue];
+    return [objc_getAssociatedObject(self, &IndicatorInAnimationKey) boolValue];
 }
 
 - (void)pr_setTimer:(dispatch_source_t)timer {
-	[self willChangeValueForKey:@"IndicatorAnimationTimerKey"];
-	objc_setAssociatedObject(self, &IndicatorAnimationTimerKey, timer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-	[self didChangeValueForKey:@"IndicatorAnimationTimerKey"];
+    [self willChangeValueForKey:@"IndicatorAnimationTimerKey"];
+    objc_setAssociatedObject(self, &IndicatorAnimationTimerKey, timer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self didChangeValueForKey:@"IndicatorAnimationTimerKey"];
 }
 
 - (dispatch_source_t)pr_timer {
-	return objc_getAssociatedObject(self, &IndicatorAnimationTimerKey);
+    return objc_getAssociatedObject(self, &IndicatorAnimationTimerKey);
 }
 
 - (void)chx_addIndicatorAnimation {
-	if ([self pr_inAnimation]) {
-		return;
-	}
-	
-	// 调整位置
-	[self setTitleVerticalPositionAdjustment:kTitleVerticalPositionAdjustment forBarMetrics:UIBarMetricsDefault];
-	// 开启动画
-	__weak typeof(self) weakSelf = self;
-
-	[self addSubview:({
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, [weakSelf chx_height] - 20, [weakSelf chx_width], 20)];
-		CGFloat width = [@"• • •" chx_sizeWithFont:label.font width:[weakSelf chx_width]].width;
-		[label chx_setWidth:width];
-		[label chx_setMidX:[weakSelf chx_midX]];
-		label.textColor = weakSelf.titleTextAttributes[NSForegroundColorAttributeName];
-		label.textAlignment = NSTextAlignmentLeft;
-		
-		NSArray *titles = @[@"•    ", @"• •  ", @"• • •", @"     "];
-		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-		[weakSelf pr_setTimer:dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue)];
-		if ([weakSelf pr_timer]) {
-			dispatch_source_set_timer([weakSelf pr_timer], dispatch_walltime(NULL, 0), 0.5 * NSEC_PER_SEC , 0);
-			__block NSUInteger currentIndex = 0;
-			dispatch_source_set_event_handler([weakSelf pr_timer], ^{
-				dispatch_async(dispatch_get_main_queue(), ^{
-					label.text = titles[currentIndex];
-					if (currentIndex++ == titles.count - 1) {
-						currentIndex = 0;
-					}
-				});
-			});
-			dispatch_source_set_cancel_handler([weakSelf pr_timer], ^{
-				dispatch_async(dispatch_get_main_queue(), ^{
-					[weakSelf setTitleVerticalPositionAdjustment:0 forBarMetrics:UIBarMetricsDefault];
-					[weakSelf pr_setInAnimation:NO];
-					[[weakSelf pr_titleLabel] removeFromSuperview];
-					[weakSelf pr_setTitleLabel:nil];
-				});
-			});
-			dispatch_resume([weakSelf pr_timer]);
-		}
-
-		[weakSelf pr_setTitleLabel:label];
-		label;
-	})];
-	
-	[self pr_setInAnimation:YES];
+    if ([self pr_inAnimation]) {
+        return;
+    }
+    
+    // 调整位置
+    [self setTitleVerticalPositionAdjustment:kTitleVerticalPositionAdjustment forBarMetrics:UIBarMetricsDefault];
+    // 开启动画
+    __weak typeof(self) weakSelf = self;
+    
+    [self addSubview:({
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, [weakSelf chx_height] - 20, [weakSelf chx_width], 20)];
+        CGFloat width = [@"• • •" chx_sizeWithFont:label.font width:[weakSelf chx_width]].width;
+        [label chx_setWidth:width];
+        [label chx_setMidX:[weakSelf chx_midX]];
+        label.textColor = weakSelf.titleTextAttributes[NSForegroundColorAttributeName];
+        label.textAlignment = NSTextAlignmentLeft;
+        
+        NSArray *titles = @[@"•    ", @"• •  ", @"• • •", @"     "];
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        [weakSelf pr_setTimer:dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue)];
+        if ([weakSelf pr_timer]) {
+            dispatch_source_set_timer([weakSelf pr_timer], dispatch_walltime(NULL, 0), 0.5 * NSEC_PER_SEC , 0);
+            __block NSUInteger currentIndex = 0;
+            dispatch_source_set_event_handler([weakSelf pr_timer], ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    label.text = titles[currentIndex];
+                    if (currentIndex++ == titles.count - 1) {
+                        currentIndex = 0;
+                    }
+                });
+            });
+            dispatch_source_set_cancel_handler([weakSelf pr_timer], ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf setTitleVerticalPositionAdjustment:0 forBarMetrics:UIBarMetricsDefault];
+                    [weakSelf pr_setInAnimation:NO];
+                    [[weakSelf pr_titleLabel] removeFromSuperview];
+                    [weakSelf pr_setTitleLabel:nil];
+                });
+            });
+            dispatch_resume([weakSelf pr_timer]);
+        }
+        
+        [weakSelf pr_setTitleLabel:label];
+        label;
+    })];
+    
+    [self pr_setInAnimation:YES];
 }
 
 - (void)chx_removeIndicatorAnimation {
-	dispatch_source_cancel([self pr_timer]);
+    dispatch_source_cancel([self pr_timer]);
 }
 
 - (BOOL)chx_isInAnimation {
-	return [self pr_inAnimation];
+    return [self pr_inAnimation];
 }
 
 @end

@@ -64,7 +64,7 @@
         self.initializeTime = NO;
         return;
     }
-
+    
     if (newWindow) {
         [self startAnimation];
     } else {
@@ -88,8 +88,8 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         [self pr_drewViewWithTrackColor:nil
-                       progressColor:[UIColor lightGrayColor]
-                       circluarWidth:kDefaultCircluarWidth];
+                          progressColor:[UIColor lightGrayColor]
+                          circluarWidth:kDefaultCircluarWidth];
     }
     
     return self;
@@ -105,16 +105,16 @@
                                  MIN(CGRectGetWidth(frame), CGRectGetHeight(frame)));
     if (self = [super initWithFrame:newFrame]) {
         [self pr_drewViewWithTrackColor:trackColor
-                       progressColor:progressColor
-                       circluarWidth:circluarWidth];
+                          progressColor:progressColor
+                          circluarWidth:circluarWidth];
     }
     
     return self;
 }
 
 - (void)pr_drewViewWithTrackColor:(UIColor *)trackColor
-				   progressColor:(UIColor *)progressColor
-				   circluarWidth:(CGFloat)circluarWidth {
+                    progressColor:(UIColor *)progressColor
+                    circluarWidth:(CGFloat)circluarWidth {
     self.resetAnimation = YES;
     // 裁剪为圆形
     self.backgroundColor = [UIColor clearColor];
@@ -158,7 +158,7 @@
     _progressLayer.opaque = 0.5;
     _progressLayer.lineWidth = circluarWidth;
     _progressLayer.path = [path CGPath];
-    _progressLayer.strokeEnd = 0;
+    _progressLayer.strokeEnd = 1;
     
     // left gradient layer
     CAGradientLayer *leftGradientLayer =  [CAGradientLayer layer];
@@ -272,7 +272,7 @@
 }
 
 - (BOOL)isInAnimation {
-	return self.animating;
+    return self.animating;
 }
 
 // animation delegate
@@ -280,7 +280,7 @@
     if (!self.animating) {
         return;
     }
-
+    
     if (!flag && self.resetAnimation) {
         [self startAnimation];
     }
@@ -299,36 +299,36 @@ static const void *GradientCircularProgressKey = &GradientCircularProgressKey;
 @implementation UIView (CHXGradientCircularProgress)
 
 - (void)pr_setGradientCircularProgress:(CHXGradientCircularProgress *)gradientCircularProgress {
-	[self willChangeValueForKey:@"GradientCircularProgressKey"];
-	objc_setAssociatedObject(self, &GradientCircularProgressKey, gradientCircularProgress, OBJC_ASSOCIATION_ASSIGN);
-	[self didChangeValueForKey:@"GradientCircularProgressKey"];
+    [self willChangeValueForKey:@"GradientCircularProgressKey"];
+    objc_setAssociatedObject(self, &GradientCircularProgressKey, gradientCircularProgress, OBJC_ASSOCIATION_ASSIGN);
+    [self didChangeValueForKey:@"GradientCircularProgressKey"];
 }
 
 - (CHXGradientCircularProgress *)pr_gradientCircularProgress {
-	return objc_getAssociatedObject(self, &GradientCircularProgressKey);
+    return objc_getAssociatedObject(self, &GradientCircularProgressKey);
 }
 
 - (void)chx_addGradientCircularProgressAnimation {
-	[self chx_addGradientCircularProgressAnimationOnCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
+    [self chx_addGradientCircularProgressAnimationOnCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
 }
 
 - (void)chx_addGradientCircularProgressAnimationOnCenter:(CGPoint)center {
-	if ([self pr_gradientCircularProgress]) {
-		return;
-	}
-	
-	CHXGradientCircularProgress *gradientCircularProgress = [[CHXGradientCircularProgress alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-	gradientCircularProgress.center = center;
-	[self pr_setGradientCircularProgress:gradientCircularProgress];
-	[self addSubview:gradientCircularProgress];
-	[gradientCircularProgress startAnimation];
+    if ([self pr_gradientCircularProgress]) {
+        return;
+    }
+    
+    CHXGradientCircularProgress *gradientCircularProgress = [[CHXGradientCircularProgress alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    gradientCircularProgress.center = center;
+    [self pr_setGradientCircularProgress:gradientCircularProgress];
+    [self addSubview:gradientCircularProgress];
+    [gradientCircularProgress startAnimation];
 }
 
 
 - (void)chx_removeGradientCircularProgressAnimation {
-	[[self pr_gradientCircularProgress] stopAnimation];
-	[[self pr_gradientCircularProgress] removeFromSuperview];
-	[self pr_setGradientCircularProgress:nil];
+    [[self pr_gradientCircularProgress] stopAnimation];
+    [[self pr_gradientCircularProgress] removeFromSuperview];
+    [self pr_setGradientCircularProgress:nil];
 }
 
 @end

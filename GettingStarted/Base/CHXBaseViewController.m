@@ -34,13 +34,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self customBackBarButtonItem];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    [HTTPManager removeLatelyRequest];
+    //    [HTTPManager removeLatelyRequest];
 }
 
 - (void)customBackBarButtonItem {

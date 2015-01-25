@@ -38,35 +38,35 @@
 #pragma mark - Hash
 
 - (BOOL)isEqual:(id)object {
-	if (![object isKindOfClass:[self class]]) {
-		return NO;
-	}
-	
-	NSArray *propertyArray = [self chx_properties];
-	__block BOOL euqal = YES;
-	[propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		id selfObject = [self valueForKey:obj];
-		id compareObject = [object valueForKey:obj];
-		euqal = [selfObject isEqual:compareObject];
-		
-		if (!euqal && selfObject && compareObject) {
-			*stop = YES;
-		} else {
-			euqal = YES;
-		}
-	}];
-	
-	return euqal;
+    if (![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+    
+    NSArray *propertyArray = [self chx_properties];
+    __block BOOL euqal = YES;
+    [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        id selfObject = [self valueForKey:obj];
+        id compareObject = [object valueForKey:obj];
+        euqal = [selfObject isEqual:compareObject];
+        
+        if (!euqal && selfObject && compareObject) {
+            *stop = YES;
+        } else {
+            euqal = YES;
+        }
+    }];
+    
+    return euqal;
 }
 
 - (NSUInteger)hash {
-	NSArray *propertyArray = [self chx_properties];
-	__block NSUInteger hashCode = 0;
-	[propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		hashCode ^= [[self valueForKey:obj] hash];
-	}];
-	
-	return hashCode;
+    NSArray *propertyArray = [self chx_properties];
+    __block NSUInteger hashCode = 0;
+    [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        hashCode ^= [[self valueForKey:obj] hash];
+    }];
+    
+    return hashCode;
 }
 
 @end
@@ -78,51 +78,51 @@
 @implementation CHXRequest (CHXConstruct)
 
 - (NSDictionary *)requestParameters {
-	return nil;
+    return nil;
 }
 
 - (NSString *)requestBaseURLString {
-	return nil;
+    return nil;
 }
 
 - (NSString *)requestSpecificURLString {
-	return nil;;
+    return nil;;
 }
 
 - (NSString *)requestSuffixURLString {
-	return nil;
+    return nil;
 }
 
 - (CHXRequestMethod)requestMehtod {
-	return CHXRequestMethodPost;
+    return CHXRequestMethodPost;
 }
 
 - (CHXRequestSerializerType)requestSerializerType {
-	return CHXRequestSerializerTypeHTTP;
+    return CHXRequestSerializerTypeHTTP;
 }
 
 - (AFConstructingBlock)constructingBodyBlock {
-	return nil;
+    return nil;
 }
 
 - (NSString *)downloadTargetFilePathString {
-	return nil;
+    return nil;
 }
 
 - (NSURLRequest *)customURLRequest {
-	return nil;
+    return nil;
 }
 
 - (NSTimeInterval)requestTimeoutInterval {
-	return 10;
+    return 10;
 }
 
 - (BOOL)requestNeedCache {
-	return YES;
+    return YES;
 }
 
 - (NSTimeInterval)requestCacheDuration {
-	return 60 * 3;
+    return 60 * 3;
 }
 
 @end
@@ -132,23 +132,23 @@
 @implementation CHXRequest (CHXRetrieve)
 
 - (CHXResponseSerializerType)responseSerializerType {
-	return CHXResponseSerializerTypeJSON;
+    return CHXResponseSerializerTypeJSON;
 }
 
 - (NSString *)responseApiVersionFieldName {
-	return nil;
+    return nil;
 }
 
 - (NSString *)responseDataFieldName {
-	return nil;
+    return nil;
 }
 
 - (NSString *)responseCodeFieldName {
-	return nil;
+    return nil;
 }
 
 - (NSString *)responseMessageFieldName {
-	return nil;
+    return nil;
 }
 
 @end
@@ -158,38 +158,38 @@
 @implementation CHXRequest (CHXPerform)
 
 - (CHXRequest *)stopRequest {
-	[[CHXRequestProxy sharedInstance] removeRequest:self];
-
-	return self;
+    [[CHXRequestProxy sharedInstance] removeRequest:self];
+    
+    return self;
 }
 
 - (CHXRequest *)startRequest {
-	[self initializeQueueIfNeeded];
-
-	[[CHXRequestProxy sharedInstance] addRequest:self];
-	
-	return self;
+    [self initializeQueueIfNeeded];
+    
+    [[CHXRequestProxy sharedInstance] addRequest:self];
+    
+    return self;
 }
 
 - (void)initializeQueueIfNeeded {
-	if (self.queue) {
-		return;
-	}
-	
-	self.queue = ({
-		NSString *queueLabel = [NSString stringWithFormat:@"xiao.moch.queueidentifier.%zd", [self hash]];
-		dispatch_queue_t queue = dispatch_queue_create([queueLabel UTF8String], DISPATCH_QUEUE_SERIAL);
-		dispatch_suspend(queue);
-		queue;
-	});
+    if (self.queue) {
+        return;
+    }
+    
+    self.queue = ({
+        NSString *queueLabel = [NSString stringWithFormat:@"xiao.moch.queueidentifier.%zd", [self hash]];
+        dispatch_queue_t queue = dispatch_queue_create([queueLabel UTF8String], DISPATCH_QUEUE_SERIAL);
+        dispatch_suspend(queue);
+        queue;
+    });
 }
 
 - (CHXRequest *)notifyComplete {
-	if (self.queue) {
-		dispatch_resume(self.queue);
-	}
-
-	return self;
+    if (self.queue) {
+        dispatch_resume(self.queue);
+    }
+    
+    return self;
 }
 
 @end
@@ -199,27 +199,27 @@
 @implementation CHXRequest (CHXAsynchronously)
 
 - (CHXRequest *)successCompletionResponse:(RequestSuccessCompletionBlock)requestSuccessCompletionBlock {
-	dispatch_async(self.queue, ^{
-		requestSuccessCompletionBlock(self.responseObject);
-	});
-
-	return self;
+    dispatch_async(self.queue, ^{
+        requestSuccessCompletionBlock(self.responseObject);
+    });
+    
+    return self;
 }
 
 - (CHXRequest *)failureCompletionResponse:(RequestFailureCompletionBlock)requestFailureCompletionBlock {
-	dispatch_async(self.queue, ^{
-		requestFailureCompletionBlock(self.errorMessage);
-	});
-	
-	return self;
+    dispatch_async(self.queue, ^{
+        requestFailureCompletionBlock(self.errorMessage);
+    });
+    
+    return self;
 }
 
 - (CHXRequest *)completionResponse:(RequestCompletionBlock)requestCompletionBlock {
-	dispatch_async(self.queue, ^{
-		requestCompletionBlock(self.responseObject, self.errorMessage);
-	});
-	
-	return self;
+    dispatch_async(self.queue, ^{
+        requestCompletionBlock(self.responseObject, self.errorMessage);
+    });
+    
+    return self;
 }
 
 @end
@@ -229,17 +229,17 @@
 @implementation CHXRequest (CHXConvenience)
 
 - (CHXRequest *)startRequestWithSuccess:(RequestSuccessCompletionBlock)requestSuccessCompletionBlock failue:(RequestFailureCompletionBlock)requestFailureCompletionBlock {
-	[self startRequest];
-	
-	dispatch_async(self.queue, ^{
-		requestSuccessCompletionBlock(self.responseObject);
-	});
-	
-	dispatch_async(self.queue, ^{
-		requestFailureCompletionBlock(self.errorMessage);
-	});
-	
-	return self;
+    [self startRequest];
+    
+    dispatch_async(self.queue, ^{
+        requestSuccessCompletionBlock(self.responseObject);
+    });
+    
+    dispatch_async(self.queue, ^{
+        requestFailureCompletionBlock(self.errorMessage);
+    });
+    
+    return self;
 }
 
 @end

@@ -38,10 +38,10 @@
 @implementation UIButton (CHXGenerate)
 
 + (instancetype)chx_buttonWithFrame:(CGRect)frame
-					backgroundImage:(UIImage *)backgroundImage
-				   highlightedImage:(UIImage *)highlightedImage
-							 target:(id)target
-							 action:(SEL)selector {
+                    backgroundImage:(UIImage *)backgroundImage
+                   highlightedImage:(UIImage *)highlightedImage
+                             target:(id)target
+                             action:(SEL)selector {
     UIButton *button = [[self alloc] initWithFrame:frame];
     [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
@@ -51,29 +51,29 @@
 }
 
 + (instancetype)chx_buttonWithSize:(CGSize)size
-							center:(CGPoint)center
-				   backgroundImage:(UIImage *)backgroundImage
-				  highlightedImage:(UIImage *)highlightedImage
-							target:(id)target
-							action:(SEL)selector {
+                            center:(CGPoint)center
+                   backgroundImage:(UIImage *)backgroundImage
+                  highlightedImage:(UIImage *)highlightedImage
+                            target:(id)target
+                            action:(SEL)selector {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,
                               size.height);
     return [self chx_buttonWithFrame:frame
-                 backgroundImage:backgroundImage
-                highlightedImage:highlightedImage
-                          target:target
-                          action:selector];;
+                     backgroundImage:backgroundImage
+                    highlightedImage:highlightedImage
+                              target:target
+                              action:selector];;
 }
 
 + (instancetype)chx_buttonWithFrame:(CGRect)frame
-							  title:(NSString *)title
-						 titleColor:(UIColor *)titleColor
-					backgroundColor:(UIColor *)backgroundColor
-		 highlightedBackgroundColor:(UIColor *)highlightedColor
-							 target:(id)target
-							 action:(SEL)selector {
+                              title:(NSString *)title
+                         titleColor:(UIColor *)titleColor
+                    backgroundColor:(UIColor *)backgroundColor
+         highlightedBackgroundColor:(UIColor *)highlightedColor
+                             target:(id)target
+                             action:(SEL)selector {
     UIButton *button = [[self alloc] initWithFrame:frame];
     [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:title forState:UIControlStateNormal];
@@ -95,24 +95,24 @@
 }
 
 + (instancetype)chx_buttonWithSize:(CGSize)size
-							center:(CGPoint)center
-							 title:(NSString *)title
-						titleColor:(UIColor *)titleColor
-				   backgroundColor:(UIColor *)backgroundColor
-		highlightedBackgroundColor:(UIColor *)highlightedColor
-							target:(id)target
-							action:(SEL)selector {
+                            center:(CGPoint)center
+                             title:(NSString *)title
+                        titleColor:(UIColor *)titleColor
+                   backgroundColor:(UIColor *)backgroundColor
+        highlightedBackgroundColor:(UIColor *)highlightedColor
+                            target:(id)target
+                            action:(SEL)selector {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,
                               size.height);
     return [self chx_buttonWithFrame:frame
-                           title:title
-                      titleColor:titleColor
-                 backgroundColor:backgroundColor
-      highlightedBackgroundColor:highlightedColor
-                          target:target
-                          action:selector];
+                               title:title
+                          titleColor:titleColor
+                     backgroundColor:backgroundColor
+          highlightedBackgroundColor:highlightedColor
+                              target:target
+                              action:selector];
 }
 
 
@@ -159,36 +159,36 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     }
     
     // 保存上下文数据
-	[self pr_setContext:({
-		NSMutableDictionary *context = [NSMutableDictionary new];
-		
-		id normalimage = [self imageForState:UIControlStateNormal] ? : [NSNull null];
-		[context setObject:normalimage forKey:@"normalimage"];
-		id highlightedImage = [self imageForState:UIControlStateHighlighted] ? : [NSNull null];
-		[context setObject:highlightedImage forKey:@"highlightedImage"];
-		id selectedImage = [self imageForState:UIControlStateSelected] ? : [NSNull null];
-		[context setObject:selectedImage forKey:@"selectedImage"];
-		
-		id normalBackgroundImage = [self backgroundImageForState:UIControlStateNormal] ? : [NSNull null];
-		[context setObject:normalBackgroundImage forKey:@"normalBackgroundImage"];
-		id highlightedBackgroundImage = [self backgroundImageForState:UIControlStateHighlighted] ? : [NSNull null];
-		[context setObject:highlightedBackgroundImage forKey:@"highlightedBackgroundImage"];
-		id selectedBackgroundImage = [self backgroundImageForState:UIControlStateSelected] ? : [NSNull null];
-		[context setObject:selectedBackgroundImage forKey:@"selectedBackgroundImage"];
-		
-		id normalTitle = [self titleForState:UIControlStateNormal] ? : [NSNull null];
-		[context setObject:normalTitle forKey:@"normalTitle"];
-		id highlightedTitle = [self titleForState:UIControlStateHighlighted]  ? : [NSNull null];
-		[context setObject:highlightedTitle forKey:@"highlightedTitle"];
-		id selectedTitle = [self titleForState:UIControlStateSelected] ? : [NSNull null];
-		[context setObject:selectedTitle forKey:@"selectedTitle"];
-		
-		id backgroundColor = self.backgroundColor ? : [NSNull null];
-		[context setObject:backgroundColor forKey:@"backgroundColor"];
-		
-		[NSDictionary dictionaryWithDictionary:context];
-	})];
-	
+    [self pr_setContext:({
+        NSMutableDictionary *context = [NSMutableDictionary new];
+        
+        id normalimage = [self imageForState:UIControlStateNormal] ? : [NSNull null];
+        [context setObject:normalimage forKey:@"normalimage"];
+        id highlightedImage = [self imageForState:UIControlStateHighlighted] ? : [NSNull null];
+        [context setObject:highlightedImage forKey:@"highlightedImage"];
+        id selectedImage = [self imageForState:UIControlStateSelected] ? : [NSNull null];
+        [context setObject:selectedImage forKey:@"selectedImage"];
+        
+        id normalBackgroundImage = [self backgroundImageForState:UIControlStateNormal] ? : [NSNull null];
+        [context setObject:normalBackgroundImage forKey:@"normalBackgroundImage"];
+        id highlightedBackgroundImage = [self backgroundImageForState:UIControlStateHighlighted] ? : [NSNull null];
+        [context setObject:highlightedBackgroundImage forKey:@"highlightedBackgroundImage"];
+        id selectedBackgroundImage = [self backgroundImageForState:UIControlStateSelected] ? : [NSNull null];
+        [context setObject:selectedBackgroundImage forKey:@"selectedBackgroundImage"];
+        
+        id normalTitle = [self titleForState:UIControlStateNormal] ? : [NSNull null];
+        [context setObject:normalTitle forKey:@"normalTitle"];
+        id highlightedTitle = [self titleForState:UIControlStateHighlighted]  ? : [NSNull null];
+        [context setObject:highlightedTitle forKey:@"highlightedTitle"];
+        id selectedTitle = [self titleForState:UIControlStateSelected] ? : [NSNull null];
+        [context setObject:selectedTitle forKey:@"selectedTitle"];
+        
+        id backgroundColor = self.backgroundColor ? : [NSNull null];
+        [context setObject:backgroundColor forKey:@"backgroundColor"];
+        
+        [NSDictionary dictionaryWithDictionary:context];
+    })];
+    
     // 干掉之前的数据
     [self setImage:nil forState:UIControlStateNormal];
     [self setImage:nil forState:UIControlStateHighlighted];
@@ -200,26 +200,26 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     [self setTitle:nil forState:UIControlStateNormal];
     [self setTitle:nil forState:UIControlStateHighlighted];
     [self setTitle:nil forState:UIControlStateSelected];
-
+    
     self.backgroundColor = [UIColor clearColor];
     
     // 添加动画
     CGFloat lengthOfSide = [self chx_height] * 0.8;
     CHXGapRing *gapRing = [[CHXGapRing alloc] initWithFrame:CGRectMake(0, 0, lengthOfSide, lengthOfSide)];
-	[gapRing chx_setMidX:[self chx_width] / 2];
-	[gapRing chx_setMidY:[self chx_height] / 2];
+    [gapRing chx_setMidX:[self chx_width] / 2];
+    [gapRing chx_setMidY:[self chx_height] / 2];
     gapRing.lineColor = [UIColor chx_colorWithRGBA:@[@0, @122, @255, @1]];
     [gapRing startAnimation];
     [self addSubview:gapRing];
-
-	[self pr_setAnimating:YES];
+    
+    [self pr_setAnimating:YES];
 }
 
 - (void)chx_removeWaitingAnimation {
     if (![self pr_animating]) {
         return;
     }
-
+    
     // 移除动画
     for (UIView *subView in self.subviews) {
         if ([subView isKindOfClass:[CHXGapRing class]]) {
@@ -248,7 +248,7 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     if ([selectedImage isKindOfClass:imageClass]) {
         [self setImage:selectedImage forState:UIControlStateSelected];
     }
-
+    
     id normalBackgroundImage = [context objectForKey:@"normalBackgroundImage"];
     if ([normalBackgroundImage isKindOfClass:imageClass]) {
         [self setImage:normalBackgroundImage forState:UIControlStateNormal];
@@ -281,12 +281,12 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     if ([backgroundColor isKindOfClass:[UIColor class]]) {
         self.backgroundColor = backgroundColor;
     }
-
+    
     [self pr_setAnimating:NO];
 }
 
 - (BOOL)chx_isInAnimation {
-	return [self pr_animating];
+    return [self pr_animating];
 }
 
 @end
@@ -297,11 +297,11 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
 @implementation UIButton (VImageAlignment)
 
 - (void)chx_updateImageAlignmentToRight {
-	CGFloat imageWidth = self.currentImage.size.width;
-	[self setTitleEdgeInsets:UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth)];
-	
-	CGFloat edgeWidth = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}].width;
-	[self setImageEdgeInsets:UIEdgeInsetsMake(0, edgeWidth, 0, -edgeWidth)];
+    CGFloat imageWidth = self.currentImage.size.width;
+    [self setTitleEdgeInsets:UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth)];
+    
+    CGFloat edgeWidth = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}].width;
+    [self setImageEdgeInsets:UIEdgeInsetsMake(0, edgeWidth, 0, -edgeWidth)];
 }
 
 @end
@@ -314,39 +314,39 @@ static char *RegionalKey;
 @implementation UIButton (CHXExpandRegion)
 
 - (void)chx_setExpandRegion:(UIEdgeInsets)inset {
-	[self willChangeValueForKey:@"RegionalKey"];
-	objc_setAssociatedObject(self, &RegionalKey, [NSValue valueWithUIEdgeInsets:inset], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-	[self didChangeValueForKey:@"RegionalKey"];
+    [self willChangeValueForKey:@"RegionalKey"];
+    objc_setAssociatedObject(self, &RegionalKey, [NSValue valueWithUIEdgeInsets:inset], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self didChangeValueForKey:@"RegionalKey"];
 }
 
 - (UIEdgeInsets)chx_expandRegion {
-	return [objc_getAssociatedObject(self, &RegionalKey) UIEdgeInsetsValue];
+    return [objc_getAssociatedObject(self, &RegionalKey) UIEdgeInsetsValue];
 }
 
 - (CGRect)clickRegional {
-	UIEdgeInsets inset = [self chx_expandRegion];
-	CGFloat top = inset.top;
-	CGFloat bottom = inset.bottom;
-	CGFloat left = inset.left;
-	CGFloat right = inset.right;
-	BOOL regional = top || bottom || left || right;
-	if (regional) {
-		return CGRectMake(self.bounds.origin.x - left,
-						  self.bounds.origin.y - top,
-						  self.bounds.size.width + left + right,
-						  self.bounds.size.height + top + bottom);
-	} else {
-		return self.bounds;
-	}
+    UIEdgeInsets inset = [self chx_expandRegion];
+    CGFloat top = inset.top;
+    CGFloat bottom = inset.bottom;
+    CGFloat left = inset.left;
+    CGFloat right = inset.right;
+    BOOL regional = top || bottom || left || right;
+    if (regional) {
+        return CGRectMake(self.bounds.origin.x - left,
+                          self.bounds.origin.y - top,
+                          self.bounds.size.width + left + right,
+                          self.bounds.size.height + top + bottom);
+    } else {
+        return self.bounds;
+    }
 }
 
 // Override
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-	CGRect rect = [self clickRegional];
-	if (CGRectEqualToRect(rect, self.bounds)) {
-		return [super pointInside:point withEvent:event];
-	}
-	return CGRectContainsPoint(rect, point) ? YES : NO;
+    CGRect rect = [self clickRegional];
+    if (CGRectEqualToRect(rect, self.bounds)) {
+        return [super pointInside:point withEvent:event];
+    }
+    return CGRectContainsPoint(rect, point) ? YES : NO;
 }
 
 

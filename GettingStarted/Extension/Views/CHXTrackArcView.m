@@ -158,12 +158,12 @@
 }
 
 - (void)pr_drawLinesWithContext:(CGContextRef)context
-					  BaseLine:(float)baseLine
-				   HeightArray:(int*)yHeights
-					 lineWidth:(CGFloat)width
-						 alpha:(CGFloat)alpha
-					   percent:(CGFloat)percent
-				 segementArray:(float *)segement {
+                       BaseLine:(float)baseLine
+                    HeightArray:(int*)yHeights
+                      lineWidth:(CGFloat)width
+                          alpha:(CGFloat)alpha
+                        percent:(CGFloat)percent
+                  segementArray:(float *)segement {
     CGFloat start = 0;
     NSLog(@"%@", self.stokeColor);
     [self.stokeColor set];

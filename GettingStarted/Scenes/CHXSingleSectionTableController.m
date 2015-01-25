@@ -37,59 +37,59 @@
 @implementation CHXSingleSectionTableController
 
 - (NSArray *)dataArray {
-	if (!_dataArray) {
-		CHXArrayDataSourceSectionItem *item1 = [[CHXArrayDataSourceSectionItem alloc] initWithContent:@[@"11", @"12"]];
-		_dataArray = [@[item1] mutableCopy];
-	}
-	
-	return _dataArray;
+    if (!_dataArray) {
+        CHXArrayDataSourceSectionItem *item1 = [[CHXArrayDataSourceSectionItem alloc] initWithContent:@[@"11", @"12"]];
+        _dataArray = [@[item1] mutableCopy];
+    }
+    
+    return _dataArray;
 }
 
 #pragma mark -
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
-	
-	[self customUserInterface];
+    [super viewDidLoad];
+    
+    [self customUserInterface];
 }
 
 - (void)customUserInterface {
-	self.arrayDataSource = [[CHXArrayDataSource alloc] initWithDataSourceType:CHXDataSourceTypeSingleSection dataArray:self.dataArray cellReuseIdentifierForIndexPath:^NSString *(NSIndexPath *indexPath) {
-		return @"SingleCell";
-	} cellConfigureBlock:^(UITableViewCell *cell, id item) {
-		cell.textLabel.text = item;
-		cell.layoutMargins = UIEdgeInsetsZero;
-		cell.separatorInset = UIEdgeInsetsZero;
-	}];
-	
-	self.arrayDataSource.canEditRowAtIndexPath = ^BOOL (NSIndexPath *indexPath) {
-		return YES;
-	};
-	self.arrayDataSource.commitEditingForRowAtIndexPath = ^(UITableViewCellEditingStyle editingStyle, CHXArrayDataSourceSectionItem *item) {
-
-	};
-
-	self.tableView.dataSource = self.arrayDataSource;
-//	self.tableView.editing = YES;
-	self.tableView.delegate = self;
-	
-	self.tableView.separatorInset = UIEdgeInsetsZero;
-	self.tableView.layoutMargins = UIEdgeInsetsZero;
+    self.arrayDataSource = [[CHXArrayDataSource alloc] initWithDataSourceType:CHXDataSourceTypeSingleSection dataArray:self.dataArray cellReuseIdentifierForIndexPath:^NSString *(NSIndexPath *indexPath) {
+        return @"SingleCell";
+    } cellConfigureBlock:^(UITableViewCell *cell, id item) {
+        cell.textLabel.text = item;
+        cell.layoutMargins = UIEdgeInsetsZero;
+        cell.separatorInset = UIEdgeInsetsZero;
+    }];
+    
+    self.arrayDataSource.canEditRowAtIndexPath = ^BOOL (NSIndexPath *indexPath) {
+        return YES;
+    };
+    self.arrayDataSource.commitEditingForRowAtIndexPath = ^(UITableViewCellEditingStyle editingStyle, CHXArrayDataSourceSectionItem *item) {
+        
+    };
+    
+    self.tableView.dataSource = self.arrayDataSource;
+    //	self.tableView.editing = YES;
+    self.tableView.delegate = self;
+    
+    self.tableView.separatorInset = UIEdgeInsetsZero;
+    self.tableView.layoutMargins = UIEdgeInsetsZero;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-	
-	if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-		[tableView setSeparatorInset:UIEdgeInsetsZero];
-	}
-	
-	if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-		[tableView setLayoutMargins:UIEdgeInsetsZero];
-	}
-	
-	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-		[cell setLayoutMargins:UIEdgeInsetsZero];
-	}
+    
+    if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 

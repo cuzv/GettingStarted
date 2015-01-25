@@ -47,35 +47,35 @@
 }
 
 - (BOOL)isEqual:(id)object {
-	if (![object isKindOfClass:[self class]]) {
-		return NO;
-	}
-	
-	NSArray *propertyArray = [self chx_properties];
-	__block BOOL euqal = YES;
-	[propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		id selfObject = [self valueForKey:obj];
-		id compareObject = [object valueForKey:obj];
-		euqal = [selfObject isEqual:compareObject];
-		
-		if (!euqal && selfObject && compareObject) {
-			*stop = YES;
-		} else {
-			euqal = YES;
-		}
-	}];
-	
-	return euqal;
+    if (![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+    
+    NSArray *propertyArray = [self chx_properties];
+    __block BOOL euqal = YES;
+    [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        id selfObject = [self valueForKey:obj];
+        id compareObject = [object valueForKey:obj];
+        euqal = [selfObject isEqual:compareObject];
+        
+        if (!euqal && selfObject && compareObject) {
+            *stop = YES;
+        } else {
+            euqal = YES;
+        }
+    }];
+    
+    return euqal;
 }
 
 - (NSUInteger)hash {
-	NSArray *propertyArray = [self chx_properties];
-	__block NSUInteger hashCode = 0;
-	[propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		hashCode ^= [[self valueForKey:obj] hash];
-	}];
-	
-	return hashCode;
+    NSArray *propertyArray = [self chx_properties];
+    __block NSUInteger hashCode = 0;
+    [propertyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        hashCode ^= [[self valueForKey:obj] hash];
+    }];
+    
+    return hashCode;
 }
 
 @end

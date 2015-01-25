@@ -94,7 +94,7 @@ static CHXHTTPSessionManager *sharedInstance;
         sharedInstance = [[CHXHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:sessionConfiguration];
         
         // request serializer. suggest DO NOT use this if your server get post data by $_POST['$CHXHTTPParametersKey']
-//        sharedInstance.requestSerializer = [AFJSONRequestSerializer serializer];
+        //        sharedInstance.requestSerializer = [AFJSONRequestSerializer serializer];
         
         // response serializer
         AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
@@ -105,7 +105,7 @@ static CHXHTTPSessionManager *sharedInstance;
         // monitoring network status
         [CHXHTTPSessionManager __processNetworkMonitoring];
     });
-
+    
     return sharedInstance;
 }
 
@@ -135,9 +135,9 @@ static CHXHTTPSessionManager *sharedInstance;
 + (NSString *)__httpBaseURL {
     NSString *baseURL = nil;
 #ifdef DEBUG
-	baseURL = CHXHTTPDebugBaseURL;
+    baseURL = CHXHTTPDebugBaseURL;
 #else
-	baseURL = CHXHTTPRealseBaseURL;
+    baseURL = CHXHTTPRealseBaseURL;
 #endif
     return baseURL;
 }
@@ -191,7 +191,7 @@ static NSMutableArray *sessions;
 + (BOOL)__shouldContinue {
     BOOL shouldContinue = YES;
     if (![CHXHTTPSessionManager isNetworkReachable]) {
-		[UIAlertView chx_showAlertWithMessage:CHXHTTPNetworkNotReachable];
+        [UIAlertView chx_showAlertWithMessage:CHXHTTPNetworkNotReachable];
         shouldContinue = NO;
     }
     return shouldContinue;
@@ -210,14 +210,14 @@ static NSMutableArray *sessions;
 // setting http response serializer type
 + (void)setHTTPResponseSerializerType:(HTTPResponseSerializerType)responseSerializerType {
     AFHTTPResponseSerializer <AFURLResponseSerialization> *responseSerializer = nil;
-	
+    
     switch (responseSerializerType) {
         case HTTPResponseSerializerTypeJSON:
             responseSerializer = [AFJSONResponseSerializer serializer];
             responseSerializer.acceptableContentTypes = [responseSerializer.acceptableContentTypes setByAddingObject:CHXHTTPContentTypePlain];
             responseSerializer.acceptableContentTypes = [responseSerializer.acceptableContentTypes setByAddingObject:CHXHTTPContentTypeHtml];
             break;
-         case HTTPResponseSerializerTypePropertyList:
+        case HTTPResponseSerializerTypePropertyList:
             responseSerializer = [AFPropertyListResponseSerializer serializer];
             break;
         case HTTPResponseSerializerTypeXMLParser:
@@ -249,12 +249,12 @@ static NSMutableArray *sessions;
     /* flow methods is not encode `CHXHTTPParametersKey` */
     switch ([CHXHTTPSessionManager sharedInstance].requestSerializerType) {
         case HTTPRequestSerializerTypeNone:
-			encodeString = [parameters chx_URLParameterString];
+            encodeString = [parameters chx_URLParameterString];
             break;
         case HTTPRequestSerializerTypeJSON: {
             // convert parameters to JSON string
-			NSData *JSONData = [NSData chx_dataWithJSONObject:parameters];
-			encodeString =  [JSONData chx_UTF8String];
+            NSData *JSONData = [NSData chx_dataWithJSONObject:parameters];
+            encodeString =  [JSONData chx_UTF8String];
         }
             break;
         case HTTPRequestSerializerTypePropertyList:{
@@ -282,7 +282,7 @@ static NSMutableArray *sessions;
         default:
             break;
     }
-
+    
     return @{CHXHTTPParametersKey:encodeString};
 }
 
@@ -332,9 +332,9 @@ static NSMutableArray *sessions;
 // 后台接收哪种格式的参数，传递参数的时候就发什么格式的过去，「团队宝」后台需要的是 base64，所以不用 AFNetworking 的 AFJSONRequestSerializer 转换器
 // POST
 + (void)POSTWithMethodName:(NSString *)methodName
-				parameters:(NSDictionary *)parameters
-				   success:(NetowrkPushResultFailureCompletionHandle)success
-				   failure:(NetowrkPushResultFailureCompletionHandle)failure {
+                parameters:(NSDictionary *)parameters
+                   success:(NetowrkPushResultFailureCompletionHandle)success
+                   failure:(NetowrkPushResultFailureCompletionHandle)failure {
     if (![CHXHTTPManager __shouldContinue]) {
         return;
     }
@@ -343,68 +343,68 @@ static NSMutableArray *sessions;
     [self requestWillBegin];
     NSDictionary *encodeParameters = [self __encodeParameters:parameters];
     [[CHXHTTPSessionManager sharedInstance] POST:methodName
-                                     parameters:encodeParameters
-                                        success:^(NSURLSessionDataTask *task, id responseObject) {
-                                            [self requestDidEnd];
-                                            success(task, responseObject);
-                                        }
-                                        failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                            [self requestDidEnd];
-                                            failure(task, error);
-                                        }];
+                                      parameters:encodeParameters
+                                         success:^(NSURLSessionDataTask *task, id responseObject) {
+                                             [self requestDidEnd];
+                                             success(task, responseObject);
+                                         }
+                                         failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                             [self requestDidEnd];
+                                             failure(task, error);
+                                         }];
 }
 
 + (void)POSTPNGWithMethodName:(NSString *)methodName
-				   parameters:(NSDictionary *)parameters
-					formDatas:(NSArray *)datas
-					  success:(NetowrkPushResultFailureCompletionHandle)success
-					  failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-	[self POSTWithMethodName:methodName
-				  parameters:parameters
-				   formDatas:datas
-				   formField:HTTPFormFieldPNG
-					mineType:HTTPMineTypePNG
-					 success:success
-					 failure:failure];
+                   parameters:(NSDictionary *)parameters
+                    formDatas:(NSArray *)datas
+                      success:(NetowrkPushResultFailureCompletionHandle)success
+                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    [self POSTWithMethodName:methodName
+                  parameters:parameters
+                   formDatas:datas
+                   formField:HTTPFormFieldPNG
+                    mineType:HTTPMineTypePNG
+                     success:success
+                     failure:failure];
 }
 
 // POST with data
 + (void)POSTWithMethodName:(NSString *)methodName
-				parameters:(NSDictionary *)parameters
-				 formDatas:(NSArray *)datas
-				 formField:(HTTPFormField)fieldName
-				  mineType:(HTTPMineType)mineType
-				   success:(NetowrkPushResultFailureCompletionHandle)success
-				   failure:(NetowrkPushResultFailureCompletionHandle)failure {
+                parameters:(NSDictionary *)parameters
+                 formDatas:(NSArray *)datas
+                 formField:(HTTPFormField)fieldName
+                  mineType:(HTTPMineType)mineType
+                   success:(NetowrkPushResultFailureCompletionHandle)success
+                   failure:(NetowrkPushResultFailureCompletionHandle)failure {
     if (![CHXHTTPManager __shouldContinue]) {
         return;
     }
-	
+    
     // remove same request
     [self removeRequestByMthodName:methodName];
     
     [self requestWillBegin];
     NSDictionary *encodeParameters = [self __encodeParameters:parameters];
-
+    
     [[CHXHTTPSessionManager sharedInstance] POST:methodName
-                                     parameters:encodeParameters
-                      constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                          for (NSData *data in datas) {
-                              NSString *formFieldName = (NSString *)HTTPFormFieldMapping[fieldName];
-                              NSString *suffixName = (NSString *)FileSuffixNameMapping[mineType];
-                              NSString *fileNameWithSuffix = [[[[NSUUID UUID] UUIDString] stringByAppendingString:@"."] stringByAppendingString:suffixName];
-                              NSString *contentType = (NSString *)HTTPMineTypeMapping[mineType];
-                              [formData appendPartWithFileData:data name:formFieldName fileName:fileNameWithSuffix mimeType:contentType];
-                          }
-                    }
-                                        success:^(NSURLSessionDataTask *task, id responseObject) {
-                                            [self requestDidEnd];
-                                            success(task, responseObject);
-                                        }
-                                        failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                            [self requestDidEnd];
-                                            failure(task, error);
-                                        }];
+                                      parameters:encodeParameters
+                       constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                           for (NSData *data in datas) {
+                               NSString *formFieldName = (NSString *)HTTPFormFieldMapping[fieldName];
+                               NSString *suffixName = (NSString *)FileSuffixNameMapping[mineType];
+                               NSString *fileNameWithSuffix = [[[[NSUUID UUID] UUIDString] stringByAppendingString:@"."] stringByAppendingString:suffixName];
+                               NSString *contentType = (NSString *)HTTPMineTypeMapping[mineType];
+                               [formData appendPartWithFileData:data name:formFieldName fileName:fileNameWithSuffix mimeType:contentType];
+                           }
+                       }
+                                         success:^(NSURLSessionDataTask *task, id responseObject) {
+                                             [self requestDidEnd];
+                                             success(task, responseObject);
+                                         }
+                                         failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                             [self requestDidEnd];
+                                             failure(task, error);
+                                         }];
     
 }
 

@@ -37,9 +37,9 @@
 @implementation UITextField (CHXGenerate)
 
 + (instancetype)chx_textFieldWithFrame:(CGRect)frame
-						 textAlignment:(NSTextAlignment)alignment
-								  font:(UIFont *)font
-					displayBorderLayer:(BOOL)display {
+                         textAlignment:(NSTextAlignment)alignment
+                                  font:(UIFont *)font
+                    displayBorderLayer:(BOOL)display {
     UITextField *textField = [[self alloc] initWithFrame:frame];
     textField.backgroundColor = [UIColor whiteColor];
     textField.textAlignment = alignment ? : NSTextAlignmentLeft;
@@ -61,15 +61,15 @@
     
     textField.autocorrectionType = UITextAutocorrectionTypeDefault;
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-
+    
     return textField;
 }
 
 + (instancetype)chx_textFieldWithSize:(CGSize)size
-							   center:(CGPoint)center
-						textAlignment:(NSTextAlignment)alignment
-								 font:(UIFont *)font
-				   displayBorderLayer:(BOOL)display {
+                               center:(CGPoint)center
+                        textAlignment:(NSTextAlignment)alignment
+                                 font:(UIFont *)font
+                   displayBorderLayer:(BOOL)display {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,

@@ -94,13 +94,13 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 // check email
 + (BOOL)__isValidEmail:(NSString *)email {
     // @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-//    NSString *emailRegex = @"^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
-	return [email chx_isValidEmail];
+    //    NSString *emailRegex = @"^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+    return [email chx_isValidEmail];
 }
 
 // check phone number
 + (BOOL)__isValidPhoneNumber:(NSString *)phoneNumber {
-	return [phoneNumber chx_isValidPhoneNumber];
+    return [phoneNumber chx_isValidPhoneNumber];
 }
 
 // check password
@@ -111,7 +111,7 @@ NSString *const CHAuthCodeInvalid = @"验证码格式错误";
 // check auth code
 + (BOOL)__isvalidAuthCode:(NSString *)authCode {
     // ^\d{n}$
-	return [authCode chx_isvalidAuthCode];
+    return [authCode chx_isvalidAuthCode];
 }
 
 @end

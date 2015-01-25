@@ -169,7 +169,7 @@ static const void *ArcLayerKey = &ArcLayerKey;
     }
     // 添加 layer
     CAShapeLayer *arcLayer = [self pr_arcShapeLayerWithColor:color];
-	[self pr_setArcLayer:arcLayer];
+    [self pr_setArcLayer:arcLayer];
     [self.layer addSublayer:arcLayer];
     
     CABasicAnimation *animation=[CABasicAnimation animationWithKeyPath:@"strokeEnd"];
@@ -182,10 +182,9 @@ static const void *ArcLayerKey = &ArcLayerKey;
 }
 
 - (void)chx_removeArcRotationAnimation {
-	[[self pr_arcLayer] removeAllAnimations];
     [[self pr_arcLayer] removeAllAnimations];
     [[self pr_arcLayer] removeFromSuperlayer];
-	[self pr_setArcLayer:nil];
+    [self pr_setArcLayer:nil];
 }
 
 @end
@@ -292,9 +291,9 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
     return objc_getAssociatedObject(self, &ActivityIndicatorViewKey);
 }
 
-- (void)addActivityIndicatorAnimation {
+- (void)chx_addActivityIndicatorAnimation {
     [self chx_addActivityIndicatorAnimationWithStyle:UIActivityIndicatorViewStyleWhite
-                                          center:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
+                                              center:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
 }
 
 - (void)chx_addActivityIndicatorAnimationOnCenter:(CGPoint)center {
@@ -309,7 +308,7 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
     activityIndicatorView.color = [UIColor lightGrayColor];
     activityIndicatorView.center = center;
-	[self pr_setActivityIndicatorView:activityIndicatorView];
+    [self pr_setActivityIndicatorView:activityIndicatorView];
     [self addSubview:activityIndicatorView];
     [activityIndicatorView startAnimating];
 }
@@ -317,11 +316,11 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 - (void)chx_removeActivityIndicatorAnimation {
     [[self chx_activityIndicatorView] stopAnimating];
     [[self chx_activityIndicatorView] removeFromSuperview];
-	[self pr_setActivityIndicatorView:nil];
+    [self pr_setActivityIndicatorView:nil];
 }
 
 - (BOOL)chx_isInActivityIndicatorAnimation {
-	return [self chx_activityIndicatorView] ? YES : NO;
+    return [self chx_activityIndicatorView] ? YES : NO;
 }
 
 @end
@@ -355,123 +354,123 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 }
 
 - (void)chx_setBorderLineColor:(UIColor *)aColor edge:(UIRectEdge)edge {
-	CGRect lineFrame = CGRectZero;
-	
-	if (edge & UIRectEdgeTop) {
-		lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
-							   CGRectGetMinY(self.bounds),
-							   CGRectGetWidth(self.bounds),
-							   kLineBorderWidth);
-		[self pr_addBorderLineWithColor:aColor frame:lineFrame];
-	}
-	
-	if (edge & UIRectEdgeBottom) {
-		lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
-							   CGRectGetMaxY(self.bounds) + kLineBorderWidth,
-							   CGRectGetWidth(self.bounds),
-							   kLineBorderWidth);
-		[self pr_addBorderLineWithColor:aColor frame:lineFrame];
-	}
-	
-	if (edge & UIRectEdgeLeft) {
-		lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
-							   CGRectGetMinY(self.bounds),
-							   kLineBorderWidth,
-							   CGRectGetHeight(self.bounds));
-		[self pr_addBorderLineWithColor:aColor frame:lineFrame];
-	}
-	
-	if (edge & UIRectEdgeRight) {
-		lineFrame = CGRectMake(CGRectGetMaxX(self.bounds) - kLineBorderWidth,
-							   CGRectGetMinY(self.bounds),
-							   kLineBorderWidth,
-							   CGRectGetHeight(self.bounds));
-		[self pr_addBorderLineWithColor:aColor frame:lineFrame];
-	}
+    CGRect lineFrame = CGRectZero;
+    
+    if (edge & UIRectEdgeTop) {
+        lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
+                               CGRectGetMinY(self.bounds),
+                               CGRectGetWidth(self.bounds),
+                               kLineBorderWidth);
+        [self pr_addBorderLineWithColor:aColor frame:lineFrame];
+    }
+    
+    if (edge & UIRectEdgeBottom) {
+        lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
+                               CGRectGetMaxY(self.bounds) + kLineBorderWidth,
+                               CGRectGetWidth(self.bounds),
+                               kLineBorderWidth);
+        [self pr_addBorderLineWithColor:aColor frame:lineFrame];
+    }
+    
+    if (edge & UIRectEdgeLeft) {
+        lineFrame = CGRectMake(CGRectGetMinX(self.bounds),
+                               CGRectGetMinY(self.bounds),
+                               kLineBorderWidth,
+                               CGRectGetHeight(self.bounds));
+        [self pr_addBorderLineWithColor:aColor frame:lineFrame];
+    }
+    
+    if (edge & UIRectEdgeRight) {
+        lineFrame = CGRectMake(CGRectGetMaxX(self.bounds) - kLineBorderWidth,
+                               CGRectGetMinY(self.bounds),
+                               kLineBorderWidth,
+                               CGRectGetHeight(self.bounds));
+        [self pr_addBorderLineWithColor:aColor frame:lineFrame];
+    }
 }
 
 - (void)pr_addBorderLineWithColor:(UIColor *)aColor frame:(CGRect)aFrame {
-	CALayer *line = [[CALayer alloc] init];
-	line.backgroundColor = aColor.CGColor;
-	line.frame = aFrame;
-	[self.layer addSublayer:line];
+    CALayer *line = [[CALayer alloc] init];
+    line.backgroundColor = aColor.CGColor;
+    line.frame = aFrame;
+    [self.layer addSublayer:line];
 }
 
 // Auto layout
 - (void)chx_setBorderLineConstraintsWithColor:(UIColor *)color edge:(UIRectEdge)edge lineSizeMultiplier:(CGFloat)multiplier {
-	if (edge == UIRectEdgeNone) {
-		return;
-	}
-	
-	NSLayoutAttribute edgeLayoutAttribute = NSLayoutAttributeNotAnAttribute;
-	NSLayoutAttribute centerLayoutAttribute = NSLayoutAttributeNotAnAttribute;
-	NSLayoutAttribute sizeLayoutAttribute = NSLayoutAttributeNotAnAttribute;
-	NSString *visualFormat = nil;
-	
-	if (edge & UIRectEdgeLeft) {
-		edgeLayoutAttribute = NSLayoutAttributeLeft;
-		centerLayoutAttribute = NSLayoutAttributeCenterY;
-		sizeLayoutAttribute = NSLayoutAttributeHeight;
-		visualFormat = @"[lineView(0.5)]";
-		[self pr_addBorderLineConstraintWithEdgeLayoutAttribute:edgeLayoutAttribute centerLayoutAttribute:centerLayoutAttribute sizeLayoutAttribute:sizeLayoutAttribute visualFormat:visualFormat color:color edge:edge lineSizeMultiplier:multiplier];
-	}
-	
-	if (edge & UIRectEdgeRight) {
-		edgeLayoutAttribute = NSLayoutAttributeRight;
-		centerLayoutAttribute = NSLayoutAttributeCenterY;
-		sizeLayoutAttribute = NSLayoutAttributeHeight;
-		visualFormat = @"[lineView(0.5)]";
-		[self pr_addBorderLineConstraintWithEdgeLayoutAttribute:edgeLayoutAttribute centerLayoutAttribute:centerLayoutAttribute sizeLayoutAttribute:sizeLayoutAttribute visualFormat:visualFormat color:color edge:edge lineSizeMultiplier:multiplier];
-	}
-	
-	if (edge & UIRectEdgeTop) {
-		edgeLayoutAttribute = NSLayoutAttributeTop;
-		centerLayoutAttribute = NSLayoutAttributeCenterX;
-		sizeLayoutAttribute = NSLayoutAttributeWidth;
-		visualFormat = @"V:[lineView(0.5)]";
-		[self pr_addBorderLineConstraintWithEdgeLayoutAttribute:edgeLayoutAttribute centerLayoutAttribute:centerLayoutAttribute sizeLayoutAttribute:sizeLayoutAttribute visualFormat:visualFormat color:color edge:edge lineSizeMultiplier:multiplier];
-	}
-	
-	if (edge & UIRectEdgeBottom) {
-		edgeLayoutAttribute = NSLayoutAttributeBottom;
-		centerLayoutAttribute = NSLayoutAttributeCenterX;
-		sizeLayoutAttribute = NSLayoutAttributeWidth;
-		visualFormat = @"V:[lineView(0.5)]";
-		[self pr_addBorderLineConstraintWithEdgeLayoutAttribute:edgeLayoutAttribute centerLayoutAttribute:centerLayoutAttribute sizeLayoutAttribute:sizeLayoutAttribute visualFormat:visualFormat color:color edge:edge lineSizeMultiplier:multiplier];
-	}
+    if (edge == UIRectEdgeNone) {
+        return;
+    }
+    
+    NSLayoutAttribute edgeLayoutAttribute = NSLayoutAttributeNotAnAttribute;
+    NSLayoutAttribute centerLayoutAttribute = NSLayoutAttributeNotAnAttribute;
+    NSLayoutAttribute sizeLayoutAttribute = NSLayoutAttributeNotAnAttribute;
+    NSString *visualFormat = nil;
+    
+    if (edge & UIRectEdgeLeft) {
+        edgeLayoutAttribute = NSLayoutAttributeLeft;
+        centerLayoutAttribute = NSLayoutAttributeCenterY;
+        sizeLayoutAttribute = NSLayoutAttributeHeight;
+        visualFormat = @"[lineView(0.5)]";
+        [self pr_addBorderLineConstraintWithEdgeLayoutAttribute:edgeLayoutAttribute centerLayoutAttribute:centerLayoutAttribute sizeLayoutAttribute:sizeLayoutAttribute visualFormat:visualFormat color:color edge:edge lineSizeMultiplier:multiplier];
+    }
+    
+    if (edge & UIRectEdgeRight) {
+        edgeLayoutAttribute = NSLayoutAttributeRight;
+        centerLayoutAttribute = NSLayoutAttributeCenterY;
+        sizeLayoutAttribute = NSLayoutAttributeHeight;
+        visualFormat = @"[lineView(0.5)]";
+        [self pr_addBorderLineConstraintWithEdgeLayoutAttribute:edgeLayoutAttribute centerLayoutAttribute:centerLayoutAttribute sizeLayoutAttribute:sizeLayoutAttribute visualFormat:visualFormat color:color edge:edge lineSizeMultiplier:multiplier];
+    }
+    
+    if (edge & UIRectEdgeTop) {
+        edgeLayoutAttribute = NSLayoutAttributeTop;
+        centerLayoutAttribute = NSLayoutAttributeCenterX;
+        sizeLayoutAttribute = NSLayoutAttributeWidth;
+        visualFormat = @"V:[lineView(0.5)]";
+        [self pr_addBorderLineConstraintWithEdgeLayoutAttribute:edgeLayoutAttribute centerLayoutAttribute:centerLayoutAttribute sizeLayoutAttribute:sizeLayoutAttribute visualFormat:visualFormat color:color edge:edge lineSizeMultiplier:multiplier];
+    }
+    
+    if (edge & UIRectEdgeBottom) {
+        edgeLayoutAttribute = NSLayoutAttributeBottom;
+        centerLayoutAttribute = NSLayoutAttributeCenterX;
+        sizeLayoutAttribute = NSLayoutAttributeWidth;
+        visualFormat = @"V:[lineView(0.5)]";
+        [self pr_addBorderLineConstraintWithEdgeLayoutAttribute:edgeLayoutAttribute centerLayoutAttribute:centerLayoutAttribute sizeLayoutAttribute:sizeLayoutAttribute visualFormat:visualFormat color:color edge:edge lineSizeMultiplier:multiplier];
+    }
 }
 
 - (void)pr_addBorderLineConstraintWithEdgeLayoutAttribute:(NSLayoutAttribute)edgeLayoutAttribute centerLayoutAttribute:(NSLayoutAttribute)centerLayoutAttribute sizeLayoutAttribute:(NSLayoutAttribute)sizeLayoutAttribute visualFormat:(NSString *)visualFormat color:(UIColor *)color edge:(UIRectEdge)edge lineSizeMultiplier:(CGFloat)multiplier {
-	UIView *lineView = [UIView new];
-	lineView.backgroundColor = color ? color : kBorderLineGrayColor;
-	[lineView setTranslatesAutoresizingMaskIntoConstraints:NO];
-	[self addSubview:lineView];
-
-	[self addConstraints:@[[NSLayoutConstraint constraintWithItem:lineView
-														attribute:edgeLayoutAttribute
-														relatedBy:NSLayoutRelationEqual
-														   toItem:self
-														attribute:edgeLayoutAttribute
-													   multiplier:1
-														 constant:0],
-							[NSLayoutConstraint constraintWithItem:lineView
-														 attribute:centerLayoutAttribute
-														 relatedBy:NSLayoutRelationEqual
-															toItem:self
-														 attribute:centerLayoutAttribute
-														multiplier:1
-														  constant:0],
-							[NSLayoutConstraint constraintWithItem:lineView
-														 attribute:sizeLayoutAttribute
-														 relatedBy:NSLayoutRelationEqual
-															toItem:self
-														 attribute:sizeLayoutAttribute
-														multiplier:multiplier
-														  constant:0]]
-	 ];
-	
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:visualFormat options:0 metrics:nil views:NSDictionaryOfVariableBindings(lineView)]];
-
+    UIView *lineView = [UIView new];
+    lineView.backgroundColor = color ? color : kBorderLineGrayColor;
+    [lineView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:lineView];
+    
+    [self addConstraints:@[[NSLayoutConstraint constraintWithItem:lineView
+                                                        attribute:edgeLayoutAttribute
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:self
+                                                        attribute:edgeLayoutAttribute
+                                                       multiplier:1
+                                                         constant:0],
+                           [NSLayoutConstraint constraintWithItem:lineView
+                                                        attribute:centerLayoutAttribute
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:self
+                                                        attribute:centerLayoutAttribute
+                                                       multiplier:1
+                                                         constant:0],
+                           [NSLayoutConstraint constraintWithItem:lineView
+                                                        attribute:sizeLayoutAttribute
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:self
+                                                        attribute:sizeLayoutAttribute
+                                                       multiplier:multiplier
+                                                         constant:0]]
+     ];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:visualFormat options:0 metrics:nil views:NSDictionaryOfVariableBindings(lineView)]];
+    
 }
 
 @end
@@ -482,10 +481,10 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 @implementation UIView (CHXCornerRadius)
 
 - (void)chx_setRoundingCorners:(UIRectCorner)corner radius:(CGFloat)radius {
-	UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corner cornerRadii:CGSizeMake(radius, 0)];
-	CAShapeLayer *cornRadiusLayer = [CAShapeLayer new];
-	cornRadiusLayer.path = [path CGPath];
-	self.layer.mask = cornRadiusLayer;
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corner cornerRadii:CGSizeMake(radius, 0)];
+    CAShapeLayer *cornRadiusLayer = [CAShapeLayer new];
+    cornRadiusLayer.path = [path CGPath];
+    self.layer.mask = cornRadiusLayer;
 }
 
 @end
@@ -532,40 +531,40 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
 @implementation UIView (CHXLayoutDebugging)
 - (void)chx_printAutoLayoutTrace {
 #ifdef DEBUG
-	
+    
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-	NSLog(@"%@", [self performSelector:@selector(_autolayoutTrace)]);
+    NSLog(@"%@", [self performSelector:@selector(_autolayoutTrace)]);
 #pragma clang diagnostic pop
-	
+    
 #endif
 }
 
 - (void)chx_exerciseAmiguityInLayoutRepeatedly:(BOOL)recursive {
 #ifdef DEBUG
-	if (self.hasAmbiguousLayout) {
-		[NSTimer scheduledTimerWithTimeInterval:.5
-										 target:self
-									   selector:@selector(exerciseAmbiguityInLayout)
-									   userInfo:nil
-										repeats:YES];
-	}
-	if (recursive) {
-		for (UIView *subview in self.subviews) {
-			[subview chx_exerciseAmiguityInLayoutRepeatedly:YES];
-		}
-	}
+    if (self.hasAmbiguousLayout) {
+        [NSTimer scheduledTimerWithTimeInterval:.5
+                                         target:self
+                                       selector:@selector(exerciseAmbiguityInLayout)
+                                       userInfo:nil
+                                        repeats:YES];
+    }
+    if (recursive) {
+        for (UIView *subview in self.subviews) {
+            [subview chx_exerciseAmiguityInLayoutRepeatedly:YES];
+        }
+    }
 #endif
 }
 
 - (void)chx_printSubviewsTrace {
 #ifdef DEBUG
-	
+    
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-	NSLog(@"%@", [self performSelector:@selector(recursiveDescription)]);
+    NSLog(@"%@", [self performSelector:@selector(recursiveDescription)]);
 #pragma clang diagnostic pop
-	
+    
 #endif
 }
 

@@ -36,9 +36,9 @@
 @implementation UITableView (CHXGenerate)
 
 + (instancetype)chx_tableViewWithFrame:(CGRect)frame
-								 style:(UITableViewStyle)style
-							 dataSouce:(id<UITableViewDataSource>)dataSource
-							  delegate:(id<UITableViewDelegate>) delegate{
+                                 style:(UITableViewStyle)style
+                             dataSouce:(id<UITableViewDataSource>)dataSource
+                              delegate:(id<UITableViewDelegate>) delegate{
     UITableView *tableView = [[self alloc] initWithFrame:frame style:style];
     tableView.dataSource = dataSource;
     tableView.delegate = delegate;
@@ -54,10 +54,10 @@
 }
 
 + (instancetype)chx_tableViewWithSize:(CGSize)size
-							   center:(CGPoint)center
-								style:(UITableViewStyle)style
-							dataSouce:(id<UITableViewDataSource>)dataSource
-							 delegate:(id<UITableViewDelegate>) delegate {
+                               center:(CGPoint)center
+                                style:(UITableViewStyle)style
+                            dataSouce:(id<UITableViewDataSource>)dataSource
+                             delegate:(id<UITableViewDelegate>) delegate {
     CGRect frame = CGRectMake(center.x - size.width / 2,
                               center.y - size.height / 2,
                               size.width,

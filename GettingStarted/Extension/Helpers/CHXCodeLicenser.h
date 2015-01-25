@@ -27,7 +27,7 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, CHXLicenseType) {
-	CHXLicenseTypeMIT
+    CHXLicenseTypeMIT
 };
 
 @interface CHXCodeLicenser : NSObject

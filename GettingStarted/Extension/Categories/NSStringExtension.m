@@ -53,13 +53,13 @@
  *  @return 空间尺寸
  */
 - (CGSize)chx_sizeWithFont:(UIFont *)font width:(CGFloat)width {
-	NSDictionary *attributes = @{NSFontAttributeName:font};
-	return [self chx_sizeWithAttributes:attributes width:width];
+    NSDictionary *attributes = @{NSFontAttributeName:font};
+    return [self chx_sizeWithAttributes:attributes width:width];
 }
 
 - (CGSize)chx_sizeWithAttributes:(NSDictionary *)attributes width:(CGFloat)width {
-	NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
-	return [self boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:options attributes:attributes context:nil].size;
+    NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
+    return [self boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:options attributes:attributes context:nil].size;
 }
 
 @end
@@ -70,9 +70,9 @@
 @implementation NSString (CHXVerification)
 
 - (BOOL)chx_isMatchRegex:(NSString *)regex {
-	NSPredicate *phoneNumerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",
-								   regex];
-	return [phoneNumerTest evaluateWithObject:self];
+    NSPredicate *phoneNumerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",
+                                   regex];
+    return [phoneNumerTest evaluateWithObject:self];
 }
 
 // check email
@@ -87,14 +87,14 @@
     //    @"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"
     //    @"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
     //    @"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
-
-	return [self chx_isMatchRegex:emailRegex];
+    
+    return [self chx_isMatchRegex:emailRegex];
 }
 
 // Check phone number
 - (BOOL)chx_isValidPhoneNumber {
     NSString *phoneNumerRegex = @"^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d{8}$";
-	return [self chx_isMatchRegex:phoneNumerRegex];
+    return [self chx_isMatchRegex:phoneNumerRegex];
 }
 
 // Check password
@@ -121,57 +121,57 @@
 @end
 
 
-#pragma mark - 
+#pragma mark -
 
 @implementation NSString (CHXEncoding)
 
 - (NSString *)chx_convertAsciiString2UTF8 {
-	NSAssert([self isKindOfClass:[NSString class]],
-			 @"The input parameters is not string type!");
-	
-	NSStringEncoding UTF8Encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
-	NSStringEncoding ASCIIEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingASCII);
-	NSData *ISOData = [self dataUsingEncoding:ASCIIEncoding];
-	NSString *UTF8String = [[NSString alloc] initWithData:ISOData encoding:UTF8Encoding];
-	return UTF8String;
+    NSAssert([self isKindOfClass:[NSString class]],
+             @"The input parameters is not string type!");
+    
+    NSStringEncoding UTF8Encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
+    NSStringEncoding ASCIIEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingASCII);
+    NSData *ISOData = [self dataUsingEncoding:ASCIIEncoding];
+    NSString *UTF8String = [[NSString alloc] initWithData:ISOData encoding:UTF8Encoding];
+    return UTF8String;
 }
 
 // Create UTF8 string by ISO string
 - (NSString *)chx_convertISOString2UTF8 {
-	NSAssert([self isKindOfClass:[NSString class]],
-			 @"The input parameters is not string type!");
-	
-	NSStringEncoding UTF8Encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
-	NSStringEncoding ISOEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingISOLatin1);
-	NSData *ISOData = [self dataUsingEncoding:ISOEncoding];
-	NSString *UTF8String = [[NSString alloc] initWithData:ISOData encoding:UTF8Encoding];
-	return UTF8String;
+    NSAssert([self isKindOfClass:[NSString class]],
+             @"The input parameters is not string type!");
+    
+    NSStringEncoding UTF8Encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
+    NSStringEncoding ISOEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingISOLatin1);
+    NSData *ISOData = [self dataUsingEncoding:ISOEncoding];
+    NSString *UTF8String = [[NSString alloc] initWithData:ISOData encoding:UTF8Encoding];
+    return UTF8String;
 }
 
 // Create ISO string by UTF-8 string
 - (NSString *)chx_convertUTF8String2ISO {
-	NSAssert([self isKindOfClass:[NSString class]],
-			 @"The input parameters is not string type!");
-	
-	NSStringEncoding UTF8Encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
-	NSStringEncoding ISOEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingISOLatin1);
-	NSData *UTF8Data = [self dataUsingEncoding:UTF8Encoding];
-	NSString *ISOString = [[NSString alloc] initWithData:UTF8Data encoding:ISOEncoding];
-	return ISOString;
+    NSAssert([self isKindOfClass:[NSString class]],
+             @"The input parameters is not string type!");
+    
+    NSStringEncoding UTF8Encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
+    NSStringEncoding ISOEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingISOLatin1);
+    NSData *UTF8Data = [self dataUsingEncoding:UTF8Encoding];
+    NSString *ISOString = [[NSString alloc] initWithData:UTF8Data encoding:ISOEncoding];
+    return ISOString;
 }
 
 - (NSString *)chx_UTF8StringCharacterEscape {
-	NSAssert([self isKindOfClass:[NSString class]],
-			 @"The input parameters is not string type!");
-	
-	NSString *description = [self stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];
-	description = [description stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-	description = [[@"\"" stringByAppendingString:description] stringByAppendingString:@"\""];
-	NSData *descriptionData = [description dataUsingEncoding:NSUTF8StringEncoding];
-	
-	description = [NSPropertyListSerialization propertyListWithData:descriptionData options:NSPropertyListImmutable format:NULL error:nil];
-	
-	return description;
+    NSAssert([self isKindOfClass:[NSString class]],
+             @"The input parameters is not string type!");
+    
+    NSString *description = [self stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];
+    description = [description stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    description = [[@"\"" stringByAppendingString:description] stringByAppendingString:@"\""];
+    NSData *descriptionData = [description dataUsingEncoding:NSUTF8StringEncoding];
+    
+    description = [NSPropertyListSerialization propertyListWithData:descriptionData options:NSPropertyListImmutable format:NULL error:nil];
+    
+    return description;
 }
 
 @end

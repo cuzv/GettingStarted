@@ -36,102 +36,102 @@ extern NSString *const MITLicense;
 @implementation CHXCodeLicenser
 
 + (instancetype)sharedInstance {
-	static CHXCodeLicenser *_sharedInstance;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		_sharedInstance = [self new];
-	});
-	
-	return _sharedInstance;
+    static CHXCodeLicenser *_sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [self new];
+    });
+    
+    return _sharedInstance;
 }
 
 - (instancetype)init {
-	if (self = [super init]) {
-		_fileExtensionNames = @[@"h", @"m", @"mm", @"c", @"cpp", @"cc", @"swift"];
-	}
-	
-	return self;
+    if (self = [super init]) {
+        _fileExtensionNames = @[@"h", @"m", @"mm", @"c", @"cpp", @"cc", @"swift"];
+    }
+    
+    return self;
 }
 
 - (void)licenseCodeWithCreater:(NSString *)creater organization:(NSString *)organizationName projectName:(NSString *)projectName filePath:(NSString *)filePath toLicenseType:(CHXLicenseType)licenseType {
-	// 判断是否为目录
-	NSFileManager *fileManger = [NSFileManager defaultManager];
-	BOOL isDirectory;
-	BOOL isExist = [fileManger fileExistsAtPath:filePath isDirectory:&isDirectory];
-	if (!isExist) {
-		NSLog(@"输入路径格式错误或者文件不存在！");
-		return;
-	}
-	
-	if (isDirectory) {
-		// 获取当前目录下的所有内容
-		NSArray *directoryContent = [fileManger contentsOfDirectoryAtPath:filePath error:nil];
-		
-		// 遍历数组中的所有子文件(夹)
-		[directoryContent enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			if ([obj characterAtIndex:0] != '.' && ![[obj lowercaseString] containsString:@"vendor"]) {
-				NSString *currentFilePath = [filePath stringByAppendingPathComponent:obj];
-				[self licenseCodeWithCreater:creater organization:organizationName projectName:projectName filePath:currentFilePath toLicenseType:licenseType];
-			}
-		}];
-	} else {
-		// 对文件进行处理
-		// 过滤文件，只取代码文件: .h .m .mm .c .cpp .cc .swift
-		NSString *fileExtensionName = [[filePath pathExtension] lowercaseString];
-		if (![self.fileExtensionNames containsObject:fileExtensionName]) {
-			return;
-		};
-		
-		
-		// 读取文件内容
-		NSError *error;
-		NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
-		if (error) {
-			NSLog(@"%@", [error localizedDescription]);
-		}
-		
-		// 找到正文开始处
-		NSUInteger blankLineLocation = [content rangeOfString:@"\n\n"].location;
-		NSUInteger importLineLocation = [content rangeOfString:@"#"].location;
-		NSUInteger declarelineLocation = [content rangeOfString:@"@"].location;
-		NSUInteger minLocation = MIN(blankLineLocation, MIN(importLineLocation, declarelineLocation));
-		
-		// 获取文件名
-		NSString *fileName = [filePath lastPathComponent];
-		
-		// 获取文件创建日期
-		NSString *filePathURLString = [NSString stringWithFormat:@"file://%@", filePath];
-		NSURL *filePathURL = [NSURL URLWithString:filePathURLString];
-		NSDate *retrieveDate;
-		[filePathURL getResourceValue:&retrieveDate forKey:NSURLCreationDateKey error:&error];
-		if (error) {
-			NSLog(@"%@", [error localizedDescription]);
-		}
-		
-		// 格式化日期显示
-		NSDateFormatter *dateFormatter = [NSDateFormatter new];
-		[dateFormatter setDateFormat:@"yyyy-MM-dd"];
-		NSString *fileCreationDateString = [dateFormatter stringFromDate:retrieveDate];
-		
-		// 替换许可声明文本
-		NSString *licesneContent = [NSString stringWithFormat:[NSString stringWithFormat:@"%@", MITLicense],
-									fileName, projectName, creater, fileCreationDateString, organizationName];
-		NSString *newContent = [content stringByReplacingCharactersInRange:NSMakeRange(0, minLocation) withString:licesneContent];
-		
-		NSData *newContentData = [newContent dataUsingEncoding:NSUTF8StringEncoding];
-		
-		// 写入新文本
-		NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
-		// 清空数据
-		[fileHandle truncateFileAtOffset:0];
-		// 重新写入数据
-		[fileHandle writeData:newContentData];
-		// 同步数据
-		[fileHandle synchronizeFile];
-		
-		NSString *doneMission = [NSString stringWithFormat:@"file: %@: licensed done!", filePath];
-		NSLog(@"%@", doneMission);
-	}
+    // 判断是否为目录
+    NSFileManager *fileManger = [NSFileManager defaultManager];
+    BOOL isDirectory;
+    BOOL isExist = [fileManger fileExistsAtPath:filePath isDirectory:&isDirectory];
+    if (!isExist) {
+        NSLog(@"输入路径格式错误或者文件不存在！");
+        return;
+    }
+    
+    if (isDirectory) {
+        // 获取当前目录下的所有内容
+        NSArray *directoryContent = [fileManger contentsOfDirectoryAtPath:filePath error:nil];
+        
+        // 遍历数组中的所有子文件(夹)
+        [directoryContent enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj characterAtIndex:0] != '.' && ![[obj lowercaseString] containsString:@"vendor"]) {
+                NSString *currentFilePath = [filePath stringByAppendingPathComponent:obj];
+                [self licenseCodeWithCreater:creater organization:organizationName projectName:projectName filePath:currentFilePath toLicenseType:licenseType];
+            }
+        }];
+    } else {
+        // 对文件进行处理
+        // 过滤文件，只取代码文件: .h .m .mm .c .cpp .cc .swift
+        NSString *fileExtensionName = [[filePath pathExtension] lowercaseString];
+        if (![self.fileExtensionNames containsObject:fileExtensionName]) {
+            return;
+        };
+        
+        
+        // 读取文件内容
+        NSError *error;
+        NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+        if (error) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        
+        // 找到正文开始处
+        NSUInteger blankLineLocation = [content rangeOfString:@"\n\n"].location;
+        NSUInteger importLineLocation = [content rangeOfString:@"#"].location;
+        NSUInteger declarelineLocation = [content rangeOfString:@"@"].location;
+        NSUInteger minLocation = MIN(blankLineLocation, MIN(importLineLocation, declarelineLocation));
+        
+        // 获取文件名
+        NSString *fileName = [filePath lastPathComponent];
+        
+        // 获取文件创建日期
+        NSString *filePathURLString = [NSString stringWithFormat:@"file://%@", filePath];
+        NSURL *filePathURL = [NSURL URLWithString:filePathURLString];
+        NSDate *retrieveDate;
+        [filePathURL getResourceValue:&retrieveDate forKey:NSURLCreationDateKey error:&error];
+        if (error) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        
+        // 格式化日期显示
+        NSDateFormatter *dateFormatter = [NSDateFormatter new];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *fileCreationDateString = [dateFormatter stringFromDate:retrieveDate];
+        
+        // 替换许可声明文本
+        NSString *licesneContent = [NSString stringWithFormat:[NSString stringWithFormat:@"%@", MITLicense],
+                                    fileName, projectName, creater, fileCreationDateString, organizationName];
+        NSString *newContent = [content stringByReplacingCharactersInRange:NSMakeRange(0, minLocation) withString:licesneContent];
+        
+        NSData *newContentData = [newContent dataUsingEncoding:NSUTF8StringEncoding];
+        
+        // 写入新文本
+        NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
+        // 清空数据
+        [fileHandle truncateFileAtOffset:0];
+        // 重新写入数据
+        [fileHandle writeData:newContentData];
+        // 同步数据
+        [fileHandle synchronizeFile];
+        
+        NSString *doneMission = [NSString stringWithFormat:@"file: %@: licensed done!", filePath];
+        NSLog(@"%@", doneMission);
+    }
 }
 
 @end

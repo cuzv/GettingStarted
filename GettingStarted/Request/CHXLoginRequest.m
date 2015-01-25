@@ -36,43 +36,43 @@
 @implementation CHXLoginRequest
 
 - (instancetype)initWithUsername:(NSString *)userName password:(NSString *)password {
-	if (self = [super init]) {
-		_username = userName;
-		_password = password;
-	}
-	
-	return self;
+    if (self = [super init]) {
+        _username = userName;
+        _password = password;
+    }
+    
+    return self;
 }
 
 - (NSDictionary *)requestParameters {
-	return @{@"uAccount":_username,
-			 @"uPass":_password
-			 };
+    return @{@"uAccount":_username,
+             @"uPass":_password
+             };
 }
 
 - (NSString *)requestBaseURLString {
-	return  @"http://115.29.209.13:8081/wfarm/";
+    return  @"http://115.29.209.13:8081/wfarm/";
 }
 
 - (NSString *)requestSpecificURLString {
-	return @"customerLogin/json/1";
+    return @"customerLogin/json/1";
 }
 
 //- (AFConstructingBlock)constructingBodyBlock {
-////	AFConstructingBlock block = ^(id<AFMultipartFormData> formData) {
+//    AFConstructingBlock block = ^(id<AFMultipartFormData> formData) {
 ////	};
 ////	return block;
 //	return ^(id<AFMultipartFormData> formData) {
-//		
+//
 //	};
 //}
 
 - (NSTimeInterval)requestTimeoutInterval {
-	return 10;
+    return 10;
 }
 
 - (NSTimeInterval)requestCacheDuration {
-	return 20;
+    return 20;
 }
 
 //- (BOOL)requestNeedCache {

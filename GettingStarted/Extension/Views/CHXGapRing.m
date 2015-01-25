@@ -133,7 +133,7 @@
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     animation.fromValue = @(0);
     animation.toValue = @(2 * M_PI);
-    animation.duration = 1.0f;
+    animation.duration = 0.8f;
     animation.repeatCount = HUGE_VAL;
     animation.removedOnCompletion = YES;
     animation.delegate = self;
@@ -144,7 +144,7 @@
     if (!self.animating) {
         return;
     }
-
+    
     [self pr_stopRotateAnimation];
     
     self.animating = NO;

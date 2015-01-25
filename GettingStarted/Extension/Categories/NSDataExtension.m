@@ -35,49 +35,49 @@
 
 // Create a Foundation object from JSON data
 - (id)chx_JSONObject {
-	if (!self) {
-		return nil;
-	}
-	NSError *error = nil;
-	id object = [NSJSONSerialization JSONObjectWithData:self
-												options:NSJSONReadingMutableLeaves
-												  error:&error];
-	if (error) {
-		NSLog(@"Deserialized JSON string failed with error message '%@'.",
-			  [error localizedDescription]);
-	}
-	
-	return object;
+    if (!self) {
+        return nil;
+    }
+    NSError *error = nil;
+    id object = [NSJSONSerialization JSONObjectWithData:self
+                                                options:NSJSONReadingMutableLeaves
+                                                  error:&error];
+    if (error) {
+        NSLog(@"Deserialized JSON string failed with error message '%@'.",
+              [error localizedDescription]);
+    }
+    
+    return object;
 }
 
 // Generate JSON data from a Foundation object
 + (NSData *)chx_dataWithJSONObject:(id)object {
-	if (!object) {
-		return nil;
-	}
-	NSError *error = nil;
-	NSData *data = [NSJSONSerialization dataWithJSONObject:object
-												   options:NSJSONWritingPrettyPrinted
-													 error:&error];
-	if (error) {
-		NSLog(@"Serialized JSON string failed with error message '%@'.",
-			  [error localizedDescription]);
-	}
-	return data;
+    if (!object) {
+        return nil;
+    }
+    NSError *error = nil;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:object
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:&error];
+    if (error) {
+        NSLog(@"Serialized JSON string failed with error message '%@'.",
+              [error localizedDescription]);
+    }
+    return data;
 }
 
 // Generate an JSON data from a property list
 + (NSData *)chx_dataWithPropertyList:(id)plist {
-	NSError *error = nil;
-	NSData *data = [NSPropertyListSerialization dataWithPropertyList:plist
-															  format:NSPropertyListXMLFormat_v1_0
-															 options:0
-															   error:&error];
-	if (error) {
-		NSLog(@"Serialized PropertyList string failed with error message '%@'.",
-			  [error localizedDescription]);
-	}
-	return data;
+    NSError *error = nil;
+    NSData *data = [NSPropertyListSerialization dataWithPropertyList:plist
+                                                              format:NSPropertyListXMLFormat_v1_0
+                                                             options:0
+                                                               error:&error];
+    if (error) {
+        NSLog(@"Serialized PropertyList string failed with error message '%@'.",
+              [error localizedDescription]);
+    }
+    return data;
 }
 
 @end
@@ -86,17 +86,17 @@
 
 // Generate UTF-8 string from data
 - (NSString *)chx_UTF8String {
-	return [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
+    return [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
 }
 
 // Generate ASCII string form data
 - (NSString *)chx_ASCIIString {
-	return [[NSString alloc] initWithData:self encoding:NSASCIIStringEncoding];
+    return [[NSString alloc] initWithData:self encoding:NSASCIIStringEncoding];
 }
 
 // Generate ISOLatin1 string form data
 - (NSString *)chx_ISOLatin1String {
-	return [[NSString alloc] initWithData:self encoding:NSISOLatin1StringEncoding];
+    return [[NSString alloc] initWithData:self encoding:NSISOLatin1StringEncoding];
 }
 
 

@@ -89,7 +89,7 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
     [HUD showInView:self];
 }
 
-- (void)chx_showUploadingHUD {    
+- (void)chx_showUploadingHUD {
     JGProgressHUD *HUD = [self HUDWithMessage:nil];
     HUD.indicatorView = [[JGProgressHUDRingIndicatorView alloc] initWithHUDStyle:HUD.style];
     HUD.detailTextLabel.text = @"0% Complete";
@@ -195,7 +195,7 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
             hud.HUDView.layer.shadowOpacity = 0.0f;
             hud.HUDView.layer.shadowRadius = 8.0f;
             confirmationAsked = YES;
-
+            
             CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"shadowOpacity"];
             animation.fromValue = @(0.0f);
             animation.toValue = @(0.5f);

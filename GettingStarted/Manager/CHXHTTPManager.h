@@ -110,10 +110,10 @@ typedef void (^NetowrkPushResultFailureCompletionHandle)(NSURLSessionDataTask *t
 
 // POST png
 + (void)POSTPNGWithMethodName:(NSString *)methodName
-				   parameters:(NSDictionary *)parameters
-					formDatas:(NSArray *)datas
-					  success:(NetowrkPushResultFailureCompletionHandle)success
-					  failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+                   parameters:(NSDictionary *)parameters
+                    formDatas:(NSArray *)datas
+                      success:(NetowrkPushResultFailureCompletionHandle)success
+                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 // POST with data
 + (void)POSTWithMethodName:(NSString *)methodName
                 parameters:(NSDictionary *)parameters

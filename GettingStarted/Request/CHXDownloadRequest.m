@@ -30,29 +30,29 @@
 @implementation CHXDownloadRequest
 
 - (NSDictionary *)requestParameters {
-	return @{};
+    return @{};
 }
 
 - (CHXRequestMethod)requestMehtod {
-	return CHXRequestMethodGet;
+    return CHXRequestMethodGet;
 }
 
 - (NSString *)requestBaseURLString {
-	return @"http://ww3.sinaimg.cn/large/";
+    return @"http://ww3.sinaimg.cn/large/";
 }
 
 - (NSString *)requestSpecificURLString {
-	return @"62580dd9gw1ennijqvvghj21300n5jts.jpg";
+    return @"62580dd9gw1ennijqvvghj21300n5jts.jpg";
 }
 
 
 - (NSString *)downloadTargetFilePathString {
-	NSString *path = [chx_documentDirectory() stringByAppendingString:@"/sam.jpg"];
-	return path;
+    NSString *path = [chx_documentDirectory() stringByAppendingString:@"/sam.jpg"];
+    return path;
 }
 
 - (NSTimeInterval)requestCacheDuration {
-	return 60 * 10;
+    return 60 * 10;
 }
 
 

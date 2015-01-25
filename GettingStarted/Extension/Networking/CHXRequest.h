@@ -29,23 +29,23 @@
 
 // HTTP Method
 typedef NS_ENUM(NSInteger, CHXRequestMethod) {
-	CHXRequestMethodPost = 0,
-	CHXRequestMethodGet,
-	CHXRequestMethodPut,
-	CHXRequestMethodDelete,
-	CHXRequestMethodPatch,
-	CHXRequestMethodHead
+    CHXRequestMethodPost = 0,
+    CHXRequestMethodGet,
+    CHXRequestMethodPut,
+    CHXRequestMethodDelete,
+    CHXRequestMethodPatch,
+    CHXRequestMethodHead
 };
 
 typedef NS_ENUM(NSInteger, CHXRequestSerializerType) {
-	CHXRequestSerializerTypeHTTP = 0,
-	CHXRequestSerializerTypeJSON
+    CHXRequestSerializerTypeHTTP = 0,
+    CHXRequestSerializerTypeJSON
 };
 
 typedef NS_ENUM(NSInteger, CHXResponseSerializerType) {
-	CHXResponseSerializerTypeHTTP = 0,
-	CHXResponseSerializerTypeJSON,
-	CHXResponseSerializerTypeImage
+    CHXResponseSerializerTypeHTTP = 0,
+    CHXResponseSerializerTypeJSON,
+    CHXResponseSerializerTypeImage
 };
 
 #pragma mark -
@@ -132,7 +132,7 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 
 /**
  *  构建自定义的 URLRequest
- *  若这个方法返回非 nil 对象，会忽略 requestParameters, requestBaseURLString, 
+ *  若这个方法返回非 nil 对象，会忽略 requestParameters, requestBaseURLString,
  *	requestSpecificURLString, requestSuffixURLString, requestMehtod 等参数
  *
  *	@return 自定义的 URLRequest

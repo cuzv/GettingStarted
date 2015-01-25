@@ -58,8 +58,8 @@
 }
 
 + (NSString *)pr_persistencePath {
-	// TODO
-	NSString *userFolder = nil;// [[AccountManager sharedInstance] uniqueIdentifier];
+    // TODO
+    NSString *userFolder = nil;// [[AccountManager sharedInstance] uniqueIdentifier];
     if (!userFolder) {
         NSLog(@"Datas will persistence to common area!");
         userFolder = @"CommonDatas";
