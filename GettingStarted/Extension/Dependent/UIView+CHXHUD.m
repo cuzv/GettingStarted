@@ -55,7 +55,8 @@ static const void *UIViewHUDKey = &UIViewHUDKey;
 }
 
 - (JGProgressHUD *)HUDWithMessage:(NSString *)message {
-    JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleExtraLight];
+    HUD.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.35];
     HUD.interactionType = JGProgressHUDInteractionTypeBlockNoTouches;
     HUD.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     HUD.textLabel.text = message;

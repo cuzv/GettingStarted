@@ -11,6 +11,7 @@
 		4608A3EF1A1CF75000AF5873 /* NSDictionaryExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608A3EE1A1CF75000AF5873 /* NSDictionaryExtension.m */; };
 		4608A3F21A1CF8EC00AF5873 /* NSDataExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */; };
 		4610548F1A4E7E1F001FCF43 /* CHXDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4610548E1A4E7E1F001FCF43 /* CHXDownloadRequest.m */; };
+		461B3AC81A84BE6A0040C0B7 /* CHXHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 461B3AC71A84BE6A0040C0B7 /* CHXHUD.m */; };
 		464463B91A53A2940036F89B /* CHXTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 464463B81A53A2940036F89B /* CHXTableController.m */; };
 		46602C811A1C3E5800307EEC /* CHXGlobalServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C801A1C3E5800307EEC /* CHXGlobalServices.m */; };
 		46602C861A1C4DBF00307EEC /* CHXHTTPConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C851A1C4DBF00307EEC /* CHXHTTPConfigure.m */; };
@@ -109,6 +110,8 @@
 		4610548D1A4E7E1F001FCF43 /* CHXDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXDownloadRequest.h; sourceTree = "<group>"; };
 		4610548E1A4E7E1F001FCF43 /* CHXDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXDownloadRequest.m; sourceTree = "<group>"; };
 		461820DC1A3B47000087B602 /* CHXMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CHXMacro.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		461B3AC61A84BE6A0040C0B7 /* CHXHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXHUD.h; sourceTree = "<group>"; };
+		461B3AC71A84BE6A0040C0B7 /* CHXHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXHUD.m; sourceTree = "<group>"; };
 		464463B71A53A2940036F89B /* CHXTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXTableController.h; sourceTree = "<group>"; };
 		464463B81A53A2940036F89B /* CHXTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXTableController.m; sourceTree = "<group>"; };
 		465C07A51A24A5DE00ABE213 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -679,6 +682,8 @@
 				46F11F751A1B946E009321A0 /* UIView+CHXHUD.m */,
 				46F11F761A1B946E009321A0 /* UIView+CHXPercentageIndicatorView.h */,
 				46F11F771A1B946E009321A0 /* UIView+CHXPercentageIndicatorView.m */,
+				461B3AC61A84BE6A0040C0B7 /* CHXHUD.h */,
+				461B3AC71A84BE6A0040C0B7 /* CHXHUD.m */,
 			);
 			path = Dependent;
 			sourceTree = "<group>";
@@ -878,6 +883,7 @@
 				46F11EF51A1B81A8009321A0 /* UIButtonExtension.m in Sources */,
 				46F11F661A1B917E009321A0 /* Base64.m in Sources */,
 				46602C861A1C4DBF00307EEC /* CHXHTTPConfigure.m in Sources */,
+				461B3AC81A84BE6A0040C0B7 /* CHXHUD.m in Sources */,
 				46F11EFA1A1B81A8009321A0 /* UIScrollViewExtension.m in Sources */,
 				4610548F1A4E7E1F001FCF43 /* CHXDownloadRequest.m in Sources */,
 				46F11F681A1B917E009321A0 /* MLEmojiLabel.m in Sources */,

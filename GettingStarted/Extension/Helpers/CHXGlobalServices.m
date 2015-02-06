@@ -281,6 +281,7 @@ void chx_imageFromURL(NSURL *imageLink, void (^completionBlock)(UIImage *downloa
 
 #pragma mark - Swizzle
 
+// 该方法应该在 dispatch_once 中执行
 void chx_swizzleInstanceMethod(Class clazz, SEL originalSelector, SEL overrideSelector) {
     Method originalMethod = class_getInstanceMethod(clazz, originalSelector);
     Method overrideMethod = class_getInstanceMethod(clazz, overrideSelector);
@@ -292,6 +293,7 @@ void chx_swizzleInstanceMethod(Class clazz, SEL originalSelector, SEL overrideSe
     }
 }
 
+// 该方法应该在 dispatch_once 中执行
 void chx_swizzleClassMethod(Class clazz, SEL originalSelector, SEL overrideSelector) {
     Method originalMethod = class_getClassMethod(clazz, originalSelector);
     Method overrideMethod = class_getClassMethod(clazz, overrideSelector);

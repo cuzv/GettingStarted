@@ -35,6 +35,7 @@
 #import "CHXCodingableObject.h"
 #import "CHXMacro.h"
 #import "CHXDownloadRequest.h"
+#import "CHXHUD.h"
 
 @interface Person : CHXCodingableObject
 @property (nonatomic, strong) NSString *name;
@@ -105,8 +106,16 @@
     
     //	[self testGetPathSize];
     
-    [self testExpendClick];
+//    [self testExpendClick];
     
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    //	[self testNetworking];
+    //	[self testDownload];
+//    [self testAsynchronized];
+    [self testHUD];
 }
 
 - (void)testCorner {
@@ -310,15 +319,6 @@
     NSLog(@"%lld", size);
 }
 
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    //	[self testNetworking];
-    //	[self testDownload];
-    
-    [self testAsynchronized];
-}
-
-
 - (void)testExpendClick {
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 100, 80, 40)];
     [button setTitle:@"Click" forState:UIControlStateNormal];
@@ -332,6 +332,23 @@
 
 - (void)handleAction:(UIButton *)sender {
     NSLog(@"%s", __FUNCTION__);
+}
+
+- (void)testHUD {
+//    [self.view chx_showHUDWithMessage:@"哈哈哈哈"];
+    
+//    [[[[UIApplication sharedApplication] windows] lastObject] chx_showHUDWithMessage:@"阿里斯顿结果拉伸"];
+//[[[[UIApplication sharedApplication] windows] lastObject] chx_showLoadingHUD];
+//    [[[[UIApplication sharedApplication] windows] lastObject] chx_dismissHUD];
+//    [[[[UIApplication sharedApplication] windows] lastObject] chx_showSuccessHUDWithMessage:@"打噶十多个"];
+    
+//    [CHXHUD showHUDWithMessage:@"大概多少"];
+//    [CHXHUD showLoadingHUDWithMessage:@"登录中"];
+    [CHXHUD showLoadingHUD];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [CHXHUD removeHUDIfExist];
+    });
+    
 }
 
 
