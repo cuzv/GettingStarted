@@ -28,6 +28,7 @@
 		4672AB801A2BFD4600876B74 /* CHXLoginHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB7F1A2BFD4600876B74 /* CHXLoginHandler.m */; };
 		4672AB881A2BFE2F00876B74 /* CHXRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB871A2BFE2F00876B74 /* CHXRequest.m */; };
 		4672AB901A2BFF1700876B74 /* CHXLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB8F1A2BFF1700876B74 /* CHXLoginRequest.m */; };
+		4684CD091A863BD500B9A076 /* NSDate+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4684CD081A863BD500B9A076 /* NSDate+Utils.m */; };
 		469085A71A54417B00D1AC86 /* CHXMultipleSectionCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 469085A61A54417B00D1AC86 /* CHXMultipleSectionCollectionView.m */; };
 		46F11DC11A1B7958009321A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F11DC01A1B7958009321A0 /* main.m */; };
 		46F11DCA1A1B7958009321A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46F11DC81A1B7958009321A0 /* Main.storyboard */; };
@@ -146,6 +147,8 @@
 		4672AB871A2BFE2F00876B74 /* CHXRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CHXRequest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4672AB8E1A2BFF1700876B74 /* CHXLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXLoginRequest.h; sourceTree = "<group>"; };
 		4672AB8F1A2BFF1700876B74 /* CHXLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXLoginRequest.m; sourceTree = "<group>"; };
+		4684CD071A863BD500B9A076 /* NSDate+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utils.h"; sourceTree = "<group>"; };
+		4684CD081A863BD500B9A076 /* NSDate+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utils.m"; sourceTree = "<group>"; };
 		469085A51A54417B00D1AC86 /* CHXMultipleSectionCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXMultipleSectionCollectionView.h; sourceTree = "<group>"; };
 		469085A61A54417B00D1AC86 /* CHXMultipleSectionCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXMultipleSectionCollectionView.m; sourceTree = "<group>"; };
 		46F11DBB1A1B7958009321A0 /* GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -339,6 +342,15 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4684CD061A863BD500B9A076 /* NSDateUtils */ = {
+			isa = PBXGroup;
+			children = (
+				4684CD071A863BD500B9A076 /* NSDate+Utils.h */,
+				4684CD081A863BD500B9A076 /* NSDate+Utils.m */,
+			);
+			path = NSDateUtils;
 			sourceTree = "<group>";
 		};
 		46F11DB21A1B7957009321A0 = {
@@ -593,6 +605,7 @@
 		46F11F461A1B917E009321A0 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				4684CD061A863BD500B9A076 /* NSDateUtils */,
 				46F11F471A1B917E009321A0 /* AwesomeMenu */,
 				46F11F4C1A1B917E009321A0 /* Base64 */,
 				46F11F4F1A1B917E009321A0 /* ImageEffects */,
@@ -860,6 +873,7 @@
 				46F11EF81A1B81A8009321A0 /* UILabelExtension.m in Sources */,
 				464463B91A53A2940036F89B /* CHXTableController.m in Sources */,
 				46F11EF21A1B81A8009321A0 /* NSObjectExtension.m in Sources */,
+				4684CD091A863BD500B9A076 /* NSDate+Utils.m in Sources */,
 				46F11F6A1A1B917E009321A0 /* NSString+Hashes.m in Sources */,
 				46F11F421A1B903A009321A0 /* CHXHTTPManager.m in Sources */,
 				46F11F1E1A1B8D2E009321A0 /* CHXArrayDataSource.m in Sources */,
