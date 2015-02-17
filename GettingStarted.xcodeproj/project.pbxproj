@@ -29,6 +29,8 @@
 		4672AB881A2BFE2F00876B74 /* CHXRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB871A2BFE2F00876B74 /* CHXRequest.m */; };
 		4672AB901A2BFF1700876B74 /* CHXLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB8F1A2BFF1700876B74 /* CHXLoginRequest.m */; };
 		469085A71A54417B00D1AC86 /* CHXMultipleSectionCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 469085A61A54417B00D1AC86 /* CHXMultipleSectionCollectionView.m */; };
+		46B1264F1A93878E0027C35C /* CHXCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B1264E1A93878E0027C35C /* CHXCoreDataManager.m */; };
+		46B126521A93918C0027C35C /* NSDateExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B126511A93918C0027C35C /* NSDateExtension.m */; };
 		46F11DC11A1B7958009321A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F11DC01A1B7958009321A0 /* main.m */; };
 		46F11DCA1A1B7958009321A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46F11DC81A1B7958009321A0 /* Main.storyboard */; };
 		46F11DCC1A1B7958009321A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46F11DCB1A1B7958009321A0 /* Images.xcassets */; };
@@ -148,6 +150,10 @@
 		4672AB8F1A2BFF1700876B74 /* CHXLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXLoginRequest.m; sourceTree = "<group>"; };
 		469085A51A54417B00D1AC86 /* CHXMultipleSectionCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXMultipleSectionCollectionView.h; sourceTree = "<group>"; };
 		469085A61A54417B00D1AC86 /* CHXMultipleSectionCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXMultipleSectionCollectionView.m; sourceTree = "<group>"; };
+		46B1264D1A93878E0027C35C /* CHXCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXCoreDataManager.h; sourceTree = "<group>"; };
+		46B1264E1A93878E0027C35C /* CHXCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXCoreDataManager.m; sourceTree = "<group>"; };
+		46B126501A93918C0027C35C /* NSDateExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateExtension.h; sourceTree = "<group>"; };
+		46B126511A93918C0027C35C /* NSDateExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateExtension.m; sourceTree = "<group>"; };
 		46F11DBB1A1B7958009321A0 /* GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F11DBF1A1B7958009321A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46F11DC01A1B7958009321A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -445,6 +451,8 @@
 				46F11EC71A1B81A8009321A0 /* NSStringExtension.m */,
 				4608A3F01A1CF8EC00AF5873 /* NSDataExtension.h */,
 				4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */,
+				46B126501A93918C0027C35C /* NSDateExtension.h */,
+				46B126511A93918C0027C35C /* NSDateExtension.m */,
 				46F11EC81A1B81A8009321A0 /* UIAlertViewExtension.h */,
 				46F11EC91A1B81A8009321A0 /* UIAlertViewExtension.m */,
 				46F11ECA1A1B81A8009321A0 /* UIButtonExtension.h */,
@@ -569,6 +577,8 @@
 				46F11F1A1A1B8D1A009321A0 /* CHXUserDefaults.m */,
 				4666B0511A3D7A8A00CF3AB3 /* CHXCodeLicenser.h */,
 				4666B0521A3D7A8A00CF3AB3 /* CHXCodeLicenser.m */,
+				46B1264D1A93878E0027C35C /* CHXCoreDataManager.h */,
+				46B1264E1A93878E0027C35C /* CHXCoreDataManager.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -860,6 +870,7 @@
 				46F11EF81A1B81A8009321A0 /* UILabelExtension.m in Sources */,
 				464463B91A53A2940036F89B /* CHXTableController.m in Sources */,
 				46F11EF21A1B81A8009321A0 /* NSObjectExtension.m in Sources */,
+				46B126521A93918C0027C35C /* NSDateExtension.m in Sources */,
 				46F11F6A1A1B917E009321A0 /* NSString+Hashes.m in Sources */,
 				46F11F421A1B903A009321A0 /* CHXHTTPManager.m in Sources */,
 				46F11F1E1A1B8D2E009321A0 /* CHXArrayDataSource.m in Sources */,
@@ -912,6 +923,7 @@
 				466B16771A38970800EA9EA0 /* CHXBaseTabBarController.m in Sources */,
 				46F11F251A1B8D49009321A0 /* CHXCodingableAndComparableObject.m in Sources */,
 				46F11F061A1B81A8009321A0 /* CHXFlexibleTextView.m in Sources */,
+				46B1264F1A93878E0027C35C /* CHXCoreDataManager.m in Sources */,
 				46602C811A1C3E5800307EEC /* CHXGlobalServices.m in Sources */,
 				46F653EB1A53C0F6001EAB7E /* CHXSingleSectionTableController.m in Sources */,
 				46F11DC11A1B7958009321A0 /* main.m in Sources */,
@@ -1056,7 +1068,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GettingStarted/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c1774400-93ba-44ee-96b1-93be25f4f063";
@@ -1069,7 +1081,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GettingStarted/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c1774400-93ba-44ee-96b1-93be25f4f063";
