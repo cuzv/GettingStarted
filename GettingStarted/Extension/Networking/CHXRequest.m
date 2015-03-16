@@ -232,11 +232,15 @@
     [self startRequest];
     
     dispatch_async(self.queue, ^{
-        requestSuccessCompletionBlock(self.responseObject);
+        if (self.responseObject) {
+            requestSuccessCompletionBlock(self.responseObject);
+        }
     });
-    
+
     dispatch_async(self.queue, ^{
-        requestFailureCompletionBlock(self.errorMessage);
+        if (self.errorMessage) {
+            requestFailureCompletionBlock(self.errorMessage);
+        }
     });
     
     return self;

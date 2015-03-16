@@ -30,6 +30,8 @@
 #import "CHXMacro.h"
 #import "NSObjectExtension.h"
 
+const static NSInteger kSuccessStatusCode = 0;
+
 #pragma mark -
 
 @interface CHXResponseCache : NSObject <NSCoding>
@@ -481,7 +483,7 @@ const NSInteger kMaxConcurrentOperationCount = 4;
     NSParameterAssert(responseDataFieldName);
     NSParameterAssert(responseDataFieldName.length);
     
-    NSDictionary *returnObject = @{responseCodeFieldName:@"0", responseDataFieldName:responseObject};
+    NSDictionary *returnObject = @{responseCodeFieldName:[@(kSuccessStatusCode) stringValue], responseDataFieldName:responseObject};
     
     return returnObject;
 }
@@ -492,7 +494,7 @@ const NSInteger kMaxConcurrentOperationCount = 4;
     NSParameterAssert(responseCodeFieldName.length);
     
     id responseCode = [responseObject objectForKey:responseCodeFieldName];
-    if ([responseCode integerValue] == 0) {
+    if ([responseCode integerValue] == kSuccessStatusCode) {
         NSString *responseDataFieldName = [request responseDataFieldName];
         NSParameterAssert(responseDataFieldName);
         NSParameterAssert(responseDataFieldName.length);
