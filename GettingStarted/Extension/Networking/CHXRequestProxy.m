@@ -498,7 +498,9 @@ const NSInteger kMaxConcurrentOperationCount = 4;
         NSString *responseDataFieldName = [request responseDataFieldName];
         NSParameterAssert(responseDataFieldName);
         NSParameterAssert(responseDataFieldName.length);
-        
+
+        request.responseSuccess = YES;
+
         id responseData = [responseObject objectForKey:responseDataFieldName];
         request.responseObject = responseData;
     } else {

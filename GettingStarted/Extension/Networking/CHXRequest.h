@@ -247,6 +247,13 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
  */
 @property (nonatomic, strong) id responseObject;
 
+
+/**
+ *  回送数据是否成功
+ */
+@property (nonatomic, assign) BOOL responseSuccess;
+
+
 /**
  *  回送错误信息，请求未完成可能为空
  */
