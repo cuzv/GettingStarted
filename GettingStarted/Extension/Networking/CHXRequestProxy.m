@@ -110,6 +110,11 @@ const NSInteger kMaxConcurrentOperationCount = 4;
 - (void)addRequest:(CHXRequest *)request {
     // Checking Networking status
     if (![self pr_isNetworkReachable]) {
+        // If cache exist, return cache data
+        if (![self pr_shouldContinueRequest:request]) {
+            return;
+        }
+        
         // The first time description is not correct !
         NSString *errorDescription = @"The network is currently unreachable.";
         NSLog(@"%@", errorDescription);

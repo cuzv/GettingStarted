@@ -351,6 +351,21 @@ typedef NS_ENUM(NSInteger, CHXAnimationOrientation) {
  */
 - (void)chx_setBorderLineConstraintsWithColor:(UIColor *)color edge:(UIRectEdge)edge lineSizeMultiplier:(CGFloat)multiplier;
 
+/**
+ *  添加虚线边框
+ *
+ *  @param color 边线颜色
+ */
+- (void)chx_setDashborderLineColor:(UIColor *)color;
+
+/**
+ *  添加虚线边框
+ *
+ *  @param color 边线颜色
+ *  @param edge  边线方向
+ */
+- (void)chx_setDashborderLineColor:(UIColor *)color edge:(UIRectEdge)edge;
+
 @end
 
 #pragma mark - 边缘圆角
@@ -364,6 +379,9 @@ typedef NS_ENUM(NSInteger, CHXAnimationOrientation) {
  *  @param radius 圆角大小
  */
 - (void)chx_setRoundingCorners:(UIRectCorner)corner radius:(CGFloat)radius;
+
+
+- (void)chx_setDashborderLineColor:(UIColor *)color edge:(UIRectEdge)edge;
 
 @end
 

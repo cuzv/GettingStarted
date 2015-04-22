@@ -473,6 +473,69 @@ static const void *ActivityIndicatorViewKey = &ActivityIndicatorViewKey;
     
 }
 
+- (void)chx_setDashborderLineColor:(UIColor *)color {
+    [self chx_setDashborderLineColor:color edge:UIRectEdgeAll];
+}
+
+- (void)chx_setDashborderLineColor:(UIColor *)color edge:(UIRectEdge)edge {
+    CGFloat startX = 0;
+    CGFloat startY = 0;
+    CGFloat endX = 0;
+    CGFloat endY = 0;
+    
+    if (edge & UIRectEdgeTop) {
+        startX = 0;
+        startY = 0;
+        endX = CGRectGetWidth(self.bounds);
+        endY = 0;
+        [self pr_addDashborderLineColor:color points:@[@(startX), @(startY), @(endX), @(endY)]];
+    }
+    
+    if (edge & UIRectEdgeBottom) {
+        startX = 0;
+        startY = CGRectGetHeight(self.bounds);
+        endX = CGRectGetWidth(self.bounds);
+        endY = startY;
+        [self pr_addDashborderLineColor:color points:@[@(startX), @(startY), @(endX), @(endY)]];
+    }
+    if (edge & UIRectEdgeLeft) {
+        startX = 0;
+        startY = 0;
+        endX = 0;
+        endY = CGRectGetHeight(self.bounds);
+        [self pr_addDashborderLineColor:color points:@[@(startX), @(startY), @(endX), @(endY)]];
+    }
+    
+    if (edge & UIRectEdgeRight) {
+        startX = CGRectGetWidth(self.bounds);
+        startY = 0;
+        endX = startX;
+        endY = CGRectGetHeight(self.bounds);
+        [self pr_addDashborderLineColor:color points:@[@(startX), @(startY), @(endX), @(endY)]];
+    }
+    
+}
+
+// http://stackoverflow.com/questions/12701825/drawing-dashed-line-using-calayer
+- (void)pr_addDashborderLineColor:(UIColor *)color points:(NSArray *)points {
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    [shapeLayer setFillColor:[[UIColor clearColor] CGColor]];
+    [shapeLayer setStrokeColor:[color CGColor]];
+    [shapeLayer setLineWidth:1.0f];
+    [shapeLayer setLineJoin:kCALineJoinRound];
+    [shapeLayer setLineDashPattern:@[@10, @5]];
+    
+    // Setup the path
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, [points[0] floatValue], [points[1] floatValue]);
+    CGPathAddLineToPoint(path, NULL, [points[2] floatValue], [points[3] floatValue]);
+    
+    [shapeLayer setPath:path];
+    CGPathRelease(path);
+    
+    [self.layer addSublayer:shapeLayer];
+}
+
 @end
 
 

@@ -96,7 +96,7 @@
     
     //	[self testCoding];
     
-//    	[self testCodeLicenser];
+    	[self testCodeLicenser];
     
     //	[self testMethods];
     
@@ -111,10 +111,10 @@
 
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    //	[self testNetworking];
+//    	[self testNetworking];
     //	[self testDownload];
 //    [self testAsynchronized];
-    [self testHUD];
+//    [self testHUD];
 }
 
 - (void)testCorner {
@@ -168,7 +168,7 @@
 
 
 - (void)testNetworking {
-    CHXLoginRequest *request = [[CHXLoginRequest alloc] initWithUsername:@"18583221776" password:@"123456"];
+    CHXLoginRequest *request = [[CHXLoginRequest alloc] initWithUsername:@"13699498370" password:@"abcd2468"];
     
     [CHXLoginHandler handleRequest:request withSuccess:^(id modelObject) {
         NSLog(@"modelObject = %@", modelObject);
@@ -220,8 +220,8 @@
 
 - (void)testCodeLicenser {
     CHXCodeLicenser *licenser = [CHXCodeLicenser sharedInstance];
-    NSString *filePath = @"/Users/Moch/Github/CHXBannerView/";
-    [licenser licenseCodeWithCreater:@"Moch Xiao" organization:@"Moch Xiao (https://github.com/atcuan)" projectName:@"CHXBannerView" filePath:filePath toLicenseType:CHXLicenseTypeMIT];
+    NSString *filePath = @"/Users/Moch/Github/NWNetworkingWrapper/";
+    [licenser licenseCodeWithCreater:@"Moch Xiao" organization:@"Moch Xiao (https://github.com/atcuan)" projectName:@"NWNetworkingWrapper" filePath:filePath toLicenseType:CHXLicenseTypeMIT];
 }
 
 - (void)testMethods {

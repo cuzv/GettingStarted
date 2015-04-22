@@ -51,7 +51,8 @@
 }
 
 - (NSString *)requestBaseURLString {
-    return  @"http://115.29.209.13:8081/wfarm/";
+    return @"http://115.29.209.13:8888/wfarm/";
+//    return  @"http://115.29.209.13:8081/wfarm/";
 }
 
 - (NSString *)requestSpecificURLString {

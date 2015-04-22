@@ -29,6 +29,7 @@
 		4672AB881A2BFE2F00876B74 /* CHXRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB871A2BFE2F00876B74 /* CHXRequest.m */; };
 		4672AB901A2BFF1700876B74 /* CHXLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672AB8F1A2BFF1700876B74 /* CHXLoginRequest.m */; };
 		469085A71A54417B00D1AC86 /* CHXMultipleSectionCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 469085A61A54417B00D1AC86 /* CHXMultipleSectionCollectionView.m */; };
+		4695EBC71AE771E60095B054 /* CHXDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4695EBC61AE771E60095B054 /* CHXDashLineView.m */; };
 		46B1264F1A93878E0027C35C /* CHXCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B1264E1A93878E0027C35C /* CHXCoreDataManager.m */; };
 		46B126521A93918C0027C35C /* NSDateExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B126511A93918C0027C35C /* NSDateExtension.m */; };
 		46F11DC11A1B7958009321A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F11DC01A1B7958009321A0 /* main.m */; };
@@ -150,6 +151,8 @@
 		4672AB8F1A2BFF1700876B74 /* CHXLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXLoginRequest.m; sourceTree = "<group>"; };
 		469085A51A54417B00D1AC86 /* CHXMultipleSectionCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXMultipleSectionCollectionView.h; sourceTree = "<group>"; };
 		469085A61A54417B00D1AC86 /* CHXMultipleSectionCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXMultipleSectionCollectionView.m; sourceTree = "<group>"; };
+		4695EBC51AE771E60095B054 /* CHXDashLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXDashLineView.h; sourceTree = "<group>"; };
+		4695EBC61AE771E60095B054 /* CHXDashLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXDashLineView.m; sourceTree = "<group>"; };
 		46B1264D1A93878E0027C35C /* CHXCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXCoreDataManager.h; sourceTree = "<group>"; };
 		46B1264E1A93878E0027C35C /* CHXCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXCoreDataManager.m; sourceTree = "<group>"; };
 		46B126501A93918C0027C35C /* NSDateExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateExtension.h; sourceTree = "<group>"; };
@@ -502,6 +505,8 @@
 				46F11EEF1A1B81A8009321A0 /* CHXFlexibleTextView.m */,
 				46F11EF01A1B81A8009321A0 /* CHXTrackArcView.h */,
 				46F11EF11A1B81A8009321A0 /* CHXTrackArcView.m */,
+				4695EBC51AE771E60095B054 /* CHXDashLineView.h */,
+				4695EBC61AE771E60095B054 /* CHXDashLineView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -878,6 +883,7 @@
 				4672AB881A2BFE2F00876B74 /* CHXRequest.m in Sources */,
 				46F11F641A1B917E009321A0 /* AwesomeMenu.m in Sources */,
 				466B16741A3896C000EA9EA0 /* CHXBaseNavigationController.m in Sources */,
+				4695EBC71AE771E60095B054 /* CHXDashLineView.m in Sources */,
 				46F11F431A1B903A009321A0 /* CHXReachabilityManager.m in Sources */,
 				46F11EF61A1B81A8009321A0 /* UIColorExtension.m in Sources */,
 				4666B0531A3D7A8A00CF3AB3 /* CHXCodeLicenser.m in Sources */,

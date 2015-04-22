@@ -304,6 +304,16 @@ static const void *IndicatorAnimationContextKey = &IndicatorAnimationContextKey;
     [self setImageEdgeInsets:UIEdgeInsetsMake(0, edgeWidth, 0, -edgeWidth)];
 }
 
+- (void)chx_updateImageAlignmentToUp {
+    CGFloat imageWidth = self.currentImage.size.width;
+    CGFloat imageHeight = self.currentImage.size.height;
+    [self setTitleEdgeInsets:UIEdgeInsetsMake(imageHeight / 2, -imageWidth/2, -imageHeight / 2, imageWidth/2)];
+    
+    CGFloat edgeWidth = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}].width;
+    CGFloat edgeHeight = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}].height;
+    [self setImageEdgeInsets:UIEdgeInsetsMake(-edgeHeight / 2, edgeWidth / 2, edgeHeight / 2, -edgeWidth / 2)];
+}
+
 @end
 
 

@@ -151,6 +151,11 @@
  */
 - (void)chx_updateImageAlignmentToRight;
 
+/**
+ *  Button 图片上侧对齐
+ */
+- (void)chx_updateImageAlignmentToUp;
+
 @end
 
 #pragma mark - 扩大点击范围
