@@ -96,7 +96,7 @@
     
     //	[self testCoding];
     
-    	[self testCodeLicenser];
+//    	[self testCodeLicenser];
     
     //	[self testMethods];
     
@@ -220,8 +220,8 @@
 
 - (void)testCodeLicenser {
     CHXCodeLicenser *licenser = [CHXCodeLicenser sharedInstance];
-    NSString *filePath = @"/Users/Moch/Github/NWNetworkingWrapper/";
-    [licenser licenseCodeWithCreater:@"Moch Xiao" organization:@"Moch Xiao (https://github.com/atcuan)" projectName:@"NWNetworkingWrapper" filePath:filePath toLicenseType:CHXLicenseTypeMIT];
+    NSString *filePath = @"/Users/Moch/Github/CHXBannerView/";
+    [licenser licenseCodeWithCreater:@"Moch Xiao" organization:@"Moch Xiao (https://github.com/atcuan)" projectName:@"CHXBannerView" filePath:filePath toLicenseType:CHXLicenseTypeMIT];
 }
 
 - (void)testMethods {

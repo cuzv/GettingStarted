@@ -25,6 +25,8 @@
 //
 
 #import "AppDelegate.h"
+#import "CHXUser.h"
+#import "CHXUserDefaults.h"
 
 @interface AppDelegate ()
 
@@ -35,6 +37,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+   
+    
     return YES;
 }
 

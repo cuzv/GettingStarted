@@ -12,6 +12,7 @@
 		4608A3F21A1CF8EC00AF5873 /* NSDataExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608A3F11A1CF8EC00AF5873 /* NSDataExtension.m */; };
 		4610548F1A4E7E1F001FCF43 /* CHXDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4610548E1A4E7E1F001FCF43 /* CHXDownloadRequest.m */; };
 		461B3AC81A84BE6A0040C0B7 /* CHXHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 461B3AC71A84BE6A0040C0B7 /* CHXHUD.m */; };
+		4628A20E1AF0C5D100F458CB /* CHXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4628A20D1AF0C5D100F458CB /* CHXUser.m */; };
 		464463B91A53A2940036F89B /* CHXTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 464463B81A53A2940036F89B /* CHXTableController.m */; };
 		46602C811A1C3E5800307EEC /* CHXGlobalServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C801A1C3E5800307EEC /* CHXGlobalServices.m */; };
 		46602C861A1C4DBF00307EEC /* CHXHTTPConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 46602C851A1C4DBF00307EEC /* CHXHTTPConfigure.m */; };
@@ -115,6 +116,8 @@
 		461820DC1A3B47000087B602 /* CHXMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CHXMacro.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		461B3AC61A84BE6A0040C0B7 /* CHXHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXHUD.h; sourceTree = "<group>"; };
 		461B3AC71A84BE6A0040C0B7 /* CHXHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXHUD.m; sourceTree = "<group>"; };
+		4628A20C1AF0C5D100F458CB /* CHXUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXUser.h; sourceTree = "<group>"; };
+		4628A20D1AF0C5D100F458CB /* CHXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXUser.m; sourceTree = "<group>"; };
 		464463B71A53A2940036F89B /* CHXTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHXTableController.h; sourceTree = "<group>"; };
 		464463B81A53A2940036F89B /* CHXTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHXTableController.m; sourceTree = "<group>"; };
 		465C07A51A24A5DE00ABE213 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -375,7 +378,6 @@
 			children = (
 				46F11F111A1B823D009321A0 /* Scenes */,
 				46F11F0B1A1B8234009321A0 /* Base */,
-				46F11F0E1A1B8234009321A0 /* Classess */,
 				46F11F0F1A1B8234009321A0 /* Views */,
 				46F11F461A1B917E009321A0 /* Vendors */,
 				46F11F3A1A1B903A009321A0 /* Manager */,
@@ -538,13 +540,6 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		46F11F0E1A1B8234009321A0 /* Classess */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classess;
-			sourceTree = "<group>";
-		};
 		46F11F0F1A1B8234009321A0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,6 +558,8 @@
 				46F653EA1A53C0F6001EAB7E /* CHXSingleSectionTableController.m */,
 				469085A51A54417B00D1AC86 /* CHXMultipleSectionCollectionView.h */,
 				469085A61A54417B00D1AC86 /* CHXMultipleSectionCollectionView.m */,
+				4628A20C1AF0C5D100F458CB /* CHXUser.h */,
+				4628A20D1AF0C5D100F458CB /* CHXUser.m */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -942,6 +939,7 @@
 				46F11F031A1B81A8009321A0 /* CHXLocationPickerView.m in Sources */,
 				46F11EFB1A1B81A8009321A0 /* UITableViewExtension.m in Sources */,
 				466B166C1A38954200EA9EA0 /* CHXBaseModel.m in Sources */,
+				4628A20E1AF0C5D100F458CB /* CHXUser.m in Sources */,
 				46F11F671A1B917E009321A0 /* UIImage+ImageEffects.m in Sources */,
 				466B16661A3893B100EA9EA0 /* CHXBaseRequest.m in Sources */,
 				46F11EFE1A1B81A8009321A0 /* UIViewControllerExtension.m in Sources */,

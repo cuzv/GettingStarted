@@ -51,8 +51,8 @@
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {
         CHXArrayDataSourceSectionItem *item1 = [[CHXArrayDataSourceTableViewSectionItem alloc] initWithContent:@[@"11", @"12"] titleForHeader:@"Section 1 header" titleForFooter:@"Section 1 footer" indexTitle:@"1"];
-        CHXArrayDataSourceSectionItem *item2 = [[CHXArrayDataSourceTableViewSectionItem alloc] initWithContent:@[@"21", @"22", @"23"] titleForHeader:@"Section 1 header" titleForFooter:@"Section 1 footer" indexTitle:@"2"];
-        CHXArrayDataSourceSectionItem *item3 = [[CHXArrayDataSourceTableViewSectionItem alloc] initWithContent:@[@"31"] titleForHeader:@"Section 1 header" titleForFooter:@"Section 1 footer" indexTitle:@"3"];
+        CHXArrayDataSourceSectionItem *item2 = [[CHXArrayDataSourceTableViewSectionItem alloc] initWithContent:@[@"21", @"22", @"23"] titleForHeader:@"Section 2 header" titleForFooter:@"Section 2 footer" indexTitle:@"2"];
+        CHXArrayDataSourceSectionItem *item3 = [[CHXArrayDataSourceTableViewSectionItem alloc] initWithContent:@[@"31"] titleForHeader:@"Section 3 header" titleForFooter:@"Section 3 footer" indexTitle:@"3"];
         _dataArray = [@[item1, item2, item3, item1, item2, item3, item1, item2, item3, item1, item2, item3] mutableCopy];
     }
     
