@@ -3,7 +3,7 @@
 //  GettingStarted
 //
 //  Created by Moch Xiao on 2015-02-06.
-//  Copyright (c) 2014 Moch Xiao (https://github.com/atcuan).
+//  Copyright (c) 2014 Moch Xiao (https://github.com/cuzv).
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -41,6 +41,9 @@ static UIView *presentView;
     JGProgressHUD *staticHUD = [self staticHUD];
     staticHUD.indicatorView = nil;
     staticHUD.textLabel.text = message;
+    staticHUD.contentView.backgroundColor = [UIColor yellowColor];
+    staticHUD.textLabel.backgroundColor = [UIColor clearColor];
+    staticHUD.contentView.backgroundColor = [UIColor clearColor];
     [staticHUD dismissAfterDelay:2.0f];
     [staticHUD showInView:presentView animated:YES];
 }
@@ -60,6 +63,17 @@ static UIView *presentView;
     staticHUD.HUDView.layer.shadowRadius = 8.0f;
     staticHUD.animation = animation;
     staticHUD.textLabel.text = message.length ? message : @"加载中...";
+    staticHUD.indicatorView = [[JGProgressHUDIndicatorView alloc] initWithContentView:({
+        UIView *view = [UIView new];
+        view.bounds = CGRectMake(0, 0, 50, 50);
+        view;
+    })];
+    [staticHUD.indicatorView.contentView addSubview:({
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        view.layer.contents = (id)[[UIImage imageNamed:@"jg_hud_error"] CGImage];
+        view.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.2];
+        view;
+    })];
     [staticHUD showInView:presentView animated:YES];
 }
 
@@ -82,7 +96,9 @@ static UIView *presentView;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleExtraLight];
-        HUD.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.35];
+//        HUD.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.35];
+        HUD.backgroundColor = [UIColor clearColor];
+        HUD.contentView.backgroundColor = [UIColor clearColor];
         HUD.interactionType = JGProgressHUDInteractionTypeBlockNoTouches;
         HUD.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
         presentView = [UIApplication sharedApplication].keyWindow;
